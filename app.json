@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/my/my",
+    "pages/pay/pay",
+    "pages/address/address",
+    "pages/cart/cart",
+    "pages/login/login",
+    "pages/detail/productAttr",
+    "pages/detail/detail",
+    "pages/intro/intro",
+    "pages/contact/contact",
+    "pages/setting/setting",
+    "pages/address/addressDetail"
+  ],
+  "window": {
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff6214",
+    "navigationBarTitleText": "机汇网",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ff6214",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "iconPath": "images/goods.png",
+        "selectedIconPath": "images/goods_.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/shop.png",
+        "selectedIconPath": "images/shop_.png",
+        "pagePath": "pages/intro/intro",
+        "text": "简介"
+      },
+      {
+        "iconPath": "images/msg.png",
+        "selectedIconPath": "images/msg_.png",
+        "pagePath": "pages/contact/contact",
+        "text": "联系"
+      },
+      {
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": true
+}

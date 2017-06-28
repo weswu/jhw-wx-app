@@ -1,0 +1,16 @@
+<!--address.wxml-->
+<view class="container">
+    <view class='separator'></view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{list}}">
+        <view class="weui-cell__bd" bindtap="page" data-url="../pay/pay" data-id="{{item.receiverId}}">{{item.mobile}} {{item.name}}收
+          <view class="address">{{item.address}}</view>
+        </view>
+          <view class="weui-cell__ft">
+            <image src="../../images/edit.png" bindtap="page" data-url="addressDetail?id={{item.receiverId}}"></image>
+            <image src="../../images/ok.png" style="margin-left:5px" wx:if="{{item.isDefault == 1}}"></image>
+          </view>
+      </view>
+    </view>
+    <button class="btn-primary fixed" bindtap="page" data-url="addressDetail">新增收货地址</button>
+</view>

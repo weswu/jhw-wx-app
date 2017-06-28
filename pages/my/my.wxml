@@ -1,0 +1,46 @@
+<view class="my">
+  <view class="weui-panel__bd">
+      <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+          <view class="weui-media-box__hd">
+              <image class="weui-media-box__thumb" src="{{userInfo.avatarUrl}}" alt=""></image>
+          </view>
+          <view class="weui-media-box__bd">
+              <view class="weui-media-box__title">{{userInfo.nickName}}</view>
+              <view class="weui-media-box__desc" bindtap="page" data-url="../login/login">绑定会员账号/登录</view>
+          </view>
+      </a>
+  </view>
+
+
+  <view class='separator'></view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell" bindtap="page" data-url="../order/order">
+        <view class="weui-cell__hd">
+            <image src="../../images/order.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </view>
+        <view class="weui-cell__bd">我的订单</view>
+        <view class="weui-cell__ft"></view>
+    </view>
+    <view class="weui-cell" bindtap="page" data-url="../cart/cart">
+        <view class="weui-cell__hd">
+            <image src="../../images/cart.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </view>
+        <view class="weui-cell__bd">购物车</view>
+        <view class="weui-cell__ft"></view>
+    </view>
+  </view>
+  <view class='separator'></view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell" bindtap="page" data-url="../setting/setting">
+        <view class="weui-cell__hd">
+            <image src="../../images/setting.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </view>
+        <view class="weui-cell__bd">设置</view>
+        <view class="weui-cell__ft"></view>
+    </view>
+  </view>
+  <view class='separator'></view>
+
+</view>

@@ -1,0 +1,53 @@
+<!--cart.wxml-->
+<view class="container cart">
+
+  <view wx:if="{{data.length > 0}}">
+    <view class='separator'></view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell title">
+          <view class="weui-cell__hd"></view>
+          <view class="weui-cell__bd">购物清单</view>
+          <view class="weui-cell__ft"></view>
+      </view>
+      <view class="weui-cell" wx:for="{{data}}">
+          <view class="weui-cell__hd">
+              <image src="{{item.product.picUrl5}}"></image>
+          </view>
+          <view class="weui-cell__bd">
+            {{item.product.name}}
+            <view class="proInfo">
+              <text class="price">￥{{item.product.price}}</text>
+              <text class="quantity">x{{item.quantity}}</text>
+            </view>
+          </view>
+          <view class="weui-cell__ft price" bindtap="del" data-id="{{item.product.productId}}" data-skuCode="{{item.skuCode}}" data-index="{{index}}">删除</view>
+      </view>
+      <view class="weui-cell title" bindtap="pageIndex">
+          <view class="weui-cell__bd add">继续添加商品</view>
+      </view>
+    </view>
+
+  <view class="app-bottom">
+    <view class="app-bottom-left" bindtap="clear">
+        <view class="cart-b-check-all">
+            <span class="cart-clear">清空</span>
+        </view>
+    </view>
+    <view class="app-bottom-right">
+        合计：<span class="cart-m-span">{{totalPrice1}}</span>
+        <span class="order-submit" bindtap="page" data-url="../pay/pay">结算({{totalQuantity}})</span>
+    </view>
+</view>
+
+
+  </view>
+
+  <view wx:else>
+    <view class="emptyCart panel">
+      <image src="../../images/cart.png"></image>
+      <text>购物车还是空的</text>
+      <button class="btn-primary" bindtap="pageIndex">到机汇商城逛逛</button>
+    </view>
+  </view>
+
+</view>

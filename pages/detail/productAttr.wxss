@@ -1,0 +1,32 @@
+/* productAttr.wxss */
+.weui-cell wx-image {
+  width: 2rem;
+  height: 2rem;
+}
+.title{
+  padding:1rem 0.5rem 0.5rem 0.5rem;
+  font-size: 0.7rem;
+}
+button{
+  margin-top: 1rem
+}
+.weui-cell__bd text{
+  -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    min-width: 1.12rem;
+    padding: 0 0.3rem;
+    margin: 0 .1rem .1rem 0;
+    max-width: 100%;
+    font-size: 0.7rem;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+}
+.weui-cell__bd .active {
+    border-color: #EB6121;
+    color: #000;
+}

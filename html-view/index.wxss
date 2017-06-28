@@ -1,0 +1,21 @@
+@import "reset.wxss";
+
+.html-view {
+  font-size: 36rpx;
+  color: #333;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+.img, .video {
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.th, .td {
+  border: 1rpx solid #333;
+  padding: 10rpx;
+}

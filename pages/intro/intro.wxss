@@ -1,0 +1,17 @@
+/* intro.wxss */
+.intro {
+  width: 100%;
+  padding: 5vw;
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.intro image {
+  width: 100%;
+}
+
+.intro view {
+  text-indent: 2em;
+}

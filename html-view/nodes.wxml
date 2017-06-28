@@ -1,0 +1,241 @@
+<template name="html-view-nodes">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-1" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-1" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-1" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-1">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-2" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-2" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-2" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-2">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-3" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-3" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-3" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-3">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-4" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-4" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-4" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-4">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-5" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-5" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-5" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-5">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-6" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-6" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-6" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-6">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-7" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-7" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-7" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-7">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-8" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-8" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-8" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-8">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-9" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-9" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-9" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-9">
+  <block wx:for="{{nodes}}" wx:key="">
+    <block wx:if="{{item.type === 'Text'}}">{{item.content}}</block>
+    <block wx:elif="{{item.type === 'Element'}}">
+      <view wx:if="{{item.wxTag === 'view'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-10" data="{{nodes: item.children}}" />
+      </view>
+
+      <text wx:elif="{{item.wxTag === 'text'}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-10" data="{{nodes: item.children}}" />
+      </text>
+
+      <navigator wx:elif="{{item.wxTag === 'navigator'}}" url="{{item.url}}" class="{{item.tagName}} {{item.attributes.className}}" style="{{item.attributes.styleString}}">
+        <template is="html-view-nodes-10" data="{{nodes: item.children}}" />
+      </navigator>
+
+      <image wx:if="{{item.wxTag === 'image'}}" src="{{item.attributes.src}}" class="img" mode="widthFix" style="{{item.attributes.styleString}}" />
+
+      <video wx:elif="{{item.wxTag === 'video'}}" src="{{item.attributes.src}}" class="video"></video>
+
+      <audio wx:elif="{{item.wxTag === 'audio'}}" src="{{item.attributes.src}}" class="audio" controls></audio>
+    </block>
+  </block>
+</template>
+<template name="html-view-nodes-10"></template>

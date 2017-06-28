@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="cells">
+    <navigator url="/pages/detail/detail?id={{item.product_id}}" class="cell" wx:for="{{proList}}" wx:key="product_id">
+      <view class="cell_bd">
+        <image mode="widthFix" src="{{item.pic_path}}"></image>
+        <view class="cell_desc">{{item.name}}</view>
+        <view class="cell_price">￥{{item.price}}</view>
+      </view>
+    </navigator>
+  </view>

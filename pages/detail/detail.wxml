@@ -1,0 +1,43 @@
+<!--detail.wxml-->
+<view class="detail_hd">
+  <image mode="widthFix" src="{{detail.pic_path}}"></image>
+  <view class="detail_title">
+    {{detail.name}}
+    <view class="price">{{detail.price}}元</view>
+  </view>
+</view>
+
+<view class='separator'></view>
+<view class="weui-navbar">
+    <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
+        图文详情
+    </view>
+    <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2" style="border-right:none">
+        成交记录
+    </view>
+</view>
+
+<view class="detail_bd">
+  <import src="../../html-view/index" />
+  <view hidden="{{nav != '1'}}">
+    <template is="html-view" data="{{data: html}}" />
+  </view>
+
+  <view hidden="{{nav != '2'}}">
+   <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{sellList}}" wx:key="sellIndex">
+          <view class="weui-cell__bd">
+            {{item.buyname}}
+          </view>
+          <view class="weui-cell__ft time">{{item.updateTime}}</view>
+      </view>
+      <view if:for="{{sellList.length == 0}}">
+          暂无数据
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<button class="btn-primary fixed" bindtap="page"
+data-url="productAttr?name={{detail.name}}&price={{detail.price}}&id={{detail.product_id}}&pic_path={{detail.pic_path}}&store={{detail.store}}">立即购买</button>

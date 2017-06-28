@@ -1,0 +1,19 @@
+/* login.wxss */
+.title{
+  text-align: center;
+  padding:1rem 0;
+}
+input{
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #eee
+}
+.active{
+  border-bottom: 1px solid #ff6214
+}
+.tip{
+  font-size: 12px;
+  color:#999;
+  padding: 20rpx 0 50rpx 0;
+  display: block
+}

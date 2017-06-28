@@ -1,0 +1,42 @@
+/**index.wxss**/
+.cells {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cell {
+  display: flex;
+  width: 50vw;
+  box-sizing: border-box;
+  padding-top:1vh
+}
+
+.cell:nth-child(odd) {
+  justify-content: flex-start;
+}
+
+.cell:nth-child(even) {
+  justify-content: flex-end;
+}
+
+.cell_bd {
+  overflow: hidden;
+}
+
+.cell_bd image {
+  width: 49.5vw;
+}
+
+.cell_desc {
+  font-size: 12px;
+  box-sizing: border-box;
+  padding: 5px;
+  color: #666666;
+}
+
+.cell_price{
+  font-size: 12px;
+  padding: 5px;
+  color: #ff6214;
+}

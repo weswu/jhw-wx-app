@@ -1,0 +1,24 @@
+/* detail.wxss */
+@import "../../html-view/index.wxss";
+image {
+  display: block;
+  width:100%;
+}
+
+.detail_title {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 5vw;
+}
+.price{
+  color: #ff6214;
+  font-size: 0.8rem;
+  padding-top:0.5rem;
+
+}
+.detail_bd {
+  width: 100%;
+  padding: 5vw;
+  box-sizing: border-box;
+  margin-bottom:2.4rem;
+}

@@ -1,0 +1,8 @@
+/* address.wxss */
+
+.weui-cell__ft {
+  width:60px;
+}
+image{
+  float:left
+}

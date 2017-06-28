@@ -1,0 +1,8 @@
+<!--login.wxml-->
+<view class="classname panel">
+  <view class="title">用户绑定/注册</view>
+  <input value="{{username}}" placeholder="账号" bindchange="model" data-model="username" bindfocus="active" bindblur="end" class="{{focus1 ? 'active' : ''}}"/>
+  <input type="password" value="{{password}}" placeholder="密码" bindchange="model" data-model="password" bindfocus="active" bindblur="end" class="{{focus2 ? 'active' : ''}}"/>
+  <view class="tip">老用户直接输入以前的账号和密码登录</view>
+  <button class="btn-primary fullwidth" bindtap="submit">确定</button>
+</view>
