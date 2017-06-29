@@ -210,8 +210,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
-    var title= '新增收货地址'
-    if(!this.data.isAdd){ title= '修改收货地址'}
+    var title= '收货地址详细'
+    if (!this.data.isAdd) { title = '修改收货地址' } else { title = '新增收货地址'}
     wx.setNavigationBarTitle({
       title: title
     })

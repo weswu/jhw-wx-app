@@ -56,6 +56,38 @@ Page({
       })
     }
   },
+  wxAddress: function(){
+    this.data.list.push({
+      enterpriseId: "Enterp_0000000000000000000049341",
+      isDefault: "0",
+      addTime: 1498555820109,
+      updateTime: null,
+      mobile: "1513461569",
+      receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
+      areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
+      phone: "",
+      zipCode: "322000",
+      address: "详细地址3",
+      name: "名称3"
+    })
+
+    this.setData({
+      list: this.data.list
+    })
+
+    wx.chooseAddress({
+      success: function (res) {
+        console.log(res.userName)
+        console.log(res.postalCode)
+        console.log(res.provinceName)
+        console.log(res.cityName)
+        console.log(res.countyName)
+        console.log(res.detailInfo)
+        console.log(res.nationalCode)
+        console.log(res.telNumber)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

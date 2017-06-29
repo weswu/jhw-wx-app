@@ -1,4 +1,4 @@
-// pay.js
+// orderDetail.js
 Page({
 
   /**
@@ -323,8 +323,7 @@ Page({
     ],
     totalPrice2: 2000.01,
     totalPaymentFee: 0,
-    totalDiscount: 0,
-    index: 0
+    totalDiscount: 0
   },
 
   page: function (e) {
@@ -362,11 +361,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // 配送
-    var deliveryTypeList = [];
-    for (var i = 0; i < this.data.deliveryType.length; i++) {
-      deliveryTypeList.push(this.data.deliveryType[i].name)
-    }
+    
     // 微信支付
     var curPaymentConfig = {}
     for (var i = 0; i < this.data.paymentConfig.length; i++) {
@@ -384,13 +379,10 @@ Page({
     this.setData({
       curDelivery: this.data.deliveryType[0],
       curPaymentConfig: curPaymentConfig,
-      curReceiver: curReceiver,
-      deliveryTypeList: deliveryTypeList
+      curReceiver: curReceiver
     })
 
-    wx.setNavigationBarTitle({
-      title: '支付'
-    })
+  
   },
 
   /**

@@ -1,0 +1,79 @@
+<!--orderDetail.wxml-->
+<view class="container">
+  <view class="title orderStatus">
+    <view class="">待付款</view>
+    <view class="">请在2016-5-5前完成付款，逾期订单将关闭</view>
+  </view>
+
+
+
+  <view class="title">订单信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__hd"><label class="weui-label">下单日期</label></view>
+          <view class="weui-cell__bd">2017-06-06</view>
+          <view class="weui-cell__ft"></view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__hd"><label class="weui-label">订单编号</label></view>
+          <view class="weui-cell__bd">116565164666165</view>
+          <view class="weui-cell__ft"></view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <label class="weui-label">收货信息</label>
+            <view> {{curReceiver.mobile}} {{curReceiver.name}}收
+              <view class="address">{{curReceiver.address}}</view>
+            </view>
+          </view>
+          <view class="weui-cell__bd"></view>
+          <view class="weui-cell__ft"></view>
+      </view>
+
+    </view>
+
+
+
+  <view class="title">购物清单</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{cartItemSet}}">
+          <view class="weui-cell__hd">
+              <image src="{{item.product.picUrl5}}"></image>
+          </view>
+          <view class="weui-cell__bd">
+            {{item.product.name}}
+            <view class="proInfo">
+              <text class="price">￥{{item.product.marketPrice}}</text>
+              <text class="quantity">x{{item.quantity}}</text>
+            </view>
+          </view>
+      </view>
+      <view class="weui-cell" style="display:none">
+          <view class="weui-cell__bd"><input class="app-input" placeholder="给卖家留言..."/></view>
+      </view>
+    </view>
+
+
+  <view class="title">订单金额</view>
+    <view class="weui-cells weui-cells_after-title pay_total" style="margin-bottom:3rem;">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">订单金额</view>
+          <view class="weui-cell__ft"><text>应付</text>￥{{totalPrice2}}</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">商品总价</view>
+          <view class="weui-cell__ft">{{totalPrice}}</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">运费</view>
+          <view class="weui-cell__ft">{{curDelivery.deliveryFee}}</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">优惠</view>
+          <view class="weui-cell__ft">{{totalDiscount}}</view>
+      </view>
+    </view>
+
+    <button class="btn-weixin fixed" bindtap="pay" data-url="../pay/pay">使用微信支付</button>
+</view>
+

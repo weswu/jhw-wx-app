@@ -1,7 +1,7 @@
 <view class="container order">
 
   <view wx:if="{{list.length > 0}}">
-    <view class="weui-cells weui-cells_after-title" wx:for="{{list}}" bindtap="page" data-url="../pay/pay">
+    <view class="weui-cells weui-cells_after-title" wx:for="{{list}}" bindtap="page" data-url="orderDetail">
       <view class="weui-cell" wx:for="{{item.orderItemSet}}">
         <view class="weui-cell__hd">
             <image src="{{item.product.picUrl5}}"></image>

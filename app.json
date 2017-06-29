@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/my/my",
+    "pages/address/address",
+    "pages/pay/pay",
     "pages/index/index",
     "pages/order/order",
-    "pages/my/my",
-    "pages/pay/pay",
-    "pages/address/address",
     "pages/cart/cart",
     "pages/login/login",
     "pages/detail/productAttr",
@@ -12,7 +12,8 @@
     "pages/intro/intro",
     "pages/contact/contact",
     "pages/setting/setting",
-    "pages/address/addressDetail"
+    "pages/address/addressDetail",
+    "pages/order/orderDetail"
   ],
   "window": {
     "backgroundColor": "#f5f5f5",

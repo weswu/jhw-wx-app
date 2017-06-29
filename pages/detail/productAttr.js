@@ -115,7 +115,9 @@ Page({
       }
     }
     */
-
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
     wx.request({
       url: 'http://www.jihui88.com/rest/api/shop/cartItem/add',
       data: {

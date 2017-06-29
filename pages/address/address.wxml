@@ -1,7 +1,7 @@
 <!--address.wxml-->
 <view class="container">
     <view class='separator'></view>
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells weui-cells_after-title" style="margin-bottom:5rem;">
       <view class="weui-cell" wx:for="{{list}}">
         <view class="weui-cell__bd" bindtap="page" data-url="../pay/pay" data-id="{{item.receiverId}}">{{item.mobile}} {{item.name}}收
           <view class="address">{{item.address}}</view>
@@ -12,5 +12,6 @@
           </view>
       </view>
     </view>
-    <button class="btn-primary fixed" bindtap="page" data-url="addressDetail">新增收货地址</button>
+    <button class="btn-primary fixed" bindtap="page" data-url="addressDetail" style="bottom: 2.4rem;">新增收货地址</button>
+    <button class="btn-weixin fixed" bindtap="wxAddress" data-url="addressDetail">添加微信收货地址</button>
 </view>

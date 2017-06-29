@@ -37,7 +37,8 @@
   </view>
 
   <view class="panel">
-    <button class="btn-primary fullwidth" bindtap="submit" data-url="../cart/cart">确定</button>
+    <button class="btn-primary fullwidth" bindtap="submit" data-url="../pay/pay">确定支付</button>
+    <button class="btn-primary fullwidth" bindtap="back">添加到购物车</button>
     <button class="fullwidth" bindtap="back" style="background:#fff">取消</button>
   </view>
 </view>
