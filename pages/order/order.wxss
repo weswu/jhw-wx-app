@@ -1,4 +1,7 @@
 /* order.wxss */
+.weui-cells{
+  margin-bottom: 15px
+}
 .weui-cell image{
   margin-right: 5px;vertical-align: middle;width:2rem; height: 2rem;
 }

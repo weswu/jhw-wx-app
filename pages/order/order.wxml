@@ -2,7 +2,6 @@
 
   <view wx:if="{{list.length > 0}}">
     <view class="weui-cells weui-cells_after-title" wx:for="{{list}}" bindtap="page" data-url="../pay/pay">
-
       <view class="weui-cell" wx:for="{{item.orderItemSet}}">
         <view class="weui-cell__hd">
             <image src="{{item.product.picUrl5}}"></image>
@@ -28,7 +27,6 @@
           <view class="weui-cell__bd"></view>
           <view class="weui-cell__ft">共{{item.productTotalQuantity}}件商品 合计:{{item.totalAmount}}</view>
       </view>
-      <view class='separator'></view>
     </view>
   </view>
 
