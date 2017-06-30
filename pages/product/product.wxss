@@ -1,12 +1,4 @@
-/**index.wxss**/
-.banner{
-  width: 750rpx;
-  max-width: 480px;
-  margin:0 auto;
-}
-
-
-
+/* product.wxss */
 .cells {
   display: flex;
   flex-wrap: wrap;

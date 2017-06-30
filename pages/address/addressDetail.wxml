@@ -2,21 +2,20 @@
 <view class="container">
   <view class="title">收货人信息</view>
 
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell">
-          <view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
-          <view class="weui-cell__bd"><input value="{{model.name}}" bindinput="model" data-model="name" placeholder="真实姓名"/></view>
-      </view>
-      <view class="weui-cell">
-          <view class="weui-cell__hd"><label class="weui-label">电话</label></view>
-          <view class="weui-cell__bd"><input value="{{model.mobile}}" maxlength="11" bindinput="model" data-model="mobile" placeholder="手机号码"/></view>
-      </view>
-      <view class="weui-cell">
-          <view class="weui-cell__hd"><label class="weui-label">邮编</label></view>
-          <view class="weui-cell__bd"><input value='{{model.zipCode}}' bindinput="model" data-model="zipCode" placeholder="邮政编码"/></view>
-      </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+        <view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
+        <view class="weui-cell__bd"><input value="{{model.name}}" bindinput="model" data-model="name" placeholder="真实姓名"/></view>
     </view>
-
+    <view class="weui-cell">
+        <view class="weui-cell__hd"><label class="weui-label">电话</label></view>
+        <view class="weui-cell__bd"><input value="{{model.mobile}}" maxlength="11" bindinput="model" data-model="mobile" placeholder="手机号码"/></view>
+    </view>
+    <view class="weui-cell">
+        <view class="weui-cell__hd"><label class="weui-label">邮编</label></view>
+        <view class="weui-cell__bd"><input value='{{model.zipCode}}' bindinput="model" data-model="zipCode" placeholder="邮政编码"/></view>
+    </view>
+  </view>  
 
   <view class="title">收货地址</view>
     <view class="weui-cells weui-cells_after-title">

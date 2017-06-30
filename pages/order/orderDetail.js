@@ -323,7 +323,8 @@ Page({
     ],
     totalPrice2: 2000.01,
     totalPaymentFee: 0,
-    totalDiscount: 0
+    totalDiscount: 0,
+    paymentStatus: 'unpaid'
   },
 
   page: function (e) {
@@ -361,7 +362,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    wx.setNavigationBarTitle({
+      title: '订单详情'
+    })
     // 微信支付
     var curPaymentConfig = {}
     for (var i = 0; i < this.data.paymentConfig.length; i++) {
@@ -382,7 +385,7 @@ Page({
       curReceiver: curReceiver
     })
 
-  
+
   },
 
   /**

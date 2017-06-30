@@ -1,24 +1,6 @@
 /* order.wxss */
-.weui-cells{
-  margin-bottom: 15px
-}
-.weui-cell image{
-  margin-right: 5px;vertical-align: middle;width:2rem; height: 2rem;
-}
-
-.price{
-  color: #ff5001;
-  font-size: 14px
-}
-.quantity{
-    margin-left: 5px;
-    color: #999;
-    font-size: 14px
-}
-
-.time{
-  font-size: 0.7rem;
-  color: #999
+.weui-cell{
+  padding-bottom: 10px
 }
 
 .emptyOrder image{

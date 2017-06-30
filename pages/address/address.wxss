@@ -1,8 +1,8 @@
 /* address.wxss */
-
-.weui-cell__ft {
-  width:60px;
+.weui-cell{
+  color: #9b9b9b;
+  font-size: 12px
 }
-image{
-  float:left
+.weui-cell__ft image{
+  padding: 5px
 }

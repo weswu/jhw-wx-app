@@ -86,6 +86,7 @@ App({
     console.log('App Hide')
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    enterpriseId: 'Enterp_0000000000000000000049341'
   }
 })

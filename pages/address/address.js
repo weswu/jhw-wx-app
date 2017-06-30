@@ -38,15 +38,15 @@ Page({
   page: function (e) {
     var url = e.currentTarget.dataset.url
     // 修改默认收货地址
-    if(url === '../pay/pay'){
+    if(url === '../cart/cart'){
       wx.request({
         url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ e.currentTarget.dataset.id,
         data: {
           isDefault: '1'
         },
         success: function (res) {
-          wx.navigateTo({
-            url: url
+          wx.navigateBack({
+            url: e.currentTarget.dataset.url + '?receiverId=' + e.currentTarget.dataset.id
           })
         }
       })

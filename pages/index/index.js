@@ -4,13 +4,13 @@ Page({
     proList: []
   },
   onLoad: function () {
-    this.getList()
+    this.get()
   },
   onPullDownRefresh: function () {
-    this.getList()
+    this.get()
     wx.stopPullDownRefresh()
   },
-  getList: function () {
+  get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()

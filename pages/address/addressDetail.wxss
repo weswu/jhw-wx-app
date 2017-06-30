@@ -4,7 +4,7 @@
   font-size: 12px;
 }
 .weui-cell__hd{
-  font-size: 14px
+  font-size: 12px
 }
 .weui-cell__ft {
   width:60px;

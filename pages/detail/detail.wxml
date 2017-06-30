@@ -3,7 +3,7 @@
   <image mode="widthFix" src="{{detail.pic_path}}"></image>
   <view class="detail_title">
     {{detail.name}}
-    <view class="price">{{detail.price}}元</view>
+    <view class="price">￥{{detail.price}}</view>
   </view>
 </view>
 
@@ -24,7 +24,7 @@
   </view>
 
   <view hidden="{{nav != '2'}}">
-   <view class="weui-cells weui-cells_after-title">
+   <view class="weui-cells">
       <view class="weui-cell" wx:for="{{sellList}}" wx:key="sellIndex">
           <view class="weui-cell__bd">
             {{item.buyname}}
@@ -36,8 +36,49 @@
       </view>
     </view>
   </view>
-
 </view>
 
-<button class="btn-primary fixed" bindtap="page"
-data-url="productAttr?name={{detail.name}}&price={{detail.price}}&id={{detail.product_id}}&pic_path={{detail.pic_path}}&store={{detail.store}}">立即购买</button>
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+  <view class="weui-cells">
+     <view class="weui-cell">
+         <view class="weui-cell__hd">
+             <image src="{{detail.pic_path}}" style="width:60px;height:60px"></image>
+         </view>
+         <view class="weui-cell__bd">
+           {{detail.name}}
+           <view class="price">￥{{detail.price}}</view>
+         </view>
+         <view class="weui-cell__ft close" bindtap="setModalStatus" data-status="0">
+           <image src="../../images/x.png"></image>
+         </view>
+     </view>
+   </view>
+   <view class="drawer_attr_content">
+       <view class="weui-cell" wx:for="{{attrList}}">
+           <view class="weui-cell__bd weui-cell-attr">
+             <view class="name">{{item.name}}</view>
+             <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" class="{{item.dx===idx?'active':''}}"
+              data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
+           </view>
+       </view>
+       <view class="weui-cell">
+           <view class="weui-cell__hd">购买数量</view>
+           <view class="weui-cell__bd">
+             <!-- 主容器 -->
+             <view class="stepper">
+               <!-- 减号 -->
+               <text class="{{minusStatus}}" bindtap="bindMinus">-</text>
+               <!-- 数值 -->
+               <input type="number" bindchange="bindManual" value="{{num}}" />
+               <!-- 加号 -->
+               <text class="normal" bindtap="bindPlus">+</text>
+             </view>
+           </view>
+     </view>
+
+
+   </view>
+   <button class="btn-primary fixed" bindtap="page" data-url="../cart/cart">确定</button>
+</view>
+<button class="btn-primary fixed" bindtap="setModalStatus" data-status="1">立即购买</button>

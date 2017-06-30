@@ -12,8 +12,8 @@ image {
 }
 .price{
   color: #ff6214;
-  font-size: 0.8rem;
-  padding-top:0.5rem;
+  font-size: 13px;
+  padding-top: 5px;
 
 }
 .detail_bd {
@@ -21,4 +21,105 @@ image {
   padding: 5vw;
   box-sizing: border-box;
   margin-bottom:2.4rem;
+}
+
+/* dialog */
+.close{
+  padding-bottom:30px;
+}
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+.drawer_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+}
+
+.drawer_attr_content {
+  height: 500rpx;
+  overflow-y: scroll;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  margin-bottom:2.4rem;
+}
+.weui-cell-attr .name{
+  padding-bottom: 10px
+}
+.weui-cell-attr text{
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    padding: 4px 12px;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    border-radius: 4px;
+    color: #999;
+}
+.drawer_attr_content .weui-cell:before {
+  border-top: none
+}
+.drawer_attr_content .weui-cell {
+  padding-bottom: 0
+}
+.weui-cell-attr .active {
+    border: 1px solid #ff6214;
+    background: #ff6214;
+    color: #fff;
+}
+
+/*加减主容器*/
+.stepper {
+  width: 85px;
+  height: 28px;
+  /*给主容器设一个边框*/
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  margin-left: 30px;
+}
+
+/*加号和减号*/
+.stepper text {
+  width: 19px;
+  line-height: 28px;
+  text-align: center;
+  float: left;
+}
+
+/*数值*/
+.stepper input {
+  width: 40px;
+  height: 28px;
+  float: left;
+  margin:0 auto;
+  text-align: center;
+  font-size: 12px;
+  /*给中间的input设置左右边框即可*/
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+/*普通样式*/
+.stepper .normal{
+  color: black;
+}
+
+/*禁用样式*/
+.stepper .disabled{
+  color: #ccc;
 }

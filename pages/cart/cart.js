@@ -216,11 +216,37 @@ Page({
     issubtotal: false,
     totalQuantity: 2,
     totalPrice: 1000.01,
-    totalPrice1: "￥1000.01元"
+    totalPrice1: "￥1000.01元",
+    curReceiver: {
+      enterpriseId: "Enterp_0000000000000000000049341",
+      isDefault: "1",
+      addTime: 1498555820109,
+      updateTime: null,
+      mobile: "1513461568",
+      receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
+      areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
+      phone: "",
+      zipCode: "322000",
+      address: "详细地址",
+      name: "名称"
+    }
   },
   page: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url
+    })
+  },
+  pay: function () {
+    wx.requestPayment({
+      'timeStamp': '',
+      'nonceStr': '',
+      'package': '',
+      'signType': 'MD5',
+      'paySign': '',
+      'success': function (res) {
+      },
+      'fail': function (res) {
+      }
     })
   },
   pageIndex: function (e) {
@@ -260,11 +286,14 @@ Page({
       }
     })
   },
+  get: function () {
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get()
   },
 
   /**
