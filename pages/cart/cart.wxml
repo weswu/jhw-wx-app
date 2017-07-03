@@ -49,7 +49,7 @@
   <button class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
 </view>
 
-<view wx:else>
+<view wx:elif="{{data.length === 0 && empty}}">
   <view class="emptyCart panel">
     <image src="../../images/cart.png"></image>
     <text>购物车还是空的</text>

@@ -33,7 +33,7 @@
   </view>
 </view>
 
-<view wx:else>
+<view wx:elif="{{list.length === 0 && empty}}">
   <view class="emptyOrder panel">
     <image src="../../images/order.png"></image>
     <text>订单还是空的</text>

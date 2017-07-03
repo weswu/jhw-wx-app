@@ -5,38 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    proList: []
+    list: [],
+    cate_id: '',
+    title: '产品',
+    page: 1
   },
 
-  get: function (ob) {
+  get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
+    console.log('产品分类'+ this.data.cate_id +'加载中...')
     var url = 'all/Enterp_0000000000000000000049341'
-    if(ob.categoryId){
-      url = 'category_child/Enterp_0000000000000000000049341?category_id=' + ob.categoryId +'&imagelist=1'
+    if(!!this.data.cate_id){
+      url = 'category_child/Enterp_0000000000000000000049341?category_id=' + this.data.cate_id +'&page=' + this.data.page
     }
     wx.request({
       url: 'http://api.jihui88.net/jihuiapi/products/' + url,
       success: function (res) {
-        console.log(res)
+        // !res.data.list && that.data.page === 1
         that.setData({
-          proList: res.data.list
+          list: res.data.list
+        })
+        wx.setStorage({
+          key: 'proCate' + that.data.cate_id,
+          data: res.data.list
         })
         wx.hideNavigationBarLoading()
       }
     })
   },
 
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     if(options.category_id){
-      options.category_id = parseInt(options.category_id.split('Category_')[1])
+      that.setData({
+        cate_id: parseInt(options.category_id.split('Category_')[1]),
+        title: options.title
+      })
     }
-    this.get({ categoryId: options.category_id})
+    var key = wx.getStorageSync('proCate' + this.data.cate_id)
+    if (!key) {
+      this.get()
+    } else {
+      this.setData({
+        list: key
+      })
+    }
   },
 
   /**
@@ -44,35 +61,17 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '产品'
+      title: this.data.title || '产品'
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.setData({
+      page: 1
+    })
     this.get()
     wx.stopPullDownRefresh()
   },

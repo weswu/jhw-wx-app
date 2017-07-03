@@ -1,11 +1,10 @@
-<!--index.wxml-->
 <view class="cells">
-    <image class="banner" mode="widthFix" src="http://img.easthardware.com/upload/j/j2/jihui/picture/2016/02/16/9e4246d9-7150-49f0-af69-237598418759.png" alt="机汇网"/>
-    <navigator url="/pages/detail/detail?id={{item.product_id}}" class="cell" wx:for="{{proList}}" wx:key="product_id">
-      <view class="cell_bd">
-        <image mode="widthFix" src="{{item.pic_path}}"></image>
-        <view class="pro_title">{{item.name}}</view>
-        <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
-      </view>
-    </navigator>
-  </view>
+  <image class="banner" mode="widthFix" src="http://img.easthardware.com/upload/j/j2/jihui/picture/2016/02/16/9e4246d9-7150-49f0-af69-237598418759.png" alt="机汇网"/>
+  <navigator url="/pages/detail/detail?id={{item.product_id}}&title={{item.name}}" class="cell" wx:for="{{list}}" wx:key="product_id">
+    <view class="cell_bd">
+      <image mode="widthFix" src="{{item.pic_path}}"></image>
+      <view class="pro_title">{{item.name}}</view>
+      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+    </view>
+  </navigator>
+</view>

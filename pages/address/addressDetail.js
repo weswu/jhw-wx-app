@@ -17,6 +17,64 @@ Page({
     model:{},
     isAdd: true
   },
+  get: function () {
+    wx.request({
+      url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ options.id,
+      success: function (res) {
+        //var data= res.data.attributes.data;
+        var data= {
+          isDefault: "0",
+          addTime: 1498555820109,
+          enterpriseId: "Enterp_0000000000000000000049341",
+          updateTime: null,
+          mobile: "1513461568",
+          receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
+          areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
+          phone: "",
+          zipCode: "322000",
+          address: "详细地址",
+          name: "名称"
+        }
+        var oneIndex=0;
+        for(var i=0; i<that.data.province.length;i++){
+          if(that.data.province[i].value == data.areaPath.split(',')[0]){
+            oneIndex=i
+          }
+        }
+        that.setData({
+          oneIndex: oneIndex,
+          isAdd: false,
+          model: data
+        })
+        that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2' })
+      }
+    })
+  },
+  getProvince: function () {
+    wx.request({
+      url: 'http://www.jihui88.com/rest/api/shop/area/childrenArea',
+      success: function (res) {
+        var data = JSON.parse(res.data.attributes.data);
+        var one =[]
+        for(var i=0; i<data.length;i++){
+          one.push(data[i].title)
+        }
+        if(options.id){
+          that.setData({
+            province: data,
+            one: one
+          })
+        }else{
+          that.setData({
+            model: {
+              areaPath: data[0].value
+            }
+          })
+        }
+        that.childrenArea({ path: data[0].value, type: '1' })
+      }
+    })
+  },
   // 选择地址
   pickChange: function(e) {
     var type = e.currentTarget.dataset.type
@@ -135,66 +193,21 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/area/childrenArea',
-      success: function (res) {
-        var data = JSON.parse(res.data.attributes.data);
-        var one =[]
-        for(var i=0; i<data.length;i++){
-          one.push(data[i].title)
-        }
-        if(options.id){
-          that.setData({
-            province: data,
-            one: one
-          })
-        }else{
-          that.setData({
-            model: {
-              areaPath: data[0].value
-            }
-          })
-        }
-        that.childrenArea({ path: data[0].value, type: '1' })
-      }
-    })
+    this.getProvince()
     if(options.id){
-      wx.request({
-        url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ options.id,
-        success: function (res) {
-          //var data= res.data.attributes.data;
-          var data= {
-            isDefault: "0",
-            addTime: 1498555820109,
-            enterpriseId: "Enterp_0000000000000000000049341",
-            updateTime: null,
-            mobile: "1513461568",
-            receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-            areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-            phone: "",
-            zipCode: "322000",
-            address: "详细地址",
-            name: "名称"
-          }
-          var oneIndex=0;
-          for(var i=0; i<that.data.province.length;i++){
-            if(that.data.province[i].value == data.areaPath.split(',')[0]){
-              oneIndex=i
-            }
-          }
-          that.setData({
-            oneIndex: oneIndex,
-            isAdd: false,
-            model: data
-          })
-          that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2' })
-        }
-      })
-
+      var key = wx.getStorageSync('address' + options.id)
+      if (!key) {
+        this.get()
+      } else {
+        this.setData({
+          model: key
+        })
+      }
     }
   },
 
   del: function(){
+    var that = this
     wx.request({
       url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ this.data.model.receiverId,
       method: 'DELETE',
@@ -202,6 +215,11 @@ Page({
         console.log(res)
         wx.navigateTo({
           url: 'address'
+        })
+        wx.removeStorage({
+          key: 'address' + that.data.model.receiverId,
+          success: function(res) {
+          }
         })
       }
     })
@@ -215,27 +233,6 @@ Page({
     wx.setNavigationBarTitle({
       title: title
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**

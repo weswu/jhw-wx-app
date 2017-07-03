@@ -1,10 +1,10 @@
-<!--product.wxml-->
 <view class="cells">
-    <navigator url="/pages/detail/detail?id={{item.product_id}}" class="cell" wx:for="{{proList}}" wx:key="product_id">
-      <view class="cell_bd">
-        <image mode="widthFix" src="{{item.pic_path}}"></image>
-        <view class="pro_title">{{item.name}}</view>
-        <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
-      </view>
-    </navigator>
-  </view>
+  <navigator url="/pages/detail/detail?id={{item.product_id}}" class="cell" wx:for="{{list}}" wx:key="product_id">
+    <view class="cell_bd">
+      <image mode="widthFix" src="{{item.pic_path}}"></image>
+      <view class="pro_title">{{item.name}}</view>
+      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+    </view>
+  </navigator>
+</view>
+<view wx:if="{{list.length == 0}}" style="text-align: center;">暂无数据</view>

@@ -1,38 +1,9 @@
-/* product.wxss */
-.cells {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-bottom:2vh
-}
-
-.cell {
-  display: flex;
-  width: 49vw;
-  box-sizing: border-box;
-  padding-top:1.5vh;
-}
-
-.cell:nth-child(odd) {
-  justify-content: flex-start;
-}
-
-.cell:nth-child(even) {
-  justify-content: flex-end;
-}
-
-.cell_bd {
-  overflow: hidden;
-}
-
-.cell_bd image {
-  width: 49vw;
-}
-
-.pro_title {
-  padding: 5px 5px 0 5px;
-}
-
-.pro_price{
-  padding: 5px;
-}
+/* 产品列表 */ 
+.cells{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
+.cell{display:flex;width:49vw;box-sizing:border-box;padding-top:1.5vh}
+.cell:nth-child(odd){justify-content:flex-start}
+.cell:nth-child(even){justify-content:flex-end}
+.cell_bd{overflow:hidden}
+.cell_bd image{width:49vw}
+.pro_title{padding:5px 5px 0 5px}
+.pro_price{padding:5px}

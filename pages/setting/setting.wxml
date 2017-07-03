@@ -10,5 +10,10 @@
         <view class="weui-cell__bd">联系客服</view>
         <view class="weui-cell__ft">400-7111-011</view>
     </view>
+    <view class="weui-cell" bindtap="clear">
+        <view class="weui-cell__hd"></view>
+        <view class="weui-cell__bd">清除缓存</view>
+        <view class="weui-cell__ft">{{tip}}</view>
+    </view>
   </view>
 </view>

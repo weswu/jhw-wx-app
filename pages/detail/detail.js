@@ -6,13 +6,56 @@ var util = require('../../utils/util.js')
 Page({
   data: {
     detail: {},
+    title: '机汇网',
     id: '',
     nav: '1',
     sellList: [],
-    sellBol: false,
     showModalStatus: false,
     num: 1,
-    attrList: [
+    attrList: []
+  },
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
+  removeHTMLTag: function (str) {
+    str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
+    str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
+    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+    str=str.replace(/&nbsp;/ig, '');//去掉&nbsp;
+    return str;
+  },
+  get: function () {
+    var that = this
+    //调用应用实例的方法获取全局数据
+    wx.showNavigationBarLoading()
+    console.log('产品详细'+ this.data.id +'加载中...')
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/products/single/' + this.data.id,
+      success: function (res) {
+        // 解析HTML字符串
+        if (res.data.proddesc == null) { res.data.proddesc = ''}
+        const html = new HtmlParser(res.data.proddesc).nodes
+        that.setData({
+          detail: res.data,
+          html
+        })
+        wx.setStorage({
+          key: 'detail' + that.data.id,
+          data: res.data
+        })
+        wx.setStorage({
+          key: 'html' + that.data.id,
+          data: html
+        })
+        wx.hideNavigationBarLoading()
+      }
+    })
+  },
+  // 获取属性参数
+  getAttr: function () {
+    var attrList = [
       {
         memberPrice: 368,
         price: "[0,0,0,0,0,0]",
@@ -85,16 +128,66 @@ Page({
         ]
       }
     ]
+
+    // 属性处理
+    var that= this
+    for(var i=0; i<attrList.length; i++){
+      var element= attrList[i].element;
+      attrList[i].eleList = element.substring(1, element.length - 1).split(',')
+      attrList[i].dx = 0
+    }
+    this.setData({
+      attrList: attrList
+    })
+    wx.setStorage({
+      key: 'attr' + this.data.id,
+      data: attrList
+    })
   },
-  removeHTMLTag: function (str) {
-    str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
-    str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
-    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/&nbsp;/ig, '');//去掉&nbsp;
-    return str;
+  getSell: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this
+    wx.request({
+      url: 'http://www.jihui88.com/rest/api/shop/order/product/sellList',
+      dataType: 'jsonp',
+      data: {
+        callback: "jsonpCallback",
+        productId: this.data.detail.product_id
+      },
+      success: function (res) {
+        var str = res.data.split('jsonpCallback(')[1]
+        var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
+        var data = []
+        for (var i = 0; i < sell.length; i++) {
+          sell[i].updateTime = util.formatTime(sell[i].updateTime)
+          data.push(sell[i])
+        }
+        that.setData({
+          sellList: data
+        })
+        wx.setStorage({
+          key: 'sell' + that.data.id,
+          data: data
+        })
+      }
+    })
+    wx.hideLoading()
   },
   setModalStatus: function (e) {
-    console.log("设置显示状态，1显示0不显示", e.currentTarget.dataset.status);
+    var status = e.currentTarget.dataset.status
+    if (status === "1" && this.data.attrList.length === 0){
+      var key = wx.getStorageSync('attr' + this.data.id)
+      if (!key) {
+        this.getAttr()
+      } else {
+        this.setData({
+          attrList: key
+        })
+      }
+    }
+    console.log("设置显示状态，1显示0不显示", status);
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: "linear",
@@ -105,24 +198,20 @@ Page({
     this.setData({
       animationData: animation.export()
     })
-    if (e.currentTarget.dataset.status == 1) {
-      this.setData(
-        {
-          showModalStatus: true
-        }
-      );
+    if (status == 1) {
+      this.setData({
+        showModalStatus: true
+      });
     }
     setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation
       })
-      if (e.currentTarget.dataset.status == 0) {
-        this.setData(
-          {
-            showModalStatus: false
-          }
-        );
+      if (status == 0) {
+        this.setData({
+          showModalStatus: false
+        });
       }
     }.bind(this), 200)
   },
@@ -178,81 +267,49 @@ Page({
     });
   },
   onLoad: function (options) {
-    this.getDetail(options.id)
     this.setData({
-      id: options.id
-    })// 属性处理
-    var that= this
-    for(var i=0; i<this.data.attrList.length; i++){
-      var element= this.data.attrList[i].element;
-      this.data.attrList[i].eleList = element.substring(1, element.length - 1).split(',')
-      this.data.attrList[i].dx = 0
+      id: options.id,
+      title: options.title || '机汇网'
+    })
+    var key = wx.getStorageSync('detail' + this.data.id)
+    var html = wx.getStorageSync('html' + this.data.id)
+    if (!key) {
+      this.get()
+    } else {
+      this.setData({
+        detail: key,
+        html: html
+      })
     }
-    this.setData({
-      attrList: this.data.attrList
+  },
+  onReady: function () {
+    wx.setNavigationBarTitle({
+      title: this.data.title
     })
   },
   onPullDownRefresh: function () {
-    this.getDetail(this.data.id)
+    this.get()
     wx.stopPullDownRefresh()
-  },
-  getDetail: function (id) {
-    var that = this
-    //调用应用实例的方法获取全局数据
-    wx.showNavigationBarLoading()
-    wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/single/' + id,
-      success: function (res) {
-        console.log(res)
-        // 解析HTML字符串
-        if (res.data.proddesc == null) { res.data.proddesc = ''}
-        const html = new HtmlParser(res.data.proddesc).nodes
-        that.setData({
-          detail: res.data,
-          html
-        })
-        wx.hideNavigationBarLoading()
-      }
-    })
   },
   nav: function (e) {
     var ctx =this;
     this.setData({
       nav: e.currentTarget.dataset.nav
     })
-    if (!this.data.sellBol){
-      wx.request({
-        url: 'http://www.jihui88.com/rest/api/shop/order/product/sellList',
-        dataType: 'jsonp',
-        data: {
-          callback: "jsonpCallback",
-          productId: this.data.detail.product_id
-        },
-        success: function (res) {
-          var str = res.data.split('jsonpCallback(')[1]
-          var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-          var data = []
-          for (var i = 0; i < sell.length; i++) {
-            sell[i].updateTime = util.formatTime(sell[i].updateTime)
-            data.push(sell[i])
-          }
-          ctx.setData({
-            sellList: data,
-            sellBol: true
-          })
-        }
+
+    var key = wx.getStorageSync('sell' + this.data.id)
+    if (!key && this.data.sellList.length === 0) {
+      this.getSell()
+    } else {
+      this.setData({
+        sellList: key
       })
     }
 
   },
-  page: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
   onShareAppMessage: function () {
     return {
-      title: this.detail.name
+      title: this.data.detail.name
     }
   }
 })
