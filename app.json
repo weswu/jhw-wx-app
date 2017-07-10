@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/my/my",
     "pages/index/index",
     "pages/address/addressDetail",
     "pages/address/address",
@@ -7,13 +9,12 @@
     "pages/category/category",
     "pages/order/orderDetail",
     "pages/order/order",
-    "pages/my/my",
     "pages/intro/intro",
     "pages/pay/pay",
-    "pages/login/login",
     "pages/detail/detail",
     "pages/setting/setting",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/login/register"
   ],
   "window": {
     "backgroundColor": "#ffffff",

@@ -1,4 +1,4 @@
-/* login.wxss */
+/* register.wxss */
 input{
   margin-bottom: 20px;
   padding: 0.2rem 0;

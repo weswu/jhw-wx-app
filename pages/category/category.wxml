@@ -1,6 +1,6 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell active" bindtap="page" data-url="../product/product">
-      <view class="weui-cell__bd">全部分类</view>
+      <view class="weui-cell__bd">全部产品</view>
   </view>
   <view class="weui-cell" wx:for="{{list}}" wx:key="category_id" bindtap="page" data-url="../product/product?category_id={{item.category_id}}&title={{item.name}}">
       <view class="weui-cell__bd">{{item.name}}</view>

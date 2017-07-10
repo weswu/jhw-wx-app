@@ -7,26 +7,31 @@ Page({
   data: {
     username: '',
     password: '',
-    openid: '',
-    focus1: false,
-    focus2: false
+    randCode: '',
+    veriImg: 'veriImg',
+    focus: ''
   },
 
+  page: function(e) {
+    wx.navigateTo({
+        url: e.currentTarget.dataset.url
+    })
+  },
+  verifyPic: function () {
+    this.setData({
+      veriImg: 'veriImg?' + Math.random()
+    })
+  },
   submit: function(){
     var that = this
     wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/member/register',
+      method: 'post',
+      url: 'https://wx.jihui88.net/rest/api/shop/member/login2',
       data: {
-        callback: 'jsonpCallback',
-        oauthType: 'wxapp',
-        oauthOpenId: that.data.openid, // 必须的
-        username: that.data.username,
-        password: that.data.password,
-        randCode: '',
-        enterpriseId:'Enterp_0000000000000000000000923',
-        userDomain: '',
-        model: JSON.stringify({name: ''}),
-        cookie: ''
+        username: this.data.username,
+        password: this.data.password,
+        randCode: this.data.randCode,
+        enterpriseId:'Enterp_0000000000000000000000923'
       },
       success: function (res) {
         console.log(res.data)
@@ -35,40 +40,30 @@ Page({
   },
   model: function(e){
     if (!e.detail.value) return
-    var model = e.currentTarget.dataset.model
-    if(model === 'username'){
+    var active = e.currentTarget.dataset.active
+    if(active === '1'){
       this.setData({
         username: e.detail.value
       })
-    }else{
+    }else if (active === '2'){
       this.setData({
         password: e.detail.value
       })
-    }
-  },
-  active: function (e) {
-    var model = e.currentTarget.dataset.model
-    if (model === 'username') {
+    }else{
       this.setData({
-        focus1: true
-      })
-    } else {
-      this.setData({
-        focus2: true
+        randCode: e.detail.value
       })
     }
   },
-  end: function (e) {
-    var model = e.currentTarget.dataset.model
-    if (model === 'username') {
-      this.setData({
-        focus1: false
-      })
-    } else {
-      this.setData({
-        focus2: false
-      })
-    }
+  focus: function (e) {
+    this.setData({
+      focus: e.currentTarget.dataset.active
+    })
+  },
+  blur: function (e) {
+    this.setData({
+      focus: ''
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,7 +79,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.setNavigationBarTitle({
+      title: '会员登录'
+    })
   },
 
   /**

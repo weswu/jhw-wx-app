@@ -21,7 +21,7 @@ Page({
       url = 'category_child/Enterp_0000000000000000000049341?category_id=' + this.data.cate_id +'&page=' + this.data.page
     }
     wx.request({
-      url: 'http://api.jihui88.net/jihuiapi/products/' + url,
+      url: 'https://api.jihui88.net/jihuiapi/products/' + url,
       success: function (res) {
         // !res.data.list && that.data.page === 1
         that.setData({
@@ -41,7 +41,7 @@ Page({
    */
   onLoad: function (options) {
     if(options.category_id){
-      that.setData({
+      this.setData({
         cate_id: parseInt(options.category_id.split('Category_')[1]),
         title: options.title
       })
