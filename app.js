@@ -18,6 +18,9 @@ App({
           wx.getUserInfo({
             success: function (res1) {
               that.globalData.userInfo = res1.userInfo
+
+
+              
               wx.request({
                 url: 'https://api.weixin.qq.com/sns/jscode2session',
                 data: {

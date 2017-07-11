@@ -19,7 +19,7 @@ Page({
   },
   verifyPic: function () {
     this.setData({
-      veriImg: 'veriImg?' + Math.random()
+      veriImg: 'veriImg?v=' + new Date().getTime()
     })
   },
   submit: function(){
@@ -28,10 +28,20 @@ Page({
       method: 'post',
       url: 'https://wx.jihui88.net/rest/api/shop/member/login2',
       data: {
+        model: JSON.stringify({
+          username: this.data.username,
+          password: this.data.password,
+          randCode: this.data.randCode,
+          enterpriseId: 'Enterp_0000000000000000000000923'
+        }),
+        _method: 'post',
         username: this.data.username,
         password: this.data.password,
         randCode: this.data.randCode,
-        enterpriseId:'Enterp_0000000000000000000000923'
+        enterpriseId: 'Enterp_0000000000000000000000923'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         console.log(res.data)
@@ -69,10 +79,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      openid: options.openid
-    })
-
+    console.log('onLoad')
   },
 
   /**

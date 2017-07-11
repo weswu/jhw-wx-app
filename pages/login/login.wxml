@@ -7,7 +7,7 @@
   <input value="{{randCode}}" placeholder="验证码" bindchange="model"
     bindfocus="focus" bindblur="blur" class="{{focus == '3' ? 'active' : ''}}" data-active="3" style="width:150px;float:left;margin-right:20px"/>
 
-  <image src="http://www.jihui88.com/{{veriImg}}" mode="widthFix" bindtap="verifyPic" style="width:85px"/>
+  <image src="https://wx.jihui88.net/{{veriImg}}" mode="widthFix" bindtap="verifyPic" style="width:85px"/>
   <view class="tip" bindtap="page" data-url="register">注册</view>
   <button class="btn-primary fullwidth" bindtap="submit">确定</button>
 </view>
