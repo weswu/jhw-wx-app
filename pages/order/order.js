@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    page: 1
   },
 
   page: function (e) {
@@ -2787,6 +2788,25 @@ Page({
         }
       }
     ]
+
+
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/order/list',
+      data: {
+        page: this.data.page
+      },
+      success: function (res) {
+        debugger
+      }
+    })
+
+    wx.getUserInfo({
+      success: function (res) {
+        that.globalData.userInfo = res.userInfo
+        typeof cb == "function" && cb(that.globalData.userInfo)
+      }
+    })
+
     that.setData({
       list: list
     })
