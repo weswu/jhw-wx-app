@@ -18,9 +18,8 @@
 </view>
 
 <view class="detail_bd">
-  <import src="../../html-view/index" />
   <view hidden="{{nav != '1'}}">
-    <template is="html-view" data="{{data: html}}" />
+    <rich-text nodes="{{detail.proddesc}}"></rich-text>
   </view>
 
   <view hidden="{{nav != '2'}}">

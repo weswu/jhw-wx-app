@@ -1,6 +1,4 @@
 // detail.js
-// 引入HtmlParser
-const HtmlParser = require('../../html-view/index')
 var util = require('../../utils/util.js')
 
 Page({
@@ -19,13 +17,6 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
-  removeHTMLTag: function (str) {
-    str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
-    str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
-    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/&nbsp;/ig, '');//去掉&nbsp;
-    return str;
-  },
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
@@ -34,20 +25,17 @@ Page({
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/single/' + this.data.id,
       success: function (res) {
-        // 解析HTML字符串
-        if (res.data.proddesc == null) { res.data.proddesc = ''}
-        const html = new HtmlParser(res.data.proddesc).nodes
+        if (res.data.proddesc == null) {
+          res.data.proddesc = ''
+        } else {
+          res.data.proddesc = res.data.proddesc.replace(/<img /g,'<img class="img" ')
+        }
         that.setData({
-          detail: res.data,
-          html
+          detail: res.data
         })
         wx.setStorage({
           key: 'detail' + that.data.id,
           data: res.data
-        })
-        wx.setStorage({
-          key: 'html' + that.data.id,
-          data: html
         })
         wx.hideNavigationBarLoading()
       }
@@ -272,13 +260,11 @@ Page({
       title: options.title || '机汇网'
     })
     var key = wx.getStorageSync('detail' + this.data.id)
-    var html = wx.getStorageSync('html' + this.data.id)
     if (!key) {
       this.get()
     } else {
       this.setData({
-        detail: key,
-        html: html
+        detail: key
       })
     }
   },
