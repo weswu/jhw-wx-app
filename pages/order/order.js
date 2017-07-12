@@ -2794,6 +2794,10 @@ Page({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page
+      }, 
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': 'sessionId=' + wx.getStorageSync('sessionId')
       },
       success: function (res) {
         debugger

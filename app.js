@@ -18,6 +18,10 @@ App({
           },
           success: function (res) {
             that.globalData.member = res.data.attributes.data
+            wx.setStorage({
+              key: 'sessionId',
+              data: res.data.attributes.data.sessionId
+            })
           }
         })
         // 用户信息
@@ -39,9 +43,9 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    this.getUserInfo()
   },
   onShow: function () {
-    this.getUserInfo()
     console.log('App Show')
   },
   onHide: function () {

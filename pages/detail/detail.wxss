@@ -1,5 +1,4 @@
 /* detail.wxss */
-@import "../../html-view/index.wxss";
 image {
   display: block;
   width:100%;
