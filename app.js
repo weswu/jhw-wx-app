@@ -11,7 +11,8 @@ App({
           url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
           data: {
             code: res.code,
-            enterpriseId: 'Enterp_0000000000000000000000923'
+            enterpriseId: 'Enterp_0000000000000000000000923',
+            skey: wx.getStorageSync('skey')
           },
           header: {
             'content-type': 'application/x-www-form-urlencoded'
@@ -19,8 +20,8 @@ App({
           success: function (res) {
             that.globalData.member = res.data.attributes.data
             wx.setStorage({
-              key: 'sessionId',
-              data: res.data.attributes.data.sessionId
+              key: 'skey',
+              data: res.data.attributes.data.skey
             })
           }
         })

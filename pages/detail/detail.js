@@ -28,7 +28,7 @@ Page({
         if (res.data.proddesc == null) {
           res.data.proddesc = ''
         } else {
-          res.data.proddesc = res.data.proddesc.replace(/<img /g,'<img class="img" ')
+          res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'").replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
         }
         that.setData({
           detail: res.data
@@ -40,6 +40,39 @@ Page({
         wx.hideNavigationBarLoading()
       }
     })
+  },
+  // 成交记录
+  getSell: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/order/product/sellList',
+      dataType: 'jsonp',
+      data: {
+        callback: "jsonpCallback",
+        productId: this.data.detail.product_id,
+        skey: wx.getStorageSync('skey')
+      },
+      success: function (res) {
+        var str = res.data.split('jsonpCallback(')[1]
+        var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
+        var data = []
+        for (var i = 0; i < sell.length; i++) {
+          sell[i].updateTime = util.formatTime(sell[i].updateTime)
+          data.push(sell[i])
+        }
+        that.setData({
+          sellList: data
+        })
+        wx.setStorage({
+          key: 'sell' + that.data.id,
+          data: data
+        })
+      }
+    })
+    wx.hideLoading()
   },
   // 获取属性参数
   getAttr: function () {
@@ -118,33 +151,21 @@ Page({
     ]
 
     // 属性处理
-    var that= this
-    for(var i=0; i<attrList.length; i++){
-      var element= attrList[i].element;
-      attrList[i].eleList = element.substring(1, element.length - 1).split(',')
-      attrList[i].dx = 0
-    }
-    this.setData({
-      attrList: attrList
-    })
-    wx.setStorage({
-      key: 'attr' + this.data.id,
-      data: attrList
-    })
-  },
-  getSell: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     var that = this
     wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/order/product/sellList',
+      url: 'https://wx.jihui88.net/rest/api/comm/product/args_list',
       dataType: 'jsonp',
       data: {
         callback: "jsonpCallback",
-        productId: this.data.detail.product_id
+        productId: this.data.detail.product_id,
+        memberRankId: '',
+        attrState: this.data.detail.attr_state,
+        page: 1,
+        pageSize: 16,
+        skey: wx.getStorageSync('skey')
       },
       success: function (res) {
+        debugger
         var str = res.data.split('jsonpCallback(')[1]
         var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
         var data = []
@@ -161,7 +182,20 @@ Page({
         })
       }
     })
-    wx.hideLoading()
+
+
+    for(var i=0; i<attrList.length; i++){
+      var element= attrList[i].element;
+      attrList[i].eleList = element.substring(1, element.length - 1).split(',')
+      attrList[i].dx = 0
+    }
+    this.setData({
+      attrList: attrList
+    })
+    wx.setStorage({
+      key: 'attr' + this.data.id,
+      data: attrList
+    })
   },
   setModalStatus: function (e) {
     var status = e.currentTarget.dataset.status
@@ -173,6 +207,7 @@ Page({
         this.setData({
           attrList: key
         })
+        this.getAttr()
       }
     }
     console.log("设置显示状态，1显示0不显示", status);
