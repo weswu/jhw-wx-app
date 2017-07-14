@@ -8,9 +8,9 @@
        {{item.name}}, {{item.mobile}}
       <view class="address">{{item.address}}</view>
     </view>
-      <view class="weui-cell__ft">
-        <image src="../../images/edit.png" bindtap="page" data-url="addressDetail?id={{item.receiverId}}"></image>
-      </view>
+    <view class="weui-cell__ft">
+      <image src="../../images/edit.png" bindtap="page" data-url="addressDetail?id={{item.receiverId}}"></image>
+    </view>  
   </view>
 </view>
 <button class="btn-primary fixed" bindtap="page" data-url="addressDetail" style="bottom: 2.4rem;">新增收货地址</button>

@@ -1,40 +1,37 @@
 // addressDetail.js
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    one:[], //字符集合
+    // 1
+    province: [], //对像集合
+    one:['请选择'], //字符集合
     oneIndex:0, // 实际显示参数
+    // 2
+    city: [],
     two: ['请选择'],
     twoIndex:0,
+    // 3
+    country: [],
     three: ['请选择'],
     threeIndex:0,
-    province: [], //对像集合
-    city: [],
-    country: [],
-    model:{},
+    address:{},
     isAdd: true
   },
   get: function () {
+    var that = this
     wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ options.id,
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ this.data.address.receiverId,
+      data: {
+        skey: app.globalData.member.skey
+      },
       success: function (res) {
-        //var data= res.data.attributes.data;
-        var data= {
-          isDefault: "0",
-          addTime: 1498555820109,
-          enterpriseId: "Enterp_0000000000000000000049341",
-          updateTime: null,
-          mobile: "1513461568",
-          receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-          areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-          phone: "",
-          zipCode: "322000",
-          address: "详细地址",
-          name: "名称"
-        }
+        var data= res.data.attributes.data;
+
         var oneIndex=0;
         for(var i=0; i<that.data.province.length;i++){
           if(that.data.province[i].value == data.areaPath.split(',')[0]){
@@ -44,34 +41,9 @@ Page({
         that.setData({
           oneIndex: oneIndex,
           isAdd: false,
-          model: data
+          address: data
         })
         that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2' })
-      }
-    })
-  },
-  getProvince: function () {
-    wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/area/childrenArea',
-      success: function (res) {
-        var data = JSON.parse(res.data.attributes.data);
-        var one =[]
-        for(var i=0; i<data.length;i++){
-          one.push(data[i].title)
-        }
-        if(options.id){
-          that.setData({
-            province: data,
-            one: one
-          })
-        }else{
-          that.setData({
-            model: {
-              areaPath: data[0].value
-            }
-          })
-        }
-        that.childrenArea({ path: data[0].value, type: '1' })
       }
     })
   },
@@ -80,85 +52,36 @@ Page({
     var type = e.currentTarget.dataset.type
     if(type === '1'){
       var val = this.data.province[e.detail.value].value
+      this.data.address.areaPath =  val
       this.setData({
         oneIndex: e.detail.value,
         twoIndex: 0,
         threeIndex: 0,
-        model: {
-          areaPath: val
-        }
+        address: this.data.address
       });
       this.childrenArea({ path: val, type: type })
     } else if (type === '2') {
       var val = this.data.city[e.detail.value].value
+      this.data.address.areaPath =  val
       this.setData({
         twoIndex: e.detail.value,
         threeIndex: 0,
-        model: {
-          areaPath: val
-        }
+        address: this.data.address
       });
       this.childrenArea({ path: val, type: type })
     } else if (type === '3') {
+      this.data.address.areaPath =  this.data.country[e.detail.value].value
       this.setData({
         threeIndex: e.detail.value,
-        model: {
-          areaPath: this.data.country[e.detail.value].value
-        }
+        address: this.data.address
       });
     }
-  },
-  // 改变model
-  model: function(e){
-    var model = e.currentTarget.dataset.model
-    if (model === 'name') {
-      this.setData({
-        model: {
-          name: e.detail.value
-        }
-      })
-    } else if (model === 'mobile') {
-      this.setData({
-        model: {
-          mobile: e.detail.value
-        }
-      })
-    } else if (model === 'zipCode') {
-      this.setData({
-        model: {
-          zipCode: e.detail.value
-        }
-      })
-    } else if (model === 'address') {
-      this.setData({
-        model: {
-          address: e.detail.value
-        }
-      })
-    }
-  },
-  // 提交
-  submit: function(){
-    var url= 'http://www.jihui88.com/rest/api/shop/receiver/detail';
-    if(!isAdd){
-      url= url + '/' + this.data.model.receiverId
-    }
-    wx.request({
-      url: url,
-      data: model,
-      success: function (res) {
-        console.log(res)
-        wx.navigateTo({
-          url: 'address'
-        })
-      }
-    })
   },
   // 加载地区
   childrenArea: function(e){
     var that = this;
     wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/area/childrenArea?path=' + e.path,
+      url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea?path=' + e.path,
       success: function (res) {
         var data = JSON.parse(res.data.attributes.data);
         var one = []
@@ -167,62 +90,163 @@ Page({
             one.push(data[i].title)
           }
           if (e.type == '1') {
+            that.data.address.areaPath = data[0].value
             that.setData({
               city: data,
               two: one,
-              model: {
-                areaPath: data[0].value
-              }
+              address: that.data.address
             })
           }
           if (e.type == '2') {
+            that.data.address.areaPath = data[0].value
             that.setData({
               country: data,
               three: one,
-              model: {
-                areaPath: data[0].value
-              }
+              address: that.data.address
             })
           }
         }
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that=this;
-    this.getProvince()
-    if(options.id){
-      var key = wx.getStorageSync('address' + options.id)
-      if (!key) {
-        this.get()
-      } else {
-        this.setData({
-          model: key
-        })
-      }
-    }
-  },
 
-  del: function(){
-    var that = this
+  // 输入信息
+  address: function(e){
+    var address = e.currentTarget.dataset.address
+    if (address === 'name') {
+      this.data.address.name = e.detail.value
+    } else if (address === 'mobile') {
+      this.data.address.mobile = e.detail.value
+    } else if (address === 'zipCode') {
+      this.data.address.zipCode = e.detail.value
+    } else if (address === 'address') {
+      this.data.address.address = e.detail.value
+    }
+    this.setData({
+      address: this.data.address
+    })
+  },
+  // 提交
+  submit: function(){
+    if(!this.data.address.name){
+      this.dialog('姓名不能为空！')
+      return false
+    }
+    var tel = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    if(!tel.test(this.data.address.mobile)){
+      this.dialog('手机号码错误！')
+      return false
+    }
+    if(!this.data.address.mobile){
+      this.dialog('电话不能为空！')
+      return false
+    }
+    if(!this.data.address.address){
+      this.dialog('收货地址不能为空！')
+      return false
+    }
+    if(!this.data.address.isDefault){
+      this.data.address.isDefault = '0'
+    }
+    var url= 'https://wx.jihui88.net/rest/api/shop/receiver/detail';
+    if(!this.data.isAdd){
+      url= url + '/' + this.data.address.receiverId
+      this.data.address.model = JSON.stringify(this.data.address)
+      this.data.address._method = 'put'
+    }
+    this.data.address.skey = app.globalData.member.skey
     wx.request({
-      url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ this.data.model.receiverId,
-      method: 'DELETE',
+      url: url,
+      method: 'post',
+      data: this.data.address,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       success: function (res) {
         console.log(res)
         wx.navigateTo({
           url: 'address'
         })
-        wx.removeStorage({
-          key: 'address' + that.data.model.receiverId,
-          success: function(res) {
-          }
+      }
+    })
+  },
+  dialog: function (title) {
+    wx.showModal({
+      title: '提示',
+      content: title,
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  // 删除
+  del: function(){
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ this.data.address.receiverId,
+      method: 'post',
+      data: {
+        _method: 'DELETE',
+        skey: app.globalData.member.skey
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res)
+        wx.navigateTo({
+          url: 'address'
         })
       }
     })
+  },
+
+  // 初始化
+  getProvince: function () {
+    var that = this
+    var province = wx.getStorageSync('province')
+    if (!province) {
+      wx.request({
+        url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
+        data: {
+          skey: app.globalData.member.skey
+        },
+        success: function (res) {
+          var province = JSON.parse(res.data.attributes.data);
+          that.one(province)
+        }
+      })
+    }else{
+      this.one(province)
+    }
+  },
+  one: function (province) {
+    var one =[]
+    for(var i=0; i<province.length;i++){
+      one.push(province[i].title)
+    }
+    this.setData({
+      province: province,
+      one: one
+    })
+    this.childrenArea({ path: province[0].value, type: '1' })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getProvince()
+    if(options.id){
+      this.data.address.receiverId = options.id
+      this.setData({
+        address: this.data.address
+      })
+      this.get()
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -239,14 +263,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    this.get()
   },
 
   /**

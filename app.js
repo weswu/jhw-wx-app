@@ -11,13 +11,17 @@ App({
           url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
           data: {
             code: res.code,
-            enterpriseId: 'Enterp_0000000000000000000000923',
-            skey: wx.getStorageSync('skey')
+            enterpriseId: that.globalData.enterpriseId,
+            skey: wx.getStorageSync('skey') || ''
           },
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
           success: function (res) {
+            if(res.data.attributes.data == null){
+              alert('none')
+            }
+            res.data.attributes.data.skey = res.data.attributes.data.skey || ''
             that.globalData.member = res.data.attributes.data
             wx.setStorage({
               key: 'skey',
@@ -37,7 +41,7 @@ App({
   getUserInfo: function () {
     if (!this.globalData.userInfo) {
       this.get()
-    } 
+    }
   },
   onLaunch: function () {
     //调用API从本地缓存中获取数据

@@ -1,5 +1,6 @@
 <view wx:if="{{list.length > 0}}">
-  <view class="weui-cells weui-cells-order" wx:for="{{list}}" bindtap="page" data-url="orderDetail">
+  <view class="weui-cells weui-cells-order" wx:for="{{list}}" bindtap="page"
+    data-url="orderDetail?id={{item.orderId}}">
     <view class="weui-cell">
         <view class="weui-cell__hd">
           订单编号：{{item.orderSn}}
@@ -21,11 +22,11 @@
       <view class="weui-cell__bd">
         {{item.product.name}}
         <view class="desc">
-          <text>2个/件;</text><text>红色;</text>
+          <text>{{item.productAttr}}</text>
         </view>
       </view>
       <view class="weui-cell__ft">
-        <view class="price">￥{{item.product.price}}</view>
+        <view class="price">￥{{item.product.price || item.product.marketPrice}}</view>
         <view class="quantity">x{{item.productQuantity}}</view>
       </view>
     </view>

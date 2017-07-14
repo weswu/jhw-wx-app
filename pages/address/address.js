@@ -1,28 +1,51 @@
 // address.js
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    address: {}
   },
 
   page: function (e) {
+    var that = this
     var url = e.currentTarget.dataset.url
     // 修改默认收货地址
     if(url === '../cart/cart'){
-      wx.request({
-        url: 'http://www.jihui88.com/rest/api/shop/receiver/detail/'+ e.currentTarget.dataset.id,
-        data: {
-          isDefault: '1'
-        },
-        success: function (res) {
-          wx.navigateBack({
-            url: e.currentTarget.dataset.url + '?receiverId=' + e.currentTarget.dataset.id
-          })
+      var id = e.currentTarget.dataset.id
+      for(var i=0; i<this.data.list.length; i++){
+        if(this.data.list[i].receiverId === id){
+          if(this.data.list[i].isDefault == '1'){
+            var address = this.data.list[i]
+            address.skey = app.globalData.member.skey
+            address.model = JSON.stringify(address)
+            address._method = 'put'
+            wx.request({
+              url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ id,
+              method: 'post',
+              data: address,
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              success: function (res) {
+                wx.navigateTo({
+                  url: url
+                })
+              }
+            })
+          }else{
+            wx.navigateTo({
+              url: url
+            })
+          }
+
         }
-      })
+      }
+
     }else{
       wx.navigateTo({
         url: url
@@ -30,73 +53,168 @@ Page({
     }
   },
   get: function () {
+    var that = this
     wx.showNavigationBarLoading()
-    var list = [
-      {
-        enterpriseId: "Enterp_0000000000000000000049341",
-        isDefault: "1",
-        addTime: 1498555820109,
-        updateTime: null,
-        mobile: "1513461568",
-        receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-        areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-        phone: "",
-        zipCode: "322000",
-        address: "详细地址",
-        name: "名称"
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/list',
+      data: {
+        skey: app.globalData.member.skey
       },
-      {
-        enterpriseId: "Enterp_0000000000000000000049341",
-        isDefault: "0",
-        addTime: 1498555820109,
-        updateTime: null,
-        mobile: "1513461569",
-        receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-        areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-        phone: "",
-        zipCode: "322000",
-        address: "详细地址2",
-        name: "名称2"
+      success: function (res) {
+        that.setData({
+          list: res.data.attributes.data
+        })
       }
-    ]
-    this.setData({
-      list: list
-    })
-    wx.setStorage({
-      key: 'address',
-      data: list
     })
     wx.hideNavigationBarLoading()
   },
   wxAddress: function(){
-    this.data.list.push({
-      enterpriseId: "Enterp_0000000000000000000049341",
-      isDefault: "0",
-      addTime: 1498555820109,
-      updateTime: null,
-      mobile: "1513461569",
-      receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-      areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-      phone: "",
-      zipCode: "322000",
-      address: "详细地址3",
-      name: "名称3"
-    })
-
-    this.setData({
-      list: this.data.list
-    })
-
+    var that = this
     wx.chooseAddress({
       success: function (res) {
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
+        var address = {
+          name: res.userName,
+          zipCode: res.postalCode,
+          areaPath: res.userName,
+          address: res.detailInfo,
+          mobile: res.telNumber
+        }
+        that.setData({
+          address: address,
+          provinceName: res.provinceName,
+          cityName: res.cityName,
+          countryName: res.countryName
+        })
+
+        var province = wx.getStorageSync('province')
+        if (!province) {
+          wx.request({
+            url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
+            data: {
+              skey: app.globalData.member.skey
+            },
+            success: function (res) {
+              province = JSON.parse(res.data.attributes.data);
+              wx.setStorage({
+                key: 'province',
+                data: province
+              })
+              that.getArea1(province)
+            }
+          })
+        }else{
+          that.getArea1(province)
+        }
+
+      }
+    })
+  },
+  getArea1: function (province) {
+    var that = this
+    var areaPath = ''
+    for (var i = 0; i < province.length; i++) {
+      if(province[i].title === that.data.provinceName){
+        areaPath = province[i].value
+
+        var city = wx.getStorageSync('area'+areaPath)
+        if (!city) {
+          wx.request({
+            url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
+            data: {
+              path: areaPath,
+              skey: app.globalData.member.skey
+            },
+            success: function (res) {
+              city = JSON.parse(res.data.attributes.data);
+              wx.setStorage({
+                key: 'area'+areaPath,
+                data: city
+              })
+              that.getArea2(city)
+            }
+          })
+        }else{
+          that.getArea2(city)
+        }
+      }
+    }
+  },
+  getArea2: function (city) {
+    var that = this
+    var areaPath = ''
+    for (var i = 0; i < city.length; i++) {
+      if(city[i].title === that.data.cityName){
+        areaPath=city[i].value;
+
+        that.data.address.areaPath = areaPath;
+        that.setData({
+          address: that.data.address
+        })
+        var county = wx.getStorageSync('area'+areaPath)
+        if (!county) {
+          wx.request({
+            url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
+            data: {
+              path: areaPath,
+              skey: app.globalData.member.skey
+            },
+            success: function (res) {
+              county = JSON.parse(res.data.attributes.data);
+              wx.setStorage({
+                key: 'area'+areaPath,
+                data: county
+              })
+              that.getArea3(county)
+            }
+          })
+        }else{
+          that.getArea3(county)
+        }
+
+      }
+    }
+  },
+  getArea3: function (county) {
+    var that = this
+    if (county.length != 0 && that.data.countryName != null) {
+      for (var i = 0; i < county.length; i++) {
+        if(county[i].title === that.data.countryName){
+          that.data.address.areaPath = county[i].value;
+          that.setData({
+            address: that.data.address
+          })
+          that.addAddress()
+        }
+      }
+    }else{
+      that.addAddress()
+    }
+  },
+  // 添加地址
+  addAddress: function () {
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail',
+      method: 'post',
+      data: {
+        isDefault: '1',
+        name: this.data.address.name,
+        mobile: this.data.address.mobile,
+        areaPath: this.data.address.areaPath,
+        address: this.data.address.address,
+        zipCode: this.data.address.zipCode,
+        isNoneDelivery:'',
+        phone: '',
+        skey: app.globalData.member.skey
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.data.list.push(res.data.attributes.data)
+        that.setData({
+          list: that.data.list
+        })
       }
     })
   },
@@ -104,14 +222,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var key = wx.getStorageSync('address')
-    if (!key) {
-      this.get()
-    } else {
-      this.setData({
-        list: key
-      })
-    }
+    this.get()
   },
 
   /**
@@ -129,33 +240,6 @@ Page({
   onPullDownRefresh: function () {
     this.get()
     wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    this.data.list.push({
-      enterpriseId: "Enterp_0000000000000000000049341",
-      isDefault: "1",
-      addTime: 1498555820109,
-      updateTime: null,
-      mobile: "1513461568",
-      receiverId: "8a9e457e5ce8d95c015ce8e3284d0003",
-      areaPath: "402881882ba8753a012ba8cb1bbf005a,402881882ba8753a012ba8cc62870061,402881e44da29af5014da33bafbe0177",
-      phone: "",
-      zipCode: "322000",
-      address: "详细地址",
-      name: "名称"
-    }
-    )
-    this.setData({
-      list: this.data.list
-    })
-    wx.hideLoading()
   },
 
   /**

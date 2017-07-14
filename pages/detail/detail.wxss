@@ -50,11 +50,11 @@ image {
 }
 
 .drawer_attr_content {
-  height: 500rpx;
+  max-height: 500rpx;
   overflow-y: scroll;
   font-size: 12px;
   font-family: '微软雅黑';
-  margin-bottom:2.4rem;
+  margin-bottom:2.9rem;
 }
 .weui-cell-attr .name{
   padding-bottom: 10px

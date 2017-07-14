@@ -78,6 +78,6 @@
 
 
    </view>
-   <button class="btn-primary fixed" bindtap="page" data-url="../cart/cart">确定</button>
+   <button class="btn-primary fixed" bindtap="pay" data-url="../cart/cart">确定</button>
 </view>
 <button class="btn-primary fixed" bindtap="setModalStatus" data-status="1">立即购买</button>

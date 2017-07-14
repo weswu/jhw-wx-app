@@ -1,16 +1,22 @@
 // detail.js
 var util = require('../../utils/util.js')
+var app = getApp()
 
 Page({
   data: {
     detail: {},
-    title: '机汇网',
     id: '',
     nav: '1',
     sellList: [],
     showModalStatus: false,
+    attrList: [],
     num: 1,
-    attrList: []
+    productAttr: '',
+    appendPrice: 0,
+    appendIds: "",
+    formulaResult: "1",
+    skuCode: "",
+    formulaStr: "1*1"
   },
   page: function (e) {
     wx.navigateTo({
@@ -53,7 +59,7 @@ Page({
       data: {
         callback: "jsonpCallback",
         productId: this.data.detail.product_id,
-        skey: wx.getStorageSync('skey')
+        skey: app.globalData.member.skey
       },
       success: function (res) {
         var str = res.data.split('jsonpCallback(')[1]
@@ -64,151 +70,62 @@ Page({
           data.push(sell[i])
         }
         that.setData({
-          sellList: data
-        })
-        wx.setStorage({
-          key: 'sell' + that.data.id,
-          data: data
+          attrList: data
         })
       }
     })
     wx.hideLoading()
   },
+  nav: function (e) {
+    var ctx =this;
+    this.setData({
+      nav: e.currentTarget.dataset.nav
+    })
+    var key = wx.getStorageSync('sell' + this.data.id)
+    if (!key && this.data.sellList.length === 0) {
+      this.getSell()
+    } else {
+      this.setData({
+        sellList: key
+      })
+    }
+  },
+
   // 获取属性参数
   getAttr: function () {
-    var attrList = [
-      {
-        memberPrice: 368,
-        price: "[0,0,0,0,0,0]",
-        product_id: "Product_000000000000000000581520",
-        attributeoptionstore: "['绿色','红色','白色','蓝色','炫黑','黑色']",
-        name: "颜色",
-        attrState: "01",
-        id: "8a9e457e5ccf0ccb015cd372dba30279",
-        element: "[红色,蓝色,炫黑,黑色]",
-        argsList: [
-          {
-            member_price_state: "01",
-            stock_num: 1000000,
-            bar_code: "",
-            id: "8a9e457e5ccf0ccb015cd372dba8027b",
-            pic: "upload/j/j2/jihui88/picture/2017/06/01/fb542ad3-7e35-4411-aad6-f8c2f7dda8c0.jpg",
-            sku_code: "红色,2个/件",
-            cost_price: 736
-          },
-          {
-            member_price_state: "01",
-            stock_num: 1000000,
-            bar_code: "",
-            id: "8a9e457e5ccf0ccb015cd372dba9027c",
-            pic: "upload/j/j2/jihui88/picture/2017/06/01/512f3149-4813-4b1b-806e-3fa46c760b08.jpg",
-            sku_code: "蓝色,2个/件",
-            cost_price: 736
-          },
-          {
-            member_price_state: "01",
-            stock_num: 1000000,
-            bar_code: "",
-            id: "8a9e457e5ccf0ccb015cd372dba9027d",
-            pic: "",
-            sku_code: "炫黑,2个/件",
-            cost_price: 736
-          },
-          {
-            member_price_state: "01",
-            stock_num: 1000000,
-            bar_code: "",
-            id: "8a9e457e5ccf0ccb015cd372dbaa027e",
-            pic: "",
-            sku_code: "黑色,2个/件",
-            cost_price: 736
-          }
-        ]
-      },
-      {
-        price: "[0]",
-        product_id: "Product_000000000000000000581520",
-        attributeoptionstore: "['2个/ 件']",
-        name: "产品数量",
-        attrState: "01",
-        id: "8a9e457e5ccf0ccb015cd372dba3027a",
-        element: "[2个/件]",
-        argsList: [
-          {
-            $ref: "$.attributes.data[0].argsList[0]"
-          },
-          {
-            $ref: "$.attributes.data[0].argsList[1]"
-          },
-          {
-            $ref: "$.attributes.data[0].argsList[2]"
-          },
-          {
-            $ref: "$.attributes.data[0].argsList[3]"
-          }
-        ]
-      }
-    ]
-
-    // 属性处理
     var that = this
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/comm/product/args_list',
-      dataType: 'jsonp',
+      url: 'https://wx.jihui88.net/rest/api/shop/order/args_list',
       data: {
-        callback: "jsonpCallback",
         productId: this.data.detail.product_id,
-        memberRankId: '',
+        memberRankId: app.globalData.member.memberRankId,
         attrState: this.data.detail.attr_state,
-        page: 1,
-        pageSize: 16,
-        skey: wx.getStorageSync('skey')
+        skey: app.globalData.member.skey
       },
       success: function (res) {
-        debugger
-        var str = res.data.split('jsonpCallback(')[1]
-        var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-        var data = []
-        for (var i = 0; i < sell.length; i++) {
-          sell[i].updateTime = util.formatTime(sell[i].updateTime)
-          data.push(sell[i])
+        var attrList = res.data.attributes.data
+
+        for(var i=0; i<attrList.length; i++){
+          attrList[i].updateTime = util.formatTime(attrList[i].updateTime)
+          var element= attrList[i].element;
+          attrList[i].eleList = element.substring(1, element.length - 1).split(',')
+          attrList[i].dx = 0
         }
         that.setData({
-          sellList: data
+          attrList: attrList
         })
         wx.setStorage({
-          key: 'sell' + that.data.id,
-          data: data
+          key: 'attr' + that.data.id,
+          data: attrList
         })
       }
     })
-
-
-    for(var i=0; i<attrList.length; i++){
-      var element= attrList[i].element;
-      attrList[i].eleList = element.substring(1, element.length - 1).split(',')
-      attrList[i].dx = 0
-    }
-    this.setData({
-      attrList: attrList
-    })
-    wx.setStorage({
-      key: 'attr' + this.data.id,
-      data: attrList
-    })
   },
+  /* 下拉框切换 */
   setModalStatus: function (e) {
     var status = e.currentTarget.dataset.status
     if (status === "1" && this.data.attrList.length === 0){
-      var key = wx.getStorageSync('attr' + this.data.id)
-      if (!key) {
-        this.getAttr()
-      } else {
-        this.setData({
-          attrList: key
-        })
-        this.getAttr()
-      }
+      this.getAttr()
     }
     console.log("设置显示状态，1显示0不显示", status);
     var animation = wx.createAnimation({
@@ -238,6 +155,7 @@ Page({
       }
     }.bind(this), 200)
   },
+  /* 属性选择 */
   attrClick: function(e){
     // 属性图片
     var pic =this.data.attrList[e.target.dataset.index].argsList[e.target.dataset.idx].pic
@@ -289,10 +207,39 @@ Page({
       num: num
     });
   },
+  /* 支付 */
+  pay: function () {
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/cartItem/toPay',
+      type: "get",
+      dataType: "jsonp",
+      data: {
+        callback: "jsonpCallback",
+        payType: '00',
+        id: this.data.detail.product_id,
+        quantity: this.data.num,
+        mobileShop: true,
+        entName: this.data.detail.name,
+        productAttr: this.data.productAttr,
+        appendPrice: this.data.appendPrice,
+        appendIds: this.data.appendIds,
+        formulaResult: this.data.formulaResult,
+        skuCode: this.data.skuCode,
+        formulaStr: this.data.formulaStr,
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        var str = res.data.split('jsonpCallback(')[1]
+        var msg = JSON.parse(str.substring(0, str.length - 1)).msg
+        console.log(msg)
+      }
+    })
+  },
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      title: options.title || '机汇网'
+      title: options.title || '产品详细'
     })
     var key = wx.getStorageSync('detail' + this.data.id)
     if (!key) {
@@ -311,22 +258,6 @@ Page({
   onPullDownRefresh: function () {
     this.get()
     wx.stopPullDownRefresh()
-  },
-  nav: function (e) {
-    var ctx =this;
-    this.setData({
-      nav: e.currentTarget.dataset.nav
-    })
-
-    var key = wx.getStorageSync('sell' + this.data.id)
-    if (!key && this.data.sellList.length === 0) {
-      this.getSell()
-    } else {
-      this.setData({
-        sellList: key
-      })
-    }
-
   },
   onShareAppMessage: function () {
     return {
