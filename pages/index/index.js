@@ -1,4 +1,6 @@
 //index.js
+var app = getApp()
+
 Page({
   data: {
     list: []
@@ -9,7 +11,7 @@ Page({
     wx.showNavigationBarLoading()
     console.log('首页数据加载中...')
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/Enterp_0000000000000000000049341',
+      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId,
       success: function (res) {
         that.setData({
           list: res.data.list

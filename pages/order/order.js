@@ -1,4 +1,6 @@
 // order.js
+var app = getApp()
+
 Page({
 
   /**
@@ -29,7 +31,7 @@ Page({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page,
-        skey: wx.getStorageSync('skey')
+        skey: app.globalData.member.skey
       },
       success: function (res) {
         if (!res.data.success) {

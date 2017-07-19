@@ -35,17 +35,30 @@ Page({
     wx.hideNavigationBarLoading()
   },
   pay: function () {
-    wx.requestPayment({
-      'timeStamp': '',
-      'nonceStr': '',
-      'package': '',
-      'signType': 'MD5',
-      'paySign': '',
-      'success': function (res) {
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',
+      data: {
+        appId: app.globalData.appid,
+        orderId: this.data.data.orderId
       },
-      'fail': function (res) {
+      success: function (res) {
+        debugger
+        wx.requestPayment({
+          'timeStamp': res.data.attributes.timeStamp,
+          'nonceStr': res.data.attributes.nonceStr,
+          'package': res.data.attributes.package,
+          'signType': 'MD5',
+          'paySign': res.data.attributes.sign,
+          'success': function (res) {
+            debugger
+          },
+          'fail': function (res) {
+          }
+        })
       }
     })
+
+
   },
 
   /**

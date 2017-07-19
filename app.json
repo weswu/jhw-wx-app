@@ -1,8 +1,8 @@
 {
   "pages": [
-  "pages/my/my",
-  "pages/address/address",
-  "pages/cart/cart",
+    "pages/my/my",
+    "pages/address/address",
+    "pages/cart/cart",
     "pages/index/index",
     "pages/login/login",
     "pages/address/addressDetail",
@@ -11,7 +11,6 @@
     "pages/order/orderDetail",
     "pages/order/order",
     "pages/intro/intro",
-    "pages/pay/pay",
     "pages/detail/detail",
     "pages/setting/setting",
     "pages/product/product",

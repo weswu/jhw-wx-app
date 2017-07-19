@@ -1,4 +1,6 @@
 // product.js
+var app = getApp()
+
 Page({
 
   /**
@@ -16,9 +18,9 @@ Page({
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
     console.log('产品分类'+ this.data.cate_id +'加载中...')
-    var url = 'all/Enterp_0000000000000000000049341'
+    var url = 'all/' + app.globalData.enterpriseId
     if(!!this.data.cate_id){
-      url = 'category_child/Enterp_0000000000000000000049341?category_id=' + this.data.cate_id +'&page=' + this.data.page
+      url = 'category_child/' + app.globalData.enterpriseId + '?category_id=' + this.data.cate_id +'&page=' + this.data.page
     }
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/' + url,

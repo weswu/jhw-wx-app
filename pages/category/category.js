@@ -1,3 +1,5 @@
+var app = getApp()
+
 Page({
 
   /**
@@ -19,7 +21,7 @@ Page({
     wx.showNavigationBarLoading()
     console.log('分类加载中...')
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/other/product_category/Enterp_0000000000000000000049341',
+      url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
       success: function (res) {
         that.setData({
           list: res.data
