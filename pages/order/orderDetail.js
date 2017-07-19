@@ -38,11 +38,9 @@ Page({
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',
       data: {
-        appId: app.globalData.appid,
         orderId: this.data.data.orderId
       },
       success: function (res) {
-        debugger
         wx.requestPayment({
           'timeStamp': res.data.attributes.timeStamp,
           'nonceStr': res.data.attributes.nonceStr,
@@ -57,8 +55,6 @@ Page({
         })
       }
     })
-
-
   },
 
   /**
