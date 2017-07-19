@@ -53,27 +53,44 @@ Page({
           totalPoint: data.totalPoint,
           totalPrice: data.totalPrice,
           totalQuantity: data.totalQuantity,
-          totalWeightGram: data.totalWeightGram,
-          curReceiver: data.receiver[0]
+          totalWeightGram: data.totalWeightGram
         })
 
+        var curReceiver = {}
+        if(data.receiver.length > 0){
+          curReceiver = data.receiver[0]
+          for(var i=0; i<data.receiver.length; i++){
+            if(data.receiver[i].isDefault === '1'){
+              curReceiver = data.receiver[i]
+              break;
+            }
+          }
+          wx.setStorage({
+            key: 'curReceiver',
+            data: curReceiver
+          })
+        }
+
         var curPaymentConfig = {}
-        for(var i=0; i<data.paymentConfig.length; i++){
-          if(data.paymentConfig[i].paymentConfigType === 'wxpay'){
-            curPaymentConfig = data.paymentConfig[i]
-            break;
+        if(data.paymentConfig.length > 0){
+          curPaymentConfig = data.paymentConfig[0]
+          for(var i=0; i<data.paymentConfig.length; i++){
+            if(data.paymentConfig[i].paymentConfigType === 'wxpay'){
+              curPaymentConfig = data.paymentConfig[i]
+              break;
+            }
           }
         }
+
         var curDelivery = data.deliveryType[0]
         curDelivery.deliveryFee = that.getDeliveryFee()
+
         that.setData({
           curDelivery: curDelivery,
-          curPaymentConfig: curPaymentConfig
+          curPaymentConfig: curPaymentConfig,
+          curReceiver: curReceiver
         })
       }
-    })
-    this.setData({
-      empty: true
     })
   },
   getDeliveryFee: function () {
@@ -126,29 +143,46 @@ Page({
           },
           success: function (res) {
             wx.requestPayment({
-              'timeStamp': res.data.attributes.timeStamp,
-              'nonceStr': res.data.attributes.nonceStr,
-              'package': res.data.attributes.package,
+              'timeStamp': res.data.attributes.data.timeStamp,
+              'nonceStr': res.data.attributes.data.nonceStr,
+              'package': res.data.attributes.data.package,
               'signType': 'MD5',
-              'paySign': res.data.attributes.sign,
+              'paySign': res.data.attributes.data.sign,
               'success': function (res) {
-                debugger
+                wx.navigateTo({
+                  url: '../order/order'
+                })
               },
               'fail': function (res) {
+                wx.navigateTo({
+                  url: '../order/order'
+                })
               }
             })
           }
         })
       }
     })
-
-
   },
+
+  setStor: function () {
+    var key = wx.getStorageSync('curReceiver')
+    if (key) {
+      this.setData({
+        curReceiver: key
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.get()
+  },
+
+  onShow: function () {
+    this.setStor()
   },
 
   /**

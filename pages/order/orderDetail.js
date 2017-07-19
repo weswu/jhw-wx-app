@@ -42,15 +42,20 @@ Page({
       },
       success: function (res) {
         wx.requestPayment({
-          'timeStamp': res.data.attributes.timeStamp,
-          'nonceStr': res.data.attributes.nonceStr,
-          'package': res.data.attributes.package,
+          'timeStamp': res.data.attributes.data.timeStamp,
+          'nonceStr': res.data.attributes.data.nonceStr,
+          'package': res.data.attributes.data.package,
           'signType': 'MD5',
-          'paySign': res.data.attributes.sign,
+          'paySign': res.data.attributes.data.sign,
           'success': function (res) {
-            debugger
+            wx.navigateTo({
+              url: '../order/order'
+            })
           },
           'fail': function (res) {
+            wx.navigateTo({
+              url: '../order/order'
+            })
           }
         })
       }

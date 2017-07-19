@@ -231,8 +231,24 @@ Page({
       },
       success: function (res) {
         var str = res.data.split('jsonpCallback(')[1]
-        var msg = JSON.parse(str.substring(0, str.length - 1)).msg
-        console.log(msg)
+        var data = JSON.parse(str.substring(0, str.length - 1))
+        if (data.success){
+          wx.navigateTo({
+            url: '../cart/cart'
+          })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: data.msg,
+            success: function(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
       }
     })
   },

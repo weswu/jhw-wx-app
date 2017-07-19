@@ -163,9 +163,21 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res)
-        wx.navigateTo({
-          url: 'address'
+        var key = wx.getStorageSync('addressList')
+        if (key) {
+          key.push(res.data.attributes.data)
+          wx.setStorage({
+            key: 'addressList',
+            data: key
+          })
+        }else{
+          wx.setStorage({
+            key: 'addressList',
+            data: res.data.attributes.data
+          })
+        }
+        wx.navigateBack({
+          delta: 1
         })
       }
     })
@@ -197,9 +209,21 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res)
-        wx.navigateTo({
-          url: 'address'
+        if(res.data.success){
+          var key = wx.getStorageSync('addressList')
+          for(var i=0; i<key.length; i++){
+            if(key[i].receiverId === that.data.address.receiverId){
+              key.splice(i,1)
+              wx.setStorage({
+                key: 'addressList',
+                data: key
+              })
+            }
+          }
+        }
+
+        wx.navigateBack({
+          delta: 1
         })
       }
     })

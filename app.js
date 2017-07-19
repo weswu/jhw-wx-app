@@ -57,8 +57,6 @@ App({
     console.log('App Hide')
   },
   globalData: {
-    appid: 'wx860be22a8b03bbd9',
-    secret: '0070570f1225a9f9efa25265405c2efe',
     userInfo: null,
     member: null,
     enterpriseId: 'Enterp_0000000000000000000049341'

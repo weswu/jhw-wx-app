@@ -19,8 +19,9 @@ Page({
       var id = e.currentTarget.dataset.id
       for(var i=0; i<this.data.list.length; i++){
         if(this.data.list[i].receiverId === id){
-          if(this.data.list[i].isDefault == '1'){
+          if(this.data.list[i].isDefault != '1'){
             var address = this.data.list[i]
+            address.isDefault = '1'
             address.skey = app.globalData.member.skey
             address.model = JSON.stringify(address)
             address._method = 'put'
@@ -32,14 +33,18 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                wx.navigateTo({
-                  url: url
+                wx.setStorage({
+                  key: 'curReceiver',
+                  data: res.data.attributes.data
+                })
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             })
           }else{
-            wx.navigateTo({
-              url: url
+            wx.navigateBack({
+              delta: 1
             })
           }
 
@@ -61,6 +66,10 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
+        wx.setStorage({
+          key: 'addressList',
+          data: res.data.attributes.data
+        })
         that.setData({
           list: res.data.attributes.data
         })
@@ -211,18 +220,41 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        for(var i=0; i<that.data.list.length; i++){
+          that.data.list[i].isDefault = '0'
+        }
         that.data.list.push(res.data.attributes.data)
+
+        wx.setStorage({
+          key: 'addressList',
+          data: that.data.list
+        })
         that.setData({
           list: that.data.list
         })
+
       }
     })
   },
+
+  setStor: function () {
+    var key = wx.getStorageSync('addressList')
+    if (key) {
+      this.setData({
+        list: key
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.get()
+  },
+
+  onShow: function () {
+    this.setStor()
   },
 
   /**
