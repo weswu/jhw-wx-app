@@ -30,9 +30,9 @@ Page({
           data: res.data.attributes.data,
           paymentConfigList: res.data.attributes.paymentConfigList
         })
+        wx.hideNavigationBarLoading()
       }
     })
-    wx.hideNavigationBarLoading()
   },
   pay: function () {
     wx.request({
@@ -48,13 +48,13 @@ Page({
           'signType': 'MD5',
           'paySign': res.data.attributes.data.sign,
           'success': function (res) {
-            wx.navigateTo({
-              url: '../order/order'
+            wx.navigateBack({
+              delta: 1
             })
           },
           'fail': function (res) {
-            wx.navigateTo({
-              url: '../order/order'
+            wx.navigateBack({
+              delta: 1
             })
           }
         })

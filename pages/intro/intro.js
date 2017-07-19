@@ -8,11 +8,31 @@ Page({
 
   },
 
+  get: function () {
+    var that = this
+    //调用应用实例的方法获取全局数据
+    wx.showNavigationBarLoading()
+    console.log('首页数据加载中...')
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId,
+      success: function (res) {
+        that.setData({
+          list: res.data.list
+        })
+        wx.setStorage({
+          key: 'proCate',
+          data: res.data.list
+        })
+        wx.hideNavigationBarLoading()
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get()
   },
 
   /**

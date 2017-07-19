@@ -34,6 +34,7 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
+        wx.hideNavigationBarLoading()
         if (!res.data.success) {
           wx.showModal({
             title: '提示',
@@ -62,7 +63,6 @@ Page({
         })
       }
     })
-    wx.hideNavigationBarLoading()
   },
   /**
    * 生命周期函数--监听页面加载

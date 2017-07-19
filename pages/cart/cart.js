@@ -26,6 +26,7 @@ Page({
   },
   get: function () {
     var that = this
+    wx.showNavigationBarLoading()
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
       data: {
@@ -34,6 +35,7 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
+        wx.hideNavigationBarLoading()
         if(!res.data.success){
           that.setData({
             empty: true

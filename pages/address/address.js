@@ -73,9 +73,9 @@ Page({
         that.setData({
           list: res.data.attributes.data
         })
+        wx.hideNavigationBarLoading()
       }
     })
-    wx.hideNavigationBarLoading()
   },
   wxAddress: function(){
     var that = this

@@ -24,6 +24,7 @@ Page({
   },
   get: function () {
     var that = this
+    wx.showNavigationBarLoading()
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ this.data.address.receiverId,
       data: {
@@ -31,7 +32,6 @@ Page({
       },
       success: function (res) {
         var data= res.data.attributes.data;
-
         var oneIndex=0;
         for(var i=0; i<that.data.province.length;i++){
           if(that.data.province[i].value == data.areaPath.split(',')[0]){
@@ -44,6 +44,7 @@ Page({
           address: data
         })
         that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2' })
+        wx.hideNavigationBarLoading()
       }
     })
   },
