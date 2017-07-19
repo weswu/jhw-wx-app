@@ -119,17 +119,24 @@ Page({
       },
       success: function (res) {
         var data = res.data.attributes
-        wx.requestPayment({
-          'timeStamp': new Date().getTime(),
-          'nonceStr': Math.random()*10000000000000000,
-          'package': data.orderId,
-          'signType': 'MD5',
-          'paySign': '',
-          'success': function (res) {
-            debugger
+        wx.request({
+          url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',
+          data: {
+            orderId: data.orderId
           },
-          'fail': function (res) {
-            debugger
+          success: function (res) {
+            wx.requestPayment({
+              'timeStamp': res.data.attributes.timeStamp,
+              'nonceStr': res.data.attributes.nonceStr,
+              'package': res.data.attributes.package,
+              'signType': 'MD5',
+              'paySign': res.data.attributes.sign,
+              'success': function (res) {
+                debugger
+              },
+              'fail': function (res) {
+              }
+            })
           }
         })
       }
