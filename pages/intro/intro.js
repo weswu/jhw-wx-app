@@ -1,27 +1,29 @@
 // intro.js
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    contact: {}
   },
 
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    console.log('首页数据加载中...')
+    console.log('数据加载中...')
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId,
+      url: 'https://api.jihui88.net/jihuiapi/other/company/' + app.globalData.enterpriseId,
       success: function (res) {
         that.setData({
-          list: res.data.list
+          contact: res.data
         })
         wx.setStorage({
-          key: 'proCate',
-          data: res.data.list
+          key: 'contact',
+          data: res.data
         })
         wx.hideNavigationBarLoading()
       }
@@ -32,7 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get()
+    // this.get()
   },
 
   /**

@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/my/my",
-    "pages/address/address",
     "pages/cart/cart",
     "pages/login/login",
     "pages/address/addressDetail",
