@@ -7,34 +7,67 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contact: {}
+    company: {},
+    contact: {},
+    isJihui: (app.globalData.enterpriseId === 'Enterp_0000000000000000000049341')
   },
 
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    console.log('数据加载中...')
-    wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/other/company/' + app.globalData.enterpriseId,
-      success: function (res) {
-        that.setData({
-          contact: res.data
-        })
-        wx.setStorage({
-          key: 'contact',
-          data: res.data
-        })
-        wx.hideNavigationBarLoading()
-      }
-    })
+
+    var company = wx.getStorageSync('company')
+    if (!company) {
+      wx.request({
+        url: 'https://wx.jihui88.net/rest/api/comm/enterprise/info?enterpriseId=' + app.globalData.enterpriseId,
+        success: function (res) {
+          that.setData({
+            company: res.data.attributes.data
+          })
+          wx.setStorage({
+            key: 'company',
+            data: res.data.attributes.data
+          })
+          wx.hideNavigationBarLoading()
+        }
+      })
+    } else {
+      this.setData({
+        company: company
+      })
+    }
+
+    var contact = wx.getStorageSync('company')
+    if (!contact) {
+      wx.request({
+        url: 'https://api.jihui88.net/jihuiapi/other/company/' + app.globalData.enterpriseId,
+        success: function (res) {
+          that.setData({
+            contact: res.data
+          })
+          wx.setStorage({
+            key: 'contact',
+            data: res.data
+          })
+          wx.hideNavigationBarLoading()
+        }
+      })
+    } else {
+      this.setData({
+        company: contact
+      })
+    }
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.get()
+    if(!this.data.isJihui){
+      this.get()
+    }
   },
 
   /**

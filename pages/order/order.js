@@ -31,28 +31,26 @@ Page({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page,
+        pageSize: 1000,
         skey: app.globalData.member.skey
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
+        wx.hideLoading()
         if (!res.data.success) {
           wx.showModal({
-            title: '提示',
-            content: res.data.msg,
-            success: function(res) {
-              if (res.confirm) {
-                console.log('确定')
-              } else if (res.cancel) {
-                console.log('取消')
-              }
-            }
+            title: res.data.msg
           })
-          return false
-        }
-        if(that.data.list === [] && that.data.page === 1){
           that.setData({
             empty: true
           })
+          return false
+        }
+        if(res.data.list === [] && that.data.page === 1){
+          that.setData({
+            empty: true
+          })
+          return false
         }
         var data = res.data.attributes.data
         for (var i=0; i<data.length; i++){
@@ -93,16 +91,16 @@ Page({
 
   /**
    * 页面上拉触底事件的处理函数
+   * 全查无分页
    */
   onReachBottom: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    this.setData({
-      page: this.data.page + 1
-    })
-    this.get()
-    wx.hideLoading()
+    //wx.showLoading({
+    //  title: '加载中',
+    //})
+    //this.setData({
+    //  page: this.data.page + 1
+    //})
+    //this.get()
   },
 
   /**

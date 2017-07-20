@@ -1,4 +1,4 @@
-// cart.js
+// pay.js
 var app = getApp()
 
 Page({
@@ -111,13 +111,16 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
-            onDeliveryFee = res.attributes.deliveryFee;
+            onDeliveryFee = res.data.attributes.deliveryFee;
           }
         })
       }
     return onDeliveryFee
   },
   pay: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     var data = {
       entId: app.globalData.enterpriseId,
       cIds: '',
@@ -137,6 +140,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        wx.hideLoading()
         var data = res.data.attributes
         wx.request({
           url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',

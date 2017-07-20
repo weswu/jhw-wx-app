@@ -77,6 +77,46 @@ Page({
       }
     })
   },
+  xinzhenAddress: function () {
+    var that = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.address']) {
+          wx.authorize({
+            scope: 'scope.address',
+            success() {
+              that.wxAddress()
+            },
+            fail() {
+              /*
+              wx.navigateTo({
+                url: 'addressDetail'
+              })
+              */
+            }
+          })
+        }else{
+          that.wxAddress()
+          /*
+          wx.showModal({
+            title: '是否选择微信收货地址',
+            confirmText: '确定',
+            cancelText: '手动填写',
+            success: function(res) {
+              if (res.confirm) {
+                that.wxAddress()
+              } else if (res.cancel) {
+                wx.navigateTo({
+                  url: 'addressDetail'
+                })
+              }
+            }
+          })
+          */
+        }
+      }
+    })
+  },
   wxAddress: function(){
     var that = this
     wx.chooseAddress({

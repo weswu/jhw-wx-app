@@ -1,19 +1,6 @@
 /* order.wxss */
-.weui-cell{
-  padding-bottom: 10px
-}
+.weui-cell{padding-bottom:10px}
 
-.emptyOrder image{
-  width:128px;
-  height: 128px;
-  margin: 0 auto;
-  padding: 1rem 0 0 0;
-  display: block
-}
-.emptyOrder text{
-  text-align: center;
-  padding: 1rem 0 2rem 0;
-  font-size: 1rem;
-  color:#999;
-  display: block
-}
+/* 空 */
+.emptyOrder image{width:128px;height:128px;margin:0 auto;padding:1rem 0 0 0;display:block}
+.emptyOrder text{text-align:center;padding:1rem 0 2rem 0;font-size:1rem;color:#999;display:block}

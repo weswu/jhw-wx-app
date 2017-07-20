@@ -3,6 +3,9 @@ var app = getApp()
 
 Page({
   data: {
+    images: [
+      'http://img.easthardware.com/upload/j/j2/jihui/picture/2016/02/16/9e4246d9-7150-49f0-af69-237598418759.png'
+    ],
     list: []
   },
   get: function () {
@@ -11,13 +14,13 @@ Page({
     wx.showNavigationBarLoading()
     console.log('首页数据加载中...')
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId,
+      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
       success: function (res) {
         that.setData({
           list: res.data.list
         })
         wx.setStorage({
-          key: 'proCate',
+          key: 'goods',
           data: res.data.list
         })
         wx.hideNavigationBarLoading()
@@ -25,7 +28,7 @@ Page({
     })
   },
   onLoad: function () {
-    var key = wx.getStorageSync('proCate')
+    var key = wx.getStorageSync('goods')
     if (!key) {
       this.get()
     } else {

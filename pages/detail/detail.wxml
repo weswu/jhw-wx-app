@@ -30,7 +30,7 @@
           </view>
           <view class="weui-cell__ft time">{{item.updateTime}}</view>
       </view>
-      <view if:for="{{sellList.length == 0}}">
+      <view if:for="{{sellList.length == 0}}" style="color:#999;padding:5px">
           暂无数据
       </view>
     </view>

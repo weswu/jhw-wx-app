@@ -1,8 +1,9 @@
 {
   "pages": [
+  "pages/product/product",
     "pages/index/index",
-    "pages/my/my",
     "pages/cart/cart",
+    "pages/my/my",
     "pages/login/login",
     "pages/address/addressDetail",
     "pages/address/address",
@@ -12,7 +13,6 @@
     "pages/intro/intro",
     "pages/detail/detail",
     "pages/setting/setting",
-    "pages/product/product",
     "pages/login/register"
   ],
   "window": {

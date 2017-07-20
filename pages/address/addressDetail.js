@@ -129,6 +129,7 @@ Page({
   },
   // 提交
   submit: function(){
+    var that = this
     if(!this.data.address.name){
       this.dialog('姓名不能为空！')
       return false
@@ -146,9 +147,7 @@ Page({
       this.dialog('收货地址不能为空！')
       return false
     }
-    if(!this.data.address.isDefault){
-      this.data.address.isDefault = '0'
-    }
+    this.data.address.isDefault = '1'
     var url= 'https://wx.jihui88.net/rest/api/shop/receiver/detail';
     if(!this.data.isAdd){
       url= url + '/' + this.data.address.receiverId
@@ -165,18 +164,25 @@ Page({
       },
       success: function (res) {
         var key = wx.getStorageSync('addressList')
-        if (key) {
-          key.push(res.data.attributes.data)
-          wx.setStorage({
-            key: 'addressList',
-            data: key
-          })
+        if(that.data.isAdd){
+          if (key) {
+            key.push(res.data.attributes.data)
+          }else{
+            key= res.data.attributes.data
+          }
         }else{
-          wx.setStorage({
-            key: 'addressList',
-            data: res.data.attributes.data
-          })
+          for(var i=0; i<key.length; i++){
+            if(key[i].receiverId === res.data.attributes.data.receiverId){
+              key[i] = res.data.attributes.data
+            }else{
+              key[i].isDefault = '0'
+            }
+          }
         }
+        wx.setStorage({
+          key: 'addressList',
+          data: key
+        })
         wx.navigateBack({
           delta: 1
         })

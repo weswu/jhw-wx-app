@@ -10,32 +10,123 @@ Page({
     list: [],
     cate_id: '',
     title: '产品',
-    page: 1
+    empty: false,
+    search: {
+      page: 1,
+      per_page: 4
+    },
+    keyword: ''
   },
 
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    console.log('产品分类'+ this.data.cate_id +'加载中...')
     var url = 'all/' + app.globalData.enterpriseId
     if(!!this.data.cate_id){
-      url = 'category_child/' + app.globalData.enterpriseId + '?category_id=' + this.data.cate_id +'&page=' + this.data.page
+      url = 'category_child/' + app.globalData.enterpriseId
+      this.data.search.category_id = this.data.cate_id
     }
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/' + url,
+      data: this.data.search,
       success: function (res) {
-        // !res.data.list && that.data.page === 1
-        that.setData({
-          list: res.data.list
-        })
-        wx.setStorage({
-          key: 'proCate' + that.data.cate_id,
-          data: res.data.list
-        })
         wx.hideNavigationBarLoading()
+        wx.hideLoading()
+        if(res.data.error === '查询为空'){
+          if(that.data.search.page === 1){
+            that.setData({
+              empty: true
+            })
+          }
+          return false
+        }else{
+          that.setData({
+            empty: false
+          })
+        }
+        var data = res.data.list
+        if(data.length > 0){
+          for(var i=0; i<data.length; i++){
+            that.data.list.push(data[i])
+          }
+        }
+        that.setData({
+          list: that.data.list
+        })
+        if(that.data.search.page === 1){
+          wx.setStorage({
+            key: 'proCate' + that.data.cate_id,
+            data: that.data.list
+          })
+        }
       }
     })
+  },
+  // 搜索
+  getKey: function () {
+    var that = this
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/products/search/' + app.globalData.enterpriseId,
+      data: {
+        keyword: this.data.keyword,
+        page: this.data.search.page,
+        per_page: this.data.search.per_page
+      },
+      success: function (res) {
+        wx.hideLoading()
+        if(res.data.error === '查询为空'){
+          if(that.data.search.page === 1){
+            that.setData({
+              empty: true
+            })
+          }
+          return false
+        }else{
+          that.setData({
+            empty: false
+          })
+        }
+        var data = res.data.list
+        if(data.length > 0){
+          for(var i=0; i<data.length; i++){
+            that.data.list.push(data[i])
+          }
+        }
+        that.setData({
+          list: that.data.list
+        })
+      }
+    })
+  },
+  wxSearchInput: function (e) {
+    if (!e.detail.value) {
+      this.setData({
+        list: wx.getStorageSync('proCate' + this.data.cate_id)
+      })
+      return
+    }
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  searchKey: function () {
+    wx.showLoading({
+      title: '加载中'
+    })
+    this.data.search.page = 1
+    this.setData({
+      list: [],
+      search: this.data.search
+    })
+    if (this.data.keyword === '') {
+      this.setData({
+        list: wx.getStorageSync('proCate' + this.data.cate_id)
+      })
+      wx.hideLoading()
+      return
+    }
+    this.getKey()
   },
 
   /**
@@ -71,10 +162,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.search.page = 1
     this.setData({
-      page: 1
+      list: [],
+      search: this.data.search
     })
-    this.get()
+
+    if (this.data.keyword === '') {
+      this.get()
+    }else{
+      this.getKey()
+    }
     wx.stopPullDownRefresh()
   },
 
@@ -82,7 +180,18 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.data.search.page += 1
+    this.setData({
+      search: this.data.search
+    })
+    if (this.data.keyword === '') {
+      this.get()
+    }else{
+      this.getKey()
+    }
   },
 
   /**

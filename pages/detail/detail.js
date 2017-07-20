@@ -72,9 +72,9 @@ Page({
         that.setData({
           attrList: data
         })
+        wx.hideLoading()
       }
     })
-    wx.hideLoading()
   },
   nav: function (e) {
     var ctx =this;
@@ -211,12 +211,12 @@ Page({
   pay: function () {
     var that = this
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/cartItem/toPay',
+      url: 'https://wx.jihui88.net/rest/api/shop/cartItem/add',
       type: "get",
       dataType: "jsonp",
       data: {
         callback: "jsonpCallback",
-        payType: '00',
+        payType: '01',
         id: this.data.detail.product_id,
         quantity: this.data.num,
         mobileShop: true,

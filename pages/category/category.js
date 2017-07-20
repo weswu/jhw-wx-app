@@ -6,12 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [],
+    active: 'all'
   },
   // 跳转
   page: function (e) {
+    var url = e.currentTarget.dataset.url
+    var active = 'all'
+    if(url.indexOf('../product/product?category_id')>-1){
+      active = e.currentTarget.dataset.cate
+    }
+    this.setData({
+      active: active
+    })
+    wx.setStorage({
+      key: 'active',
+      data: active
+    })
     wx.navigateTo({
-      url: e.currentTarget.dataset.url
+      url: url
     })
   },
   // 获取
@@ -55,19 +68,21 @@ Page({
       title: '分类'
     })
   },
+
+  onShow: function () {
+    var key = wx.getStorageSync('active')
+    if (key) {
+      this.setData({
+        active: key
+      })
+    }
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     this.get()
     wx.stopPullDownRefresh() //停止下拉刷新
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**
