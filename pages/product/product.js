@@ -15,7 +15,9 @@ Page({
       page: 1,
       per_page: 4
     },
-    keyword: ''
+    keyword: '',
+    history: false,
+    hislist: []
   },
 
   get: function () {
@@ -101,9 +103,15 @@ Page({
   },
   wxSearchInput: function (e) {
     if (!e.detail.value) {
+      var list = wx.getStorageSync('proCate' + this.data.cate_id)
       this.setData({
-        list: wx.getStorageSync('proCate' + this.data.cate_id)
+        list: list
       })
+      if(!!list){
+        this.setData({
+          empty: false
+        })
+      }
       return
     }
     this.setData({
@@ -120,13 +128,54 @@ Page({
       search: this.data.search
     })
     if (this.data.keyword === '') {
+      var list = wx.getStorageSync('proCate' + this.data.cate_id)
       this.setData({
-        list: wx.getStorageSync('proCate' + this.data.cate_id)
+        list: list
       })
+      if(!!list){
+        this.setData({
+          empty: false
+        })
+      }
       wx.hideLoading()
       return
     }
+    if(this.data.hislist.indexOf(this.data.keyword) === -1){
+      this.data.hislist.push(this.data.keyword)
+      this.setData({
+        hislist: this.data.hislist
+      })
+      wx.setStorage({
+        key: 'hislist',
+        data: this.data.hislist
+      })
+    }
     this.getKey()
+  },
+
+  // 历史记录
+  wxSerchFocus: function () {
+    this.setData({
+      history: true
+    })
+
+  },
+  wxSearchBlur: function () {
+    this.setData({
+      history: false
+    })
+  },
+  wxSearchKeyTap: function (e) {
+    this.setData({
+      keyword: e.currentTarget.dataset.key
+    })
+    this.searchKey()
+  },
+  wxSearchDeleteAll: function () {
+    wx.removeStorageSync('hislist')
+    this.setData({
+      hislist: []
+    })
   },
 
   /**
@@ -145,6 +194,12 @@ Page({
     } else {
       this.setData({
         list: key
+      })
+    }
+    var hislist = wx.getStorageSync('hislist')
+    if (!!hislist) {
+      this.setData({
+        hislist: hislist
       })
     }
   },
