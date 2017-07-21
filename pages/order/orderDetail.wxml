@@ -56,7 +56,9 @@
   </view>
 </view>
 
-<view class="weui-cells weui-cells-order" wx:if="{{data.paymentStatus != 'unpaid'}}">
+<!--订单状态-->
+<button wx:if="{{data.paymentStatus === 'unpaid' || data.paymentStatus === 'partPayment'}}" class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
+<view class="weui-cells weui-cells-order" wx:elif="{{data.orderStatus === 'completed'}}">
   <view class="weui-cell">
       <view class="weui-cell__bd">下单时间</view>
       <view class="weui-cell__ft">{{data.addTime}}</view>
@@ -66,4 +68,4 @@
       <view class="weui-cell__ft" style="color:#ff6214">￥{{data.totalAmount}}</view>
   </view>
 </view>
-<button wx:else class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
+<button wx:if="{{data.orderStatus !== 'completed' || data.shippingStatus === 'shipped'}}" class="btn-primary fixed" bindtap="comfirm" data-id="{{data.orderId}}">确定收货</button>

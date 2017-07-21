@@ -8,7 +8,9 @@ Page({
    */
   data: {
     list: [],
-    page: 1
+    page: 1,
+    cancel: '取消订单',
+    comfirm: '确定收货'
   },
 
   page: function (e) {
@@ -47,7 +49,7 @@ Page({
           })
           return false
         }
-        if(data.list.length === 0 && that.data.page === 1){
+        if(data.length === 0 && that.data.page === 1){
           that.setData({
             empty: true
           })
@@ -61,6 +63,100 @@ Page({
         })
       }
     })
+  },
+  del: function (e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/order/delete/' + id,
+      data: {
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        var list = that.data.list
+        for (var i=0; i<list.length; i++){
+          if(list[i].orderId === id){
+            list.splice(i,1)
+            that.setData({
+              list: list
+            })
+          }
+        }
+      }
+    })
+  },
+  cancel: function (e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    if(this.data.cancel !== '已作废'){
+      wx.request({
+        method: 'post',
+        url: 'https://wx.jihui88.net/rest/api/shop/order/invalid/' + id,
+        data: {
+          skey: app.globalData.member.skey
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          that.setData({
+            cancel: '已作废'
+          })
+        }
+      })
+    }
+  },
+  comfirm: function (e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    if(this.data.cancel !== '交易成功'){
+      wx.request({
+        method: 'post',
+        url: 'https://wx.jihui88.net/rest/api/shop/order/completed/' + id,
+        data: {
+          skey: app.globalData.member.skey
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          that.setData({
+            comfirm: '交易成功'
+          })
+        }
+      })
+    }
+  },
+  send: function () {
+    var that = this
+    var orderSn = e.currentTarget.dataset.ordersn
+    var mobile = e.currentTarget.dataset.mobile
+
+    if(this.data.cancel !== '交易成功'){
+      wx.request({
+        method: 'post',
+        url: 'https://wx.jihui88.net/site_message/send',
+        data: {
+          title: "订单发货-客户催单",
+          content:"订单编号:"+ orderSn,
+          sendType: "no",
+          recvEnt: app.globalData.enterpriseId,
+          fromName: app.globalData.userInfo.nickName,
+          fromPhone: mobile,
+          skey: app.globalData.member.skey
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          wx.showToast({
+            title: '留言成功',
+            icon: 'success',
+            duration: 1500
+          })
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

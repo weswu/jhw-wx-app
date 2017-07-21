@@ -1,5 +1,6 @@
 {
   "pages": [
+  "pages/order/order",
     "pages/index/index",
     "pages/my/my",
     "pages/product/product",
@@ -9,7 +10,6 @@
     "pages/address/address",
     "pages/category/category",
     "pages/order/orderDetail",
-    "pages/order/order",
     "pages/intro/intro",
     "pages/detail/detail",
     "pages/setting/setting",

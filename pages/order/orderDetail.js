@@ -62,6 +62,27 @@ Page({
     })
   },
 
+  comfirm: function (e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      method: 'post',
+      url: 'https://wx.jihui88.net/rest/api/shop/order/completed/' + id,
+      data: {
+        skey: app.globalData.member.skey
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '交易成功',
+          icon: 'success',
+          duration: 1500
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
