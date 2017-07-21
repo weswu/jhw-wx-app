@@ -47,7 +47,7 @@ Page({
           })
           return false
         }
-        if(data.list === [] && that.data.page === 1){
+        if(data.list.length === 0 && that.data.page === 1){
           that.setData({
             empty: true
           })
