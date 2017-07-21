@@ -13,7 +13,7 @@ Page({
     empty: false,
     search: {
       page: 1,
-      per_page: 4
+      per_page: 6
     },
     keyword: '',
     history: false,
