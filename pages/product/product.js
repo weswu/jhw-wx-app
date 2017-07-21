@@ -9,7 +9,7 @@ Page({
   data: {
     list: [],
     cate_id: '',
-    title: '产品',
+    title: '商品',
     empty: false,
     search: {
       page: 1,
@@ -102,18 +102,6 @@ Page({
     })
   },
   wxSearchInput: function (e) {
-    if (!e.detail.value) {
-      var list = wx.getStorageSync('proCate' + this.data.cate_id)
-      this.setData({
-        list: list
-      })
-      if(!!list){
-        this.setData({
-          empty: false
-        })
-      }
-      return
-    }
     this.setData({
       keyword: e.detail.value
     })
@@ -127,20 +115,7 @@ Page({
       list: [],
       search: this.data.search
     })
-    if (this.data.keyword === '') {
-      var list = wx.getStorageSync('proCate' + this.data.cate_id)
-      this.setData({
-        list: list
-      })
-      if(!!list){
-        this.setData({
-          empty: false
-        })
-      }
-      wx.hideLoading()
-      return
-    }
-    if(this.data.hislist.indexOf(this.data.keyword) === -1){
+    if(this.data.hislist.indexOf(this.data.keyword) === -1 && this.data.keyword !== ''){
       this.data.hislist.push(this.data.keyword)
       this.setData({
         hislist: this.data.hislist
@@ -209,7 +184,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: this.data.title || '产品'
+      title: this.data.title || '商品'
     })
   },
 

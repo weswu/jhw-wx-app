@@ -12,7 +12,7 @@ swiper-item image {
 }
 
 .banner{width:750rpx;max-width:480px;margin:0 auto}
-.more{font-size:14px;color:#999;margin:0 auto;padding:20px}
+.more{font-size:14px;color:#999;margin:0 auto;padding:15px 20px}
 
 .cells{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
 .cell{display:flex;width:49vw;box-sizing:border-box;padding-top:1.5vh}

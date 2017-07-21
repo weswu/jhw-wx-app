@@ -37,6 +37,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading()
         wx.hideLoading()
+        var data = res.data.attributes.data
         if (!res.data.success) {
           wx.showModal({
             title: res.data.msg
@@ -46,13 +47,12 @@ Page({
           })
           return false
         }
-        if(res.data.list === [] && that.data.page === 1){
+        if(data.list === [] && that.data.page === 1){
           that.setData({
             empty: true
           })
           return false
         }
-        var data = res.data.attributes.data
         for (var i=0; i<data.length; i++){
           that.data.list.push(data[i])
         }
