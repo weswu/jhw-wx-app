@@ -30,6 +30,11 @@
         <view class="quantity">x{{item.productQuantity}}</view>
       </view>
     </view>
+    <view class="weui-cell">
+      <view class="weui-cell__ft">
+        <view class="button" bindtap="del">删除</view>
+      </view>
+    </view>
 
   </view>
 </view>

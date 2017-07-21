@@ -12,48 +12,53 @@ Page({
   },
 
   page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
+  // 修改默认收货地址
+  selectCurAddress: function (e) {
     var that = this
-    var url = e.currentTarget.dataset.url
-    // 修改默认收货地址
-    if(url === '../cart/cart'){
-      var id = e.currentTarget.dataset.id
-      for(var i=0; i<this.data.list.length; i++){
-        if(this.data.list[i].receiverId === id){
-          if(this.data.list[i].isDefault != '1'){
-            var address = this.data.list[i]
-            address.isDefault = '1'
-            address.skey = app.globalData.member.skey
-            address.model = JSON.stringify(address)
-            address._method = 'put'
-            wx.request({
-              url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ id,
-              method: 'post',
-              data: address,
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              success: function (res) {
-                wx.setStorage({
-                  key: 'curReceiver',
-                  data: res.data.attributes.data
-                })
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
-            })
-          }else{
-            wx.navigateBack({
-              delta: 1
-            })
-          }
+    var item = e.currentTarget.dataset.item
+    item.isDefault = '1'
+    wx.setStorage({
+      key: 'curReceiver',
+      data: item
+    })
 
+    if(e.currentTarget.dataset.isdefault === '0'){
+      var list = this.data.list
+      for(var i=0; i<list.length; i++){
+        if(list[i].receiverId === item.receiverId){
+          var address = list[i]
+          address.isDefault = '1'
+          address.skey = app.globalData.member.skey
+          address.model = JSON.stringify(address)
+          address._method = 'put'
+          wx.request({
+            url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ item.receiverId,
+            method: 'post',
+            data: address,
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        }else{
+          list[i].isDefault = '0'
         }
       }
-
+      wx.setStorage({
+        key: 'addressList',
+        data: list
+      })
     }else{
-      wx.navigateTo({
-        url: url
+      wx.navigateBack({
+        delta: 1
       })
     }
   },
@@ -88,31 +93,13 @@ Page({
               that.wxAddress()
             },
             fail() {
-              /*
               wx.navigateTo({
                 url: 'addressDetail'
               })
-              */
             }
           })
         }else{
           that.wxAddress()
-          /*
-          wx.showModal({
-            title: '是否选择微信收货地址',
-            confirmText: '确定',
-            cancelText: '手动填写',
-            success: function(res) {
-              if (res.confirm) {
-                that.wxAddress()
-              } else if (res.cancel) {
-                wx.navigateTo({
-                  url: 'addressDetail'
-                })
-              }
-            }
-          })
-          */
         }
       }
     })
@@ -132,7 +119,7 @@ Page({
           address: address,
           provinceName: res.provinceName,
           cityName: res.cityName,
-          countryName: res.countryName
+          countyName: res.countyName
         })
 
         var province = wx.getStorageSync('province')
@@ -194,11 +181,11 @@ Page({
     for (var i = 0; i < city.length; i++) {
       if(city[i].title === that.data.cityName){
         areaPath=city[i].value;
-
         that.data.address.areaPath = areaPath;
         that.setData({
           address: that.data.address
         })
+
         var county = wx.getStorageSync('area'+areaPath)
         if (!county) {
           wx.request({
@@ -225,9 +212,9 @@ Page({
   },
   getArea3: function (county) {
     var that = this
-    if (county.length != 0 && that.data.countryName != null) {
+    if (county.length != 0 && that.data.countyName != null) {
       for (var i = 0; i < county.length; i++) {
-        if(county[i].title === that.data.countryName){
+        if(county[i].title === that.data.countyName){
           that.data.address.areaPath = county[i].value;
           that.setData({
             address: that.data.address

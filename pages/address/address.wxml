@@ -4,7 +4,7 @@
     <view class="weui-cell__hd">
       <view style="width:10px;height:10px;border-radius: 100%;margin-right: 10px;{{item.isDefault == 1 ? 'background: #ff6214' : ''}}"></view>
     </view>
-    <view class="weui-cell__bd" bindtap="page" data-url="../cart/cart" data-id="{{item.receiverId}}">
+    <view class="weui-cell__bd" bindtap="selectCurAddress" data-item="{{item}}" data-isdefault="{{item.isDefault}}">
        {{item.name}}, {{item.mobile}}
       <view class="address">{{item.address}}</view>
     </view>

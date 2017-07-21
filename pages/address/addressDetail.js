@@ -16,7 +16,7 @@ Page({
     two: ['请选择'],
     twoIndex:0,
     // 3
-    country: [],
+    county: [],
     three: ['请选择'],
     threeIndex:0,
     address:{},
@@ -43,7 +43,8 @@ Page({
           isAdd: false,
           address: data
         })
-        that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2' })
+        that.childrenArea({ path: data.areaPath.split(',')[0], type: '1' ,init: true})
+        that.childrenArea({ path: data.areaPath.split(',')[0]+','+data.areaPath.split(',')[1], type: '2' ,init: true})
         wx.hideNavigationBarLoading()
       }
     })
@@ -71,7 +72,7 @@ Page({
       });
       this.childrenArea({ path: val, type: type })
     } else if (type === '3') {
-      this.data.address.areaPath =  this.data.country[e.detail.value].value
+      this.data.address.areaPath =  this.data.county[e.detail.value].value
       this.setData({
         threeIndex: e.detail.value,
         address: this.data.address
@@ -91,18 +92,42 @@ Page({
             one.push(data[i].title)
           }
           if (e.type == '1') {
-            that.data.address.areaPath = data[0].value
             that.setData({
               city: data,
-              two: one,
-              address: that.data.address
+              two: one
             })
           }
           if (e.type == '2') {
+            that.setData({
+              county: data,
+              three: one
+            })
+          }
+          if(e.init){
+            var index = 0
+            var areaPath
+            if (e.type == '1') {
+              areaPath =that.data.address.areaPath.split(',')[0]+','+that.data.address.areaPath.split(',')[1]
+            }else{
+              areaPath =that.data.address.areaPath
+            }
+            for(var i=0; i<data.length;i++){
+              if(data[i].value === areaPath){
+                index=i
+              }
+            }
+            if (e.type == '1') {
+              that.setData({
+                twoIndex: index
+              })
+            }else{
+              that.setData({
+                threeIndex: index
+              })
+            }
+          }else{
             that.data.address.areaPath = data[0].value
             that.setData({
-              country: data,
-              three: one,
               address: that.data.address
             })
           }
@@ -164,16 +189,18 @@ Page({
       },
       success: function (res) {
         var key = wx.getStorageSync('addressList')
+        var data = res.data.attributes.data
         if(that.data.isAdd){
           if (key) {
-            key.push(res.data.attributes.data)
+            key.push(data)
           }else{
-            key= res.data.attributes.data
+            key= data
           }
         }else{
           for(var i=0; i<key.length; i++){
-            if(key[i].receiverId === res.data.attributes.data.receiverId){
-              key[i] = res.data.attributes.data
+            if(key[i].receiverId === data.receiverId){
+              data.isDefault = '1'
+              key[i] = data
             }else{
               key[i].isDefault = '0'
             }
@@ -192,14 +219,7 @@ Page({
   dialog: function (title) {
     wx.showModal({
       title: '提示',
-      content: title,
-      success: function(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
+      content: title
     })
   },
   // 删除
@@ -248,6 +268,10 @@ Page({
         },
         success: function (res) {
           var province = JSON.parse(res.data.attributes.data);
+          wx.setStorage({
+            key: 'province',
+            data: province
+          })
           that.one(province)
         }
       })
@@ -264,7 +288,9 @@ Page({
       province: province,
       one: one
     })
-    this.childrenArea({ path: province[0].value, type: '1' })
+    if(this.data.isAdd){
+      this.childrenArea({ path: province[0].value, type: '1' })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
