@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    totalPoint: 0,
     totalPrice: 0,
     cartItemSet: [],
     curReceiver: {},
@@ -91,23 +90,21 @@ Page({
             deliveryList.push(data.deliveryType[i].name)
           }
         }
-        var curDelivery = data.deliveryType[0]
-        curDelivery.deliveryFee = that.getDeliveryFee()
 
         that.setData({
           curPaymentConfig: curPaymentConfig,
           curReceiver: curReceiver,
-          curDelivery: curDelivery,
+          curDelivery: data.deliveryType[0],
           deliveryList: deliveryList,
           deliveryIndex: 0
         })
+        that.getDeliveryFee()
       }
     })
   },
   getDeliveryFee: function () {
-    var onDeliveryFee = 0;
+    var that = this;
     if (!this.data.curDelivery.typeId || !this.data.curReceiver.receiverId) {
-        onDeliveryFee = 0;
         console.log('error:获取物流数据不全');
       }else{
         wx.request({
@@ -120,19 +117,22 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
-            onDeliveryFee = res.data.attributes.deliveryFee;
+            that.data.curDelivery.deliveryFee = res.data.attributes.deliveryFee || 0;
+            that.setData({
+              curDelivery: that.data.curDelivery
+            })
           }
         })
       }
-    return onDeliveryFee
+
+
   },
   pickChange: function(e) {
-    var curDelivery = this.data.deliveryType[e.detail.value]
-    curDelivery.deliveryFee = this.getDeliveryFee()
     this.setData({
-      curDelivery: curDelivery,
+      curDelivery: this.data.deliveryType[e.detail.value],
       deliveryIndex: e.detail.value
     })
+    this.getDeliveryFee()
   },
   pay: function () {
     if(this.data.curReceiver && !this.data.curReceiver.receiverId){
@@ -225,6 +225,9 @@ Page({
    */
   onLoad: function (options) {
     this.get()
+    if(app.globalData.member === null){
+      app.getUserInfo()
+    }
   },
 
   onShow: function () {

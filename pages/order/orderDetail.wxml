@@ -51,6 +51,10 @@
       <view class="weui-cell__ft">￥{{data.productTotalPrice}}</view>
   </view>
   <view class="weui-cell">
+      <view class="weui-cell__bd">支付手续费</view>
+      <view class="weui-cell__ft">￥{{data.paymentFee}}</view>
+  </view>
+  <view class="weui-cell">
       <view class="weui-cell__bd">运费</view>
       <view class="weui-cell__ft">￥{{data.deliveryFee}}</view>
   </view>

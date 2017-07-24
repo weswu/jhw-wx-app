@@ -8,9 +8,7 @@ Page({
    */
   data: {
     list: [],
-    page: 1,
-    cancel: '取消订单',
-    comfirm: '确定收货'
+    page: 1
   },
 
   page: function (e) {
@@ -56,6 +54,8 @@ Page({
           return false
         }
         for (var i=0; i<data.length; i++){
+          data[i].cancel= '取消订单'
+          data[i].comfirm= '确定收货'
           that.data.list.push(data[i])
         }
         that.setData({
@@ -95,7 +95,9 @@ Page({
   cancel: function (e) {
     var that = this
     var id = e.currentTarget.dataset.id
-    if(this.data.cancel !== '已作废'){
+    var cancel = e.currentTarget.dataset.cancel
+    var index = e.currentTarget.dataset.index
+    if(cancel !== '已作废'){
       wx.request({
         method: 'post',
         url: 'https://wx.jihui88.net/rest/api/shop/order/invalid/' + id,
@@ -106,8 +108,9 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
+          that.data.list[index].cancel = '已作废'
           that.setData({
-            cancel: '已作废'
+            list: that.data.list
           })
         }
       })
@@ -116,7 +119,9 @@ Page({
   comfirm: function (e) {
     var that = this
     var id = e.currentTarget.dataset.id
-    if(this.data.cancel !== '交易成功'){
+    var comfirm = e.currentTarget.dataset.comfirm
+    var index = e.currentTarget.dataset.index
+    if(comfirm !== '交易成功'){
       wx.request({
         method: 'post',
         url: 'https://wx.jihui88.net/rest/api/shop/order/completed/' + id,
@@ -127,8 +132,9 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
+          that.data.list[index].comfirm = '交易成功'
           that.setData({
-            comfirm: '交易成功'
+            list: that.data.list
           })
         }
       })
@@ -170,6 +176,9 @@ Page({
    */
   onLoad: function (options) {
     this.get()
+    if(app.globalData.member === null){
+      app.getUserInfo()
+    }
   },
 
   /**

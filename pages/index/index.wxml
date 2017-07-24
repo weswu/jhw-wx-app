@@ -16,7 +16,7 @@
 <view class="cells">
   <navigator url="/pages/detail/detail?id={{item.product_id}}&title={{item.name}}" class="cell" wx:for="{{list}}" wx:key="product_id">
     <view class="cell_bd">
-      <image mode="widthFix" src="{{item.pic_path}}"></image>
+      <view class="pro_img"><image mode="widthFix" src="{{item.pic_path}}"></image></view>
       <view class="pro_title">{{item.name}}</view>
       <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
     </view>

@@ -8,15 +8,15 @@ Page({
     id: '',
     nav: '1',
     sellList: [],
+    empty: false,
     showModalStatus: false,
     attrList: [],
+    argsList:[],
     num: 1,
     productAttr: '',
+    skuCode: '',
     appendPrice: 0,
-    appendIds: "",
-    formulaResult: "1",
-    skuCode: "",
-    formulaStr: "1*1"
+    appendIds: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -62,17 +62,27 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
+        wx.hideLoading()
         var str = res.data.split('jsonpCallback(')[1]
         var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-        var data = []
-        for (var i = 0; i < sell.length; i++) {
-          sell[i].updateTime = util.formatTime(sell[i].updateTime)
-          data.push(sell[i])
+        if(sell.length > 1){
+          var data = []
+          for (var i = 0; i < sell.length; i++) {
+            sell[i].updateTime = util.formatTime(new Date(sell[i].updateTime))
+            data.push(sell[i])
+          }
+          that.setData({
+            sellList: data
+          })
+          wx.setStorage({
+            key: 'sell' + that.data.id,
+            data: data
+          })
+        }else{
+          that.setData({
+            empty: true
+          })
         }
-        that.setData({
-          attrList: data
-        })
-        wx.hideLoading()
       }
     })
   },
@@ -106,13 +116,12 @@ Page({
         var attrList = res.data.attributes.data
 
         for(var i=0; i<attrList.length; i++){
-          attrList[i].updateTime = util.formatTime(attrList[i].updateTime)
           var element= attrList[i].element;
           attrList[i].eleList = element.substring(1, element.length - 1).split(',')
-          attrList[i].dx = 0
         }
         that.setData({
-          attrList: attrList
+          attrList: attrList,
+          argsList: attrList[0].argsList
         })
         wx.setStorage({
           key: 'attr' + that.data.id,
@@ -157,19 +166,50 @@ Page({
   },
   /* 属性选择 */
   attrClick: function(e){
+    // 选择边框
+    this.data.attrList[e.target.dataset.index].dx = e.target.dataset.idx
+    this.setData({
+      attrList: this.data.attrList
+    })
     // 属性图片
-    var pic =this.data.attrList[e.target.dataset.index].argsList[e.target.dataset.idx].pic
+
+    var productAttr=''
+    var skuCode = ''
+    var appendIds=''
+    var cost_price = 0
+    var pic = ''
+    for(var i=0; i<this.data.attrList.length; i++){
+      var attr = this.data.attrList[i].eleList[this.data.attrList[i].dx] || ''
+      if(appendIds === ''){
+        appendIds = attr
+        productAttr = this.data.attrList[i].name + ': ' + attr
+      }else{
+        appendIds = appendIds + ',' + attr
+        productAttr = productAttr + ';  ' + this.data.attrList[i].name + ': ' + attr
+      }
+    }
+
+    for(var i=0; i<this.data.argsList.length; i++){
+      if(appendIds === this.data.argsList[i].sku_code){
+        skuCode = this.data.argsList[i].id
+        pic = this.data.argsList[i].pic
+        cost_price = this.data.argsList[i].cost_price
+      }
+    }
+    this.data.detail.price = cost_price
+    this.setData({
+      productAttr: productAttr,
+      skuCode: skuCode,
+      appendIds: appendIds,
+      detail: this.data.detail
+    })
+
     if(pic && pic != ''){
       this.data.detail.pic_path= 'http://img.jihui88.com/' + pic
       this.setData({
         detail: this.data.detail
       })
     }
-    // 选择边框
-    this.data.attrList[e.target.dataset.index].dx = e.target.dataset.idx
-    this.setData({
-      attrList: this.data.attrList
-    })
   },
   /* 点击减号 */
   bindMinus: function() {
@@ -210,6 +250,16 @@ Page({
   /* 支付 */
   pay: function () {
     var that = this
+
+    for(var i=0; i<this.data.attrList.length; i++){
+      if(!this.data.attrList[i].dx && this.data.attrList[i].dx !== 0){
+        wx.showModal({
+          title: this.data.attrList[i].name+'未选择'
+        })
+        return false
+      }
+    }
+
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/cartItem/add',
       type: "get",
@@ -221,12 +271,12 @@ Page({
         quantity: this.data.num,
         mobileShop: true,
         entName: this.data.detail.name,
-        productAttr: this.data.productAttr,
+        productAttr: this.data.productAttr, // []
+        skuCode: this.data.skuCode,
         appendPrice: this.data.appendPrice,
         appendIds: this.data.appendIds,
-        formulaResult: this.data.formulaResult,
-        skuCode: this.data.skuCode,
-        formulaStr: this.data.formulaStr,
+        formulaResult: '1',
+        formulaStr: [],
         skey: app.globalData.member.skey
       },
       success: function (res) {
@@ -265,6 +315,9 @@ Page({
         detail: key
       })
     }
+    if(app.globalData.member === null){
+      app.getUserInfo()
+    }
   },
   onReady: function () {
     wx.setNavigationBarTitle({
@@ -273,6 +326,7 @@ Page({
   },
   onPullDownRefresh: function () {
     this.get()
+    this.getSell()
     wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {

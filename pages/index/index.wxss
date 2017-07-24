@@ -19,6 +19,7 @@ swiper-item image {
 .cell:nth-child(odd){justify-content:flex-start}
 .cell:nth-child(even){justify-content:flex-end}
 .cell_bd{overflow:hidden}
-.cell_bd image{width:49vw}
+.pro_img{width:376rpx;height:376rpx;}
+.pro_img image{max-width: 100%;max-height: 100%;}
 .pro_title{padding:5px 5px 0 5px}
 .pro_price{padding:5px}

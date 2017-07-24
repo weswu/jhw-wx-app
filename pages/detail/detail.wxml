@@ -9,31 +9,33 @@
 
 <view class='separator'></view>
 <view class="weui-navbar">
-    <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
-        图文详情
-    </view>
-    <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2" style="border-right:none">
-        成交记录
-    </view>
+  <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
+      图文详情
+  </view>
+  <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2" style="border-right:none">
+      成交记录
+  </view>
 </view>
 
-<view class="detail_bd">
-  <view hidden="{{nav != '1'}}">
+<view hidden="{{nav != '1'}}">
+  <view class="detail_bd">
     <rich-text nodes="{{detail.proddesc}}"></rich-text>
   </view>
+</view>
 
-  <view hidden="{{nav != '2'}}">
-   <view class="weui-cells">
-      <view class="weui-cell" wx:for="{{sellList}}" wx:key="sellIndex">
-          <view class="weui-cell__bd">
-            {{item.buyname}}
-          </view>
-          <view class="weui-cell__ft time">{{item.updateTime}}</view>
-      </view>
-      <view if:for="{{sellList.length == 0}}" style="color:#999;padding:5px">
-          暂无数据
-      </view>
+<view hidden="{{nav != '2'}}">
+  <view class="weui-cells weui-sell">
+    <view class="weui-cell">
+      <view class="weui-cell__hd">买家</view>
+      <view class="weui-cell__bd">成交时间</view>
+      <view class="weui-cell__ft">数量</view>
     </view>
+    <view class="weui-cell" wx:for="{{sellList}}" wx:key="sellIndex">
+      <view class="weui-cell__hd">{{item.buyname}}</view>
+      <view class="weui-cell__bd time">{{item.updateTime}}</view>
+      <view class="weui-cell__ft">{{item.productQuantity}}</view>
+    </view>
+    <view wx:if="{{sellList.length === 0 && empty}}" style="color:#999;padding:5px">暂无数据</view>
   </view>
 </view>
 

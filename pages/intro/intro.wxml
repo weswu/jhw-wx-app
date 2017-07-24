@@ -8,12 +8,12 @@
     <view class="contact_bd">
       <view class="contact_title" wx:if="{{company.name}}">{{company.name}}</view>
 
-      <view wx:if="{{contact.address && contact.address != 'null'}}">地址：{{contact.address}}</view>
-      <view wx:if="{{contact.email && contact.email != 'null'}}">邮箱：{{contact.email}}</view>
-      <view wx:if="{{contact.cellphone && contact.cellphone != 'null'}}">电话：{{contact.cellphone}}</view>
-      <view wx:if="{{contact.phone && contact.phone != 'null'}}">电话：{{contact.phone}}</view>
-      <view wx:if="{{contact.qq && contact.qq != 'null'}}">QQ：{{contact.qq}}</view>
-      <view wx:if="{{contact.url && contact.url != 'null'}}">网址：{{contact.url}}</view>
+      <view wx:if="{{company.address && company.address != 'null'}}">地址：{{company.address}}</view>
+      <view wx:if="{{company.email && company.email != 'null'}}">邮箱：{{company.email}}</view>
+      <view wx:if="{{company.cellphone && company.cellphone != 'null'}}">手机：{{company.cellphone}}</view>
+      <view wx:if="{{company.phone && companycompany.phone != 'null'}}">电话：{{company.phone}}</view>
+      <view wx:if="{{company.qq && company.qq != 'null'}}">QQ：{{company.qq}}</view>
+      <view wx:if="{{company.url && company.url != 'null'}}">网址：{{company.url}}</view>
     </view>
   </view>
 </view>
