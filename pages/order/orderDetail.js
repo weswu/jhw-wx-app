@@ -43,7 +43,6 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
-        debugger
         wx.requestPayment({
           'timeStamp': res.data.attributes.data.timeStamp,
           'nonceStr': res.data.attributes.data.nonceStr,
@@ -59,9 +58,6 @@ Page({
             })
           },
           'fail': function (res) {
-            wx.showModal({
-              title: '支付失败'
-            })
             wx.navigateBack({
               delta: 1
             })

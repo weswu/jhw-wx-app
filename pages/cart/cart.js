@@ -185,9 +185,6 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
-            wx.showModal({
-              title: res.data.attributes.data.sign
-            })
             wx.requestPayment({
               'timeStamp': res.data.attributes.data.timeStamp,
               'nonceStr': res.data.attributes.data.nonceStr,
@@ -203,9 +200,6 @@ Page({
                 })
               },
               'fail': function (res) {
-                wx.showModal({
-                  title: '支付失败'
-                })
                 wx.navigateTo({
                   url: '../order/order'
                 })
