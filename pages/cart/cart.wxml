@@ -31,6 +31,17 @@
       </view>
     </view>
   </view>
+
+  <view class="weui-cells weui-cells-order">
+    <picker bindchange="pickChange" value="{{deliveryIndex}}" range="{{deliveryList}}">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">配送方式</view>
+        <view class="weui-cell__ft" style="color:#aaa">{{deliveryList[deliveryIndex]}}</view>
+      </view>
+    </picker>
+  </view>
+
+
   <view class="weui-cells weui-cells-order">
     <view class="weui-cell">
         <view class="weui-cell__bd">订单总价</view>

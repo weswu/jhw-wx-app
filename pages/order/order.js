@@ -74,12 +74,19 @@ Page({
       },
       success: function (res) {
         var list = that.data.list
-        for (var i=0; i<list.length; i++){
-          if(list[i].orderId === id){
-            list.splice(i,1)
-            that.setData({
-              list: list
-            })
+        if(list.length === 1){
+          that.setData({
+            list: [],
+            empty: true
+          })
+        }else{
+          for (var i=0; i<list.length; i++){
+            if(list[i].orderId === id){
+              list.splice(i,1)
+              that.setData({
+                list: list
+              })
+            }
           }
         }
       }
@@ -183,6 +190,7 @@ Page({
       list: []
     })
     this.get()
+    wx.stopPullDownRefresh()
   },
 
   /**

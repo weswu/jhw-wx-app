@@ -14,7 +14,7 @@
         </view>
     </view>
 
-    <view class="weui-cell" wx:for="{{item.orderItemSet}}" wx:for-item="pro" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
+    <view class="weui-cell weui-cells-items" wx:for="{{item.orderItemSet}}" wx:for-item="pro" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
       <view class="weui-cell__hd">
           <image src="{{pro.product.picUrl5}}"></image>
       </view>
@@ -30,7 +30,7 @@
       </view>
     </view>
     <view class="btn-event">
-      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn" bindtap="del" data-id="{{item.orderId}}">删除</text>
+      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn active" bindtap="del" data-id="{{item.orderId}}">删除</text>
       <!--取消订单-->
       <text wx:elif="{{item.paymentStatus === 'unpaid' || item.paymentStatus === 'partPayment'}}" class="btn" bindtap="cancel" data-id="{{item.orderId}}">{{cancel}}</text>
       <text wx:elif="{{item.shippingStatus === 'shipped' || item.shippingStatus === 'partShipped'}}">

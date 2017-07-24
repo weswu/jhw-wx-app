@@ -20,22 +20,22 @@
   <view class="title">收货地址</view>
     <view class="weui-cells weui-cells_after-title">
       <picker bindchange="pickChange" value="{{oneIndex}}" range="{{one}}" data-type="1">
-      <view class="weui-cell">
+        <view class="weui-cell">
           <view class="weui-cell__hd"><label class="weui-label">省/直辖市</label></view>
           <view class="weui-cell__bd">{{one[oneIndex]}}</view>
-      </view>
+        </view>
       </picker>
       <picker bindchange="pickChange" value="{{twoIndex}}" range="{{two}}" data-type="2">
-      <view class="weui-cell">
+        <view class="weui-cell">
           <view class="weui-cell__hd"><label class="weui-label">市</label></view>
           <view class="weui-cell__bd">{{two[twoIndex]}}</view>
-      </view>
+        </view>
       </picker>
       <picker bindchange="pickChange" value="{{threeIndex}}" range="{{three}}" data-type="3">
-      <view class="weui-cell">
+        <view class="weui-cell">
           <view class="weui-cell__hd"><label class="weui-label">区/县</label></view>
           <view class="weui-cell__bd">{{three[threeIndex]}}</view>
-      </view>
+        </view>
       </picker>
       <view class="weui-cell">
           <view class="weui-cell__bd"><textarea value="{{address.address}}" bindinput="address" data-address="address" style="height:2.5rem;" placeholder="详细地址"/></view>

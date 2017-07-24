@@ -35,12 +35,13 @@ button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
 /* 订单列表 */
 .weui-cells-order{font-size:13px}
 .weui-cells-order:before{border-top:none}
+.weui-cells-order:after{border-bottom:1px solid #ddd;}
 .weui-cells-order .weui-cell:before{border-top:none}
 .weui-cells-order .address{padding-top:0}
 .weui-cells-order .weui-cell__bd{line-height:1.9}
 .weui-cells-order image{width:40px;height:40px}
 .weui-cells-order .price{color:#333}
-.weui-cells-order .quantity{color:#9b9b9b;font-size:10px}
+.weui-cells-order .quantity{color:#9b9b9b;font-size:12px}
 .weui-cells-order .desc{font-size:12px;color:#9b9b9b}
 .weui-cells-order .desc text{padding-right:5px}
 

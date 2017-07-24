@@ -84,13 +84,22 @@ Page({
           }
         }
 
+        // 配送方式
+        var deliveryList = []
+        if(data.deliveryType.length > 0){
+          for(var i=0; i<data.deliveryType.length; i++){
+            deliveryList.push(data.deliveryType[i].name)
+          }
+        }
         var curDelivery = data.deliveryType[0]
         curDelivery.deliveryFee = that.getDeliveryFee()
 
         that.setData({
-          curDelivery: curDelivery,
           curPaymentConfig: curPaymentConfig,
-          curReceiver: curReceiver
+          curReceiver: curReceiver,
+          curDelivery: curDelivery,
+          deliveryList: deliveryList,
+          deliveryIndex: 0
         })
       }
     })
@@ -117,7 +126,33 @@ Page({
       }
     return onDeliveryFee
   },
+  pickChange: function(e) {
+    var curDelivery = this.data.deliveryType[e.detail.value]
+    curDelivery.deliveryFee = this.getDeliveryFee()
+    this.setData({
+      curDelivery: curDelivery,
+      deliveryIndex: e.detail.value
+    })
+  },
   pay: function () {
+    if(this.data.curReceiver && !this.data.curReceiver.receiverId){
+      wx.showModal({
+        title: '收货地址不能为空'
+      })
+      return false
+    }
+    if(this.data.curDelivery && !this.data.curDelivery.typeId){
+      wx.showModal({
+        title: '配送方式不能为空'
+      })
+      return false
+    }
+    if(this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId){
+      wx.showModal({
+        title: '请开通微信支付'
+      })
+      return false
+    }
     wx.showLoading({
       title: '加载中',
     })
@@ -143,11 +178,16 @@ Page({
         wx.hideLoading()
         var data = res.data.attributes
         wx.request({
-          url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',
+          url: 'https://wx.jihui88.net/rest/pay/jsapi/getWxAppPayment',
           data: {
-            orderId: data.orderId
+            appId: app.globalData.appid,
+            orderId: data.orderId,
+            skey: app.globalData.member.skey
           },
           success: function (res) {
+            wx.showModal({
+              title: res.data.attributes.data.sign
+            })
             wx.requestPayment({
               'timeStamp': res.data.attributes.data.timeStamp,
               'nonceStr': res.data.attributes.data.nonceStr,
@@ -155,11 +195,17 @@ Page({
               'signType': 'MD5',
               'paySign': res.data.attributes.data.sign,
               'success': function (res) {
+                wx.showModal({
+                  title: '支付完成'
+                })
                 wx.navigateTo({
                   url: '../order/order'
                 })
               },
               'fail': function (res) {
+                wx.showModal({
+                  title: '支付失败'
+                })
                 wx.navigateTo({
                   url: '../order/order'
                 })

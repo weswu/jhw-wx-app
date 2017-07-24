@@ -36,11 +36,14 @@ Page({
   },
   pay: function () {
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/pay/jsapi/getWxAppPayment',
+      url: 'https://wx.jihui88.net/rest/pay/jsapi/getWxAppPayment',
       data: {
-        orderId: this.data.data.orderId
+        appId: app.globalData.appid,
+        orderId: this.data.data.orderId,
+        skey: app.globalData.member.skey
       },
       success: function (res) {
+        debugger
         wx.requestPayment({
           'timeStamp': res.data.attributes.data.timeStamp,
           'nonceStr': res.data.attributes.data.nonceStr,
@@ -48,11 +51,17 @@ Page({
           'signType': 'MD5',
           'paySign': res.data.attributes.data.sign,
           'success': function (res) {
+            wx.showModal({
+              title: '支付完成'
+            })
             wx.navigateBack({
               delta: 1
             })
           },
           'fail': function (res) {
+            wx.showModal({
+              title: '支付失败'
+            })
             wx.navigateBack({
               delta: 1
             })
@@ -112,6 +121,7 @@ Page({
       title: '加载中',
     })
     this.get()
+    wx.stopPullDownRefresh()
     wx.hideLoading()
   },
 

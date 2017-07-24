@@ -300,6 +300,7 @@ Page({
     if(options.id){
       this.data.address.receiverId = options.id
       this.setData({
+        isAdd: false,
         address: this.data.address
       })
       this.get()
@@ -321,6 +322,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.get()
+    wx.stopPullDownRefresh()
   },
 
   /**
