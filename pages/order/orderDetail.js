@@ -13,7 +13,7 @@ Page({
   data: {
     data: {},
     paymentConfigList: [],
-    devTip: '查看'
+    devTip: '查看物流信息'
   },
 
   page: function (e) {
@@ -115,6 +115,9 @@ Page({
       this.setData({
         pic: "http://img.jihui88.com/" + nu
       })
+      this.setData({
+        devTip: ''
+      })
     }else{
       wx.request({
         url: 'https://wx.jihui88.net/rest/api/comm/shop/ickd',
@@ -124,10 +127,18 @@ Page({
           skey: app.globalData.member.skey
         },
         success: function (res) {
-          debugger
-          that.setData({
-            ickd: res.data.attributes.data
-          })
+          var data = res.data.attributes.data
+          if(data.status === '0'){
+            that.setData({
+              devTip: '暂时无物流信息!'
+            })
+          }else{
+            that.setData({
+              ickd: data.data,
+              devTip: ''
+            })
+          }
+
         }
       })
     }

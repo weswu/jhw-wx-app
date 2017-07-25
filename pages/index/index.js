@@ -11,7 +11,10 @@ Page({
       'http://img.easthardware.com/upload/j/j2/jihui/picture/2016/02/16/9e4246d9-7150-49f0-af69-237598418759.png'
     ],
     list: [],
-    enterprise: {}
+    enterprise: {},
+    swiperHeight: 0,
+    autoplay: true,
+    indicatorDots: true
   },
   get: function () {
     var that = this
@@ -49,12 +52,29 @@ Page({
         that.setData({
           enterprise: data
         })
+        wx.setNavigationBarTitle({
+          title: data.name
+        })
         wx.setStorage({
           key: 'enterprise',
           data: data
         })
         wx.hideNavigationBarLoading()
       }
+    })
+  },
+  imageLoad: function (e) {
+    var $width=e.detail.width,    //获取图片真实宽度
+        $height=e.detail.height,
+        ratio=$width/$height;    //图片的真实宽高比例
+
+    var viewWidth=wx.getSystemInfoSync().windowWidth;    //窗口宽度
+    var viewHeight=viewWidth/ratio;    //计算的高度值
+    if(viewHeight > this.data.swiperHeight){
+      this.data.swiperHeight = viewHeight
+    }
+    this.setData({
+      swiperHeight: this.data.swiperHeight
     })
   },
   onLoad: function () {

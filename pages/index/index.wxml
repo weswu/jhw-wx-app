@@ -1,9 +1,9 @@
 <view wx:if="{{images.length>1}}">
-  <swiper mode="widthFix" class="swiper_box" indicator-dots="true"
-    indicator-active-color="rgba(0, 0, 0, .7)" autoplay="true" duration="1200">
+  <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
+    indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
       <block wx:for-items="{{images}}">
           <swiper-item>
-              <image mode="widthFix" src="{{item}}" class="slide-image"/>
+              <image mode="widthFix" src="{{item}}" class="slide-image" bindload="imageLoad"/>
           </swiper-item>
       </block>
   </swiper>
