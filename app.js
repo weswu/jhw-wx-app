@@ -1,4 +1,8 @@
-//app.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: app.js
+*/
 App({
   get: function(){
     var that = this
@@ -49,17 +53,20 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     this.getUserInfo()
+
   },
+
   onShow: function () {
     console.log('App Show')
   },
   onHide: function () {
     console.log('App Hide')
   },
+  // Enterp_0000000000000000000049341    Enterp_0000000000000000000049090
   globalData: {
     appid: 'wx860be22a8b03bbd9',
     userInfo: null,
     member: null,
-    enterpriseId: 'Enterp_0000000000000000000049341'
+    enterpriseId: 'Enterp_0000000000000000000049090'
   }
 })

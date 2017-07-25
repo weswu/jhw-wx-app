@@ -1,4 +1,8 @@
-// address.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 收货地址列表
+*/
 var app = getApp()
 
 Page({
@@ -305,6 +309,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '收货地址'
+    }
   }
 })

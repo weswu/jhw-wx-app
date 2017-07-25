@@ -1,4 +1,8 @@
-//index.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 个人中心
+*/
 //获取应用实例
 var app = getApp()
 Page( {
@@ -33,5 +37,13 @@ Page( {
     wx.setNavigationBarTitle({
       title: '个人中心'
     })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '个人中心'
+    }
   }
 })

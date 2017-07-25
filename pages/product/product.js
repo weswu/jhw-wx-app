@@ -1,4 +1,8 @@
-// product.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 产品
+*/
 var app = getApp()
 
 Page({
@@ -228,6 +232,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.title || '商品展示'
+    }
   }
 })

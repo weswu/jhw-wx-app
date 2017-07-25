@@ -19,7 +19,7 @@
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "机汇网",
+    "navigationBarTitleText": "商城",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

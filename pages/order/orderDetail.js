@@ -1,4 +1,8 @@
-// orderDetail.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 订单详细
+*/
 var app = getApp()
 
 Page({
@@ -125,6 +129,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '订单详情'
+    }
   }
 })

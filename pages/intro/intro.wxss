@@ -5,3 +5,4 @@
 .contact{font-size:14px;color:#333;line-height:1.5;width:100%;box-sizing:border-box;padding:5vw 5vw 0 5vw}
 .contact_bd{padding-bottom:5vw}
 .contact_title{font-weight:700}
+rich-text{text-indent:2em;}

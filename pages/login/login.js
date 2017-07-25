@@ -1,4 +1,8 @@
-// login.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 登录
+*/
 Page({
 
   /**

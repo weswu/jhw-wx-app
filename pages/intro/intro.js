@@ -1,4 +1,8 @@
-// intro.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 公司简介
+*/
 var app = getApp()
 
 Page({
@@ -48,9 +52,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+   onReady: function () {
+     wx.setNavigationBarTitle({
+       title: '公司简介'
+     })
+   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -74,7 +80,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '机汇网简介'
+      title:  '公司简介'
     }
   }
 })

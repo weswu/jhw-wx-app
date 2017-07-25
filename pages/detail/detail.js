@@ -1,4 +1,8 @@
-// detail.js
+/*
+ * @author: wes
+ * @date: 2017-7-25
+ * @desc: 产品详细
+*/
 var util = require('../../utils/util.js')
 var app = getApp()
 
