@@ -54,6 +54,6 @@
   <view class="emptyOrder panel">
     <image src="../../images/order.png"></image>
     <text>订单还是空的</text>
-    <button class="btn-primary" bindtap="pageIndex">到机汇商城逛逛</button>
+    <button class="btn-primary" bindtap="pageIndex">到商城再逛逛</button>
   </view>
 </view>
