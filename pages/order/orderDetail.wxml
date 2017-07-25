@@ -41,7 +41,19 @@
       </view>
   </view>
 </view>
-<view class="weui-cells weui-cells-order">
+<view class="weui-cells weui-cells-order" wx:if="{{data.orderStatus !== 'completed' && data.shippingStatus === 'partShipped'}}">
+  <view class="weui-cell">
+      <view class="weui-cell__bd">物流信息</view>
+  </view>
+  <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <text bindtap="delivery" style="color:#666">{{devTip}}</text>
+        <image wx:if="{{pic}}" src="{{pic}}"/>
+        <view wx:for="{{ickd}}">{{item.name}}</view>
+      </view>
+  </view>
+</view>
+<view class="weui-cells weui-cells-order" style="margin-bottom:2.4rem;">
   <view class="weui-cell">
       <view class="weui-cell__bd">订单总价</view>
       <view class="weui-cell__ft">￥{{data.totalAmount}}</view>

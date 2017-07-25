@@ -30,6 +30,9 @@ Page({
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
       data: {
@@ -39,6 +42,7 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
+        wx.hideLoading()
         if(!res.data.success){
           that.setData({
             empty: true
@@ -106,30 +110,58 @@ Page({
       }
     })
   },
+  del: function (e) {
+    var that = this
+    var index = e.currentTarget.dataset.index
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/cartItem/delete',
+      data: {
+        id:  e.currentTarget.dataset.id,
+        skuCode:  e.currentTarget.dataset.skucode,
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        wx.hideLoading()
+        that.data.cartItemSet.splice(index,1)
+        that.setData({
+          cartItemSet: that.data.cartItemSet,
+          totalPoint: res.data.attributes.totalPoint,
+          totalPrice: parseFloat(res.data.attributes.totalPrice.split('￥')[1]),
+          totalQuantity: res.data.attributes.totalQuantity
+        })
+        if(that.data.cartItemSet.length === 0){
+          that.setData({
+            empty: true
+          })
+        }
+      }
+    })
+  },
   getDeliveryFee: function () {
     var that = this;
     if (!this.data.curDelivery.typeId || !this.data.curReceiver.receiverId) {
-        console.log('error:获取物流数据不全');
-      }else{
-        wx.request({
-          type: 'get',
-          url: 'https://wx.jihui88.net/rest/api/shop/order/deliveryFee1',
-          data: {
-            typeId: this.data.curDelivery.typeId,
-            receiverId: this.data.curReceiver.receiverId,
-            totalWeightGram: this.data.totalWeightGram,
-            skey: app.globalData.member.skey
-          },
-          success: function (res) {
-            that.data.curDelivery.deliveryFee = res.data.attributes.deliveryFee || 0;
-            that.setData({
-              curDelivery: that.data.curDelivery
-            })
-          }
-        })
-      }
-
-
+      console.log('error:获取物流数据不全');
+    }else{
+      wx.request({
+        type: 'get',
+        url: 'https://wx.jihui88.net/rest/api/shop/order/deliveryFee1',
+        data: {
+          typeId: this.data.curDelivery.typeId,
+          receiverId: this.data.curReceiver.receiverId,
+          totalWeightGram: this.data.totalWeightGram,
+          skey: app.globalData.member.skey
+        },
+        success: function (res) {
+          that.data.curDelivery.deliveryFee = res.data.attributes.deliveryFee || 0;
+          that.setData({
+            curDelivery: that.data.curDelivery
+          })
+        }
+      })
+    }
   },
   pickChange: function(e) {
     this.setData({

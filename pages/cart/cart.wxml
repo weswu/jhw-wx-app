@@ -14,6 +14,7 @@
         <view class="weui-cell__ft">
           <text class="price" style="padding-right:10px">￥{{item.product.price || item.product.marketPrice}}</text>
           <text class="quantity">x{{item.quantity}}</text>
+          <view bindtap="del" data-skucode="{{item.skuCode}}" data-id="{{item.product.productId}}" data-index="{{index}}">删除</view>
         </view>
     </view>
   </view>
@@ -42,7 +43,7 @@
   </view>
 
 
-  <view class="weui-cells weui-cells-order">
+  <view class="weui-cells weui-cells-order" style="margin-bottom:2.4rem;">
     <view class="weui-cell">
         <view class="weui-cell__bd">订单总价</view>
         <view class="weui-cell__ft">￥{{totalPrice + curPaymentConfig.paymentFee + curDelivery.deliveryFee}}</view>

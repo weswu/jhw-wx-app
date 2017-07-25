@@ -12,7 +12,8 @@ Page({
    */
   data: {
     data: {},
-    paymentConfigList: []
+    paymentConfigList: [],
+    devTip: '查看'
   },
 
   page: function (e) {
@@ -21,8 +22,11 @@ Page({
     })
   },
   get: function () {
-    wx.showNavigationBarLoading()
     var that= this
+    wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/detail/' + this.data.id,
       data: {
@@ -35,6 +39,7 @@ Page({
           paymentConfigList: res.data.attributes.paymentConfigList
         })
         wx.hideNavigationBarLoading()
+        wx.hideLoading()
       }
     })
   },
@@ -70,7 +75,7 @@ Page({
       }
     })
   },
-
+  // 确定完成
   comfirm: function (e) {
     var that = this
     var id = e.currentTarget.dataset.id
@@ -91,6 +96,41 @@ Page({
         })
       }
     })
+  },
+  // 查看物流
+  delivery: function (e) {
+    var that = this
+    var com = ''
+    var nu = ''
+    if(this.data.data.shippingSet.length === 0){
+      this.setData({
+        devTip: '暂时无物流信息!'
+      })
+      return false
+    }else{
+      nu = this.data.data.shippingSet[0].deliverySn
+      com = this.data.data.shippingSet[0].com
+    }
+    if(nu.indexOf('upload') > -1){
+      this.setData({
+        pic: "http://img.jihui88.com/" + nu
+      })
+    }else{
+      wx.request({
+        url: 'https://wx.jihui88.net/rest/api/comm/shop/ickd',
+        data: {
+          nuId: nu,
+          com: com,
+          skey: app.globalData.member.skey
+        },
+        success: function (res) {
+          debugger
+          that.setData({
+            ickd: res.data.attributes.data
+          })
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

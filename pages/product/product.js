@@ -28,6 +28,9 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中',
+    })
     var url = 'all/' + app.globalData.enterpriseId
     if(!!this.data.cate_id){
       url = 'category_child/' + app.globalData.enterpriseId
@@ -54,6 +57,7 @@ Page({
         var data = res.data.list
         if(data.length > 0){
           for(var i=0; i<data.length; i++){
+            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             that.data.list.push(data[i])
           }
         }
@@ -96,6 +100,7 @@ Page({
         var data = res.data.list
         if(data.length > 0){
           for(var i=0; i<data.length; i++){
+            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             that.data.list.push(data[i])
           }
         }
@@ -110,6 +115,25 @@ Page({
       keyword: e.detail.value
     })
   },
+  clearKey: function () {
+    this.data.search.page = 1
+    this.setData({
+      keyword: '',
+      history: false,
+      search: this.data.search
+    })
+    var key = wx.getStorageSync('proCate' + this.data.cate_id)
+    if (!key) {
+      this.setData({
+        list: []
+      })
+      this.get()
+    } else {
+      this.setData({
+        list: key
+      })
+    }
+  },
   searchKey: function () {
     wx.showLoading({
       title: '加载中'
@@ -117,6 +141,7 @@ Page({
     this.data.search.page = 1
     this.setData({
       list: [],
+      history: false,
       search: this.data.search
     })
     if(this.data.hislist.indexOf(this.data.keyword) === -1 && this.data.keyword !== ''){
@@ -214,9 +239,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     this.data.search.page += 1
     this.setData({
       search: this.data.search

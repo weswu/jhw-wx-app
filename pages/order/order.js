@@ -29,8 +29,11 @@ Page({
   },
 
   get: function(){
-    wx.showNavigationBarLoading()
     var that= this
+    wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
@@ -211,9 +214,6 @@ Page({
    * 全查无分页
    */
   onReachBottom: function () {
-    //wx.showLoading({
-    //  title: '加载中',
-    //})
     //this.setData({
     //  page: this.data.page + 1
     //})

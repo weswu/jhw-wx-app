@@ -125,7 +125,7 @@ Page({
         }
         that.setData({
           attrList: attrList,
-          argsList: attrList[0].argsList
+          argsList: attrList[0] && attrList[0].argsList
         })
         wx.setStorage({
           key: 'attr' + that.data.id,

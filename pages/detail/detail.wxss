@@ -6,7 +6,7 @@ image{display:block;width:100%}
 /* sell */
 .weui-sell{margin-bottom:2.4rem;}
 .weui-sell .weui-cell__bd,.weui-sell .weui-cell__hd{flex:1}
-.weui-sell .weui-cell__bd{color:#666}
+.weui-sell .weui-cell__bd.time{color:#666}
 .weui-sell .weui-cell__ft{color:#000;width:80rpx}
 
 /* dialog */

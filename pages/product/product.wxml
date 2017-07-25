@@ -1,8 +1,11 @@
 <view class="wxSearch">
   <view class="wxSearch-section">
     <view class="wxSearch-pancel">
-      <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" bindblur="wxSearchBlur"
-        value="{{keyword}}" class="wxSearch-input" placeholder="搜索全部商品" />
+      <form class="wxSearch-form">
+        <input type="text" bindinput="wxSearchInput" bindfocus="wxSerchFocus" bindblur="wxSearchBlur"
+          value="{{keyword}}" class="wxSearch-input" placeholder="搜索全部商品" confirm-type="search" bindconfirm="searchKey"/>
+        <image wx:if="{{keyword !== ''}}" src="../../images/x.png" class="clear-input-btn" bindtap="clearKey"></image>
+      </form>
       <button class="wxSearch-button" bindtap="searchKey" size="mini" plain="true">搜索</button>
     </view>
   </view>
