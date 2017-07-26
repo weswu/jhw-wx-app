@@ -20,12 +20,20 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
+    if(app.globalData.member === null){app.getUserInfo()}
     console.log('首页数据加载中...')
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
       success: function (res) {
+        var data = res.data.list
+        if(data.length > 0){
+          for(var i=0; i<data.length; i++){
+            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
+            that.data.list.push(data[i])
+          }
+        }
         that.setData({
-          list: res.data.list
+          list: data
         })
         wx.setStorage({
           key: 'goods',

@@ -34,6 +34,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    if(app.globalData.member === null){app.getUserInfo()}
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {

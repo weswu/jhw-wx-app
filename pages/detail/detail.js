@@ -39,7 +39,8 @@ Page({
         if (res.data.proddesc == null) {
           res.data.proddesc = ''
         } else {
-          res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'").replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
+          // .replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
+          res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
         }
         that.setData({
           detail: res.data

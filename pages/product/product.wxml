@@ -35,4 +35,4 @@
     </view>
   </navigator>
 </view>
-<view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999">暂无数据</view>
+<view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view>

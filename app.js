@@ -43,7 +43,7 @@ App({
     });
   },
   getUserInfo: function () {
-    if (!this.globalData.userInfo) {
+    if (!this.globalData.userInfo || !app.globalData.member) {
       this.get()
     }
   },

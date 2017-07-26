@@ -15,6 +15,7 @@ Page({
     cate_id: '',
     title: '商品',
     empty: false,
+    emptyTip: '暂无数据',
     search: {
       page: 1,
       per_page: 6
@@ -43,9 +44,16 @@ Page({
         wx.hideNavigationBarLoading()
         wx.hideLoading()
         if(res.data.error === '查询为空'){
+          that.setData({
+            empty: true
+          })
           if(that.data.search.page === 1){
             that.setData({
-              empty: true
+              emptyTip: '暂无数据'
+            })
+          }else{
+            that.setData({
+              emptyTip: '已全部加载'
             })
           }
           return false
@@ -86,9 +94,16 @@ Page({
       success: function (res) {
         wx.hideLoading()
         if(res.data.error === '查询为空'){
+          that.setData({
+            empty: true
+          })
           if(that.data.search.page === 1){
             that.setData({
-              empty: true
+              emptyTip: '暂无数据'
+            })
+          }else{
+            that.setData({
+              emptyTip: '已全部加载'
             })
           }
           return false
@@ -120,7 +135,8 @@ Page({
     this.setData({
       keyword: '',
       history: false,
-      search: this.data.search
+      search: this.data.search,
+      empty: false
     })
     var key = wx.getStorageSync('proCate' + this.data.cate_id)
     if (!key) {
@@ -239,6 +255,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.empty){return false}
     this.data.search.page += 1
     this.setData({
       search: this.data.search
