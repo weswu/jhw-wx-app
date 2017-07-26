@@ -11,6 +11,7 @@ Page({
     detail: {},
     id: '',
     nav: '1',
+    isSell: false,
     sellList: [],
     empty: false,
     showModalStatus: false,
@@ -78,10 +79,6 @@ Page({
           that.setData({
             sellList: data
           })
-          wx.setStorage({
-            key: 'sell' + that.data.id,
-            data: data
-          })
         }else{
           that.setData({
             empty: true
@@ -92,16 +89,17 @@ Page({
   },
   nav: function (e) {
     var ctx =this;
+    var nav = e.currentTarget.dataset.nav;
     this.setData({
-      nav: e.currentTarget.dataset.nav
+      nav: nav
     })
-    var key = wx.getStorageSync('sell' + this.data.id)
-    if (!key && this.data.sellList.length === 0) {
-      this.getSell()
-    } else {
-      this.setData({
-        sellList: key
-      })
+    if(nav === '2'){
+      if (!this.data.isSell) {
+        this.setData({
+          isSell: true
+        })
+        this.getSell()
+      }
     }
   },
 
