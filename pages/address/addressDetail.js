@@ -293,7 +293,7 @@ Page({
       one: one
     })
     if(this.data.isAdd){
-      this.childrenArea({ path: province[0].value, type: '1' })
+      // this.childrenArea({ path: province[0].value, type: '1' })
     }
   },
   /**
