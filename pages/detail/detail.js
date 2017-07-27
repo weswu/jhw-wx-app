@@ -21,7 +21,10 @@ Page({
     productAttr: '',
     skuCode: '',
     appendPrice: 0,
-    appendIds: ''
+    appendIds: '',
+    swiperHeight: 0,
+    autoplay: true,
+    indicatorDots: true
   },
   page: function (e) {
     wx.navigateTo({
@@ -52,6 +55,28 @@ Page({
         wx.hideNavigationBarLoading()
       }
     })
+  },
+  /* 预览图片 */
+  showPic: function () {
+    var urls = []
+    for (var i=0; i<this.data.detail.imagelist.length; i++){
+      urls.push(this.data.detail.imagelist[i].sourceProductImagePath)
+    }
+    wx.previewImage({
+      urls: urls
+    })
+  },
+  showDescPic: function () {
+    var urls = []
+    var descs = this.data.detail.proddesc.match(/<img[^>]+>/g)
+    if(descs != null){
+      for (var i=0; i<descs.length; i++){
+        urls.push(descs[i].replace(/(<img[^>]*?src=['""]([^'""]*?)['""][^>]*?>)/g, '$2'))
+      }
+      wx.previewImage({
+        urls: urls
+      })
+    }
   },
   // 成交记录
   getSell: function () {
@@ -88,6 +113,7 @@ Page({
       }
     })
   },
+  /* 页面切换 */
   nav: function (e) {
     var ctx =this;
     var nav = e.currentTarget.dataset.nav;
@@ -262,7 +288,6 @@ Page({
         return false
       }
     }
-
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/cartItem/add',
       type: "get",
@@ -303,6 +328,20 @@ Page({
           })
         }
       }
+    })
+  },
+  imageLoad: function (e) {
+    var $width=e.detail.width,    //获取图片真实宽度
+        $height=e.detail.height,
+        ratio=$width/$height;    //图片的真实宽高比例
+
+    var viewWidth=wx.getSystemInfoSync().windowWidth;    //窗口宽度
+    var viewHeight=viewWidth/ratio;    //计算的高度值
+    if(viewHeight > this.data.swiperHeight){
+      this.data.swiperHeight = viewHeight
+    }
+    this.setData({
+      swiperHeight: this.data.swiperHeight
     })
   },
   onLoad: function (options) {

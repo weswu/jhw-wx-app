@@ -1,4 +1,4 @@
-<view class="panel">
+<view class="panel form">
   <view class="title">会员注册</view>
   <input value="{{username}}" placeholder="账号" bindchange="model"
     bindfocus="focus" bindblur="blur" class="{{focus == '1' ? 'active' : ''}}" data-active="1"/>

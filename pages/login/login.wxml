@@ -1,5 +1,5 @@
 <!--login.wxml-->
-<view class="panel">
+<view class="panel form">
   <input value="{{username}}" placeholder="账号" bindchange="model"
     bindfocus="focus" bindblur="blur" class="{{focus == '1' ? 'active' : ''}}" data-active="1"/>
   <input type="password" value="{{password}}" placeholder="密码" bindchange="model" data-model="password"

@@ -1,6 +1,20 @@
 <!--detail.wxml-->
 <view class="detail_hd">
-  <image mode="widthFix" src="{{detail.pic_path}}"></image>
+  <view wx:if="{{detail.imagelist.length>1}}">
+    <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
+      indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200" bindtap="showPic">
+        <block wx:for-items="{{detail.imagelist}}">
+            <swiper-item>
+                <image mode="widthFix" src="{{item.sourceProductImagePath}}" class="slide-image" bindload="imageLoad"/>
+            </swiper-item>
+        </block>
+    </swiper>
+  </view>
+  <view wx:elif="{{detail.imagelist.length==1}}">
+    <view wx:for-items="{{detail.imagelist}}">
+      <image mode="widthFix" class="banner" src="{{item.sourceProductImagePath}}"/>
+    </view>
+  </view>
   <view class="detail_title">
     {{detail.name}}
     <view class="price">￥{{detail.price}}</view>
@@ -19,7 +33,7 @@
 
 <view style="margin-bottom:2.4rem">
   <view hidden="{{nav != '1'}}">
-    <view class="detail_bd">
+    <view class="detail_bd" bindtap="showDescPic">
       <rich-text nodes="{{detail.proddesc}}"></rich-text>
     </view>
   </view>

@@ -1,31 +1,9 @@
-<view class="wxSearch">
-  <view class="wxSearch-section">
-    <view class="wxSearch-pancel">
-      <form class="wxSearch-form">
-        <input type="text" bindinput="wxSearchInput" bindfocus="wxSerchFocus" bindblur="wxSearchBlur"
-          value="{{keyword}}" class="wxSearch-input" placeholder="搜索全部商品" confirm-type="search" bindconfirm="searchKey"/>
-        <image wx:if="{{keyword !== ''}}" src="../../images/x.png" class="clear-input-btn" bindtap="clearKey"></image>
-      </form>
-      <button class="wxSearch-button" bindtap="searchKey" size="mini" plain="true">搜索</button>
-    </view>
+<view class="search">
+  <view class="search-btn" bindtap="page" data-url="../search/search">
+    <image src="../../images/search.png"></image>
+    搜索商品
   </view>
 </view>
-
-<view class="wxSearch-container" wx:if="{{history}}">
-  <text class="wxSearchTitle">搜索历史</text>
-  <view class="wxSearchHistory">
-      <view wx:if="{{hislist.length > 0}}" class="wxSearchHistoryList">
-          <block wx:for="{{hislist}}">
-              <text class="wxSearchHistoryItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</text>
-          </block>
-          <view class="wxSearchDeleteAllBtn" bindtap="wxSearchDeleteAll">清除历史</view>
-      </view>
-      <view wx:else>
-          <view class="wxSearchHistoryEmpty">搜索历史为空</view>
-      </view>
-  </view>
-</view>
-
 <view class="cells">
   <navigator url="/pages/detail/detail?id={{item.product_id}}&title={{item.name}}" class="cell" wx:for="{{list}}" wx:key="product_id">
     <view class="cell_bd">

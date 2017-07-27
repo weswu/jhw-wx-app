@@ -19,12 +19,14 @@ Page({
     search: {
       page: 1,
       per_page: 6
-    },
-    keyword: '',
-    history: false,
-    hislist: []
+    }
   },
 
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
@@ -81,122 +83,8 @@ Page({
       }
     })
   },
-  // 搜索
-  getKey: function () {
-    var that = this
-    wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/search/' + app.globalData.enterpriseId,
-      data: {
-        keyword: this.data.keyword,
-        page: this.data.search.page,
-        per_page: this.data.search.per_page
-      },
-      success: function (res) {
-        wx.hideLoading()
-        if(res.data.error === '查询为空'){
-          that.setData({
-            empty: true
-          })
-          if(that.data.search.page === 1){
-            that.setData({
-              emptyTip: '暂无数据'
-            })
-          }else{
-            that.setData({
-              emptyTip: '已全部加载'
-            })
-          }
-          return false
-        }else{
-          that.setData({
-            empty: false
-          })
-        }
-        var data = res.data.list
-        if(data.length > 0){
-          for(var i=0; i<data.length; i++){
-            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
-            that.data.list.push(data[i])
-          }
-        }
-        that.setData({
-          list: that.data.list
-        })
-      }
-    })
-  },
-  wxSearchInput: function (e) {
-    this.setData({
-      keyword: e.detail.value
-    })
-  },
-  clearKey: function () {
-    this.data.search.page = 1
-    this.setData({
-      keyword: '',
-      history: false,
-      search: this.data.search,
-      empty: false
-    })
-    var key = wx.getStorageSync('proCate' + this.data.cate_id)
-    if (!key) {
-      this.setData({
-        list: []
-      })
-      this.get()
-    } else {
-      this.setData({
-        list: key
-      })
-    }
-  },
-  searchKey: function () {
-    wx.showLoading({
-      title: '加载中'
-    })
-    this.data.search.page = 1
-    this.setData({
-      list: [],
-      history: false,
-      search: this.data.search
-    })
-    if(this.data.hislist.indexOf(this.data.keyword) === -1 && this.data.keyword !== ''){
-      this.data.hislist.push(this.data.keyword)
-      this.setData({
-        hislist: this.data.hislist
-      })
-      wx.setStorage({
-        key: 'hislist',
-        data: this.data.hislist
-      })
-    }
-    this.getKey()
-  },
 
-  // 历史记录
-  wxSerchFocus: function () {
-    this.setData({
-      history: true
-    })
 
-  },
-  wxSearchBlur: function () {
-    this.setData({
-      history: false
-    })
-  },
-  wxSearchKeyTap: function (e) {
-    this.setData({
-      keyword: e.currentTarget.dataset.key
-    })
-    this.searchKey()
-  },
-  wxSearchDeleteAll: function () {
-    wx.removeStorageSync('hislist')
-    this.setData({
-      hislist: []
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -214,12 +102,6 @@ Page({
     } else {
       this.setData({
         list: key
-      })
-    }
-    var hislist = wx.getStorageSync('hislist')
-    if (!!hislist) {
-      this.setData({
-        hislist: hislist
       })
     }
   },
@@ -242,12 +124,7 @@ Page({
       list: [],
       search: this.data.search
     })
-
-    if (this.data.keyword === '') {
-      this.get()
-    }else{
-      this.getKey()
-    }
+    this.get()
     wx.stopPullDownRefresh()
   },
 
@@ -260,11 +137,7 @@ Page({
     this.setData({
       search: this.data.search
     })
-    if (this.data.keyword === '') {
-      this.get()
-    }else{
-      this.getKey()
-    }
+    this.get()
   },
 
   /**

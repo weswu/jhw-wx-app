@@ -8,19 +8,21 @@
 .pro_img image{max-width: 100%;max-height: 100%;}
 .pro_title{padding:5px 5px 0 5px}
 .pro_price{padding:5px}
-
-/* 搜索列表 */
-.wxSearch{height: 48px}
-.wxSearch-section{background-color:#fff;padding:5px 20rpx;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:730rpx;}
-.wxSearch-pancel{display:flex;flex-direction:row}
-.wxSearch-form{flex:8;position:relative}
-.wxSearch-input{background-color:#f5f5f5;padding:7px 40px 5px 10px;font-size:16px;height:26px;}
-.wxSearch-section .wxSearch-button{flex:1;border:none!important;color:#6495ed!important;font-size:14px;line-height:2.5}
-.wxSearchTitle{display:block;padding:10px 5px 5px 10px;font-size:16px;text-align:center}
-.clear-input-btn{position:absolute;right:0;top:0;border:none;background:0 0;outline:0;padding:8px 10px;width:20px;z-index:8;height:20px}
-
-/* 历史记录 */
-.wxSearch-container{position:fixed;top:48px;left:0;width:100%;background:#fff;border-bottom:1px #eee solid}
-.wxSearchHistory{padding:20rpx 0rpx 20rpx 20rpx;}
-.wxSearchHistoryItem{color:#999;padding:7px 15px;font-size:14px;margin:0 10px 10px 0;float:left;background:#f8f8f8}
-.wxSearchDeleteAllBtn,.wxSearchHistoryEmpty{clear:both;margin:0 auto;text-align:center;color:#999;padding:5;font-size:14px}
+/* 搜索 */
+.search{
+  background: #ff6214;
+  padding: 7px 10px;
+}
+.search .search-btn{
+  background: #fff;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 13px
+}
+.search .search-btn:active{
+  background: #fff5f0
+}
+.search image{width:18px;height:18px;vertical-align:middle;}
