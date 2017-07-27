@@ -13,6 +13,11 @@ Page({
   data: {
     enterprise: {}
   },
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },  
   get: function () {
     var that = this
     wx.showNavigationBarLoading()

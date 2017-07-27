@@ -1,4 +1,2 @@
 /* register.wxss */
-input{margin-bottom:20px;padding:.2rem 0;border-bottom:1px solid #eee}
-.active{border-bottom:1px solid #ff6214}
 .tip{font-size:14px;color:#999;padding:20rpx 0 50rpx 0;display:block;float:right;clear:both}

@@ -158,13 +158,13 @@ Page({
         method: 'post',
         url: 'https://wx.jihui88.net/site_message/send',
         data: {
-          title: "订单发货-客户催单",
+          title: "小程序-客户催单",
           content:"订单编号:"+ orderSn,
           sendType: "no",
+          recvUser: app.globalData.userId,
           recvEnt: app.globalData.enterpriseId,
           fromName: app.globalData.userInfo.nickName,
-          fromPhone: mobile,
-          skey: app.globalData.member.skey
+          fromPhone: mobile
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'

@@ -5,7 +5,6 @@
     "pages/order/order",
     "pages/product/product",
     "pages/cart/cart",
-    "pages/login/login",
     "pages/address/addressDetail",
     "pages/address/address",
     "pages/category/category",
@@ -13,7 +12,9 @@
     "pages/intro/intro",
     "pages/detail/detail",
     "pages/setting/setting",
-    "pages/login/register"
+    "pages/login/login",
+    "pages/login/register",
+    "pages/setting/feedback"
   ],
   "window": {
     "backgroundColor": "#ffffff",
