@@ -57,16 +57,17 @@ Page({
     })
   },
   /* 预览图片 */
-  showPic: function () {
+  showPic: function (e) {
     var urls = []
     for (var i=0; i<this.data.detail.imagelist.length; i++){
       urls.push(this.data.detail.imagelist[i].sourceProductImagePath)
     }
     wx.previewImage({
+      current: e.currentTarget.dataset.src,
       urls: urls
     })
   },
-  showDescPic: function () {
+  showDescPic: function (e) {
     var urls = []
     var descs = this.data.detail.proddesc.match(/<img[^>]+>/g)
     if(descs != null){

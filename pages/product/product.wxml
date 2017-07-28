@@ -3,6 +3,7 @@
     <image src="../../images/search.png"></image>
     搜索商品
   </view>
+  <image src="../../images/goods_category.png" class="category" bindtap="pageCategory"></image>
 </view>
 <view class="cells">
   <navigator url="/pages/detail/detail?id={{item.product_id}}&title={{item.name}}" class="cell" wx:for="{{list}}" wx:key="product_id">

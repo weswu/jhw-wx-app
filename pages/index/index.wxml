@@ -1,16 +1,16 @@
 <view wx:if="{{images.length>1}}">
   <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
     indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
-      <block wx:for-items="{{images}}">
+      <block wx:for="{{images}}">
           <swiper-item>
-              <image mode="widthFix" src="{{item}}" class="slide-image" bindload="imageLoad"/>
+              <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
           </swiper-item>
       </block>
   </swiper>
 </view>
-<view wx:elif="{{images.length==1}}">
-  <view wx:for-items="{{images}}">
-    <image mode="widthFix" class="banner" src="{{item}}"/>
+<view wx:elif="{{images.length===1}}">
+  <view wx:for="{{images}}">
+    <image mode="widthFix" class="banner" src="http://img.jihui88.com/{{item.serverPath}}"/>
   </view>
 </view>
 <view class="cells">

@@ -7,9 +7,7 @@ var app = getApp()
 
 Page({
   data: {
-    images: [
-      'http://img.easthardware.com/upload/j/j2/jihui/picture/2016/02/16/9e4246d9-7150-49f0-af69-237598418759.png'
-    ],
+    images: [],
     list: [],
     enterprise: {},
     swiperHeight: 0,
@@ -43,7 +41,6 @@ Page({
       }
     })
   },
-
   getEnter: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -71,6 +68,23 @@ Page({
       }
     })
   },
+  // banner
+  getBanner: function () {
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/comm/album/wxappbanner?enterpriseId='+ app.globalData.enterpriseId,
+      success: function (res) {
+        var data = res.data.attributes.data
+        that.setData({
+          images: data
+        })
+        wx.setStorage({
+          key: 'banner',
+          data: data
+        })
+      }
+    })
+  },
   imageLoad: function (e) {
     var $width=e.detail.width,    //获取图片真实宽度
         $height=e.detail.height,
@@ -94,6 +108,14 @@ Page({
         list: key
       })
     }
+    var banner = wx.getStorageSync('banner')
+    if (!banner) {
+      this.getBanner()
+    } else {
+      this.setData({
+        images: banner
+      })
+    }
   },
   onReady: function () {
     var key = wx.getStorageSync('enterprise')
@@ -110,6 +132,7 @@ Page({
   },
   onPullDownRefresh: function () {
     this.get()
+    this.getBanner()
     this.getEnter()
     wx.stopPullDownRefresh()
   },

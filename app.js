@@ -43,7 +43,7 @@ App({
     });
   },
   getUserInfo: function () {
-    if (!this.globalData.userInfo || !app.globalData.member) {
+    if (!this.globalData.userInfo || !this.globalData.member) {
       this.get()
     }
   },
@@ -67,7 +67,7 @@ App({
     appid: 'wx860be22a8b03bbd9',
     userInfo: null,
     member: null,
-    enterpriseId: 'Enterp_0000000000000000000054083',
+    enterpriseId: 'Enterp_0000000000000000000049090',
     userId: 'User_000000000000000000000050555'
   }
 })

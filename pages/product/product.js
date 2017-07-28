@@ -27,6 +27,12 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
+  // 回分页
+  pageCategory: function (e) {
+    wx.switchTab({
+      url: '../category/category'
+    })
+  },
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据

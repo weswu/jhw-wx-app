@@ -21,6 +21,9 @@ Page({
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/other/company/' + app.globalData.enterpriseId,
       success: function (res) {
+        if (res.data.edesc !== null) {
+          res.data.edesc = res.data.edesc.replace(/<img /g, "<img style='display: block' width='100%;' ").replace(/\"/g, "'")
+        }
         that.setData({
           company: res.data
         })
@@ -31,6 +34,8 @@ Page({
         wx.hideNavigationBarLoading()
       }
     })
+  },
+  initPic: function () {
   },
 
   /**
