@@ -3,7 +3,7 @@
   <view class="weui-cells weui-cells-order">
     <view class="weui-cell" wx:for="{{cartItemSet}}">
         <view class="weui-cell__hd">
-          <image src="{{item.product.picUrl5}}"></image>
+          <image src="{{item.product.picUrl6}}"></image>
         </view>
         <view class="weui-cell__bd">
           {{item.product.name}}
@@ -12,7 +12,7 @@
           </view>
         </view>
         <view class="weui-cell__ft">
-          <text class="price" style="padding-right:10px">￥{{item.product.price || item.product.marketPrice}}</text>
+          <text class="price" style="padding-right:10px">￥{{item.subtotalPrice}}</text>
           <text class="quantity">x{{item.quantity}}</text>
           <view bindtap="del" data-skucode="{{item.skuCode}}" data-id="{{item.product.productId}}" data-index="{{index}}">删除</view>
         </view>

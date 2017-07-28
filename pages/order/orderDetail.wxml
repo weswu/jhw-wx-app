@@ -16,7 +16,7 @@
 
   <view class="weui-cell" wx:for="{{data.orderItemSet}}">
       <view class="weui-cell__hd">
-          <image src="{{item.product.picUrl5}}" class="order-pic"></image>
+          <image src="{{item.product.picUrl6}}" class="order-pic"></image>
       </view>
       <view class="weui-cell__bd">
         {{item.product.name}}
@@ -25,7 +25,7 @@
         </view>
       </view>
       <view class="weui-cell__ft">
-        <view class="price">￥{{item.product.price}}</view>
+        <view class="price">￥{{item.productPrice}}</view>
         <view class="quantity">x{{item.productQuantity}}</view>
       </view>
   </view>
@@ -41,7 +41,7 @@
       </view>
   </view>
 </view>
-<view class="weui-cells weui-cells-order" wx:if="{{data.orderStatus !== 'completed' || data.shippingStatus === 'partShipped'}}">
+<view class="weui-cells weui-cells-order" wx:if="{{data.orderStatus !== 'completed' && data.shippingStatus === 'partShipped'}}">
   <view class="weui-cell">
       <view class="weui-cell__bd">物流信息</view>
   </view>

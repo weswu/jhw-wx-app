@@ -10,8 +10,8 @@
 
       <view wx:if="{{company.address && company.address != 'null'}}">地址：{{company.address}}</view>
       <view wx:if="{{company.email && company.email != 'null'}}">邮箱：{{company.email}}</view>
-      <view wx:if="{{company.cellphone && company.cellphone != 'null'}}">手机：{{company.cellphone}}</view>
-      <view wx:if="{{company.phone && companycompany.phone != 'null'}}">电话：{{company.phone}}</view>
+      <view wx:if="{{company.cellphone && company.cellphone != 'null'}}" bindtap="tel" data-tel="{{company.cellphone}}">手机：{{company.cellphone}}</view>
+      <view wx:if="{{company.phone && companycompany.phone != 'null'}}" bindtap="tel" data-tel="{{company.phone}}">电话：{{company.phone}}</view>
       <view wx:if="{{company.qq && company.qq != 'null'}}">QQ：{{company.qq}}</view>
       <view wx:if="{{company.url && company.url != 'null'}}">网址：{{company.url}}</view>
     </view>
@@ -31,15 +31,15 @@
     <view class="contact_bd">
       <view class="contact_title">总公司</view>
       <view>地址：浙江省杭州市滨江区阡陌路聚光物联网大楼C2-205(地铁站：1号线江陵路站D出口)</view>
-      <view>电话：0571-88223075</view>
+      <view bindtap="tel" data-tel="0571-88223075">电话：0571-88223075</view>
       <view>传真：0571-87003075</view>
-      <view>手机：18072933115</view>
+      <view bindtap="tel" data-tel="手机：18072933115">手机：18072933115</view>
       <view>QQ：2594969476</view>
     </view>
     <view class="contact_bd">
       <view class="contact_title">机汇网金华分公司</view>
       <view>地址：永康市总部中心金山大厦21楼</view>
-      <view>电话：0579-89051095</view>
+      <view bindtap="tel" data-tel="0579-89051095">电话：0579-89051095</view>
       <view>QQ：2594969476</view>
     </view>
   </view>

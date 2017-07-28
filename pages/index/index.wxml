@@ -13,10 +13,12 @@
     <image mode="widthFix" class="banner" src="http://img.jihui88.com/{{item.serverPath}}"/>
   </view>
 </view>
-<view class="cells">
-  <navigator url="/pages/detail/detail?id={{item.product_id}}&title={{item.name}}" class="cell" wx:for="{{list}}" wx:key="product_id">
-    <view class="cell_bd">
-      <view class="pro_img"><image mode="widthFix" src="{{item.pic_path}}"></image></view>
+<view class="goods">
+  <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
+    <view class="item_grow item_pic">
+      <image  mode="widthFix" src="{{item.pic_path}}"></image>
+    </view>
+    <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
       <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
     </view>

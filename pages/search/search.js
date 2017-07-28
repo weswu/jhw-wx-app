@@ -4,6 +4,7 @@
  * @desc: 产品搜索
 */
 var app = getApp()
+var util = require('../../utils/util.js')
 
 Page({
 
@@ -64,6 +65,7 @@ Page({
         if(data.length > 0){
           for(var i=0; i<data.length; i++){
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
+            data[i].pic_path = util.picUrl(data[i].pic_path, 6)
             that.data.list.push(data[i])
           }
         }

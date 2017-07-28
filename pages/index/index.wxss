@@ -3,13 +3,3 @@
 swiper-item image{width:750rpx;height:auto}
 .banner{width:750rpx;max-width:480px;margin:0 auto}
 .more{font-size:14px;color:#999;margin:0 auto;padding:15px 20px}
-/** 产品列表 **/
-.cells{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
-.cell{display:flex;width:49vw;box-sizing:border-box;padding-top:1.5vh}
-.cell:nth-child(odd){justify-content:flex-start}
-.cell:nth-child(even){justify-content:flex-end}
-.cell_bd{overflow:hidden}
-.pro_img{width:376rpx;}
-.pro_img image{max-width: 100%;max-height: 100%;}
-.pro_title{padding:5px 5px 0 5px}
-.pro_price{padding:5px}

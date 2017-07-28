@@ -45,6 +45,7 @@ Page({
           // .replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
           res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
         }
+        res.data.price = parseFloat(parseFloat(res.data.price).toFixed(2))
         that.setData({
           detail: res.data
         })

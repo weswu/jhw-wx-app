@@ -4,6 +4,7 @@
  * @desc: 首页
 */
 var app = getApp()
+var util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -27,6 +28,7 @@ Page({
         if(data.length > 0){
           for(var i=0; i<data.length; i++){
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
+            data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
           }
         }
@@ -125,10 +127,10 @@ Page({
       this.setData({
         enterprise: key
       })
+      wx.setNavigationBarTitle({
+        title: this.data.enterprise.name
+      })
     }
-    wx.setNavigationBarTitle({
-      title: this.data.enterprise.name
-    })
   },
   onPullDownRefresh: function () {
     this.get()
