@@ -1,7 +1,7 @@
 /*
  * @author: wes
  * @date: 2017-7-25
- * @desc: 注册
+ * @desc: 注册 --- 功能未使用
 */
 Page({
 

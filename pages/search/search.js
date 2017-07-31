@@ -19,7 +19,7 @@ Page({
     hisShow: true,
     search: {
       page: 1,
-      per_page: 6
+      per_page: 10
     }
   },
   page: function (e) {
@@ -160,6 +160,19 @@ Page({
     wx.setNavigationBarTitle({
       title: '搜索商品'
     })
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.data.search.page = 1
+    this.setData({
+      list: [],
+      search: this.data.search
+    })
+    this.get()
+    wx.stopPullDownRefresh()
   },
 
   /**

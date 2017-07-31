@@ -37,7 +37,7 @@
   <view class="weui-cell address">
       <view class="weui-cell__bd">
         {{data.shipName}}, {{data.shipMobile}}
-        <view class="address">{{data.shipAddress}}</view>
+        <view class="address">{{data.shipArea}}{{data.shipAddress}}</view>
       </view>
   </view>
 </view>
@@ -54,6 +54,16 @@
           {{item.context}}
         </view>
       </view>
+  </view>
+</view>
+<view class="weui-cells weui-cells-order">
+  <view class="weui-cell">
+      <view class="weui-cell__bd">配送方式</view>
+      <view class="weui-cell__ft">{{data.deliveryTypeName}}</view>
+  </view>
+  <view class="weui-cell">
+      <view class="weui-cell__bd">下单时间</view>
+      <view class="weui-cell__ft">{{data.addTime}}</view>
   </view>
 </view>
 <view class="weui-cells weui-cells-order" style="margin-bottom:2.4rem;">

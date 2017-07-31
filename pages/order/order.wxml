@@ -1,5 +1,7 @@
 <view wx:if="{{list.length > 0}}">
   <view class="weui-cells weui-cells-order" wx:for="{{list}}">
+
+    <view class="separator"></view>
     <view class="weui-cell" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
         <view class="weui-cell__hd">
           订单编号：{{item.orderSn}}
@@ -44,7 +46,6 @@
 
       </text>
       <text wx:elif="{{item.shippingStatus === 'unshipped'}}" class="btn" bindtap="send" data-ordersn="{{item.orderSn}}" data-mobile="{{item.shipMobile}}">联系商家发货</text>
-
     </view>
 
   </view>

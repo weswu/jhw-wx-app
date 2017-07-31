@@ -1,7 +1,7 @@
 
 .weui-cells-order .weui-cell:before{border-top:1rpx solid #ECECEC}
 /* 搜索列表 */
-.wxSearch{height: 43px;}
+.wxSearch{height: 43px;z-index:2;}
 .wxSearch-section{background-color:#ff6214;padding:7px 10px;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:730rpx;}
 .wxSearch-pancel{display:flex;flex-direction:row}
 .wxSearch-form{flex:8;position:relative;}

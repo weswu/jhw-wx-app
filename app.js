@@ -67,7 +67,7 @@ App({
     appid: 'wx860be22a8b03bbd9',
     userInfo: null,
     member: null,
-    enterpriseId: 'Enterp_0000000000000000000049090',
+    enterpriseId: 'Enterp_0000000000000000000054083',
     userId: 'User_000000000000000000000050555'
   }
 })
