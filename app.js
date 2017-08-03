@@ -53,7 +53,6 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     this.getUserInfo()
-
   },
 
   onShow: function () {
@@ -67,7 +66,7 @@ App({
     appid: 'wx860be22a8b03bbd9',
     userInfo: null,
     member: null,
-    enterpriseId: 'Enterp_0000000000000000000054083',
+    enterpriseId: 'Enterp_0000000000000000000049341',
     userId: 'User_000000000000000000000050555'
   }
 })
