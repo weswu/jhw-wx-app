@@ -1,7 +1,7 @@
 /* 搜索 */
 .search{background:#ff6214;padding:7px 0 7px 20rpx;overflow:hidden}
 .search .search-btn{background:#fff;color:#999;font-size:12px;text-align:center;height:26px;
-  line-height:26px;border-radius:13px;width:710rpx;float:left}
+  line-height:26px;border-radius:13px;width:710rpx;}
 .search .search-btn:active{background:#fff5f0}
 .search image{width:18px;height:18px;vertical-align:middle}
 .search .category{padding:4px 15px;float:right}
