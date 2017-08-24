@@ -16,6 +16,7 @@ App({
           data: {
             code: res.code,
             appid: that.globalData.appid,
+            appsecret: that.globalData.appsecret,
             enterpriseId: that.globalData.enterpriseId,
             skey: wx.getStorageSync('skey') || ''
           },
@@ -65,6 +66,7 @@ App({
   // Enterp_0000000000000000000049341    Enterp_0000000000000000000049090  Enterp_0000000000000000000054083
   globalData: {
     appid: 'wx860be22a8b03bbd9',
+    appsecret: '0070570f1225a9f9efa25265405c2efe',
     userInfo: null,
     member: null,
     enterpriseId: 'Enterp_0000000000000000000049341',
