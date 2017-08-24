@@ -15,6 +15,7 @@ App({
           url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
           data: {
             code: res.code,
+            appid: that.globalData.appid,
             enterpriseId: that.globalData.enterpriseId,
             skey: wx.getStorageSync('skey') || ''
           },
