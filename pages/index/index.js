@@ -10,6 +10,7 @@ Page({
   data: {
     images: [],
     list: [],
+    hotlist: [],
     enterprise: {},
     swiperHeight: 0,
     autoplay: true,
@@ -29,7 +30,33 @@ Page({
       success: function (res) {
         that.setData({
           category: res.data
-        })        
+        })
+      }
+    })
+  },
+  getHot: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    if(app.globalData.member === null){app.getUserInfo()}
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/products/the_hot/' + app.globalData.enterpriseId + '?page=1&per_page=2',
+      success: function (res) {
+        var data = res.data.list
+        if(data && data.length > 0){
+          for(var i=0; i<data.length; i++){
+            data[i].price = parseFloat(data[i].price).toFixed(2)
+            data[i].pic_path = util.picUrl(data[i].pic_path, 4)
+            that.data.list.push(data[i])
+          }
+        }
+        that.setData({
+          hotlist: data
+        })
+        wx.setStorage({
+          key: 'hotgoods',
+          data: res.data.list
+        })
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -41,7 +68,7 @@ Page({
     if(app.globalData.member === null){app.getUserInfo()}
     console.log('首页数据加载中...')
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
+      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=2',
       success: function (res) {
         var data = res.data.list
         if(data && data.length > 0){
@@ -129,6 +156,14 @@ Page({
         list: key
       })
     }
+    var hot = wx.getStorageSync('hotgoods')
+    if (!hot) {
+      this.getHot()
+    } else {
+      this.setData({
+        hotlist: hot
+      })
+    }
     var banner = wx.getStorageSync('banner')
     if (!banner) {
       this.getBanner()
@@ -154,6 +189,7 @@ Page({
   },
   onPullDownRefresh: function () {
     this.getPro()
+    this.getHot()
     // this.getBanner()
     this.getEnter()
     wx.stopPullDownRefresh()

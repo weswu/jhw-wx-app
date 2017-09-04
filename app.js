@@ -59,8 +59,8 @@ App({
 
   // Enterp_0000000000000000000049341    Enterp_0000000000000000000049090  Enterp_0000000000000000000054083
   globalData: {
-    appid: '',
-    appsecret: '',
+    appid: 'wx5979261410e2ae66',
+    appsecret: 'adfa3ba0c79f2e9be8df8b1ec7466fd3',
     userInfo: null,
     member: null,
     enterpriseId: 'Enterp_0000000000000000000062420',

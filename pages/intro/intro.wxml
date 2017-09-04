@@ -1,46 +1,29 @@
-<!--intro.wxml-->
-<view wx:if="{{!isJihui}}">
-  <view class="intro">
-    <rich-text nodes="{{company.edesc}}"></rich-text>
-  </view>
-  <view class="hr"></view>
-  <view class="contact">
-    <view class="contact_bd">
-      <view class="contact_title" wx:if="{{company.name}}">{{company.name}}</view>
-
-      <view wx:if="{{company.address && company.address != 'null'}}">地址：{{company.address}}</view>
-      <view wx:if="{{company.cellphone && company.cellphone != 'null'}}" bindtap="tel" data-tel="{{company.cellphone}}">手机：{{company.cellphone}}</view>
-      <view wx:if="{{company.phone && company.phone != 'null'}}" bindtap="tel" data-tel="{{company.phone}}">电话：{{company.phone}}</view>
-      <view wx:if="{{company.fax && company.fax != 'null'}}" bindtap="tel" data-tel="{{company.phofaxne}}">传真：{{company.fax}}</view>
-      <view wx:if="{{company.qq && company.qq != 'null'}}">QQ：{{company.qq}}</view>
-      <view wx:if="{{company.url && company.url != 'null'}}">网址：{{company.url}}</view>
-    </view>
-  </view>
+<view class="intro">
+  <black style="padding:0 18vw"><image mode="widthFix" src="http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/23244fc2-ca4c-4bd9-bf8d-2ad685c822dd.png" style="width:50vw;height:{{imgHeight}}" bindload="imageLoad"/></black>
+  <image mode="widthFix" src="http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/4c5cbe80-8e8c-4ec4-8d30-843560e54db7.png"/>
+  <view>浙江七星岛布艺有限公司，简称“七星岛”，其前身系永康市七星酒店用品有限公司，注册资金1000万元。公司坐落于浙江省永康市九龙工业基地九龙南路169号。金丽温高铁、金丽温高速穿境而过，距离杭州、温州均为一小时高铁车程。交通便利、物流快捷。</view>
+  <view>历经16年艰苦奋斗，目前公司已发展成为长三角区域内知名的五星级酒店布草专业制作厂家。公司拥有国内最新型中捷电脑平车数十台，以其独到的创意，精湛的工艺，在国内酒店布草行业独领风骚！</view>
+  <view>核心产品：餐厅桌布、会议桌布、酒店椅套、餐巾布艺</view>
+  <view>核心卖点：七星椅套，洗后免烫</view>
+  <view>产品优势：工艺精湛、版型精美、创意独特</view>
+  <view>团队优势：缝纫师傅平均技术工龄12年以上，坚守” 百年事业，千年流芳“之中国工匠精神</view>
+  <view>创新优势：七星岛秉承“造物先造人”的理念，坚持“质量第一、用户至上”的方针，公司业务团队站在用户应用角度去设计方案，最佳设计都来自公司创意与客户理想的有机融合。</view>
+  <image mode="widthFix" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/01784596-7f22-4adb-b8eb-e92df3c7d7f4.png" style="padding:15px 0 10px 0"/>
+  <view>以新颖的设计、先进的工艺、助力全国60%以上旅游职业院校和五星酒店参加市赛、省赛、国赛，助推多个选手荣获全国饭店技能大赛宴会创意摆台冠军。</view>
+  <view>以16年酒店供应商的深度专业能力，为客户量身定制具有独特酒店文化和地方文化的儿童宴布草、生日宴布草、寿禧宴布草、谢师宴布草、乔迁宴布草、感恩宴布草、婚庆宴布草和国宾宴布草等，为酒店赢得了更高客户回头率，为振兴中国酒店餐饮业、助推地方经济包装发力。</view>
+  <view>七星岛布艺官网www.qxbc777.com</view>
+  <view>手机端互动平台：【酒店布草研究院】欢迎大家点评、留言、互动</view>
+  <view>七星岛布艺2016年荣选为杭州G20峰会餐厅布草特邀供应商，贵阳东盟会议酒店布草指定供应商。小布艺大情怀，一针一线出精彩。七星布艺，为您争光！</view>
 </view>
-
-<view wx:elif="{{isJihui}}">
-  <view class="intro">
-    <image mode="widthFix" src="http://img.jihui88.com/upload/y/y3/ykit/picture/2014/09/28/9923fcc0-9e36-4a2c-afb0-2a38535e882a.jpg"></image>
-    <view>机汇网【浙江机汇网络科技有限公司】2009年创始于杭州，是国内营销型网站建设专家。</view>
-    <view>机汇网将传统营销、互联网营销、移动互联网营销融合成三位一体的全网营销系统，为传统企业(特别是非零售企业)打造一个以自己为中心的、独立的电子商务平台。全网营销系统由营销型网站、手机网站、微传单、微网站、分销系统、二维码系统、CRM、SCM系统组成。</view>
-    <view>机汇网立足于杭州，走向全国，目前我们服务着10000多家企业，大部分企业通过网络进行批发销售、网络招商、宣传品牌、稳定接单。随着市场强烈的需要和公司的飞速发展，目前机汇网在上海、广州、北京等地建立了分公司。</view>
-    <view>其中东方五金网先后荣获“中国电子商务服务机构百强企业”，“浙江省电子商务服务机构服务名录第一批”，“浙江省中小企业优秀服务机构”，“浙江省两化融合重点企业”，“金华市重点文化企业”，高新技术企业等荣誉。</view>
-  </view>
-  <view class="hr"></view>
-  <view class="contact">
-    <view class="contact_bd">
-      <view class="contact_title">总公司</view>
-      <view>地址：浙江省杭州市滨江区阡陌路聚光物联网大楼C2-205(地铁站：1号线江陵路站D出口)</view>
-      <view bindtap="tel" data-tel="0571-88223075">电话：0571-88223075</view>
-      <view>传真：0571-87003075</view>
-      <view bindtap="tel" data-tel="手机：18072933115">手机：18072933115</view>
-      <view>QQ：2594969476</view>
-    </view>
-    <view class="contact_bd">
-      <view class="contact_title">机汇网金华分公司</view>
-      <view>地址：永康市总部中心金山大厦21楼</view>
-      <view bindtap="tel" data-tel="0579-89051095">电话：0579-89051095</view>
-      <view>QQ：2594969476</view>
-    </view>
+<view class="hr"></view>
+<view class="contact">
+  <view class="contact_bd">
+    <view class="contact_title">联系我们：</view>
+    <view bindtap="tel" data-tel="0571-87126777">电话：0579-87126777</view>
+    <view>传真：0579-87070163</view>
+    <view>邮编：321300</view>
+    <view>厂址：永康市九龙工业区九龙南路 169#</view>
+    <view>门市部：浙江省永康市五金城金都市场七街 97-99-101#</view>
+    <view>门市电话：<span bindtap="tel" data-tel="0571-87070376">0579-87070376</span>，<span bindtap="tel" data-tel="0571-87172113">0579-87172113</span></view>
   </view>
 </view>

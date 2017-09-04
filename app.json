@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/index/index",
+  "pages/index/index",
+    "pages/intro/intro",
     "pages/product/product",
     "pages/detail/detail",
     "pages/search/search",
     "pages/category/category",
-    "pages/intro/intro",
     "pages/my/my",
     "pages/order/order",
     "pages/order/orderDetail",
@@ -21,7 +21,7 @@
     "backgroundColor": "#f0f0f0",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "商城",
+    "navigationBarTitleText": "七星布草",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
