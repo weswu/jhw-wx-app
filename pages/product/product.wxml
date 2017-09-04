@@ -1,10 +1,14 @@
-<view class="search">
+<view class="search-box">
+  <input type="text" confirm-type="search" placeholder="搜索商品" />
+</view>
+
+<!-- <view class="search">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
     搜索商品
   </view>
-</view>
-<view class="goods">
+</view> -->
+<!-- <view class="goods">
   <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
     <view class="item_grow item_pic">
       <image  mode="widthFix" src="{{item.pic_path}}"></image>
@@ -15,4 +19,21 @@
     </view>
   </navigator>
 </view>
-<view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view>
+<view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view> -->
+<view class="products">
+  <view class="products-bd">
+    <view class="products-bd-item" wx:for="{{list}}" wx:key="product_id">
+      <view class="products-bd-item-image">
+        <image  mode="widthFix" src="{{item.pic_path}}"></image>
+      </view>
+      <view class="products-bd-item-desc">
+        <view class="products-title">{{item.name}}</view>
+        <view class="products-type">{{item.model}}</view>
+        <view class="products-price">
+          <text>￥{{item.price}}</text>
+          <view class="products-btn">立即抢购</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

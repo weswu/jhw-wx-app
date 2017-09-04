@@ -18,16 +18,16 @@
     "pages/setting/feedback"
   ],
   "window": {
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#f0f0f0",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "商城",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#9b9b9b",
-    "selectedColor": "#ff6214",
+    "selectedColor": "#1f2f5e",
     "backgroundColor": "#fff",
     "list": [
       {

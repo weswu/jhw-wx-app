@@ -6,13 +6,12 @@
 var app = getApp()
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     company: {},
-    isJihui: (app.globalData.enterpriseId === 'Enterp_0000000000000000000049341')
+    // isJihui: (app.globalData.enterpriseId === 'Enterp_0000000000000000000049341')
   },
 
   get: function () {

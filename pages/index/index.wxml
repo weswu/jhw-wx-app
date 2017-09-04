@@ -1,7 +1,10 @@
-<view wx:if="{{images.length>1}}">
+<view class="search-box">
+  <input type="text" confirm-type="search" placeholder="搜索商品" />
+</view>
+ <view wx:if="{{images.length>1}}">
   <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
-    indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
-      <block wx:for="{{images}}">
+    indicator-active-color="rgba(255, 255, 255, 1)" indicator-color="rgba(255, 255, 255, .5)" autoplay="{{autoplay}}" duration="500" circular="true">
+      <block wx:for="{{images}}" wx:key="attId">
           <swiper-item>
               <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
           </swiper-item>
@@ -13,15 +16,44 @@
     <image mode="widthFix" class="banner" src="http://img.jihui88.com/{{item.serverPath}}"/>
   </view>
 </view>
-<view class="goods">
-  <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
-    <view class="item_grow item_pic">
-      <image  mode="widthFix" src="{{item.pic_path}}"></image>
-    </view>
-    <view class="item_grow item_content">
-      <view class="pro_title">{{item.name}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
-    </view>
+<view class="category">
+  <navigator url="../product/product?category_id={{item.category_id}}&title={{item.name}}" class="category-item" wx:for="{{category}}" wx:key="category_id">
+    <view class="category-item-icon"><image src="{{item.image}}"></image></view>
+    <view class="category-item-text">{{item.name}}</view>    
   </navigator>
+</view>
+<view class="products">
+  <view class="products-hd">
+    <view class="products-hd-wrap">
+      <view class="products-hd-item active">热销商品</view>
+    </view>
+  </view>
+  <view class="products-bd">
+
+  </view>
+</view>
+<view class="products">
+  <view class="products-hd">
+    <view class="products-hd-wrap">
+      <view class="products-hd-item {{active === index ? 'active' : ''}}" wx:for="{{category}}" wx:key="category_id" bindtap="switchTab" data-tab="{{index}}">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="products-bd">
+    <navigator class="products-bd-item" wx:for="{{list}}" wx:key="product_id" url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
+      <view class="products-bd-item-image">
+        <image  mode="widthFix" src="{{item.pic_path}}"></image>
+      </view>
+      <view class="products-bd-item-desc">
+        <view class="products-title">{{item.name}}</view>
+        <view class="products-type">{{item.model}}</view>
+        <view class="products-price">
+          <text>￥{{item.price}}</text>
+          <view class="products-btn">立即抢购</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class="footer">
   <navigator class="more" url="../product/product">查看全部商品</navigator>
 </view>

@@ -13,9 +13,28 @@ Page({
     enterprise: {},
     swiperHeight: 0,
     autoplay: true,
-    indicatorDots: true
+    indicatorDots: true,
+    category: [],
+    active: 0
   },
-  get: function () {
+  switchTab: function (e) {
+    this.setData({
+      active: e.target.dataset.tab
+    })
+  },
+  getCategory: function () {
+    let that = this
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
+      success: function (res) {
+        that.setData({
+          category: res.data
+        })        
+      }
+    })
+  },
+  getPro: function () {
+    console.log(app.globalData.enterpriseId)
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
@@ -25,7 +44,7 @@ Page({
       url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
       success: function (res) {
         var data = res.data.list
-        if(data.length > 0){
+        if(data && data.length > 0){
           for(var i=0; i<data.length; i++){
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
@@ -104,7 +123,7 @@ Page({
   onLoad: function () {
     var key = wx.getStorageSync('goods')
     if (!key) {
-      this.get()
+      this.getPro()
     } else {
       this.setData({
         list: key
@@ -118,11 +137,12 @@ Page({
         images: banner
       })
     }
+    this.getCategory()
   },
   onReady: function () {
     var key = wx.getStorageSync('enterprise')
     if (!key) {
-      this.getEnter()
+      // this.getEnter()
     } else {
       this.setData({
         enterprise: key
@@ -133,8 +153,8 @@ Page({
     }
   },
   onPullDownRefresh: function () {
-    this.get()
-    this.getBanner()
+    this.getPro()
+    // this.getBanner()
     this.getEnter()
     wx.stopPullDownRefresh()
   },

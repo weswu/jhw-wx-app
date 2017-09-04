@@ -2,13 +2,13 @@
   <view class="weui-cell {{active === 'all' ? 'active' : ''}}" bindtap="page" data-url="../product/product">
       <view class="weui-cell__bd">全部商品</view>
   </view>
-  <view class="cate" wx:for="{{list}}" wx:for-item="item">
+  <view class="cate" wx:for="{{list}}" wx:for-item="item" wx:key="category_id">
     <view class="weui-cell cate-1 {{active === item.category_id ? 'active' : ''}}" data-cate="{{item.category_id}}"
       bindtap="page" data-url="../product/product?category_id={{item.category_id}}&title={{item.name}}">
         <view class="name">{{item.name}}</view>
     </view>
 
-    <view class="cate" wx:for="{{item.child}}" wx:for-item="item1">
+    <view class="cate" wx:for="{{item.child}}" wx:for-item="item1" wx:key="category_id">
       <view class="weui-cell cate-2 {{active === item1.category_id ? 'active' : ''}}" data-cate="{{item1.category_id}}"
         bindtap="page" data-url="../product/product?category_id={{item1.category_id}}&title={{item1.name}}">
           <view class="name">{{item1.name}}</view>
