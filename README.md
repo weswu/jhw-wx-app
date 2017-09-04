@@ -1,12 +1,33 @@
-# 小程序
+# 小程序模板
+---
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](www.jihui88.com)
 
 > 这是一个用小程序制作的商城网站。
 
-## 项目截图
+## 第三方平台[文档](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/ext.html)
 
-无
+
+
+## 项目模板控制(分支控制)
+`master` 基础模板
+
+`qixingbucao` 七星布草
+
+### 新建模板
+```
+git checkout -b qixingbucao master
+```
+
+### 查看模板
+```
+git branch -a
+```
+
+### 切换模板
+```
+git checkout qixingbucao
+```
 
 ## 项目目录
 <pre>

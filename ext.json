@@ -1,0 +1,38 @@
+{
+  "extEnable": false,
+  "extAppid": "wxf9c4501a76931b33",
+  "ext": {
+    "name": "wechat",
+    "attr": {
+      "host": "open.weixin.qq.com",
+      "users": [
+        "user_1",
+        "user_2"
+      ]
+    }
+  },
+  "extPages": {
+    "pages/logs/logs": {
+      "navigationBarTitleText": "logs"
+    }
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Demo",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "日志"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}
