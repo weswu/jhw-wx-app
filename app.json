@@ -5,7 +5,7 @@
     "pages/detail/detail",
     "pages/search/search",
     "pages/category/category",
-    "pages/intro/intro",
+    "pages/company/company",
     "pages/my/my",
     "pages/order/order",
     "pages/order/orderDetail",
@@ -45,7 +45,7 @@
       {
         "iconPath": "images/tabBar/company.png",
         "selectedIconPath": "images/tabBar/company_.png",
-        "pagePath": "pages/intro/intro",
+        "pagePath": "pages/company/company",
         "text": "关于"
       },
       {
