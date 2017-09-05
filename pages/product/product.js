@@ -28,12 +28,6 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
-  // 回分页
-  pageCategory: function (e) {
-    wx.switchTab({
-      url: '../category/category'
-    })
-  },
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
@@ -93,6 +87,20 @@ Page({
   },
 
 
+  /* 搜索 */
+  wxSearchInput: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  searchKey: function (){
+    wx.navigateTo({
+      url: '../search/search?keyword=' + this.data.keyword
+    })
+    this.setData({
+      keyword: ''
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

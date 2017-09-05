@@ -24,6 +24,7 @@ Page({
     this.setData({
       active: e.target.dataset.tab
     })
+
   },
   getCategory: function () {
     let that = this
@@ -206,7 +207,7 @@ Page({
   onPullDownRefresh: function () {
     this.getPro()
     this.getHot()
-    // this.getBanner()
+    this.getBanner()
     this.getEnter()
     wx.stopPullDownRefresh()
   },
