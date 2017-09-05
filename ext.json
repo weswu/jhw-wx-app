@@ -1,8 +1,11 @@
 {
-  "extEnable": false,
-  "extAppid": "wxf9c4501a76931b33",
+  "extEnable": true,
+  "extAppid": "wx031271ed9d1f909f",
   "ext": {
-    "name": "wechat",
+    "appid": "wx5979261410e2ae66",
+    "appsecret": "adfa3ba0c79f2e9be8df8b1ec7466fd3",
+    "enterprise_id": "Enterp_0000000000000000000049341",
+    "user_id": "User_000000000000000000000065262",
     "attr": {
       "host": "open.weixin.qq.com",
       "users": [
@@ -16,20 +19,44 @@
       "navigationBarTitleText": "logs"
     }
   },
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Demo",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "商城",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "日志"
-    }]
+    "color": "#9b9b9b",
+    "selectedColor": "#ff6214",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home_.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/tabBar/category.png",
+        "selectedIconPath": "images/tabBar/category_.png",
+        "pagePath": "pages/category/category",
+        "text": "分类"
+      },
+      {
+        "iconPath": "images/tabBar/company.png",
+        "selectedIconPath": "images/tabBar/company_.png",
+        "pagePath": "pages/intro/intro",
+        "text": "关于"
+      },
+      {
+        "iconPath": "images/tabBar/my.png",
+        "selectedIconPath": "images/tabBar/my_.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 10000,

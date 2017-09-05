@@ -1,3 +1,10 @@
+<!-- 搜索 -->
+<view class="search-box">
+  <input type="text" value="{{keyword}}" bindinput="wxSearchInput" bindconfirm="searchKey" confirm-type="search" placeholder="搜索商品" />
+  <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
+</view>
+
+<!-- 轮播 -->
 <view wx:if="{{images.length>1}}">
   <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
     indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
@@ -13,10 +20,12 @@
     <image mode="widthFix" class="banner" src="http://img.jihui88.com/{{item.serverPath}}"/>
   </view>
 </view>
+
+<!-- 产品展示 -->
 <view class="goods">
   <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
     <view class="item_grow item_pic">
-      <image  mode="widthFix" src="{{item.pic_path}}"></image>
+      <image mode="widthFix" src="{{item.pic_path}}"></image>
     </view>
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>

@@ -12,7 +12,9 @@
 ## 项目模板控制(分支控制)
 `master` 基础模板
 
-`qixingbucao` 七星布草
+`jihui` 机汇网
+
+`qixingbucao` 七星布草 zaingdev
 
 ### 新建模板
 ```

@@ -11,8 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    company: {},
-    isJihui: (app.globalData.enterpriseId === 'Enterp_0000000000000000000049341')
+    company: {}
   },
 
   get: function () {
@@ -41,19 +40,18 @@ Page({
       phoneNumber: e.currentTarget.dataset.tel
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!this.data.isJihui){
-      var company = wx.getStorageSync('company')
-      if (!company) {
-        this.get()
-      } else {
-        this.setData({
-          company: company
-        })
-      }
+    var company = wx.getStorageSync('company')
+    if (!company) {
+      this.get()
+    } else {
+      this.setData({
+        company: company
+      })
     }
   },
 
@@ -70,17 +68,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if(!this.data.isJihui){
-      this.get()
-      wx.stopPullDownRefresh()
-    }
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    this.get()
+    wx.stopPullDownRefresh()
   },
 
   /**

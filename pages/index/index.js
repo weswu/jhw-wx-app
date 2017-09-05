@@ -13,7 +13,9 @@ Page({
     enterprise: {},
     swiperHeight: 0,
     autoplay: true,
-    indicatorDots: true
+    indicatorDots: true,
+    // 搜索关键字
+    keyword: ''
   },
   get: function () {
     var that = this
@@ -46,6 +48,7 @@ Page({
   getEnter: function () {
     var that = this
     wx.showNavigationBarLoading()
+    if(app.globalData.member === null){app.getUserInfo()}
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/comm/enterprise/info?enterpriseId='+ app.globalData.enterpriseId,
       data: {
@@ -70,7 +73,21 @@ Page({
       }
     })
   },
-  // banner
+  /* 搜索 */
+  wxSearchInput: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  searchKey: function (){
+    wx.navigateTo({
+      url: '../search/search?keyword=' + this.data.keyword
+    })
+    this.setData({
+      keyword: ''
+    })
+  },
+  /*  轮播 */
   getBanner: function () {
     var that = this
     wx.request({
@@ -101,6 +118,7 @@ Page({
       swiperHeight: this.data.swiperHeight
     })
   },
+
   onLoad: function () {
     var key = wx.getStorageSync('goods')
     if (!key) {

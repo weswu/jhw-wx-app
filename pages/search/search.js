@@ -131,6 +131,7 @@ Page({
       data: this.data.hislist
     })
   },
+  // 删除历史记录
   wxSearchDeleteAll: function () {
     wx.removeStorageSync('hislist')
     this.setData({
@@ -150,6 +151,13 @@ Page({
       this.setData({
         hislist: hislist
       })
+    }
+    // 从首页搜索跳转
+    if (options.keyword) {
+      this.setData({
+        keyword: options.keyword
+      })
+      this.searchKey()
     }
   },
 
