@@ -1,6 +1,6 @@
 {
   "pages": [
-  "pages/index/index",
+    "pages/index/index",
     "pages/intro/intro",
     "pages/product/product",
     "pages/detail/detail",
@@ -13,8 +13,6 @@
     "pages/address/addressDetail",
     "pages/address/address",
     "pages/setting/setting",
-    "pages/login/login",
-    "pages/login/register",
     "pages/setting/feedback"
   ],
   "window": {

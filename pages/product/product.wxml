@@ -3,7 +3,7 @@
   <input type="text" value="{{keyword}}" bindinput="wxSearchInput" bindconfirm="searchKey" confirm-type="search" placeholder="搜索商品" />
   <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
 </view>
-
+<!-- 产品列表 -->
 <view class="products">
   <view class="products-bd">
     <view class="products-bd-item" wx:for="{{list}}" wx:key="product_id">
