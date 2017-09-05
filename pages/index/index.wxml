@@ -1,8 +1,10 @@
+<!-- 搜索 -->
 <view class="search-box">
-  <input type="text" confirm-type="search" placeholder="搜索商品" />
-  <image mode="widthFix" class="search-icon" src="../../images/search.png"></image>
+  <input type="text" value="{{keyword}}" bindinput="wxSearchInput" bindconfirm="searchKey" confirm-type="search" placeholder="搜索商品" />
+  <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
 </view>
 
+<!-- 轮播 -->
 <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
   indicator-active-color="rgba(255, 255, 255, 1)" indicator-color="rgba(255, 255, 255, .5)" autoplay="{{autoplay}}" duration="500" circular="true">
     <block wx:for="{{images}}" wx:key="attId">

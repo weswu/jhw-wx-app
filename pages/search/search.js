@@ -151,6 +151,13 @@ Page({
         hislist: hislist
       })
     }
+    // 从首页搜索跳转
+    if (options.keyword) {
+      this.setData({
+        keyword: options.keyword
+      })
+      this.searchKey()
+    }
   },
 
   /**

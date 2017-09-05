@@ -3,27 +3,9 @@ page {
 }
 
 /* 搜索 */
-.search-icon{
-  width:1.2rem;
-  height: 1.2rem !important;
-  float:right;
-  position: absolute;
-  right: 10px;
-  top:10px;
-  padding: 6px 12px;
-}
-.search-box {
-  font-size: 12px;
-  padding: 3vw;
-  background: #fff;
-  position: relative;
-}
-
-.search-box input {
-  border: 1px solid rgba(0, 0, 0, .1);
-  padding: 3px 8px;
-  border-radius: 4px;
-}
+.search-icon{width:1.2rem;height:1.2rem!important;float:right;position:absolute;right:10px;top:10px;padding:6px 12px}
+.search-box{font-size:12px;padding:3vw;background:#fff;position:relative}
+.search-box input{border:1px solid rgba(0,0,0,.1);padding:3px 40px 3px 8px;border-radius:4px}
 
 .category {
   margin-top: 10px;

@@ -1,7 +1,18 @@
 {
-  "extEnable": false,
+  "extEnable": true,
   "extAppid": "wx031271ed9d1f909f",
   "ext": {
-    "enterprise_id": "Enterp_0000000000000000000062420"
+    "appid": "wx5979261410e2ae66",
+    "appsecret": "adfa3ba0c79f2e9be8df8b1ec7466fd3",
+    "enterprise_id": "Enterp_0000000000000000000049341",
+    "user_id": "User_000000000000000000000065262"
+  },
+  "window": {
+    "backgroundColor": "#f0f0f0",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "七星布草",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   }
 }

@@ -16,7 +16,9 @@ Page({
     autoplay: true,
     indicatorDots: true,
     category: [],
-    active: 0
+    active: 0,
+    // 搜索关键字
+    keyword: ''
   },
   switchTab: function (e) {
     this.setData({
@@ -116,7 +118,21 @@ Page({
       }
     })
   },
-  // banner
+  /* 搜索 */
+  wxSearchInput: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  searchKey: function (){
+    wx.navigateTo({
+      url: '../search/search?keyword=' + this.data.keyword
+    })
+    this.setData({
+      keyword: ''
+    })
+  },
+  /*  轮播 */
   getBanner: function () {
     var that = this
     wx.request({
