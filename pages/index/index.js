@@ -24,7 +24,7 @@ Page({
     this.setData({
       active: e.target.dataset.tab
     })
-
+    this.getPro()
   },
   getCategory: function () {
     let that = this
@@ -34,9 +34,11 @@ Page({
         that.setData({
           category: res.data
         })
+        that.getPro()
       }
     })
   },
+  // 热销
   getHot: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -63,15 +65,16 @@ Page({
       }
     })
   },
+  // 分类产品
   getPro: function () {
-    console.log(app.globalData.enterpriseId)
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
     if(app.globalData.member === null){app.getUserInfo()}
     console.log('首页数据加载中...')
+    const cate_id = parseInt(this.data.category[this.data.active].category_id.split('Category_')[1])
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=2',
+      url: 'https://api.jihui88.net/jihuiapi/products/category/' + cate_id + '?page=1&per_page=2',
       success: function (res) {
         var data = res.data.list
         if(data && data.length > 0){
@@ -82,11 +85,7 @@ Page({
           }
         }
         that.setData({
-          list: data
-        })
-        wx.setStorage({
-          key: 'goods',
-          data: res.data.list
+          list: data || []
         })
         wx.hideNavigationBarLoading()
       }
@@ -165,14 +164,7 @@ Page({
     })
   },
   onLoad: function () {
-    var key = wx.getStorageSync('goods')
-    if (!key) {
-      this.getPro()
-    } else {
-      this.setData({
-        list: key
-      })
-    }
+    this.getCategory()
     var hot = wx.getStorageSync('hotgoods')
     if (!hot) {
       this.getHot()
@@ -189,7 +181,6 @@ Page({
         images: banner
       })
     }
-    this.getCategory()
   },
   onReady: function () {
     var key = wx.getStorageSync('enterprise')
