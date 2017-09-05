@@ -1,46 +1,24 @@
-<!--intro.wxml-->
-<view wx:if="{{!isJihui}}">
-  <view class="intro">
-    <rich-text nodes="{{company.edesc}}"></rich-text>
-  </view>
-  <view class="hr"></view>
-  <view class="contact">
-    <view class="contact_bd">
-      <view class="contact_title" wx:if="{{company.name}}">{{company.name}}</view>
-
-      <view wx:if="{{company.address && company.address != 'null'}}">地址：{{company.address}}</view>
-      <view wx:if="{{company.email && company.email != 'null'}}">邮箱：{{company.email}}</view>
-      <view wx:if="{{company.cellphone && company.cellphone != 'null'}}" bindtap="tel" data-tel="{{company.cellphone}}">手机：{{company.cellphone}}</view>
-      <view wx:if="{{company.phone && companycompany.phone != 'null'}}" bindtap="tel" data-tel="{{company.phone}}">电话：{{company.phone}}</view>
-      <view wx:if="{{company.qq && company.qq != 'null'}}">QQ：{{company.qq}}</view>
-      <view wx:if="{{company.url && company.url != 'null'}}">网址：{{company.url}}</view>
-    </view>
-  </view>
+<view class="intro">
+  <image mode="widthFix" src="http://img.jihui88.com/upload/y/y3/ykit/picture/2014/09/28/9923fcc0-9e36-4a2c-afb0-2a38535e882a.jpg"></image>
+  <view>机汇网【浙江机汇网络科技有限公司】2009年创始于杭州，是国内营销型网站建设专家。</view>
+  <view>机汇网将传统营销、互联网营销、移动互联网营销融合成三位一体的全网营销系统，为传统企业(特别是非零售企业)打造一个以自己为中心的、独立的电子商务平台。全网营销系统由营销型网站、手机网站、微传单、微网站、分销系统、二维码系统、CRM、SCM系统组成。</view>
+  <view>机汇网立足于杭州，走向全国，目前我们服务着10000多家企业，大部分企业通过网络进行批发销售、网络招商、宣传品牌、稳定接单。随着市场强烈的需要和公司的飞速发展，目前机汇网在上海、广州、北京等地建立了分公司。</view>
+  <view>其中东方五金网先后荣获“中国电子商务服务机构百强企业”，“浙江省电子商务服务机构服务名录第一批”，“浙江省中小企业优秀服务机构”，“浙江省两化融合重点企业”，“金华市重点文化企业”，高新技术企业等荣誉。</view>
 </view>
-
-<view wx:elif="{{isJihui}}">
-  <view class="intro">
-    <image mode="widthFix" src="http://img.jihui88.com/upload/y/y3/ykit/picture/2014/09/28/9923fcc0-9e36-4a2c-afb0-2a38535e882a.jpg"></image>
-    <view>机汇网【浙江机汇网络科技有限公司】2009年创始于杭州，是国内营销型网站建设专家。</view>
-    <view>机汇网将传统营销、互联网营销、移动互联网营销融合成三位一体的全网营销系统，为传统企业(特别是非零售企业)打造一个以自己为中心的、独立的电子商务平台。全网营销系统由营销型网站、手机网站、微传单、微网站、分销系统、二维码系统、CRM、SCM系统组成。</view>
-    <view>机汇网立足于杭州，走向全国，目前我们服务着10000多家企业，大部分企业通过网络进行批发销售、网络招商、宣传品牌、稳定接单。随着市场强烈的需要和公司的飞速发展，目前机汇网在上海、广州、北京等地建立了分公司。</view>
-    <view>其中东方五金网先后荣获“中国电子商务服务机构百强企业”，“浙江省电子商务服务机构服务名录第一批”，“浙江省中小企业优秀服务机构”，“浙江省两化融合重点企业”，“金华市重点文化企业”，高新技术企业等荣誉。</view>
+<view class="hr"></view>
+<view class="contact">
+  <view class="contact_bd">
+    <view class="contact_title">总公司</view>
+    <view>地址：浙江省杭州市滨江区阡陌路聚光物联网大楼C2-205(地铁站：1号线江陵路站D出口)</view>
+    <view bindtap="tel" data-tel="0571-88223075">电话：0571-88223075</view>
+    <view>传真：0571-87003075</view>
+    <view bindtap="tel" data-tel="手机：18072933115">手机：18072933115</view>
+    <view>QQ：2594969476</view>
   </view>
-  <view class="hr"></view>
-  <view class="contact">
-    <view class="contact_bd">
-      <view class="contact_title">总公司</view>
-      <view>地址：浙江省杭州市滨江区阡陌路聚光物联网大楼C2-205(地铁站：1号线江陵路站D出口)</view>
-      <view bindtap="tel" data-tel="0571-88223075">电话：0571-88223075</view>
-      <view>传真：0571-87003075</view>
-      <view bindtap="tel" data-tel="手机：18072933115">手机：18072933115</view>
-      <view>QQ：2594969476</view>
-    </view>
-    <view class="contact_bd">
-      <view class="contact_title">机汇网金华分公司</view>
-      <view>地址：永康市总部中心金山大厦21楼</view>
-      <view bindtap="tel" data-tel="0579-89051095">电话：0579-89051095</view>
-      <view>QQ：2594969476</view>
-    </view>
+  <view class="contact_bd">
+    <view class="contact_title">机汇网金华分公司</view>
+    <view>地址：永康市总部中心金山大厦21楼</view>
+    <view bindtap="tel" data-tel="0579-89051095">电话：0579-89051095</view>
+    <view>QQ：2594969476</view>
   </view>
 </view>
