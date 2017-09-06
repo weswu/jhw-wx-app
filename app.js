@@ -54,16 +54,14 @@ App({
     var that = this
     wx.getExtConfig({
       success: function (res) {
-        that.globalData = {
-          appid: res.extConfig.appid,
-          appsecret: res.extConfig.appsecret,
-          enterpriseId: res.extConfig.enterprise_id,
-          userId: res.extConfig.user_id
-        }
+        that.globalData.appid = res.extConfig.appid
+        that.globalData.enterpriseId = res.extConfig.enterprise_id
+        that.globalData.appsecret = res.extConfig.appsecret
+        that.globalData.userId = res.extConfig.user_id
       }
     })
     // 登录用户信息
-    this.getUserInfo()
+    //this.getUserInfo()
   },
 
   onShow: function () {
