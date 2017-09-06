@@ -6,8 +6,6 @@
           </view>
           <view class="weui-media-box__bd">
               <view class="weui-media-box__title">{{userInfo.nickName}}</view>
-              <view class="weui-media-box__desc" wx:if="{{0!=0}}" bindtap="page" data-url="../login/login">会员登录/绑定</view>
-              <view class="weui-media-box__desc" wx:if="{{0!=0}}">普通会员</view>
           </view>
       </a>
   </view>

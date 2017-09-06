@@ -7,43 +7,12 @@
     "enterprise_id": "Enterp_0000000000000000000049341",
     "user_id": "User_000000000000000000000065262"
   },
-  "window": {
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "商城",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+  "extPages": {
+    "pages/index/index": {
+      "navigationBarTitleText": "机汇网商城"
+    }
   },
-  "tabBar": {
-    "color": "#9b9b9b",
-    "selectedColor": "#ff6214",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "iconPath": "images/tabBar/home.png",
-        "selectedIconPath": "images/tabBar/home_.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "iconPath": "images/tabBar/category.png",
-        "selectedIconPath": "images/tabBar/category_.png",
-        "pagePath": "pages/category/category",
-        "text": "分类"
-      },
-      {
-        "iconPath": "images/tabBar/company.png",
-        "selectedIconPath": "images/tabBar/company_.png",
-        "pagePath": "pages/company/company",
-        "text": "关于"
-      },
-      {
-        "iconPath": "images/tabBar/my.png",
-        "selectedIconPath": "images/tabBar/my_.png",
-        "pagePath": "pages/my/my",
-        "text": "我的"
-      }
-    ]
+  "window": {
+    "navigationBarTitleText": "机汇网商城"
   }
 }

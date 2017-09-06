@@ -10,7 +10,6 @@ Page({
   data: {
     images: [],
     list: [],
-    enterprise: {},
     swiperHeight: 0,
     autoplay: true,
     indicatorDots: true,
@@ -40,34 +39,6 @@ Page({
         wx.setStorage({
           key: 'goods',
           data: res.data.list
-        })
-        wx.hideNavigationBarLoading()
-      }
-    })
-  },
-  getEnter: function () {
-    var that = this
-    wx.showNavigationBarLoading()
-    if(app.globalData.member === null){app.getUserInfo()}
-    wx.request({
-      url: 'https://wx.jihui88.net/rest/api/comm/enterprise/info?enterpriseId='+ app.globalData.enterpriseId,
-      data: {
-        skey: app.globalData.member.skey
-      },
-      success: function (res) {
-        var data = res.data.attributes.data
-        data.logo = data.logo || 'upload/j/j2/jihui/picture/2015/12/01/d6cdd11d-c7fd-4d92-a2a6-ba489bc6b347_5.png'
-        data.phone = data.phone || '400-7111-011'
-        data.name = data.name || '机汇网商城'
-        that.setData({
-          enterprise: data
-        })
-        wx.setNavigationBarTitle({
-          title: data.name
-        })
-        wx.setStorage({
-          key: 'enterprise',
-          data: data
         })
         wx.hideNavigationBarLoading()
       }
@@ -137,28 +108,14 @@ Page({
       })
     }
   },
-  onReady: function () {
-    var key = wx.getStorageSync('enterprise')
-    if (!key) {
-      this.getEnter()
-    } else {
-      this.setData({
-        enterprise: key
-      })
-      wx.setNavigationBarTitle({
-        title: this.data.enterprise.name
-      })
-    }
-  },
   onPullDownRefresh: function () {
     this.get()
     this.getBanner()
-    this.getEnter()
     wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {
     return {
-      title: this.data.enterprise.name
+      title: '商城'
     }
   }
 })

@@ -9,19 +9,10 @@ Page( {
   data: {
     userInfo: {}
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo( {
-      url: '../logs/logs'
-    })
-  },
+  // 跳转页面
   page: function(e) {
-    var url = e.currentTarget.dataset.url
-    if (url.indexOf('login/login') >-1 ){
-      url = url + '?openid=' + this.data.userInfo.openid
-    }
     wx.navigateTo({
-        url: url
+        url: e.currentTarget.dataset.url
     })
   },
   onLoad: function() {

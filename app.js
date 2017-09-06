@@ -61,7 +61,7 @@ App({
       }
     })
     // 登录用户信息
-    //this.getUserInfo()
+    this.getUserInfo()
   },
 
   onShow: function () {
