@@ -51,7 +51,7 @@
         <view class="weui-cell__bd time">{{item.updateTime}}</view>
         <view class="weui-cell__ft">{{item.productQuantity}}</view>
       </view>
-      <view wx:if="{{sellList.length === 0 && empty}}" style="color:#999;padding:5px">暂无数据</view>
+      <view wx:if="{{sellList.length === 0 && empty}}" style="color:#999;padding:5px;text-align:center">暂无数据</view>
     </view>
   </view>
 </view>

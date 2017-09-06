@@ -47,8 +47,10 @@
 
 <view class="products">
   <view class="products-hd">
-    <view class="products-hd-wrap">
+    <view class="products-hd-wrap products-hd-cate">
       <view class="products-hd-item {{active === index ? 'active' : ''}}" wx:for="{{category}}" wx:key="category_id" bindtap="switchTab" data-tab="{{index}}">{{item.name}}</view>
+      <view class="products-hd-item"  bindtap="switchTab" data-tab="4">4444444</view>
+      <view class="products-hd-item"  bindtap="switchTab" data-tab="5">5555</view>
     </view>
   </view>
   <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/c15be5d6-1c60-4830-8646-7f05eb4adbbd_7.png" style="padding:3vw 3vw 0 3vw;width:94vw"/>

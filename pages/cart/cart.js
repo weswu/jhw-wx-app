@@ -81,7 +81,7 @@ Page({
           })
         }
 
-        var curPaymentConfig = {}
+        var curPaymentConfig = {paymentFee: 0}
         if(data.paymentConfig.length > 0){
           curPaymentConfig = data.paymentConfig[0]
           for(var i=0; i<data.paymentConfig.length; i++){
@@ -103,7 +103,7 @@ Page({
         that.setData({
           curPaymentConfig: curPaymentConfig,
           curReceiver: curReceiver,
-          curDelivery: data.deliveryType[0],
+          curDelivery: data.deliveryType[0] || {deliveryFee: 0},
           deliveryList: deliveryList,
           deliveryIndex: 0
         })
@@ -249,12 +249,6 @@ Page({
   },
 
   setStor: function () {
-    var key = wx.getStorageSync('curReceiver')
-    if (key) {
-      this.setData({
-        curReceiver: key
-      })
-    }
   },
 
   /**
@@ -268,7 +262,12 @@ Page({
   },
 
   onShow: function () {
-    this.setStor()
+    var key = wx.getStorageSync('curReceiver')
+    if (key) {
+      this.setData({
+        curReceiver: key
+      })
+    }
   },
 
   /**

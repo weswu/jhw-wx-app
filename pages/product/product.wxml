@@ -21,3 +21,5 @@
     </view>
   </view>
 </view>
+<!-- 提示 -->
+<view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view>

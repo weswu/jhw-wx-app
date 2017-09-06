@@ -9,36 +9,38 @@ App({
     //调用登录接口
     wx.login({
       success: function (res) {
-        // 登录
-        wx.request({
-          method: 'post',
-          url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
-          data: {
-            code: res.code,
-            appid: that.globalData.appid,
-            appsecret: that.globalData.appsecret,
-            enterpriseId: that.globalData.enterpriseId,
-            skey: wx.getStorageSync('skey') || ''
-          },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          success: function (res) {
-            if(res.data.attributes.data == null){
-              alert('none')
-            }
-            res.data.attributes.data.skey = res.data.attributes.data.skey || ''
-            that.globalData.member = res.data.attributes.data
-            wx.setStorage({
-              key: 'skey',
-              data: res.data.attributes.data.skey
-            })
-          }
-        })
+        var re = res
         // 用户信息
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo
+            // 登录
+            wx.request({
+              method: 'post',
+              url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
+              data: {
+                code: re.code,
+                appid: that.globalData.appid,
+                appsecret: that.globalData.appsecret,
+                enterpriseId: that.globalData.enterpriseId,
+                nickname: that.globalData.userInfo.nickName,
+                skey: wx.getStorageSync('skey') || ''
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              success: function (res) {
+                if(res.data.attributes.data == null){
+                  alert('数据为空')
+                }
+                res.data.attributes.data.skey = res.data.attributes.data.skey || ''
+                that.globalData.member = res.data.attributes.data
+                wx.setStorage({
+                  key: 'skey',
+                  data: res.data.attributes.data.skey
+                })
+              }
+            })
           }
         })
       }
