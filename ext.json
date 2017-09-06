@@ -7,11 +7,6 @@
     "enterprise_id": "Enterp_0000000000000000000049341",
     "user_id": "User_000000000000000000000065262"
   },
-  "extPages": {
-    "pages/index/index": {
-      "navigationBarTitleText": "机汇网商城"
-    }
-  },
   "window": {
     "navigationBarTitleText": "机汇网商城"
   }
