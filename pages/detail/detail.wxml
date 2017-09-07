@@ -35,7 +35,7 @@
 <view style="margin-bottom:2.5rem">
   <view hidden="{{nav != '1'}}">
     <view class="detail_bd">
-      <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
+      <rich-text nodes="{{detail.proddesc || detail.detail1}}" bindtap="showDescPic"></rich-text>
     </view>
   </view>
 

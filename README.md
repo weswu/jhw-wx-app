@@ -29,6 +29,11 @@ git branch -a
 git checkout qixingbucao
 ```
 
+### 在develop分支下合并master
+```
+git rebase master
+```
+
 ## 项目目录
 <pre>
 .
