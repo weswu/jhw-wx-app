@@ -1,5 +1,5 @@
 /* cart.wxss */
-.weui-cell__ft{color:#ff6214}
+.weui-cell__ft{color:#1f2f5e}
 
 /* 空 */
 .emptyCart image{width:128px;height:128px;margin:0 auto;padding:1rem 0 0 0;display:block}

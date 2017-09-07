@@ -8,9 +8,9 @@
       <view class="weui-cell__ft">
           <view wx:if="{{data.orderStatus === 'completed'}}">交易成功</view>
           <view wx:elif="{{data.orderStatus === 'invalid'}}">交易关闭</view>
-          <view wx:elif="{{data.paymentStatus === 'unpaid'}}" style="color:#ff6214">待付款</view>
-          <view wx:elif="{{data.shippingStatus === 'unshipped'}}" style="color:#ff6214">待发货</view>
-          <view wx:elif="{{data.shippingStatus === 'shipped'}}" style="color:#ff6214">已发货</view>
+          <view wx:elif="{{data.paymentStatus === 'unpaid'}}" style="color:#1f2f5e">待付款</view>
+          <view wx:elif="{{data.shippingStatus === 'unshipped'}}" style="color:#1f2f5e">待发货</view>
+          <view wx:elif="{{data.shippingStatus === 'shipped'}}" style="color:#1f2f5e">已发货</view>
       </view>
   </view>
 
@@ -94,7 +94,7 @@
   </view>
   <view class="weui-cell">
       <view class="weui-cell__bd">实付</view>
-      <view class="weui-cell__ft" style="color:#ff6214">￥{{data.totalAmount}}</view>
+      <view class="weui-cell__ft" style="color:#1f2f5e">￥{{data.totalAmount}}</view>
   </view>
 </view>
 <button wx:elif="{{data.orderStatus !== 'completed' && data.shippingStatus === 'shipped'}}" class="btn-primary fixed" bindtap="comfirm" data-id="{{data.orderId}}">确定收货</button>

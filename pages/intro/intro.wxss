@@ -3,9 +3,7 @@
 .intro image{width:100%;padding-bottom:2px}
 .intro view{text-indent:2em;}
 .contact{font-size:14px;color:#333;line-height:1.7;width:100%;box-sizing:border-box;padding:5vw 4vw 0 4vw;}
-.contact_bd{padding-bottom:5vw;
-  background:url(http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/a228fc9c-c589-4cad-b17a-3dfc76b95f4f.png) no-repeat right center;
-  background-size:50vw;}
-.contact_title{font-weight:700;font-size: 14px;padding:5px 0;}
+.contact_bd{padding-bottom:5vw;background:url(http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/a228fc9c-c589-4cad-b17a-3dfc76b95f4f.png) no-repeat right center;background-size:50vw;}
+.contact_title{font-weight:700;font-size: 16px;padding:5px 0;}
 rich-text{text-indent:2em;}
 .hr{background: #ccc;margin:0 4vw;width: 90vw}

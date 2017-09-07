@@ -1,39 +1,38 @@
-page {background: #f0f0f0;}
+page {background: #f4f4f4;}
 /* 搜索 */
 .search-icon{width:1.2rem;height:1.2rem!important;float:right;position:absolute;right:10px;top:10px;padding:6px 12px}
 .search-box{font-size:12px;padding:3vw;background:#fff;position:relative}
-.search-box input{border:1px solid rgba(0,0,0,.1);padding:3px 40px 3px 8px;border-radius:4px}
+.search-box input{border:1px solid #ccc;padding:3px 40px 3px 8px;border-radius:3px}
 /** 轮播 **/
 swiper-item image{width:100%;}
 .banner{width:750rpx;max-width:480px;margin:0 auto}
 /* 产品分类 */
-.category{margin-top:10px;background:#fff;padding:3vw 0;display:flex;overflow-x:auto;}
+.category{margin:3vw 0;background:#fff;padding:3vw 0;display:flex;overflow-x:auto;}
 .category-item{flex:1;display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;min-width:20vw;}
 .category-item-icon image{display:block;width:30px;height:40px}
 .category-item-text{color:#999;font-size:12px;line-height:20px}
 /* 产品banner */
-.hotBanner{padding-top:3vw;width:100vw}
+.hotBanner{padding-top:3vw;width:100vw;vertical-align:middle;}
 /* 产品列表 */
-.products{margin-top:3vw}
 .products-hd{padding:3vw 0;background:#fff}
 .products-hd-wrap{border-left:5px solid #1f2f5e;height:20px;display:flex;flex-wrap:wrap}
-.products-hd-item{line-height:20px;font-size:14px;margin-left:15px;color:#999}
+.products-hd-item{line-height:20px;font-size:14px;margin-left:4vw;color:#999}
 .products-hd-item.active{color:#1f2f5e}
-.products-bd{margin-top:3vw;padding:0 3vw;display:flex}
-.products-bd-item{width:50%;box-sizing:border-box}
-.products-bd-item:nth-child(odd){border-right:5px solid #f0f0f0}
-.products-bd-item:nth-child(even){border-left:5px solid #f0f0f0}
+.products-bd{margin-top:2vw;padding:0 2vw;display:flex;flex-wrap:wrap}
+.products-bd-item{width:50%;box-sizing:border-box;padding-bottom:3vw}
+.products-bd-item:nth-child(odd){border-right:1vw solid #f0f0f0}
+.products-bd-item:nth-child(even){border-left:1vw solid #f0f0f0}
 .products-bd-item-image image{width:100%;display:block}
 .products-bd-item-desc{background:#fff;font-size:14px;padding:3vw}
-.products-title{line-height:20px}
+.products-title{font-size:13px;line-height:20px}
 .products-type{font-size:12px;color:#999;line-height:20px;height:20px;overflow:hidden}
 .products-price{margin-top:5px;display:flex;justify-content:space-between;align-items:center}
-.products-price text{color:#c00;font-size:16px}
-.products-price text .unit{font-size:12px}
+.products-price text{color:#c00;font-size:18px}
+.products-price text .unit{font-size:11px}
 .products-btn{width:40px;height:40px;background:url(http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/ef1fdb18-185f-427d-8d69-9cc5ee230e81.png) center no-repeat;background-size:contain;padding:5px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;text-align:center;color:#1f2f5e;font-size:12px;line-height:1}
 /* 产品分类切换 */
 .products-hd-cate{flex-wrap:nowrap;overflow-x:auto;}
-.products-hd-cate .products-hd-item{min-width:20vw;}
+.products-hd-cate .products-hd-item{min-width:18vw;}
 /* 更多 */
-.footer{padding:20px 10px}
+.footer{padding:4vw 2vw 8vw 2vw}
 .more{background:#fff;padding:3vw;color:#999;text-align:center;font-size:14px;border-radius:4px}

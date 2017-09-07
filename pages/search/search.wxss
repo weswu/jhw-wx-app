@@ -1,8 +1,9 @@
 
 .weui-cells-order .weui-cell:before{border-top:1rpx solid #ECECEC}
+.pro_price .unit{font-size: 12px}
 /* 搜索列表 */
 .wxSearch{height: 43px;z-index:2;}
-.wxSearch-section{background-color:#ff6214;padding:7px 10px;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:730rpx;}
+.wxSearch-section{background-color:#1f2f5e;padding:7px 10px;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:730rpx;}
 .wxSearch-pancel{display:flex;flex-direction:row}
 .wxSearch-form{flex:8;position:relative;}
 .wxSearch-input{background-color:#fff;padding:0 40px 0 30px;font-size:14px;height:28px;line-height: 28px;border-radius: 3px}

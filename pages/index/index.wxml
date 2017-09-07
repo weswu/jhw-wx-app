@@ -3,7 +3,6 @@
   <input type="text" value="{{keyword}}" bindinput="wxSearchInput" bindconfirm="searchKey" confirm-type="search" placeholder="搜索商品" />
   <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
 </view>
-
 <!-- 轮播 -->
 <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
   indicator-active-color="rgba(255, 255, 255, 1)" indicator-color="rgba(255, 255, 255, .5)" autoplay="{{autoplay}}" duration="500" circular="true">
@@ -13,14 +12,14 @@
         </swiper-item>
     </block>
 </swiper>
-
+<!-- 产品分类 -->
 <view class="category">
   <navigator url="../product/product?category_id={{item.category_id}}&title={{item.name}}" class="category-item" wx:for="{{category}}" wx:key="category_id">
     <view class="category-item-icon"><image src="{{item.image}}"></image></view>
     <view class="category-item-text">{{item.name}}</view>
   </navigator>
 </view>
-
+<!-- 热销商品 -->
 <view class="products">
   <view class="products-hd">
     <view class="products-hd-wrap">
@@ -44,16 +43,14 @@
     </navigator>
   </view>
 </view>
-
+<!-- 产品分类列表 -->
 <view class="products">
   <view class="products-hd">
     <view class="products-hd-wrap products-hd-cate">
       <view class="products-hd-item {{active === index ? 'active' : ''}}" wx:for="{{category}}" wx:key="category_id" bindtap="switchTab" data-tab="{{index}}">{{item.name}}</view>
-      <view class="products-hd-item"  bindtap="switchTab" data-tab="4">4444444</view>
-      <view class="products-hd-item"  bindtap="switchTab" data-tab="5">5555</view>
     </view>
   </view>
-  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/c15be5d6-1c60-4830-8646-7f05eb4adbbd_7.png" style="padding:3vw 3vw 0 3vw;width:94vw"/>
+  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/c15be5d6-1c60-4830-8646-7f05eb4adbbd_7.png" style="padding:3vw 2vw 0 2vw;width:96vw"/>
   <view class="products-bd">
     <navigator class="products-bd-item" wx:for="{{list}}" wx:key="product_id" url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
       <view class="products-bd-item-image">
@@ -70,7 +67,7 @@
     </navigator>
   </view>
 </view>
-
+<!-- 更多 -->
 <view class="footer">
-  <navigator class="more" url="../product/product">查看全部商品</navigator>
+  <navigator class="more" url="../product/product">查看所有商品</navigator>
 </view>

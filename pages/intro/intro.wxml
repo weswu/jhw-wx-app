@@ -1,28 +1,14 @@
 <view class="intro">
-  <black style="padding:0 18vw"><image mode="widthFix" src="http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/23244fc2-ca4c-4bd9-bf8d-2ad685c822dd.png" style="width:50vw;height:{{imgHeight}}" bindload="imageLoad"/></black>
-  <image mode="widthFix" src="http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/4c5cbe80-8e8c-4ec4-8d30-843560e54db7.png"/>
-  <view>浙江七星岛布艺有限公司，简称“七星岛”，其前身系永康市七星酒店用品有限公司，注册资金1000万元。公司坐落于浙江省永康市九龙工业基地九龙南路169号。金丽温高铁、金丽温高速穿境而过，距离杭州、温州均为一小时高铁车程。交通便利、物流快捷。</view>
-  <view>历经16年艰苦奋斗，目前公司已发展成为长三角区域内知名的五星级酒店布草专业制作厂家。公司拥有国内最新型中捷电脑平车数十台，以其独到的创意，精湛的工艺，在国内酒店布草行业独领风骚！</view>
-  <view>核心产品：餐厅桌布、会议桌布、酒店椅套、餐巾布艺</view>
-  <view>核心卖点：七星椅套，洗后免烫</view>
-  <view>产品优势：工艺精湛、版型精美、创意独特</view>
-  <view>团队优势：缝纫师傅平均技术工龄12年以上，坚守” 百年事业，千年流芳“之中国工匠精神</view>
-  <view>创新优势：七星岛秉承“造物先造人”的理念，坚持“质量第一、用户至上”的方针，公司业务团队站在用户应用角度去设计方案，最佳设计都来自公司创意与客户理想的有机融合。</view>
-  <image mode="widthFix" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/01784596-7f22-4adb-b8eb-e92df3c7d7f4.png" style="padding:15px 0 10px 0"/>
-  <view>以新颖的设计、先进的工艺、助力全国60%以上旅游职业院校和五星酒店参加市赛、省赛、国赛，助推多个选手荣获全国饭店技能大赛宴会创意摆台冠军。</view>
-  <view>以16年酒店供应商的深度专业能力，为客户量身定制具有独特酒店文化和地方文化的儿童宴布草、生日宴布草、寿禧宴布草、谢师宴布草、乔迁宴布草、感恩宴布草、婚庆宴布草和国宾宴布草等，为酒店赢得了更高客户回头率，为振兴中国酒店餐饮业、助推地方经济包装发力。</view>
-  <view>七星岛布艺官网www.qxbc777.com</view>
-  <view>手机端互动平台：【酒店布草研究院】欢迎大家点评、留言、互动</view>
-  <view>七星岛布艺2016年荣选为杭州G20峰会餐厅布草特邀供应商，贵阳东盟会议酒店布草指定供应商。小布艺大情怀，一针一线出精彩。七星布艺，为您争光！</view>
+  <rich-text nodes="{{company.edesc}}"></rich-text>
 </view>
 <view class="hr"></view>
 <view class="contact">
   <view class="contact_bd">
     <view class="contact_title">联系我们：</view>
-    <view bindtap="tel" data-tel="0571-87126777">电话：0579-87126777</view>
-    <view>传真：0579-87070163</view>
-    <view>邮编：321300</view>
-    <view>厂址：永康市九龙工业区九龙南路 169#</view>
+    <view wx:if="{{company.phone && companycompany.phone != 'null'}}" bindtap="tel" data-tel="{{company.phone}}">电话：{{company.phone}}</view>
+    <view wx:if="{{company.fax && company.fax != 'null'}}">传真：{{company.fax}}</view>
+    <view wx:if="{{company.zipcode && company.zipcode != 'null'}}">邮编：{{company.zipcode}}</view>
+    <view wx:if="{{company.address && company.address != 'null'}}">厂址：{{company.address}}</view>
     <view>门市部：浙江省永康市五金城金都市场七街 97-99-101#</view>
     <view>门市电话：<span bindtap="tel" data-tel="0571-87070376">0579-87070376</span>，<span bindtap="tel" data-tel="0571-87172113">0579-87172113</span></view>
   </view>

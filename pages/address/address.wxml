@@ -2,7 +2,7 @@
 <view class="weui-cells weui-cells_after-title" style="margin-bottom: 5rem;">
   <view class="weui-cell" wx:for="{{list}}" style="{{item.isDefault == 1 ? 'color: #000' : ''}}">
     <view class="weui-cell__hd">
-      <view style="width:10px;height:10px;border-radius: 100%;margin-right: 10px;{{item.isDefault == 1 ? 'background: #ff6214' : ''}}"></view>
+      <view style="width:10px;height:10px;border-radius: 100%;margin-right: 10px;{{item.isDefault == 1 ? 'background: #1f2f5e' : ''}}"></view>
     </view>
     <view class="weui-cell__bd" bindtap="selectCurAddress" data-item="{{item}}" data-isdefault="{{item.isDefault}}">
        {{item.name}}, {{item.mobile}}

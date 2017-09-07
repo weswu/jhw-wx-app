@@ -34,7 +34,7 @@
             </view>
             <view class="weui-cell__bd">
               <view class="pro_title">{{item.name}}</view>
-              <view class="pro_price">￥{{item.price}}</view>
+              <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
             </view>
         </view>
     </view>

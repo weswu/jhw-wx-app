@@ -33,6 +33,10 @@ Page({
         that.setData({
           category: res.data
         })
+        wx.setStorage({
+          key: 'category',
+          data: res.data
+        })
         that.getPro()
       }
     })
@@ -136,7 +140,15 @@ Page({
     })
   },
   onLoad: function () {
-    this.getCategory()
+    var cagtegory = wx.getStorageSync('cagtegory')
+    if (!cagtegory) {
+      this.getCategory()
+    } else {
+      this.setData({
+        cagtegory: cagtegory
+      })
+      this.getPro()
+    }
     var hot = wx.getStorageSync('hotgoods')
     if (!hot) {
       this.getHot()

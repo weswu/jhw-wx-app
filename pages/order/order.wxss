@@ -2,7 +2,7 @@
 .weui-cell{padding-bottom:10px}
 .btn-event{margin:0 15px;padding:10px 0;position:relative;overflow: hidden;border-top: 1px solid #f0f0f0}
 .btn{float:right;display: inline;color: #666;padding: 10rpx 20rpx;border: 1px solid #eee;margin-left: 20rpx;border-radius: 2px}
-.btn.active{border: 1px solid #ff6214;color: #ff6214;}
+.btn.active{border: 1px solid #1f2f5e;color: #1f2f5e;}
 .weui-cells-items{padding: 5px 15px}
 .weui-cells-order::after {border-bottom:none}
 

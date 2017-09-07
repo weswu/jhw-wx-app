@@ -35,7 +35,7 @@
 <view style="margin-bottom:2.5rem">
   <view hidden="{{nav != '1'}}">
     <view class="detail_bd">
-      <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
+      <rich-text nodes="{{detail.proddesc || detail.detail1}}" bindtap="showDescPic"></rich-text>
     </view>
   </view>
 
@@ -95,7 +95,6 @@
              </view>
            </view>
      </view>
-
 
    </view>
    <button class="btn-primary fixed" bindtap="pay" data-url="../cart/cart">确定</button>
