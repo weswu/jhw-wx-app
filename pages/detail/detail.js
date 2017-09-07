@@ -16,7 +16,7 @@ Page({
     empty: false,
     showModalStatus: false,
     attrList: [],
-    argsList:[],
+    argsList: [],
     num: 1,
     productAttr: '',
     skuCode: '',
@@ -35,7 +35,7 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    console.log('产品详细'+ this.data.id +'加载中...')
+    console.log('产品详细' + this.data.id + '加载中...')
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/single/' + this.data.id,
       success: function (res) {
@@ -60,7 +60,7 @@ Page({
   /* 预览图片 */
   showPic: function (e) {
     var urls = []
-    for (var i=0; i<this.data.detail.imagelist.length; i++){
+    for (var i = 0; i < this.data.detail.imagelist.length; i++) {
       urls.push(this.data.detail.imagelist[i].sourceProductImagePath)
     }
     wx.previewImage({
@@ -71,8 +71,8 @@ Page({
   showDescPic: function (e) {
     var urls = []
     var descs = this.data.detail.proddesc.match(/<img[^>]+>/g)
-    if(descs != null){
-      for (var i=0; i<descs.length; i++){
+    if (descs != null) {
+      for (var i = 0; i < descs.length; i++) {
         urls.push(descs[i].replace(/(<img[^>]*?src=['""]([^'""]*?)['""][^>]*?>)/g, '$2'))
       }
       wx.previewImage({
@@ -98,7 +98,7 @@ Page({
         wx.hideLoading()
         var str = res.data.split('jsonpCallback(')[1]
         var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-        if(sell.length > 1){
+        if (sell.length > 1) {
           var data = []
           for (var i = 0; i < sell.length; i++) {
             sell[i].updateTime = util.formatTime(new Date(sell[i].updateTime))
@@ -107,7 +107,7 @@ Page({
           that.setData({
             sellList: data
           })
-        }else{
+        } else {
           that.setData({
             empty: true
           })
@@ -117,12 +117,12 @@ Page({
   },
   /* 页面切换 */
   nav: function (e) {
-    var ctx =this;
+    var ctx = this;
     var nav = e.currentTarget.dataset.nav;
     this.setData({
       nav: nav
     })
-    if(nav === '2'){
+    if (nav === '2') {
       if (!this.data.isSell) {
         this.setData({
           isSell: true
@@ -146,8 +146,8 @@ Page({
       success: function (res) {
         var attrList = res.data.attributes.data
 
-        for(var i=0; i<attrList.length; i++){
-          var element= attrList[i].element;
+        for (var i = 0; i < attrList.length; i++) {
+          var element = attrList[i].element;
           attrList[i].eleList = element.substring(1, element.length - 1).split(',')
         }
         that.setData({
@@ -164,7 +164,7 @@ Page({
   /* 下拉框切换 */
   setModalStatus: function (e) {
     var status = e.currentTarget.dataset.status
-    if (status === "1" && this.data.attrList.length === 0){
+    if (status === "1" && this.data.attrList.length === 0) {
       this.getAttr()
     }
     console.log("设置显示状态，1显示0不显示", status);
@@ -196,7 +196,7 @@ Page({
     }.bind(this), 200)
   },
   /* 属性选择 */
-  attrClick: function(e){
+  attrClick: function (e) {
     // 选择边框
     this.data.attrList[e.target.dataset.index].dx = e.target.dataset.idx
     this.setData({
@@ -204,24 +204,24 @@ Page({
     })
     // 属性图片
 
-    var productAttr=''
+    var productAttr = ''
     var skuCode = ''
-    var appendIds=''
+    var appendIds = ''
     var cost_price = 0
     var pic = ''
-    for(var i=0; i<this.data.attrList.length; i++){
+    for (var i = 0; i < this.data.attrList.length; i++) {
       var attr = this.data.attrList[i].eleList[this.data.attrList[i].dx] || ''
-      if(appendIds === ''){
+      if (appendIds === '') {
         appendIds = attr
         productAttr = this.data.attrList[i].name + ': ' + attr
-      }else{
+      } else {
         appendIds = appendIds + ',' + attr
         productAttr = productAttr + ';  ' + this.data.attrList[i].name + ': ' + attr
       }
     }
 
-    for(var i=0; i<this.data.argsList.length; i++){
-      if(appendIds === this.data.argsList[i].sku_code){
+    for (var i = 0; i < this.data.argsList.length; i++) {
+      if (appendIds === this.data.argsList[i].sku_code) {
         skuCode = this.data.argsList[i].id
         pic = this.data.argsList[i].pic
         cost_price = this.data.argsList[i].cost_price
@@ -235,19 +235,19 @@ Page({
       detail: this.data.detail
     })
 
-    if(pic && pic != ''){
-      this.data.detail.pic_path= 'http://img.jihui88.com/' + pic
+    if (pic && pic != '') {
+      this.data.detail.pic_path = 'http://img.jihui88.com/' + pic
       this.setData({
         detail: this.data.detail
       })
     }
   },
   /* 点击减号 */
-  bindMinus: function() {
+  bindMinus: function () {
     var num = this.data.num;
     // 如果大于1时，才可以减
     if (num > 1) {
-      num --;
+      num--;
     }
     // 只有大于一件的时候，才能normal状态，否则disable状态
     var minusStatus = num <= 1 ? 'disabled' : 'normal';
@@ -258,10 +258,10 @@ Page({
     });
   },
   /* 点击加号 */
-  bindPlus: function() {
+  bindPlus: function () {
     var num = this.data.num;
     // 不作过多考虑自增1
-    num ++;
+    num++;
     // 只有大于一件的时候，才能normal状态，否则disable状态
     var minusStatus = num < 1 ? 'disabled' : 'normal';
     // 将数值与状态写回
@@ -271,7 +271,7 @@ Page({
     });
   },
   /* 输入框事件 */
-  bindManual: function(e) {
+  bindManual: function (e) {
     var num = e.detail.value;
     // 将数值与状态写回
     this.setData({
@@ -282,10 +282,10 @@ Page({
   pay: function () {
     var that = this
 
-    for(var i=0; i<this.data.attrList.length; i++){
-      if(!this.data.attrList[i].dx && this.data.attrList[i].dx !== 0){
+    for (var i = 0; i < this.data.attrList.length; i++) {
+      if (!this.data.attrList[i].dx && this.data.attrList[i].dx !== 0) {
         wx.showModal({
-          title: this.data.attrList[i].name+'未选择'
+          title: this.data.attrList[i].name + '未选择'
         })
         return false
       }
@@ -312,15 +312,15 @@ Page({
       success: function (res) {
         var str = res.data.split('jsonpCallback(')[1]
         var data = JSON.parse(str.substring(0, str.length - 1))
-        if (data.success){
+        if (data.success) {
           wx.navigateTo({
             url: '../cart/cart'
           })
-        }else{
+        } else {
           wx.showModal({
             title: '提示',
             content: data.msg,
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
               } else if (res.cancel) {
@@ -333,13 +333,13 @@ Page({
     })
   },
   imageLoad: function (e) {
-    var $width=e.detail.width,    //获取图片真实宽度
-        $height=e.detail.height,
-        ratio=$width/$height;    //图片的真实宽高比例
+    var $width = e.detail.width,    //获取图片真实宽度
+      $height = e.detail.height,
+      ratio = $width / $height;    //图片的真实宽高比例
 
-    var viewWidth=wx.getSystemInfoSync().windowWidth;    //窗口宽度
-    var viewHeight=viewWidth/ratio;    //计算的高度值
-    if(viewHeight > this.data.swiperHeight){
+    var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
+    var viewHeight = viewWidth / ratio;    //计算的高度值
+    if (viewHeight > this.data.swiperHeight) {
       this.data.swiperHeight = viewHeight
     }
     this.setData({
@@ -359,7 +359,7 @@ Page({
         detail: key
       })
     }
-    if(app.globalData.member === null){
+    if (app.globalData.member === null) {
       app.getUserInfo()
     }
   },

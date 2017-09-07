@@ -34,6 +34,8 @@ Page({
       url: '../category/category'
     })
   },
+
+  // 商品详情接口
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
@@ -42,7 +44,7 @@ Page({
       title: '加载中',
     })
     var url = 'all/' + app.globalData.enterpriseId
-    if(!!this.data.cate_id){
+    if (!!this.data.cate_id) {
       url = 'category_child/' + app.globalData.enterpriseId
       this.data.search.category_id = this.data.cate_id
     }
@@ -52,28 +54,28 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading()
         wx.hideLoading()
-        if(res.data.error === '查询为空'){
+        if (res.data.error === '查询为空') {
           that.setData({
             empty: true
           })
-          if(that.data.search.page === 1){
+          if (that.data.search.page === 1) {
             that.setData({
               emptyTip: '暂无数据'
             })
-          }else{
+          } else {
             that.setData({
               emptyTip: '已全部加载'
             })
           }
           return false
-        }else{
+        } else {
           that.setData({
             empty: false
           })
         }
         var data = res.data.list
-        if(data.length > 0){
-          for(var i=0; i<data.length; i++){
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
@@ -82,7 +84,7 @@ Page({
         that.setData({
           list: that.data.list
         })
-        if(that.data.search.page === 1){
+        if (that.data.search.page === 1) {
           wx.setStorage({
             key: 'proCate' + that.data.cate_id,
             data: that.data.list
@@ -92,13 +94,11 @@ Page({
     })
   },
 
-
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.category_id){
+    if (options.category_id) {
       this.setData({
         cate_id: parseInt(options.category_id.split('Category_')[1]),
         title: options.title
@@ -140,7 +140,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.empty){return false}
+    if (this.data.empty) { return false }
     this.data.search.page += 1
     this.setData({
       search: this.data.search

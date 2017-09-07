@@ -4,7 +4,7 @@
  * @desc: app.js
 */
 App({
-  get: function(){
+  get: function () {
     var that = this
     //调用登录接口
     wx.login({
@@ -30,7 +30,7 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                if(res.data.attributes.data == null){
+                if (res.data.attributes.data == null) {
                   alert('数据为空')
                 }
                 res.data.attributes.data.skey = res.data.attributes.data.skey || ''

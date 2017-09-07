@@ -1,10 +1,10 @@
 <view class="container">
+  <!-- 搜索 -->
   <view class="wxSearch">
     <view class="wxSearch-section">
       <view class="wxSearch-pancel">
         <form class="wxSearch-form">
-          <input type="text" bindinput="wxSearchInput"
-            value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" confirm-type="search" bindconfirm="searchKey"/>
+          <input type="text" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" confirm-type="search" bindconfirm="searchKey" />
           <image src="../../images/search.png" class="search-icon"></image>
           <image wx:if="{{keyword !== ''}}" src="../../images/x.png" class="clear-icon" bindtap="clearKey"></image>
         </form>
@@ -12,31 +12,33 @@
       </view>
     </view>
   </view>
+  <!-- 搜索历史 -->
   <view class="wxSearch-container" wx:if="{{hisShow && hislist.length > 0}}">
     <text class="wxSearchTitle">搜索历史</text>
     <view class="wxSearchHistory">
-        <view class="wxSearchHistoryList">
-            <block wx:for="{{hislist}}">
-                <view class="wxSearchHistoryItem">
-                  <text class="wxSearchHistoryItemText" bindtap="keyClick" data-key="{{item}}">{{item}}</text>
-                  <text class="wxSearchHistoryItemDel" bindtap="keyDel" data-index="{{index}}">删除</text>
-                </view>
-            </block>
-            <view class="wxSearchDeleteAllBtn" bindtap="wxSearchDeleteAll">清除搜索记录</view>
-        </view>
+      <view class="wxSearchHistoryList">
+        <block wx:for="{{hislist}}">
+          <view class="wxSearchHistoryItem">
+            <text class="wxSearchHistoryItemText" bindtap="keyClick" data-key="{{item}}">{{item}}</text>
+            <text class="wxSearchHistoryItemDel" bindtap="keyDel" data-index="{{index}}">删除</text>
+          </view>
+        </block>
+        <view class="wxSearchDeleteAllBtn" bindtap="wxSearchDeleteAll">清除搜索记录</view>
+      </view>
     </view>
   </view>
+  <!-- 商品展示 -->
   <view wx:if="{{list.length > 0}}">
     <view class="weui-cells weui-cells-order">
-        <view class="weui-cell" wx:for="{{list}}" bindtap="page" data-url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
-            <view class="weui-cell__hd">
-              <image src="{{item.pic_path}}"></image>
-            </view>
-            <view class="weui-cell__bd">
-              <view class="pro_title">{{item.name}}</view>
-              <view class="pro_price">￥{{item.price}}</view>
-            </view>
+      <view class="weui-cell" wx:for="{{list}}" bindtap="page" data-url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
+        <view class="weui-cell__hd">
+          <image src="{{item.pic_path}}"></image>
         </view>
+        <view class="weui-cell__bd">
+          <view class="pro_title">{{item.name}}</view>
+          <view class="pro_price">￥{{item.price}}</view>
+        </view>
+      </view>
     </view>
   </view>
   <view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view>

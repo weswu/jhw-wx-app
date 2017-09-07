@@ -21,6 +21,7 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
+  // 订单详情接口
   get: function () {
     var that= this
     wx.showNavigationBarLoading()
@@ -43,6 +44,7 @@ Page({
       }
     })
   },
+  // 微信支付
   pay: function () {
     wx.request({
       url: 'https://wx.jihui88.net/rest/pay/jsapi/getWxAppPayment',
@@ -143,6 +145,7 @@ Page({
       })
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -153,15 +156,6 @@ Page({
       })
     }
     this.get()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '订单详情'
-    })
   },
 
   /**

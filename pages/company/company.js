@@ -14,6 +14,7 @@ Page({
     company: {}
   },
 
+  // 公司简介接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -34,8 +35,9 @@ Page({
       }
     })
   },
+
   // 拨打电话
-  tel: function(e){
+  tel: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.tel
     })
@@ -56,15 +58,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-   onReady: function () {
-     wx.setNavigationBarTitle({
-       title: '公司简介'
-     })
-   },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
@@ -77,7 +70,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title:  '公司简介'
+      title: '公司简介'
     }
   }
 })

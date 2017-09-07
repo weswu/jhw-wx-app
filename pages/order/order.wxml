@@ -1,24 +1,24 @@
 <view wx:if="{{list.length > 0}}">
   <view class="weui-cells weui-cells-order" wx:for="{{list}}">
-
     <view class="separator"></view>
+    <!-- 订单状态 -->
     <view class="weui-cell" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
-        <view class="weui-cell__hd">
-          订单编号：{{item.orderSn}}
-        </view>
-        <view class="weui-cell__bd"></view>
-        <view class="weui-cell__ft">
-            <view wx:if="{{item.orderStatus === 'completed'}}">交易成功</view>
-            <view wx:elif="{{item.orderStatus === 'invalid'}}">交易关闭</view>
-            <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#ff6214">待付款</view>
-            <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#ff6214">待发货</view>
-            <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#ff6214">已发货</view>
-        </view>
+      <view class="weui-cell__hd">
+        订单编号：{{item.orderSn}}
+      </view>
+      <view class="weui-cell__bd"></view>
+      <view class="weui-cell__ft">
+        <view wx:if="{{item.orderStatus === 'completed'}}">交易成功</view>
+        <view wx:elif="{{item.orderStatus === 'invalid'}}">交易关闭</view>
+        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#ff6214">待付款</view>
+        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#ff6214">待发货</view>
+        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#ff6214">已发货</view>
+      </view>
     </view>
-
+    <!-- 商品信息 -->
     <view class="weui-cell weui-cells-items" wx:for="{{item.orderItemSet}}" wx:for-item="pro" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
       <view class="weui-cell__hd">
-          <image src="{{pro.product.picUrl6}}"></image>
+        <image src="{{pro.product.picUrl6}}"></image>
       </view>
       <view class="weui-cell__bd">
         {{pro.product.name}}
@@ -31,26 +31,25 @@
         <view class="quantity">x{{pro.productQuantity}}</view>
       </view>
     </view>
+    <!-- 订单操作 -->
     <view class="btn-event">
       <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn active" bindtap="del" data-id="{{item.orderId}}">删除</text>
-      <!--取消订单-->
-      <text wx:elif="{{item.paymentStatus === 'unpaid' || item.paymentStatus === 'partPayment'}}" class="btn" bindtap="cancel"
-         data-id="{{item.orderId}}" data-cancel="{{item.cancel}}" data-index="{{index}}">{{item.cancel}}</text>
+      <!-- 取消 -->
+      <text wx:elif="{{item.paymentStatus === 'unpaid' || item.paymentStatus === 'partPayment'}}" class="btn" bindtap="cancel" data-id="{{item.orderId}}" data-cancel="{{item.cancel}}" data-index="{{index}}">{{item.cancel}}</text>
       <text wx:elif="{{item.shippingStatus === 'shipped' || item.shippingStatus === 'partShipped'}}">
         <text wx:if="{{item.orderStatus !== 'completed'}}">
-          <!--确定收货-->
+          <!-- 确定收货 -->
           <text wx:if="{{item.shippingStatus === 'shipped'}}" class="btn" bindtap="comfirm"
              data-id="{{item.orderId}}" data-comfirm="{{item.comfirm}}" data-index="{{index}}">{{item.comfirm}}</text>
-        </text>
-        <text wx:if="{{item.orderStatus === 'completed'}}" class="btn">交易成功</text>
-
       </text>
+      <text wx:if="{{item.orderStatus === 'completed'}}" class="btn">交易成功</text>
+      </text>
+      <!-- 留言 -->
       <text wx:elif="{{item.shippingStatus === 'unshipped'}}" class="btn" bindtap="send" data-ordersn="{{item.orderSn}}" data-mobile="{{item.shipMobile}}">联系商家发货</text>
     </view>
-
   </view>
 </view>
-
+<!-- 订单为空 -->
 <view wx:elif="{{list.length === 0 && empty}}">
   <view class="emptyOrder panel">
     <image src="../../images/order.png"></image>

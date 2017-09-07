@@ -1,7 +1,9 @@
+<!-- 公司简介 -->
 <view class="company">
   <rich-text nodes="{{company.edesc}}"></rich-text>
 </view>
 <view class="hr"></view>
+<!-- 联系方式 -->
 <view class="contact">
   <view class="contact_bd">
     <view class="contact_title" wx:if="{{company.name}}">{{company.name}}</view>

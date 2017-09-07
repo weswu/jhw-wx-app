@@ -1,4 +1,3 @@
-<!--setting.wxml-->
 <view class="setting">
   <image mode="widthFix" style="width:160px;height:auto;" src="http://img.jihui88.com/{{enterprise.logo}}"></image>
   <text>{{enterprise.name}}</text>
@@ -6,18 +5,18 @@
 
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell" bindtap="tel">
-        <view class="weui-cell__hd"></view>
-        <view class="weui-cell__bd">联系客服</view>
-        <view class="weui-cell__ft">{{enterprise.phone}}</view>
+      <view class="weui-cell__hd"></view>
+      <view class="weui-cell__bd">联系客服</view>
+      <view class="weui-cell__ft">{{enterprise.phone}}</view>
     </view>
     <view class="weui-cell" bindtap="page" data-url="feedback">
-        <view class="weui-cell__hd"></view>
-        <view class="weui-cell__bd">意见反馈</view>
+      <view class="weui-cell__hd"></view>
+      <view class="weui-cell__bd">意见反馈</view>
     </view>
     <view class="weui-cell" bindtap="clear">
-        <view class="weui-cell__hd"></view>
-        <view class="weui-cell__bd">清除缓存</view>
-        <view class="weui-cell__ft">{{tip}}</view>
+      <view class="weui-cell__hd"></view>
+      <view class="weui-cell__bd">清除缓存</view>
+      <view class="weui-cell__ft">{{tip}}</view>
     </view>
   </view>
 </view>

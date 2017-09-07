@@ -1,5 +1,5 @@
-<!--cart.wxml-->
 <view wx:if="{{cartItemSet.length > 0}}">
+  <!-- 商品信息-->
   <view class="weui-cells weui-cells-order">
     <view class="weui-cell" wx:for="{{cartItemSet}}">
         <view class="weui-cell__hd">
@@ -18,7 +18,7 @@
         </view>
     </view>
   </view>
-
+  <!-- 收货地址-->
   <view class="weui-cells weui-cells-order">
     <view class="weui-cell">
         <view class="weui-cell__bd">收货人信息</view>
@@ -32,7 +32,7 @@
       </view>
     </view>
   </view>
-
+  <!-- 配送方式-->
   <view class="weui-cells weui-cells-order">
     <picker bindchange="pickChange" value="{{deliveryIndex}}" range="{{deliveryList}}">
       <view class="weui-cell">
@@ -41,8 +41,7 @@
       </view>
     </picker>
   </view>
-
-
+  <!-- 所需价格 -->
   <view class="weui-cells weui-cells-order" style="margin-bottom:2.4rem;">
     <view class="weui-cell">
         <view class="weui-cell__bd">订单总价</view>
@@ -63,7 +62,7 @@
   </view>
   <button class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
 </view>
-
+<!-- 购物车为空 -->
 <view wx:elif="{{cartItemSet.length === 0 && empty}}">
   <view class="emptyCart panel">
     <image src="../../images/cart.png"></image>
