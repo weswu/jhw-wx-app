@@ -8,15 +8,15 @@
 ## 项目模板(分支控制)
 每一个分支对应一个模板，无需合并分支，develop开发和调试新功能
 
-`master` 基础模板
+`master` 基础功能模板
 
 `jihui` 机汇网
 
-`qixingbucao` 七星布草 zaingdev
+`qixing` 七星布草 zaingdev
 
 ### 新建模板
 ```
-git checkout -b qixingbucao master
+git checkout -b qixing master
 ```
 
 ### 查看模板

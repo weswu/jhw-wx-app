@@ -21,7 +21,6 @@ App({
               data: {
                 code: re.code,
                 appid: that.globalData.appid,
-                appsecret: that.globalData.appsecret,
                 enterpriseId: that.globalData.enterpriseId,
                 nickname: that.globalData.userInfo.nickName,
                 skey: wx.getStorageSync('skey') || ''
@@ -52,19 +51,20 @@ App({
     }
   },
   onLaunch: function () {
-    // 总网站的参数
-    var that = this
-    wx.getExtConfig({
-      success: function (res) {
-        that.globalData.appid = res.extConfig.appid
-        that.globalData.enterpriseId = res.extConfig.enterprise_id
-        that.globalData.appsecret = res.extConfig.appsecret
-        that.globalData.userId = res.extConfig.user_id
-      }
-    })
-    // 登录用户信息
-    this.getUserInfo()
-  },
+     // 总网站的参数
+     var that = this
+     wx.getExtConfig({
+       success: function (res) {
+         that.globalData = {
+           appid: res.extConfig.appid,
+           enterpriseId: res.extConfig.enterprise_id,
+           userId: res.extConfig.user_id
+         }
+       }
+     })
+     // 登录用户信息
+     this.getUserInfo()
+   },
 
   onShow: function () {
     console.log('App Show')
