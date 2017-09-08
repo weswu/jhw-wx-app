@@ -1,9 +1,8 @@
 {
   "extEnable": true,
-  "extAppid": "wx860be22a8b03bbd9",
+  "extAppid": "wx844f6d19443dd787",
   "ext": {
-    "appid": "wx860be22a8b03bbd9",
-    "appsecret": "0070570f1225a9f9efa25265405c2efe",
+    "appid": "wx844f6d19443dd787",
     "enterprise_id": "Enterp_0000000000000000000049341",
     "user_id": "User_000000000000000000000050555"
   },

@@ -16,7 +16,6 @@ App({
           data: {
             code: res.code,
             appid: that.globalData.appid,
-            appsecret: that.globalData.appsecret,
             enterpriseId: that.globalData.enterpriseId,
             skey: wx.getStorageSync('skey') || ''
           },
@@ -56,7 +55,6 @@ App({
       success: function (res) {
         that.globalData.appid = res.extConfig.appid
         that.globalData.enterpriseId = res.extConfig.enterprise_id
-        that.globalData.appsecret = res.extConfig.appsecret
         that.globalData.userId = res.extConfig.user_id
       }
     })
