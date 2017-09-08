@@ -13,8 +13,6 @@
     "pages/address/addressDetail",
     "pages/address/address",
     "pages/setting/setting",
-    "pages/login/login",
-    "pages/login/register",
     "pages/setting/feedback"
   ],
   "window": {

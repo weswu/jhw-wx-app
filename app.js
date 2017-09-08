@@ -50,10 +50,17 @@ App({
     }
   },
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // 总网站的参数
+    var that = this
+    wx.getExtConfig({
+      success: function (res) {
+        that.globalData.appid = res.extConfig.appid
+        that.globalData.enterpriseId = res.extConfig.enterprise_id
+        that.globalData.appsecret = res.extConfig.appsecret
+        that.globalData.userId = res.extConfig.user_id
+      }
+    })
+    // 登录用户信息
     this.getUserInfo()
   },
 
@@ -64,11 +71,7 @@ App({
     console.log('App Hide')
   },
   globalData: {
-    appid: 'wx860be22a8b03bbd9',
-    appsecret: '0070570f1225a9f9efa25265405c2efe',
     userInfo: null,
-    member: null,
-    enterpriseId: 'Enterp_0000000000000000000049341',
-    userId: 'User_000000000000000000000050555'
+    member: null
   }
 })

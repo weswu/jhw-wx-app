@@ -9,17 +9,8 @@ Page( {
   data: {
     userInfo: {}
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo( {
-      url: '../logs/logs'
-    })
-  },
   page: function(e) {
     var url = e.currentTarget.dataset.url
-    if (url.indexOf('login/login') >-1 ){
-      url = url + '?openid=' + this.data.userInfo.openid
-    }
     wx.navigateTo({
         url: url
     })
