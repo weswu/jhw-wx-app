@@ -30,12 +30,13 @@ Page({
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
       success: function (res) {
+        var data = res.data
         that.setData({
-          category: res.data
+          category: data
         })
         wx.setStorage({
           key: 'category',
-          data: res.data
+          data: data
         })
         that.getPro()
       }
@@ -74,7 +75,7 @@ Page({
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
     if(app.globalData.member === null){app.getUserInfo()}
-    console.log('首页数据加载中...')
+    console.log('首页数据加载中...'+this.data.active)
     const cate_id = parseInt(this.data.category[this.data.active].category_id.split('Category_')[1])
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/category/' + cate_id + '?page=1&per_page=2',
@@ -140,12 +141,13 @@ Page({
     })
   },
   onLoad: function () {
-    var cagtegory = wx.getStorageSync('cagtegory')
-    if (!cagtegory) {
+    var category = wx.getStorageSync('category')
+    if (!category) {
       this.getCategory()
     } else {
+      this.data.category = category
       this.setData({
-        cagtegory: cagtegory
+        category: category
       })
       this.getPro()
     }
@@ -174,7 +176,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '七星布草'
+      title: '商城'
     }
   }
 })
