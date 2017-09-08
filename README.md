@@ -6,7 +6,7 @@
 
 
 ## 项目模板(分支控制)
-每一个分支对应一个模板，无需合并分支，develop开发和调试新功能
+每一个分支对应一个模板，无需合并分支，develop开发和调试新功能 (注：分支名称不可超过10个字符)
 
 `master` 基础功能模板
 
@@ -19,14 +19,14 @@
 git checkout -b qixing master
 ```
 
+### 切换模板
+```
+git checkout qixing
+```
+
 ### 查看模板
 ```
 git branch -a
-```
-
-### 切换模板
-```
-git checkout qixingbucao
 ```
 
 ### 删除模板（分支）
