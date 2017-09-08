@@ -30,7 +30,8 @@ Page({
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
       success: function (res) {
-        var data = res.data
+        let data = res.data
+        console.log('data...'+res.data[0])
         that.setData({
           category: data
         })
@@ -75,7 +76,11 @@ Page({
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
     if(app.globalData.member === null){app.getUserInfo()}
-    console.log('首页数据加载中...'+this.data.active)
+    console.log('首页数据加载中...')
+    if (!this.data.category[this.data.active]) {
+      this.getCategory()
+      return false
+    }
     const cate_id = parseInt(this.data.category[this.data.active].category_id.split('Category_')[1])
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/category/' + cate_id + '?page=1&per_page=2',
