@@ -29,6 +29,12 @@ git branch -a
 git checkout qixingbucao
 ```
 
+### 删除模板（分支）
+```
+git branch -d qixingbucao
+git push origin :qixingbucao
+```
+
 ### 在develop分支下合并master
 ```
 git rebase master
