@@ -1,13 +1,15 @@
+<!-- 搜索 -->
 <view class="search">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
     搜索商品
   </view>
 </view>
+<!-- 产品展示 -->
 <view class="goods">
   <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
     <view class="item_grow item_pic">
-      <image  mode="widthFix" src="{{item.pic_path}}"></image>
+      <image mode="widthFix" src="{{item.pic_path}}"></image>
     </view>
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
@@ -15,4 +17,5 @@
     </view>
   </navigator>
 </view>
+<!-- 数据为空 -->
 <view wx:if="{{empty}}" style="text-align: center;font-size:14px;color:#999;padding:10px 0 20px 0;">{{emptyTip}}</view>

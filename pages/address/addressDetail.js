@@ -13,33 +13,35 @@ Page({
   data: {
     // 1
     province: [], //对像集合
-    one:['请选择'], //字符集合
-    oneIndex:0, // 实际显示参数
+    one: ['请选择'], //字符集合
+    oneIndex: 0, // 实际显示参数
     // 2
     city: [],
     two: ['请选择'],
-    twoIndex:0,
+    twoIndex: 0,
     // 3
     county: [],
     three: ['请选择'],
-    threeIndex:0,
-    address:{},
+    threeIndex: 0,
+    address: {},
     isAdd: true
   },
+
+  // 收货地址详情接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ this.data.address.receiverId,
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/' + this.data.address.receiverId,
       data: {
         skey: app.globalData.member.skey
       },
       success: function (res) {
-        var data= res.data.attributes.data;
-        var oneIndex=0;
-        for(var i=0; i<that.data.province.length;i++){
-          if(that.data.province[i].value == data.areaPath.split(',')[0]){
-            oneIndex=i
+        var data = res.data.attributes.data;
+        var oneIndex = 0;
+        for (var i = 0; i < that.data.province.length; i++) {
+          if (that.data.province[i].value == data.areaPath.split(',')[0]) {
+            oneIndex = i
           }
         }
         that.setData({
@@ -47,18 +49,18 @@ Page({
           isAdd: false,
           address: data
         })
-        that.childrenArea({ path: data.areaPath.split(',')[0], type: '1' ,init: true})
-        that.childrenArea({ path: data.areaPath.split(',')[0]+','+data.areaPath.split(',')[1], type: '2' ,init: true})
+        that.childrenArea({ path: data.areaPath.split(',')[0], type: '1', init: true })
+        that.childrenArea({ path: data.areaPath.split(',')[0] + ',' + data.areaPath.split(',')[1], type: '2', init: true })
         wx.hideNavigationBarLoading()
       }
     })
   },
   // 选择地址
-  pickChange: function(e) {
+  pickChange: function (e) {
     var type = e.currentTarget.dataset.type
-    if(type === '1'){
+    if (type === '1') {
       var val = this.data.province[e.detail.value].value
-      this.data.address.areaPath =  val
+      this.data.address.areaPath = val
       this.setData({
         oneIndex: e.detail.value,
         twoIndex: 0,
@@ -68,7 +70,7 @@ Page({
       this.childrenArea({ path: val, type: type })
     } else if (type === '2') {
       var val = this.data.city[e.detail.value].value
-      this.data.address.areaPath =  val
+      this.data.address.areaPath = val
       this.setData({
         twoIndex: e.detail.value,
         threeIndex: 0,
@@ -76,7 +78,7 @@ Page({
       });
       this.childrenArea({ path: val, type: type })
     } else if (type === '3') {
-      this.data.address.areaPath =  this.data.county[e.detail.value].value
+      this.data.address.areaPath = this.data.county[e.detail.value].value
       this.setData({
         threeIndex: e.detail.value,
         address: this.data.address
@@ -84,14 +86,14 @@ Page({
     }
   },
   // 加载地区
-  childrenArea: function(e){
+  childrenArea: function (e) {
     var that = this;
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea?path=' + e.path,
       success: function (res) {
         var data = JSON.parse(res.data.attributes.data);
         var one = []
-        if (data.length > 0){
+        if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             one.push(data[i].title)
           }
@@ -107,29 +109,29 @@ Page({
               three: one
             })
           }
-          if(e.init){
+          if (e.init) {
             var index = 0
             var areaPath
             if (e.type == '1') {
-              areaPath =that.data.address.areaPath.split(',')[0]+','+that.data.address.areaPath.split(',')[1]
-            }else{
-              areaPath =that.data.address.areaPath
+              areaPath = that.data.address.areaPath.split(',')[0] + ',' + that.data.address.areaPath.split(',')[1]
+            } else {
+              areaPath = that.data.address.areaPath
             }
-            for(var i=0; i<data.length;i++){
-              if(data[i].value === areaPath){
-                index=i
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].value === areaPath) {
+                index = i
               }
             }
             if (e.type == '1') {
               that.setData({
                 twoIndex: index
               })
-            }else{
+            } else {
               that.setData({
                 threeIndex: index
               })
             }
-          }else{
+          } else {
             that.data.address.areaPath = data[0].value
             that.setData({
               address: that.data.address
@@ -141,7 +143,7 @@ Page({
   },
 
   // 输入信息
-  address: function(e){
+  address: function (e) {
     var address = e.currentTarget.dataset.address
     if (address === 'name') {
       this.data.address.name = e.detail.value
@@ -157,29 +159,29 @@ Page({
     })
   },
   // 提交
-  submit: function(){
+  submit: function () {
     var that = this
-    if(!this.data.address.name){
+    if (!this.data.address.name) {
       this.dialog('姓名不能为空！')
       return false
     }
     var tel = /^1[3|4|5|8][0-9]\d{4,8}$/;
-    if(!tel.test(this.data.address.mobile)){
+    if (!tel.test(this.data.address.mobile)) {
       this.dialog('手机号码错误！')
       return false
     }
-    if(!this.data.address.mobile){
+    if (!this.data.address.mobile) {
       this.dialog('电话不能为空！')
       return false
     }
-    if(!this.data.address.address){
+    if (!this.data.address.address) {
       this.dialog('收货地址不能为空！')
       return false
     }
     this.data.address.isDefault = '1'
-    var url= 'https://wx.jihui88.net/rest/api/shop/receiver/detail';
-    if(!this.data.isAdd){
-      url= url + '/' + this.data.address.receiverId
+    var url = 'https://wx.jihui88.net/rest/api/shop/receiver/detail';
+    if (!this.data.isAdd) {
+      url = url + '/' + this.data.address.receiverId
       this.data.address.model = JSON.stringify(this.data.address)
       this.data.address._method = 'put'
     }
@@ -194,18 +196,18 @@ Page({
       success: function (res) {
         var key = wx.getStorageSync('addressList')
         var data = res.data.attributes.data
-        if(that.data.isAdd){
+        if (that.data.isAdd) {
           if (key) {
             key.push(data)
-          }else{
-            key= data
+          } else {
+            key = data
           }
-        }else{
-          for(var i=0; i<key.length; i++){
-            if(key[i].receiverId === data.receiverId){
+        } else {
+          for (var i = 0; i < key.length; i++) {
+            if (key[i].receiverId === data.receiverId) {
               data.isDefault = '1'
               key[i] = data
-            }else{
+            } else {
               key[i].isDefault = '0'
             }
           }
@@ -226,11 +228,12 @@ Page({
       content: title
     })
   },
-  // 删除
-  del: function(){
+
+  // 删除接口
+  del: function () {
     var that = this
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ this.data.address.receiverId,
+      url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/' + this.data.address.receiverId,
       method: 'post',
       data: {
         _method: 'DELETE',
@@ -240,11 +243,11 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        if(res.data.success){
+        if (res.data.success) {
           var key = wx.getStorageSync('addressList')
-          for(var i=0; i<key.length; i++){
-            if(key[i].receiverId === that.data.address.receiverId){
-              key.splice(i,1)
+          for (var i = 0; i < key.length; i++) {
+            if (key[i].receiverId === that.data.address.receiverId) {
+              key.splice(i, 1)
               wx.setStorage({
                 key: 'addressList',
                 data: key
@@ -252,7 +255,6 @@ Page({
             }
           }
         }
-
         wx.navigateBack({
           delta: 1
         })
@@ -260,7 +262,7 @@ Page({
     })
   },
 
-  // 初始化
+  // 初始化地区
   getProvince: function () {
     var that = this
     var province = wx.getStorageSync('province')
@@ -279,29 +281,27 @@ Page({
           that.one(province)
         }
       })
-    }else{
+    } else {
       this.one(province)
     }
   },
   one: function (province) {
-    var one =[]
-    for(var i=0; i<province.length;i++){
+    var one = []
+    for (var i = 0; i < province.length; i++) {
       one.push(province[i].title)
     }
     this.setData({
       province: province,
       one: one
     })
-    if(this.data.isAdd){
-      // this.childrenArea({ path: province[0].value, type: '1' })
-    }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getProvince()
-    if(options.id){
+    if (options.id) {
       this.data.address.receiverId = options.id
       this.setData({
         isAdd: false,
@@ -310,15 +310,16 @@ Page({
       this.get()
     }
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
-    var title= '收货地址详细'
-    if (!this.data.isAdd) { title = '修改收货地址' } else { title = '新增收货地址'}
-    wx.setNavigationBarTitle({
-      title: title
-    })
+    if (!!this.data.isAdd) {
+      wx.setNavigationBarTitle({
+        title: '新增收货地址'
+      })
+    }
   },
 
   /**

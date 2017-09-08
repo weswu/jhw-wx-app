@@ -3,19 +3,20 @@
  * @date: 2017-7-25
  * @desc: 个人中心
 */
-//获取应用实例
 var app = getApp()
-Page( {
+
+Page({
   data: {
     userInfo: {}
   },
-  page: function(e) {
-    var url = e.currentTarget.dataset.url
+  // 跳转页面
+  page: function (e) {
     wx.navigateTo({
-        url: url
+      url: e.currentTarget.dataset.url
     })
   },
-  onLoad: function() {
+
+  onLoad: function () {
     var that = this
     //调用应用实例的方法获取全局数据
     this.setData({
@@ -24,11 +25,6 @@ Page( {
     })
   },
 
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '个人中心'
-    })
-  },
   /**
    * 用户点击右上角分享
    */

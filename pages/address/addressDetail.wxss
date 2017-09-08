@@ -1,5 +1,3 @@
-/* addressDetail.wxss */
+/* 默认样式 */
 .title{padding:15px 15px 10px 15px;font-size:12px}
 .weui-cell__hd{font-size:12px}
-.weui-cell__ft{width:60px}
-image{float:left}

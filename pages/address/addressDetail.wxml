@@ -1,7 +1,6 @@
-<!--addressDetail.wxml-->
 <view class="container">
+  <!-- 收货人信息 -->
   <view class="title">收货人信息</view>
-
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
         <view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
@@ -16,7 +15,7 @@
         <view class="weui-cell__bd"><input value='{{address.zipCode}}' type='number' bindinput="address" data-address="zipCode" placeholder="邮政编码"/></view>
     </view>
   </view>
-
+    <!-- 收货地址 -->
   <view class="title">收货地址</view>
     <view class="weui-cells weui-cells_after-title">
       <picker bindchange="pickChange" value="{{oneIndex}}" range="{{one}}" data-type="1">

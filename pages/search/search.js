@@ -27,7 +27,7 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
-  // 搜索
+  // 搜索商品接口
   get: function () {
     var that = this
     wx.showLoading({
@@ -42,28 +42,28 @@ Page({
       },
       success: function (res) {
         wx.hideLoading()
-        if(res.data.error === '查询为空'){
+        if (res.data.error === '查询为空') {
           that.setData({
             empty: true
           })
-          if(that.data.search.page === 1){
+          if (that.data.search.page === 1) {
             that.setData({
               emptyTip: '暂无数据'
             })
-          }else{
+          } else {
             that.setData({
               emptyTip: '已全部加载'
             })
           }
           return false
-        }else{
+        } else {
           that.setData({
             empty: false
           })
         }
         var data = res.data.list
-        if(data.length > 0){
-          for(var i=0; i<data.length; i++){
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             data[i].pic_path = util.picUrl(data[i].pic_path, 6)
             that.data.list.push(data[i])
@@ -80,6 +80,7 @@ Page({
       keyword: e.detail.value
     })
   },
+  // 清空关键字
   clearKey: function () {
     this.data.search.page = 1
     this.setData({
@@ -90,6 +91,7 @@ Page({
       hisShow: true
     })
   },
+  // 搜索关键字
   searchKey: function () {
     this.data.search.page = 1
     this.setData({
@@ -97,9 +99,9 @@ Page({
       search: this.data.search,
       hisShow: false
     })
-    if(this.data.hislist.length > 0){
-      for(var i=0; i<this.data.hislist.length; i++){
-        if(this.data.keyword === this.data.hislist[i]){
+    if (this.data.hislist.length > 0) {
+      for (var i = 0; i < this.data.hislist.length; i++) {
+        if (this.data.keyword === this.data.hislist[i]) {
           this.data.hislist.splice(i, 1)
         }
       }
@@ -121,6 +123,7 @@ Page({
     })
     this.searchKey()
   },
+  // 删除单个记录
   keyDel: function (e) {
     this.data.hislist.splice(e.currentTarget.dataset.index, 1)
     this.setData({
@@ -131,6 +134,7 @@ Page({
       data: this.data.hislist
     })
   },
+  // 删除历史记录
   wxSearchDeleteAll: function () {
     wx.removeStorageSync('hislist')
     this.setData({
@@ -141,6 +145,7 @@ Page({
       data: this.data.hislist
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -151,15 +156,6 @@ Page({
         hislist: hislist
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '搜索商品'
-    })
   },
 
   /**

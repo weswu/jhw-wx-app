@@ -14,11 +14,12 @@ Page({
     list: [],
     active: 'all'
   },
-  // 跳转
+
+  // 跳转到产品页面
   page: function (e) {
     var url = e.currentTarget.dataset.url
     var active = 'all'
-    if(url.indexOf('../product/product?category_id')>-1){
+    if (url.indexOf('../product/product?category_id') > -1) {
       active = e.currentTarget.dataset.cate
     }
     this.setData({
@@ -32,7 +33,8 @@ Page({
       url: url
     })
   },
-  // 获取
+
+  // 产品分类接口
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据
@@ -52,6 +54,7 @@ Page({
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -65,16 +68,9 @@ Page({
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '分类'
-    })
-  },
 
   onShow: function () {
+    // 设置选中分类
     var key = wx.getStorageSync('active')
     if (key) {
       this.setData({
@@ -82,12 +78,13 @@ Page({
       })
     }
   },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     this.get()
-    wx.stopPullDownRefresh() //停止下拉刷新
+    wx.stopPullDownRefresh()
   },
 
   /**

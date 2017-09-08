@@ -1,12 +1,12 @@
 {
   "extEnable": true,
-  "extAppid": "wx844f6d19443dd787",
+  "extAppid": "wx031271ed9d1f909f",
   "ext": {
-    "appid": "wx844f6d19443dd787",
+    "appid": "wx031271ed9d1f909f",
     "enterprise_id": "Enterp_0000000000000000000049341",
-    "user_id": "User_000000000000000000000050555"
+    "user_id": "User_000000000000000000000065262"
   },
   "window": {
-    "navigationBarTitleText": "机汇网络科技"
+    "navigationBarTitleText": "机汇网商城"
   }
 }

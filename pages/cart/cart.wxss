@@ -1,6 +1,5 @@
-/* cart.wxss */
+/* 右边价格颜色 */
 .weui-cell__ft{color:#ff6214}
-
-/* 空 */
+/* 购物车为空 */
 .emptyCart image{width:128px;height:128px;margin:0 auto;padding:1rem 0 0 0;display:block}
 .emptyCart text{text-align:center;padding:1rem 0 2rem 0;font-size:1rem;color:#999;display:block}

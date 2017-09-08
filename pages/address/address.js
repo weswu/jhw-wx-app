@@ -20,7 +20,7 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
-  // 修改默认收货地址
+  // 修改默认收货地址，跳转到购物车页面
   selectCurAddress: function (e) {
     var that = this
     var item = e.currentTarget.dataset.item
@@ -30,17 +30,17 @@ Page({
       data: item
     })
 
-    if(e.currentTarget.dataset.isdefault === '0'){
+    if (e.currentTarget.dataset.isdefault === '0') {
       var list = this.data.list
-      for(var i=0; i<list.length; i++){
-        if(list[i].receiverId === item.receiverId){
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].receiverId === item.receiverId) {
           var address = list[i]
           address.isDefault = '1'
           address.skey = app.globalData.member.skey
           address.model = JSON.stringify(address)
           address._method = 'put'
           wx.request({
-            url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/'+ item.receiverId,
+            url: 'https://wx.jihui88.net/rest/api/shop/receiver/detail/' + item.receiverId,
             method: 'post',
             data: address,
             header: {
@@ -52,7 +52,7 @@ Page({
               })
             }
           })
-        }else{
+        } else {
           list[i].isDefault = '0'
         }
       }
@@ -60,12 +60,14 @@ Page({
         key: 'addressList',
         data: list
       })
-    }else{
+    } else {
       wx.navigateBack({
         delta: 1
       })
     }
   },
+
+  // 收货地址接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -86,6 +88,8 @@ Page({
       }
     })
   },
+
+  // 新增收货地址
   xinzhenAddress: function () {
     var that = this
     wx.getSetting({
@@ -102,13 +106,15 @@ Page({
               })
             }
           })
-        }else{
+        } else {
           that.wxAddress()
         }
       }
     })
   },
-  wxAddress: function(){
+
+  // 微信收货地址，并转换成后台数据
+  wxAddress: function () {
     var that = this
     wx.chooseAddress({
       success: function (res) {
@@ -142,21 +148,22 @@ Page({
               that.getArea1(province)
             }
           })
-        }else{
+        } else {
           that.getArea1(province)
         }
 
       }
     })
   },
+  // 省级
   getArea1: function (province) {
     var that = this
     var areaPath = ''
     for (var i = 0; i < province.length; i++) {
-      if(province[i].title === that.data.provinceName){
+      if (province[i].title === that.data.provinceName) {
         areaPath = province[i].value
 
-        var city = wx.getStorageSync('area'+areaPath)
+        var city = wx.getStorageSync('area' + areaPath)
         if (!city) {
           wx.request({
             url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
@@ -167,30 +174,31 @@ Page({
             success: function (res) {
               city = JSON.parse(res.data.attributes.data);
               wx.setStorage({
-                key: 'area'+areaPath,
+                key: 'area' + areaPath,
                 data: city
               })
               that.getArea2(city)
             }
           })
-        }else{
+        } else {
           that.getArea2(city)
         }
       }
     }
   },
+  // 市级
   getArea2: function (city) {
     var that = this
     var areaPath = ''
     for (var i = 0; i < city.length; i++) {
-      if(city[i].title === that.data.cityName){
-        areaPath=city[i].value;
+      if (city[i].title === that.data.cityName) {
+        areaPath = city[i].value;
         that.data.address.areaPath = areaPath;
         that.setData({
           address: that.data.address
         })
 
-        var county = wx.getStorageSync('area'+areaPath)
+        var county = wx.getStorageSync('area' + areaPath)
         if (!county) {
           wx.request({
             url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
@@ -201,24 +209,25 @@ Page({
             success: function (res) {
               county = JSON.parse(res.data.attributes.data);
               wx.setStorage({
-                key: 'area'+areaPath,
+                key: 'area' + areaPath,
                 data: county
               })
               that.getArea3(county)
             }
           })
-        }else{
+        } else {
           that.getArea3(county)
         }
 
       }
     }
   },
+  // 县级
   getArea3: function (county) {
     var that = this
     if (county.length != 0 && that.data.countyName != null) {
       for (var i = 0; i < county.length; i++) {
-        if(county[i].title === that.data.countyName){
+        if (county[i].title === that.data.countyName) {
           that.data.address.areaPath = county[i].value;
           that.setData({
             address: that.data.address
@@ -226,11 +235,12 @@ Page({
           that.addAddress()
         }
       }
-    }else{
+    } else {
       that.addAddress()
     }
   },
-  // 添加地址
+
+  // 转换成功后，添加收货地址
   addAddress: function () {
     var that = this
     wx.request({
@@ -243,7 +253,7 @@ Page({
         areaPath: this.data.address.areaPath,
         address: this.data.address.address,
         zipCode: this.data.address.zipCode,
-        isNoneDelivery:'',
+        isNoneDelivery: '',
         phone: '',
         skey: app.globalData.member.skey
       },
@@ -251,11 +261,10 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        for(var i=0; i<that.data.list.length; i++){
+        for (var i = 0; i < that.data.list.length; i++) {
           that.data.list[i].isDefault = '0'
         }
         that.data.list.push(res.data.attributes.data)
-
         wx.setStorage({
           key: 'addressList',
           data: that.data.list
@@ -267,7 +276,6 @@ Page({
       }
     })
   },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -292,15 +300,6 @@ Page({
     } else {
       this.get()
     }
-  },
-  
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '选择收货地址'
-    })
   },
 
   /**

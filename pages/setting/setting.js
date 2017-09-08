@@ -17,12 +17,13 @@ Page({
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     })
-  },  
+  },
+  // 获取logo
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
     wx.request({
-      url: 'https://wx.jihui88.net/rest/api/comm/enterprise/info?enterpriseId='+ app.globalData.enterpriseId,
+      url: 'https://wx.jihui88.net/rest/api/comm/enterprise/info?enterpriseId=' + app.globalData.enterpriseId,
       data: {
         skey: app.globalData.member.skey
       },
@@ -42,11 +43,13 @@ Page({
       }
     })
   },
-  tel: function(){
+  tel: function () {
     wx.makePhoneCall({
       phoneNumber: this.data.enterprise.phone
     })
   },
+
+  // 清空缓存
   clear: function () {
     var that = this
     wx.clearStorage()
@@ -57,8 +60,9 @@ Page({
       that.setData({
         tip: ''
       })
-    },5000)
+    }, 5000)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -74,41 +78,11 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-   onReady: function () {
-     wx.setNavigationBarTitle({
-       title: '设置'
-     })
-   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     this.get()
     wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**

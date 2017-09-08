@@ -1,19 +1,17 @@
-<!--detail.wxml-->
+<!-- 轮播 -->
 <view class="detail_hd">
   <view wx:if="{{detail.imagelist.length>1}}">
-    <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
-      indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
-        <block wx:for="{{detail.imagelist}}">
-            <swiper-item>
-                <image mode="widthFix" src="{{item.sourceProductImagePath}}" class="slide-image" bindload="imageLoad"
-                  bindtap="showPic" data-src="{{item.sourceProductImagePath}}"/>
-            </swiper-item>
-        </block>
+    <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px" indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
+      <block wx:for="{{detail.imagelist}}">
+        <swiper-item>
+          <image mode="widthFix" src="{{item.sourceProductImagePath}}" class="slide-image" bindload="imageLoad" bindtap="showPic" data-src="{{item.sourceProductImagePath}}" />
+        </swiper-item>
+      </block>
     </swiper>
   </view>
   <view wx:elif="{{detail.imagelist.length===1}}">
     <view wx:for="{{detail.imagelist}}">
-      <image mode="widthFix" class="banner" src="{{item.sourceProductImagePath}}" bindtap="showPic" data-src="{{item.sourceProductImagePath}}"/>
+      <image mode="widthFix" class="banner" src="{{item.sourceProductImagePath}}" bindtap="showPic" data-src="{{item.sourceProductImagePath}}" />
     </view>
   </view>
   <view class="detail_title">
@@ -21,24 +19,25 @@
     <view class="price">￥{{detail.price}}</view>
   </view>
 </view>
-
 <view class='separator'></view>
+<!-- 切换 -->
 <view class="weui-navbar">
   <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
-      图文详情
+    图文详情
   </view>
   <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2" style="border-right:none">
-      成交记录
+    成交记录
   </view>
 </view>
 
 <view style="margin-bottom:2.5rem">
+  <!-- 图文详情 -->
   <view hidden="{{nav != '1'}}">
     <view class="detail_bd">
-      <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
+      <rich-text nodes="{{detail.proddesc || detail.detail1}}" bindtap="showDescPic"></rich-text>
     </view>
   </view>
-
+  <!-- 历史记录 -->
   <view hidden="{{nav != '2'}}">
     <view class="weui-cells weui-sell">
       <view class="weui-cell">
@@ -51,53 +50,51 @@
         <view class="weui-cell__bd time">{{item.updateTime}}</view>
         <view class="weui-cell__ft">{{item.productQuantity}}</view>
       </view>
-      <view wx:if="{{sellList.length === 0 && empty}}" style="color:#999;padding:5px">暂无数据</view>
+      <view wx:if="{{sellList.length === 0 && empty}}" style="color:#999;padding:5px;text-align:center">暂无数据</view>
     </view>
   </view>
 </view>
-
+<!-- 背景黑色 -->
 <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<!-- 产品属性 -->
 <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
   <view class="weui-cells">
-     <view class="weui-cell">
-         <view class="weui-cell__hd">
-             <image src="{{detail.pic_path}}" style="width:60px;height:60px"></image>
-         </view>
-         <view class="weui-cell__bd">
-           <text style="font-size:16px;">{{detail.name}}</text>
-           <view class="price">￥{{detail.price}}</view>
-           <text style="color:#999;" wx:if="{{detail.store && detail.store !== ''}}">库存:{{detail.store}}</text>
-         </view>
-         <view class="weui-cell__ft close" bindtap="setModalStatus" data-status="0">
-           <image src="../../images/x.png"></image>
-         </view>
-     </view>
-   </view>
-   <view class="drawer_attr_content">
-       <view class="weui-cell" wx:for="{{attrList}}">
-           <view class="weui-cell__bd weui-cell-attr">
-             <view class="name">{{item.name}}</view>
-             <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" class="{{item.dx===idx?'active':''}}"
-              data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
-           </view>
-       </view>
-       <view class="weui-cell" style="padding:10px 15px 20px 15px;">
-           <view class="weui-cell__hd">购买数量</view>
-           <view class="weui-cell__bd">
-             <!-- 主容器 -->
-             <view class="stepper">
-               <!-- 减号 -->
-               <text class="{{minusStatus}}" bindtap="bindMinus">-</text>
-               <!-- 数值 -->
-               <input type="number" bindchange="bindManual" value="{{num}}" />
-               <!-- 加号 -->
-               <text class="normal" bindtap="bindPlus">+</text>
-             </view>
-           </view>
-     </view>
-
-
-   </view>
-   <button class="btn-primary fixed" bindtap="pay" data-url="../cart/cart">确定</button>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <image src="{{detail.pic_path}}" style="width:60px;height:60px"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <text style="font-size:16px;">{{detail.name}}</text>
+        <view class="price">￥{{detail.price}}</view>
+        <text style="color:#999;" wx:if="{{detail.store && detail.store !== ''}}">库存:{{detail.store}}</text>
+      </view>
+      <view class="weui-cell__ft close" bindtap="setModalStatus" data-status="0">
+        <image src="../../images/x.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="drawer_attr_content">
+    <view class="weui-cell" wx:for="{{attrList}}">
+      <view class="weui-cell__bd weui-cell-attr">
+        <view class="name">{{item.name}}</view>
+        <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" class="{{item.dx===idx?'active':''}}" data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
+      </view>
+    </view>
+    <view class="weui-cell" style="padding:10px 15px 20px 15px;">
+      <view class="weui-cell__hd">购买数量</view>
+      <view class="weui-cell__bd">
+        <!-- 主容器 -->
+        <view class="stepper">
+          <!-- 减号 -->
+          <text class="{{minusStatus}}" bindtap="bindMinus">-</text>
+          <!-- 数值 -->
+          <input type="number" bindchange="bindManual" value="{{num}}" />
+          <!-- 加号 -->
+          <text class="normal" bindtap="bindPlus">+</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="btn-primary fixed" bindtap="pay" data-url="../cart/cart">确定</button>
 </view>
 <button class="btn-primary fixed" bindtap="setModalStatus" data-status="1">立即购买</button>

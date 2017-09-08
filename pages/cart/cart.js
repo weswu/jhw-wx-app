@@ -22,18 +22,22 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
+
+  // 跳转到首页
   pageIndex: function (e) {
     wx.switchTab({
       url: '../index/index'
     })
   },
+
+  // 购物车接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
     wx.showLoading({
       title: '加载中',
     })
-    if(app.globalData.member === null){app.getUserInfo()}
+    if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
       data: {
@@ -44,7 +48,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading()
         wx.hideLoading()
-        if(!res.data.success){
+        if (!res.data.success) {
           that.setData({
             empty: true
           })
@@ -67,10 +71,10 @@ Page({
         })
 
         var curReceiver = {}
-        if(data.receiver.length > 0){
+        if (data.receiver.length > 0) {
           curReceiver = data.receiver[0]
-          for(var i=0; i<data.receiver.length; i++){
-            if(data.receiver[i].isDefault === '1'){
+          for (var i = 0; i < data.receiver.length; i++) {
+            if (data.receiver[i].isDefault === '1') {
               curReceiver = data.receiver[i]
               break;
             }
@@ -81,11 +85,11 @@ Page({
           })
         }
 
-        var curPaymentConfig = {}
-        if(data.paymentConfig.length > 0){
+        var curPaymentConfig = { paymentFee: 0 }
+        if (data.paymentConfig.length > 0) {
           curPaymentConfig = data.paymentConfig[0]
-          for(var i=0; i<data.paymentConfig.length; i++){
-            if(data.paymentConfig[i].paymentConfigType === 'wxpay'){
+          for (var i = 0; i < data.paymentConfig.length; i++) {
+            if (data.paymentConfig[i].paymentConfigType === 'wxpay') {
               curPaymentConfig = data.paymentConfig[i]
               break;
             }
@@ -94,8 +98,8 @@ Page({
 
         // 配送方式
         var deliveryList = []
-        if(data.deliveryType.length > 0){
-          for(var i=0; i<data.deliveryType.length; i++){
+        if (data.deliveryType.length > 0) {
+          for (var i = 0; i < data.deliveryType.length; i++) {
             deliveryList.push(data.deliveryType[i].name)
           }
         }
@@ -103,7 +107,7 @@ Page({
         that.setData({
           curPaymentConfig: curPaymentConfig,
           curReceiver: curReceiver,
-          curDelivery: data.deliveryType[0],
+          curDelivery: data.deliveryType[0] || { deliveryFee: 0 },
           deliveryList: deliveryList,
           deliveryIndex: 0
         })
@@ -111,6 +115,8 @@ Page({
       }
     })
   },
+
+  // 删除单个商品
   del: function (e) {
     var that = this
     var index = e.currentTarget.dataset.index
@@ -120,20 +126,20 @@ Page({
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/cartItem/delete',
       data: {
-        id:  e.currentTarget.dataset.id,
-        skuCode:  e.currentTarget.dataset.skucode,
+        id: e.currentTarget.dataset.id,
+        skuCode: e.currentTarget.dataset.skucode,
         skey: app.globalData.member.skey
       },
       success: function (res) {
         wx.hideLoading()
-        that.data.cartItemSet.splice(index,1)
+        that.data.cartItemSet.splice(index, 1)
         that.setData({
           cartItemSet: that.data.cartItemSet,
           totalPoint: res.data.attributes.totalPoint,
           totalPrice: parseFloat(res.data.attributes.totalPrice.split('￥')[1]),
           totalQuantity: res.data.attributes.totalQuantity
         })
-        if(that.data.cartItemSet.length === 0){
+        if (that.data.cartItemSet.length === 0) {
           that.setData({
             empty: true
           })
@@ -141,11 +147,13 @@ Page({
       }
     })
   },
+
+  // 获取物流费用接口
   getDeliveryFee: function () {
     var that = this;
     if (!this.data.curDelivery.typeId || !this.data.curReceiver.receiverId) {
       console.log('error:获取物流数据不全');
-    }else{
+    } else {
       wx.request({
         type: 'get',
         url: 'https://wx.jihui88.net/rest/api/shop/order/deliveryFee1',
@@ -164,27 +172,31 @@ Page({
       })
     }
   },
-  pickChange: function(e) {
+
+  // 选中物流方式
+  pickChange: function (e) {
     this.setData({
       curDelivery: this.data.deliveryType[e.detail.value],
       deliveryIndex: e.detail.value
     })
     this.getDeliveryFee()
   },
+
+  // 微信支付
   pay: function () {
-    if(this.data.curReceiver && !this.data.curReceiver.receiverId){
+    if (this.data.curReceiver && !this.data.curReceiver.receiverId) {
       wx.showModal({
         title: '收货地址不能为空'
       })
       return false
     }
-    if(this.data.curDelivery && !this.data.curDelivery.typeId){
+    if (this.data.curDelivery && !this.data.curDelivery.typeId) {
       wx.showModal({
         title: '配送方式不能为空'
       })
       return false
     }
-    if(this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId){
+    if (this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId) {
       wx.showModal({
         title: '请开通微信支付'
       })
@@ -253,7 +265,7 @@ Page({
    */
   onLoad: function (options) {
     this.get()
-    if(app.globalData.member === null){
+    if (app.globalData.member === null) {
       app.getUserInfo()
     }
   },
@@ -266,15 +278,6 @@ Page({
         curReceiver: key
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '购物车'
-    })
   },
 
   /**

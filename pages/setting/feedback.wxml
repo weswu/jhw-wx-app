@@ -1,4 +1,3 @@
-<!--feedback.wxml-->
 <view class="panel form">
   <input type="text" value="{{fromName}}" placeholder="姓名" bindchange="model" data-active="1"/>
   <input type="text" value="{{fromPhone}}" placeholder="联系电话" bindchange="model" data-active="2" maxlength="11"/>

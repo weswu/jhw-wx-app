@@ -16,54 +16,55 @@ Page({
     fromEmail: '',
     content: ''
   },
-  model: function(e){
+  model: function (e) {
     var active = e.currentTarget.dataset.active
-    if(active === '1'){
+    if (active === '1') {
       this.setData({
         fromName: e.detail.value
       })
-    }else if (active === '2'){
+    } else if (active === '2') {
       this.setData({
         fromPhone: e.detail.value
       })
-    }else if (active === '3'){
+    } else if (active === '3') {
       this.setData({
         fromEmail: e.detail.value
       })
-    }else{
+    } else {
       this.setData({
         content: e.detail.value
       })
     }
   },
+  // 提交
   submit: function () {
     var that = this
-    if(!this.data.fromName){
+    if (!this.data.fromName) {
       wx.showModal({
         title: '姓名不能为空'
       })
       return false
     }
-    if(!this.data.fromPhone && !this.data.fromEmail){
+    if (!this.data.fromPhone && !this.data.fromEmail) {
       wx.showModal({
         title: '电话和邮箱不能都为空'
       })
       return false
     }
     var tel = /^1[3|4|5|8][0-9]\d{4,8}$/;
-    if(this.data.fromPhone !== '' && !tel.test(this.data.fromPhone)){
+    if (this.data.fromPhone !== '' && !tel.test(this.data.fromPhone)) {
       wx.showModal({
         title: '手机号码错误！'
       })
       return false
     }
-    if(this.data.fromEmail !== '' && this.data.fromEmail.indexOf('@') === -1){
+    if (this.data.fromEmail !== '' && this.data.fromEmail.indexOf('@') === -1) {
       wx.showModal({
         title: '邮箱错误！'
       })
       return false
     }
-    if(!this.data.content){
+    if (!this.data.content) {
       wx.showModal({
         title: '建议不能为空'
       })
@@ -90,11 +91,11 @@ Page({
       },
       success: function (res) {
         wx.hideLoading()
-        if(res.data === "alert('发送成功!')"){
+        if (res.data === "alert('发送成功!')") {
           wx.showModal({
             title: '留言成功',
             content: '返回上一页',
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 wx.navigateBack({
                   delta: 1
@@ -109,7 +110,7 @@ Page({
               }
             }
           })
-        }else{
+        } else {
           wx.showModal({
             title: '留言失败'
           })
@@ -119,34 +120,11 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: '意见反馈'
-    })
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
     return {
-      title:  '意见反馈'
+      title: '意见反馈'
     }
   }
 })
