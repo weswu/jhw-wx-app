@@ -248,15 +248,6 @@ Page({
     })
   },
 
-  setStor: function () {
-    var key = wx.getStorageSync('curReceiver')
-    if (key) {
-      this.setData({
-        curReceiver: key
-      })
-    }
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -268,7 +259,13 @@ Page({
   },
 
   onShow: function () {
-    this.setStor()
+    // 设置选中的收货地址
+    var key = wx.getStorageSync('curReceiver')
+    if (key) {
+      this.setData({
+        curReceiver: key
+      })
+    }
   },
 
   /**

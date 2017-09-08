@@ -268,26 +268,32 @@ Page({
     })
   },
 
-  setStor: function () {
-    var key = wx.getStorageSync('addressList')
-    if (key) {
-      this.setData({
-        list: key
-      })
-    }
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get()
+    var key = wx.getStorageSync('addressList')
+    if (key) {
+      this.setData({
+        list: key
+      })
+    } else {
+      this.get()
+    }
   },
 
   onShow: function () {
-    this.setStor()
+    var key = wx.getStorageSync('addressList')
+    if (key) {
+      this.setData({
+        list: key
+      })
+    } else {
+      this.get()
+    }
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
