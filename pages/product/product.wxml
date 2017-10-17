@@ -2,7 +2,7 @@
 <view class="search">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
-    搜索商品
+    输入关键词搜索
   </view>
 </view>
 <!-- 产品展示 -->

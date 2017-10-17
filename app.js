@@ -29,6 +29,7 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
+                return false
                 if (res.data.attributes.data == null) {
                   alert('数据为空')
                 }
@@ -51,17 +52,6 @@ App({
     }
   },
   onLaunch: function () {
-     // 总网站的参数
-     var that = this
-     wx.getExtConfig({
-       success: function (res) {
-         that.globalData = {
-           appid: res.extConfig.appid,
-           enterpriseId: res.extConfig.enterprise_id,
-           userId: res.extConfig.user_id
-         }
-       }
-     })
      // 登录用户信息
      this.getUserInfo()
    },
@@ -75,6 +65,9 @@ App({
   // 全局变量
   globalData: {
     userInfo: null,
-    member: null
+    member: null,
+    appid: 'wx031271ed9d1f909f',
+    enterpriseId: 'Enterp_0000000000000000000006013',
+    userId: 'User_000000000000000000000006231'
   }
 })

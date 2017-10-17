@@ -1,4 +1,4 @@
-.weui-cell.active{border-left:5px solid #ff6214}
+.weui-cell.active{border-left:5px solid #d00909}
 .cate{border-top:1rpx solid #ECECEC;}
 .cate-2 .name{padding-left:30rpx;font-size:14px;color:#555}
 .cate-3 .name{padding-left:70rpx;font-size:13px;color:#777}

@@ -1,9 +1,8 @@
 /* 搜索 */
-.search{background:#ff6214;padding:7px 0 7px 20rpx;overflow:hidden}
-.search .search-btn{background:#fff;color:#999;font-size:12px;text-align:center;height:26px;
-  line-height:26px;border-radius:13px;width:710rpx;}
+.search{background:#d00909;padding:7px 0 7px 70rpx;overflow:hidden}
+.search .search-btn{background:#fff;color:#a7a7a7;font-size:12px;text-align:center;height:26px;line-height:26px;border-radius:13px;width:610rpx;}
 .search .search-btn:active{background:#fff5f0}
-.search image{width:18px;height:18px;vertical-align:middle}
+.search image{width:14px;height:14px;vertical-align:middle;padding-bottom:2px;padding-right:2px;}
 .search .category{padding:4px 15px;float:right}
 /** 产品列表 **/
 .goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}

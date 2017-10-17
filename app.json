@@ -19,13 +19,13 @@
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "商城",
+    "navigationBarTitleText": "金利达",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#9b9b9b",
-    "selectedColor": "#ff6214",
+    "color": "#6e6e6e",
+    "selectedColor": "#e50000",
     "backgroundColor": "#fff",
     "list": [
       {
@@ -41,16 +41,10 @@
         "text": "分类"
       },
       {
-        "iconPath": "images/tabBar/company.png",
-        "selectedIconPath": "images/tabBar/company_.png",
-        "pagePath": "pages/company/company",
-        "text": "关于"
-      },
-      {
         "iconPath": "images/tabBar/my.png",
         "selectedIconPath": "images/tabBar/my_.png",
         "pagePath": "pages/my/my",
-        "text": "我的"
+        "text": "个人中心"
       }
     ]
   },
