@@ -17,69 +17,74 @@ Page({
     keyword: '',
     // news
     news: {},
-    // cate
+    // cate 数据来自分类接口
     category: [
       {
         category_id: "Category_00000000000000000344235",
         name: "不锈钢超薄切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/5792889a-2809-4c8b-a859-b236c21ccf36.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/5792889a-2809-4c8b-a859-b236c21ccf36_5.png"
       },
       {
         category_id: "Category_00000000000000000346118",
         name: "超薄切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/2931eacc-18b7-42af-86ae-791ff9e75a37.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/2931eacc-18b7-42af-86ae-791ff9e75a37_5.png"
       },
       {
         category_id: "Category_00000000000000000344237",
         name: "砂轮切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0_5.png"
       },
       {
         category_id: "Category_00000000000000000344238",
         name: "不锈钢碳钢切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7647a65b-61f2-466f-a8e5-7c76fdc3223e.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7647a65b-61f2-466f-a8e5-7c76fdc3223e_5.png"
       },
       {
         category_id: "Category_00000000000000000344239",
         name: "铜铝材切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0_5.png"
       },
       {
         category_id: "Category_00000000000000000344236",
         name: "钢轨切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7a58963f-869e-40a1-a7f9-95170d0d32b6.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7a58963f-869e-40a1-a7f9-95170d0d32b6_5.png"
       },
       {
         category_id: "Category_00000000000000000346119",
         name: "砂轮磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/db6435de-7203-46ea-a80f-bf7945a26376.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/db6435de-7203-46ea-a80f-bf7945a26376_5.png"
       },
       {
         category_id: "Category_00000000000000000344160",
         name: "不锈钢、石材、玻璃磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/b6374fbb-74bd-48c8-805b-ed59b6416624.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/b6374fbb-74bd-48c8-805b-ed59b6416624_5.png"
       },
       {
         category_id: "Category_00000000000000000344164",
         name: "不锈钢、碳钢磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3_5.png"
       },
       {
         category_id: "Category_00000000000000000344165",
         name: "船厂专用磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/f58718f7-3906-4070-9f93-48bb4331d409.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/f58718f7-3906-4070-9f93-48bb4331d409_5.png"
       },
       {
         category_id: "Category_00000000000000000344161",
         name: "铜铝材磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3_5.png"
       },
       {
         category_id: "Category_00000000000000000344162",
         name: "百叶轮",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/409f4107-c505-4c38-97e7-0d7bfdf4a220.png"
+        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/409f4107-c505-4c38-97e7-0d7bfdf4a220_5.png"
       }
     ]
+  },
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
   },
   get: function (id) {
     var that = this
@@ -92,11 +97,13 @@ Page({
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
+            data[i].model = data[i].model || ''
             data[i].price = parseFloat(data[i].price).toFixed(2)
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
           }
         }
+        // 缓存
         if (id === '248285') {
           that.setData({
             list1: data
@@ -251,7 +258,9 @@ Page({
 
   },
   onPullDownRefresh: function () {
-    this.get()
+    this.get('248285')
+    this.get('248286')
+    this.get('344162')
     this.getBanner()
     this.getNews()
     wx.stopPullDownRefresh()

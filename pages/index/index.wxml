@@ -16,11 +16,11 @@
 </swiper>
 <!-- 资讯 -->
 <view class="weui-cells weui-cells-news">
-  <view class="weui-cell">
+  <navigator class="weui-cell" url="../news/newsDetail?id={{news.news_id}}&title={{news.title}}">
     <view class="weui-cell__hd"><view class="news_tip">最新资讯：</view></view>
     <view class="weui-cell__bd"><navigator class="news_title" url="../my">{{news.title}}</navigator></view>
     <view class="weui-cell__ft"><view class="news_time">{{news.add_time}}</view></view>
-  </view>
+  </navigator>
 </view>
 <!-- 分类 -->
 <view class="cate">

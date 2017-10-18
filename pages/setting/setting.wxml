@@ -1,13 +1,12 @@
-<view class="setting">
-  <image mode="widthFix" style="width:160px;height:auto;" src="http://img.jihui88.com/{{enterprise.logo}}"></image>
-  <text>{{enterprise.name}}</text>
+<view class="setting" style="background: #fff;">
+  <text>永康市金利达机电磨具制造厂</text>
   <text style="padding-bottom:2rem;font-size:0.6rem;color:#aaa;">v1.0.0</text>
 
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell" bindtap="tel">
       <view class="weui-cell__hd"></view>
       <view class="weui-cell__bd">联系客服</view>
-      <view class="weui-cell__ft">{{enterprise.phone}}</view>
+      <view class="weui-cell__ft">13905798556</view>
     </view>
     <view class="weui-cell" bindtap="page" data-url="feedback">
       <view class="weui-cell__hd"></view>

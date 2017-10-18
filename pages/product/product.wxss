@@ -5,11 +5,13 @@
 .search image{width:14px;height:14px;vertical-align:middle;padding-bottom:2px;padding-right:2px;}
 .search .category{padding:4px 15px;float:right}
 /** 产品列表 **/
-.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
-.goods .item{display:flex;flex-flow: column;width:49vw;box-sizing:border-box;padding-top:1.5vh;}
-.goods .item_grow{overflow:hidden;width: 100%}
-.goods .item_pic{flex: 1;}
-.goods .item_content{height: 49px;flex: 0 0 49px; }
-.goods image{width: 100%;max-height: 100%;}
-.goods .pro_title{padding:5px 5px 0 5px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
-.goods .pro_price{padding:5px}
+.goods{display:flex;background:#fff;flex-wrap:wrap;justify-content:space-between}
+.goods .item{display:flex;box-sizing:border-box;padding:1.5vh 1.5vh;width:50vw;border-right:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;flex-flow:column}
+.goods .item_grow{overflow:hidden;width:100%}
+.goods .item_pic{text-align:center;flex:1}
+.goods .item_content{height:80px;flex:0 0 80px}
+.goods image{width:80%;max-height:100%}
+.goods .pro_title{overflow:hidden;padding:2vw 3vw 0 3vw;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.goods .pro_model{padding:2vw 3vw 0 3vw;color:#848282;font-size:12px}
+.goods .pro_price{padding:2vw 3vw;font-size:16px}
+.goods .item:nth-child(2n+0){border-right:none}

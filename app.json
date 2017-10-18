@@ -5,15 +5,11 @@
     "pages/detail/detail",
     "pages/search/search",
     "pages/category/category",
-    "pages/company/company",
     "pages/my/my",
-    "pages/order/order",
-    "pages/order/orderDetail",
-    "pages/cart/cart",
-    "pages/address/addressDetail",
-    "pages/address/address",
     "pages/setting/setting",
-    "pages/setting/feedback"
+    "pages/setting/feedback",
+    "pages/news/news",
+    "pages/news/newsDetail"
   ],
   "window": {
     "backgroundColor": "#ffffff",

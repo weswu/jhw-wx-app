@@ -1,5 +1,5 @@
 <!-- 头像 -->
-<view class="weui-panel__bd">
+<view class="weui-panel__bd" style="background: #fff;">
   <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
     <view class="weui-media-box__hd">
       <image class="weui-media-box__thumb" src="{{userInfo.avatarUrl}}" alt=""></image>
@@ -11,20 +11,6 @@
 </view>
 <!-- 列表 -->
 <view class="weui-cells">
-  <view class="weui-cell" bindtap="page" data-url="../order/order">
-    <view class="weui-cell__hd">
-      <image src="../../images/order.png"></image>
-    </view>
-    <view class="weui-cell__bd">我的订单</view>
-    <view class="weui-cell__ft"></view>
-  </view>
-  <view class="weui-cell" bindtap="page" data-url="../cart/cart">
-    <view class="weui-cell__hd">
-      <image src="../../images/cart.png"></image>
-    </view>
-    <view class="weui-cell__bd">我的购物车</view>
-    <view class="weui-cell__ft"></view>
-  </view>
   <view class="weui-cell" bindtap="page" data-url="../setting/setting">
     <view class="weui-cell__hd">
       <image src="../../images/setting.png"></image>

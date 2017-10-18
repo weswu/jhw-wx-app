@@ -14,33 +14,6 @@ App({
         wx.getUserInfo({
           success: function (res) {
             that.globalData.userInfo = res.userInfo
-            // 登录
-            wx.request({
-              method: 'post',
-              url: 'https://wx.jihui88.net/rest/api/shop/member/wxapplogin',
-              data: {
-                code: re.code,
-                appid: that.globalData.appid,
-                enterpriseId: that.globalData.enterpriseId,
-                nickname: that.globalData.userInfo.nickName,
-                skey: wx.getStorageSync('skey') || ''
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              success: function (res) {
-                return false
-                if (res.data.attributes.data == null) {
-                  alert('数据为空')
-                }
-                res.data.attributes.data.skey = res.data.attributes.data.skey || ''
-                that.globalData.member = res.data.attributes.data
-                wx.setStorage({
-                  key: 'skey',
-                  data: res.data.attributes.data.skey
-                })
-              }
-            })
           }
         })
       }

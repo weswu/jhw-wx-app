@@ -2,32 +2,8 @@
 image{display:block;width:100%}
 .detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:5vw}
 .price{color:#ff6214;font-size:13px;padding-top:3px}
-.detail_bd{width:100%;padding:5vw;box-sizing:border-box;}
-/* 历史记录 */
-.weui-sell:before {border:none}
-.weui-sell .weui-cell__bd,.weui-sell .weui-cell__hd{flex:1}
-.weui-sell .weui-cell__bd.time{color:#666}
-.weui-sell .weui-cell__ft{color:#000;width:80rpx}
-/* 产品属性 */
-.close{padding-bottom:30px}
-.drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}
-.drawer_attr_box{width:100%;overflow:hidden;position:fixed;bottom:0;left:0;z-index:2000;background:#fff}
-.drawer_attr_content{max-height:50vh;overflow-y:scroll;font-size:12px;margin-bottom:2.4rem}
-.weui-cell-attr .name{padding-bottom:10px;font-size:14px;}
-.weui-cell-attr text{-webkit-tap-highlight-color:transparent;display:inline-block;border:1px solid #e0e0e0;background-color:#fff;padding:5px 10px;margin:0 10px 10px 0;text-align:center;border-radius:4px;color:#999}
-.drawer_attr_content .weui-cell:before{border-top:none}
-.drawer_attr_content .weui-cell{padding:10px 5px 0 15px}
-.weui-cell-attr .active{border:1px solid #ff6214;background:#ff6214;color:#fff}
-
-/* 加减主容器 */
-.stepper{width:92px;height:28px;border:1px solid #e0e0e0;border-radius:3px;margin-left:20px}
-/* 加号和减号 */
-.stepper text{width:25px;line-height:28px;text-align:center;float:left;font-size:16px;}
-/* 数值 */
-.stepper input{width:40px;height:28px;float:left;margin:0 auto;text-align:center;font-size:14px;border-left:1px solid #e0e0e0;border-right:1px solid #e0e0e0}
-.stepper .normal{color:#000}
-.stepper .disabled{color:#ccc}
-
+.prodtype{color:#999;font-size:12px;padding-top:1vw}
+.detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff;font-size:12px;}
 /* 产品详情切换 */
 .weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:500;top:0;width:100%;background-color:#fff;border-bottom:1px solid #ddd}
 .weui-navbar__item.on{color:#ff6214}
