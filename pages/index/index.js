@@ -210,8 +210,6 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.member === null) { app.getUserInfo() }
-
     var banner = wx.getStorageSync('banner')
     if (!banner) {
       this.getBanner()

@@ -20,8 +20,7 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     this.setData({
-      userInfo: app.globalData.userInfo,
-      member: app.globalData.member
+      userInfo: app.globalData.userInfo
     })
   },
 

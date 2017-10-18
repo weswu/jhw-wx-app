@@ -19,14 +19,9 @@ App({
       }
     });
   },
-  getUserInfo: function () {
-    if (!this.globalData.userInfo || !this.globalData.member) {
-      this.get()
-    }
-  },
   onLaunch: function () {
      // 登录用户信息
-     this.getUserInfo()
+     this.get()
    },
 
   onShow: function () {
@@ -38,7 +33,6 @@ App({
   // 全局变量
   globalData: {
     userInfo: null,
-    member: null,
     appid: 'wx031271ed9d1f909f',
     enterpriseId: 'Enterp_0000000000000000000006013',
     userId: 'User_000000000000000000000006231'

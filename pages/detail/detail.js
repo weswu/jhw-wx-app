@@ -121,9 +121,6 @@ Page({
         detail: key
       })
     }
-    if (app.globalData.member === null) {
-      app.getUserInfo()
-    }
   },
   onReady: function () {
     wx.setNavigationBarTitle({
