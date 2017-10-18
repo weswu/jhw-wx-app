@@ -4,7 +4,7 @@
     <view class="wxSearch-section">
       <view class="wxSearch-pancel">
         <form class="wxSearch-form">
-          <input type="text" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" confirm-type="search" bindconfirm="searchKey" />
+          <input type="text" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" confirm-type="search" bindconfirm="searchKey" focus="true"/>
           <image src="../../images/search.png" class="search-icon"></image>
           <image wx:if="{{keyword !== ''}}" src="../../images/x.png" class="clear-icon" bindtap="clearKey"></image>
         </form>

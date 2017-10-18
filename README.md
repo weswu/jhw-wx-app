@@ -14,6 +14,8 @@
 
 `qixing` 七星布草 zaingdev
 
+`jinlida` 金利达
+
 ### 新建模板
 ```
 git checkout -b qixing master
@@ -26,7 +28,7 @@ git branch -a
 
 ### 切换模板
 ```
-git checkout qixing
+git checkout master
 ```
 
 ### 在develop分支下合并master

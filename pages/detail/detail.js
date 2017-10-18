@@ -11,20 +11,24 @@ Page({
     detail: {},
     id: '',
     nav: '1',
+    empty: false,
+    // 轮播
+    swiperHeight: 0,
+    autoplay: true,
+    indicatorDots: true,
+    // 历史记录
     isSell: false,
     sellList: [],
-    empty: false,
+    // 属性
     showModalStatus: false,
     attrList: [],
     argsList: [],
-    num: 1,
+    // 商城
     productAttr: '',
+    num: 1,
     skuCode: '',
     appendPrice: 0,
-    appendIds: '',
-    swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true
+    appendIds: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -39,12 +43,19 @@ Page({
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/single/' + this.data.id,
       success: function (res) {
-        if (res.data.proddesc == null) {
+        if (res.data.proddesc === null) {
           res.data.proddesc = ''
         } else {
           // .replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
           res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
         }
+        if (res.data.detail1 === null) {
+          res.data.detail1 = ''
+        } else {
+          // 表格
+          res.data.detail1 = res.data.detail1.replace(/<table>/g, "<table style='border-collapse:collapse;display:table;'>").replace(/<td>/g, "<td style='padding: 5px 10px;border: 1px solid #DDD;'>").replace(/<th>/g, "<th style='padding: 5px 10px;border: 1px solid #DDD;border-top:1px solid #BBB;background-color:#F7F7F7;'>").replace(/\"/g, "'")
+        }
+
         res.data.price = parseFloat(parseFloat(res.data.price).toFixed(2))
         that.setData({
           detail: res.data
