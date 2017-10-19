@@ -12,6 +12,8 @@
     "pages/cart/cart",
     "pages/address/addressDetail",
     "pages/address/address",
+    "pages/news/news",
+    "pages/news/newsDetail",
     "pages/setting/setting",
     "pages/setting/feedback"
   ],

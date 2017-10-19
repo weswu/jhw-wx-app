@@ -1,0 +1,13 @@
+<!--pages/news/newsDetail.wxml-->
+<view class="newsDetail">
+  <view class="weui-cell" wx:if="{{detail.author}}">
+    <view class="weui-cell__bd">作者：{{detail.author}}</view>
+    <view class="weui-cell__ft">发布时间：{{detail.add_time}}</view>
+  </view>
+  <view class="weui-cell" wx:else="{{!detail.author}}">
+    <view class="weui-cell__bd">发布时间：{{detail.add_time}}</view>
+  </view>
+  <view class="content">
+    <rich-text nodes="{{detail.content}}"></rich-text>
+  </view>
+</view>

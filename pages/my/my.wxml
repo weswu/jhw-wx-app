@@ -25,6 +25,24 @@
     <view class="weui-cell__bd">我的购物车</view>
     <view class="weui-cell__ft"></view>
   </view>
+  <!-- 客服会话，需后台添加客服人员
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <image src="../../images/setting.png"></image>
+    </view>
+    <view class="weui-cell__bd" style="position:relative;">
+      <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:0;">
+      </contact-button>
+      <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:15px; ">
+      </contact-button>
+      <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:30px; ">
+      </contact-button>
+      <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:45px; ">
+      </contact-button>客服会话
+    </view>
+    <view class="weui-cell__ft"></view>
+  </view>
+  -->
   <view class="weui-cell" bindtap="page" data-url="../setting/setting">
     <view class="weui-cell__hd">
       <image src="../../images/setting.png"></image>

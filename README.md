@@ -48,6 +48,7 @@ git rebase master
 │   ├── company        // 公司简介
 │   ├── login          // 登录（未使用，已用微信账号自动登录）
 │   ├── my             // 我的
+│   ├── news           // 新闻
 │   ├── order          // 订单中心
 │   ├── product        // 商品
 │   ├── search         // 商品搜索
