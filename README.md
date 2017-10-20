@@ -16,6 +16,12 @@
 
 `jinlida` 金利达
 
+### 微信配置
+| request 合法域名 | 必填 | 描述 |
+| --- | :---: | --- |
+| `https://api.jihui88.net` | 是 | 机汇网接口 |
+| `https://wx.jihui88.net` | - | 商城接口（绑定机汇网账号） |
+
 ### 新建模板
 ```
 git checkout -b qixing master
