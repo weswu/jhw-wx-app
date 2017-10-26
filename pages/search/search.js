@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 产品搜索
 */
 var app = getApp()
@@ -13,10 +13,10 @@ Page({
    */
   data: {
     list: [],
+    total: 0,
     keyword: '',
-    hislist: [],
-    empty: false,
-    hisShow: true,
+    focus: true,
+    isloading: false,
     search: {
       page: 1,
       per_page: 10
@@ -30,8 +30,8 @@ Page({
   // 搜索商品接口
   get: function () {
     var that = this
-    wx.showLoading({
-      title: '加载中'
+    that.setData({
+      isloading: true
     })
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/search/' + app.globalData.enterpriseId,
@@ -41,43 +41,31 @@ Page({
         per_page: this.data.search.per_page
       },
       success: function (res) {
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
         if (res.data.error === '查询为空') {
-          that.setData({
-            empty: true
-          })
-          if (that.data.search.page === 1) {
-            that.setData({
-              emptyTip: '暂无数据'
-            })
-          } else {
-            that.setData({
-              emptyTip: '已全部加载'
-            })
-          }
           return false
-        } else {
-          that.setData({
-            empty: false
-          })
         }
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
-            data[i].pic_path = util.picUrl(data[i].pic_path, 6)
+            data[i].price = parseFloat(data[i].price).toFixed(2)
+            data[i].pic_path = util.picUrl(data[i].pic_path, 5)
             that.data.list.push(data[i])
           }
         }
         that.setData({
-          list: that.data.list
+          list: that.data.list,
+          total: res.data.total
         })
       }
     })
   },
   wxSearchInput: function (e) {
     this.setData({
-      keyword: e.detail.value
+      keyword: e.detail.value,
+      focus: true
     })
   },
   // 清空关键字
@@ -87,81 +75,19 @@ Page({
       list: [],
       keyword: '',
       search: this.data.search,
-      empty: false,
-      hisShow: true
+      focus: true
     })
   },
   // 搜索关键字
   searchKey: function () {
-    this.data.search.page = 1
-    this.setData({
-      list: [],
-      search: this.data.search,
-      hisShow: false
-    })
-    if (this.data.hislist.length > 0) {
-      for (var i = 0; i < this.data.hislist.length; i++) {
-        if (this.data.keyword === this.data.hislist[i]) {
-          this.data.hislist.splice(i, 1)
-        }
-      }
-    }
-    this.data.hislist.unshift(this.data.keyword)
-    this.setData({
-      hislist: this.data.hislist
-    })
-    wx.setStorage({
-      key: 'hislist',
-      data: this.data.hislist
-    })
-    this.get()
-  },
-  // 搜索记录事件
-  keyClick: function (e) {
-    this.setData({
-      keyword: e.currentTarget.dataset.key
-    })
-    this.searchKey()
-  },
-  // 删除单个记录
-  keyDel: function (e) {
-    this.data.hislist.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      hislist: this.data.hislist
-    })
-    wx.setStorage({
-      key: 'hislist',
-      data: this.data.hislist
-    })
-  },
-  // 删除历史记录
-  wxSearchDeleteAll: function () {
-    wx.removeStorageSync('hislist')
-    this.setData({
-      hislist: []
-    })
-    wx.setStorage({
-      key: 'hislist',
-      data: this.data.hislist
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var hislist = wx.getStorageSync('hislist')
-    if (!!hislist) {
+    if (this.data.keyword !== '') {
+      this.data.search.page = 1
       this.setData({
-        hislist: hislist
+        list: [],
+        search: this.data.search,
+        focus: false
       })
-    }
-    // 从首页搜索跳转
-    if (options.keyword) {
-      this.setData({
-        keyword: options.keyword
-      })
-      this.searchKey()
+      this.get()
     }
   },
 

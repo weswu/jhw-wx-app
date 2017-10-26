@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 个人中心
 */
 var app = getApp()
@@ -13,6 +13,13 @@ Page({
   page: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url
+    })
+  },
+  website () {
+    wx.showModal({
+      title: '欢迎访问我们的网站',
+      content: 'www.jihui88.com',
+      showCancel: false
     })
   },
 

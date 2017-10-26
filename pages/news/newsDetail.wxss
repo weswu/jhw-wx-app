@@ -1,8 +1,0 @@
-/* pages/news/newsDetail.wxss */
-.newsDetail {
-  font-size: 12px;
-  background: #fff;
-}
-.newsDetail .content{
-  padding:3vw;
-}

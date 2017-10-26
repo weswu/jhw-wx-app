@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 首页
 */
 var app = getApp()
@@ -10,11 +10,40 @@ Page({
   data: {
     images: [],
     list: [],
+    categoryList: [],
+    search: {
+      page: 1,
+      per_page: 6
+    },
+    isloading: false,
+    // 轮播
     swiperHeight: 0,
     autoplay: true,
-    indicatorDots: true,
+    indicatorDots: false,
+    swiperCurrent: 0,
     // 搜索关键字
-    keyword: ''
+    keyword: '',
+    // 切换
+    nav: '1'
+  },
+  // 跳转页面
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
+  /* 页面切换 */
+  nav: function (e) {
+    var ctx = this;
+    var nav = e.currentTarget.dataset.nav;
+    this.setData({
+      nav: nav
+    })
+    if (nav === '2') {
+      if (this.data.categoryList.length === 0) {
+        this.getCate()
+      }
+    }
   },
   get: function () {
     var that = this
@@ -22,9 +51,16 @@ Page({
     wx.showNavigationBarLoading()
     if (app.globalData.member === null) { app.getUserInfo() }
     console.log('首页数据加载中...')
+    that.setData({
+      isloading: true
+    })
     wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
+      url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId,
+      data: this.data.search,
       success: function (res) {
+        that.setData({
+          isloading: false
+        })
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
@@ -34,7 +70,7 @@ Page({
           }
         }
         that.setData({
-          list: data
+          list: that.data.list
         })
         wx.setStorage({
           key: 'goods',
@@ -44,18 +80,21 @@ Page({
       }
     })
   },
-  /* 搜索 */
-  wxSearchInput: function (e) {
-    this.setData({
-      keyword: e.detail.value
-    })
-  },
-  searchKey: function () {
-    wx.navigateTo({
-      url: '../search/search?keyword=' + this.data.keyword
-    })
-    this.setData({
-      keyword: ''
+  // 产品分类接口
+  getCate: function () {
+    var that = this
+    console.log('分类加载中...')
+    wx.request({
+      url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
+      success: function (res) {
+        that.setData({
+          categoryList: res.data
+        })
+        wx.setStorage({
+          key: 'categoryList',
+          data: res.data
+        })
+      }
     })
   },
   /*  轮播 */
@@ -89,6 +128,11 @@ Page({
       swiperHeight: this.data.swiperHeight
     })
   },
+  swiperChange: function(e){
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  },
 
   onLoad: function () {
     var key = wx.getStorageSync('goods')
@@ -107,12 +151,37 @@ Page({
         images: banner
       })
     }
+    var category = wx.getStorageSync('category')
+    if (!!category) {
+      this.setData({
+        categoryList: category
+      })
+    }
   },
   onPullDownRefresh: function () {
+    this.data.search.page = 1
+    this.setData({
+      search: this.data.search
+    })
     this.get()
     this.getBanner()
+    this.getCate()
     wx.stopPullDownRefresh()
   },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (!this.data.isloading) {
+      this.data.search.page += 1
+      this.setData({
+        search: this.data.search
+      })
+      this.get()
+    }
+  },
+
   onShareAppMessage: function () {
     return {
       title: '商城'

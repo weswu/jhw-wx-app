@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 公司简介
 */
 var app = getApp()
@@ -70,7 +70,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '公司简介'
+      title: '关于我们'
     }
   }
 })

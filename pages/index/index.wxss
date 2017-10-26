@@ -1,17 +1,28 @@
 /* 搜索 */
-.search-icon{width:1.2rem;height:1.2rem!important;float:right;position:absolute;right:10px;top:10px;padding:6px 12px}
-.search-box{font-size:12px;padding:3vw;background:#fff;position:relative}
-.search-box input{border:1px solid rgba(0,0,0,.1);padding:3px 40px 3px 8px;border-radius:4px}
+.search{background:#25402e;padding:5px 0 10px 30rpx;overflow:hidden}
+.search .search-btn{background:#fff;color:#999;font-size:12px;height:26px;
+  line-height:26px;border-radius:10rpx;width:690rpx;background:#3b5144;opacity: 0.8}
+.search image{width:16px;height:16px;vertical-align:middle;padding: 0 10rpx 0 20rpx}
 /* 轮播 */
 swiper-item image{width:750rpx;}
+/* 自定义轮播小圆点 */
+.swiper-container{position:relative}
+.swiper-container .dots{position:absolute;left:0;right:0;bottom:20rpx;display:flex;justify-content:center}
+.swiper-container .dots .dot{margin:0 8rpx;width:16rpx;height:16rpx;background:0 0;border:4rpx solid #8e9c9c;border-radius:100%;transition:all .6s}
+.swiper-container .dots .dot.active{background:#fff;border:4rpx solid #fff}
+/* 切换 */
+.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:500;top:0;width:100%;background-color:#fff;}
+.weui-navbar__item.on{color:#555;border-bottom:4rpx solid #999}
+.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:13px 0;text-align:center;font-size:15px;color:#aaa;-webkit-tap-highlight-color:transparent}
+.weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+
 /** 产品列表 **/
-.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
-.goods .item{display:flex;flex-flow: column;width:49vw;box-sizing:border-box;padding-top:1.5vh;}
+.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding: 0 2vw 2vh 2vw}
+.goods .item{display:flex;flex-flow: column;width:47vw;box-sizing:border-box;border:1px solid #e9e9e9;margin-top:1.5vh;
+background: #fff}
 .goods .item_grow{overflow:hidden;width: 100%}
 .goods .item_pic{flex: 1;}
 .goods .item_content{height: 49px;flex: 0 0 49px; }
 .goods image{width: 100%;max-height: 100%;}
 .goods .pro_title{padding:5px 5px 0 5px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .goods .pro_price{padding:5px}
-/* 产品更多 */
-.more{font-size:14px;color:#999;margin:0 auto;padding:15px 20px}
