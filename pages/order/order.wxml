@@ -1,3 +1,15 @@
+<!-- 切换 -->
+<view class="weui-navbar">
+  <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
+    <image src="../../images/order.png"></image>待付款
+  </view>
+  <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2">
+    <image src="../../images/order.png"></image>待发货
+  </view>
+  <view class="weui-navbar__item {{nav == '3' ? 'on' : ''}}" bindtap="nav" data-nav="3">
+    <image src="../../images/order.png"></image>待收货
+  </view>
+</view>
 <view wx:if="{{list.length > 0}}">
   <view class="weui-cells weui-cells-order" wx:for="{{list}}">
     <view class="separator"></view>
@@ -50,10 +62,7 @@
   </view>
 </view>
 <!-- 订单为空 -->
-<view wx:elif="{{list.length === 0 && empty}}">
-  <view class="emptyOrder panel">
-    <image src="../../images/order.png"></image>
-    <text>订单还是空的</text>
-    <button class="btn-primary" bindtap="pageIndex">到商城再逛逛</button>
-  </view>
+<view wx:if="{{list.length === 0 && empty}}" class="tip">
+  <image src="../../images/order.png"></image>
+  <view>还没有相关订单</view>
 </view>

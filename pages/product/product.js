@@ -15,11 +15,16 @@ Page({
     list: [],
     cate_id: '',
     title: '商品',
-    empty: false,
     emptyTip: '暂无数据',
     search: {
       page: 1,
       per_page: 6
+    },
+    isloading: false,
+    // 回到顶部
+    scrollTop: {
+      scroll_top: 0,
+      goTop_show: false
     }
   },
 
@@ -40,8 +45,8 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
     var url = 'all/' + app.globalData.enterpriseId
     if (!!this.data.cate_id) {
@@ -52,26 +57,21 @@ Page({
       url: 'https://api.jihui88.net/jihuiapi/products/' + url,
       data: this.data.search,
       success: function (res) {
+        that.setData({
+          isloading: false
+        })
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
         if (res.data.error === '查询为空') {
-          that.setData({
-            empty: true
-          })
           if (that.data.search.page === 1) {
             that.setData({
               emptyTip: '暂无数据'
             })
           } else {
             that.setData({
-              emptyTip: '已全部加载'
+              emptyTip: ''
             })
           }
           return false
-        } else {
-          that.setData({
-            empty: false
-          })
         }
         var data = res.data.list
         if (data.length > 0) {
@@ -92,6 +92,33 @@ Page({
         }
       }
     })
+  },
+
+  // 回到顶部
+  scrollTopFun: function (e) {
+    if (e.detail.scrollTop > 500) { // 触发gotop的显示条件
+      this.setData({
+        'scrollTop.goTop_show': true
+      });
+    } else {
+      this.setData({
+        'scrollTop.goTop_show': false
+      });
+    }
+  },
+  goTopFun: function (e) {
+    var _top = this.data.scrollTop.scroll_top; // 发现设置scroll-top值不能和上一次的值一样，否则无效，所以这里加了个判断
+    if (_top == 1) {
+      _top = 0;
+    } else {
+      _top = 1;
+    }
+    this.setData({
+      'scrollTop.scroll_top': _top
+    });
+  },
+  bindDownLoad: function () {
+    this.onReachBottom()
   },
 
   /**
@@ -140,7 +167,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.empty) { return false }
+    if (this.data.isloading) { return false }
     this.data.search.page += 1
     this.setData({
       search: this.data.search

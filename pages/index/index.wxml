@@ -1,3 +1,5 @@
+<scroll-view style="height: 100%;" scroll-y="true" scroll-top="{{scrollTop.scroll_top}}"
+  bindscroll="scrollTopFun" bindscrolltolower="bindDownLoad">
 <!-- 搜索 -->
 <view class="search">
   <view class="search-btn" bindtap="page" data-url="../search/search">
@@ -14,12 +16,12 @@
               <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
           </swiper-item>
       </block>
-  </swiper><!--
+  </swiper>
   <view class="dots">
     <block wx:for="{{images}}" wx:key="unique">
       <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
     </block>
-  </view> -->
+  </view>
 </view>
 <!-- 切换 -->
 <view class="weui-navbar">
@@ -45,3 +47,36 @@
   </view>
   <view wx:if="{{isloading}}" class="tip"><image class="loading" src="../../images/loading.png"></image></view>
 </view>
+<!-- 分类 -->
+<view class="category" hidden="{{nav != '2'}}">
+  <view class="item" wx:for="{{categoryList}}" wx:key="item.category_id">
+    <navigator url="../product/product?category_id={{item.category_id}}&title={{item.name}}">
+      <image mode="widthFix" src="{{item.image}}"></image>
+      <view class="cate_name">
+        <view class="cate_bg"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </navigator>
+
+    <view class="item" wx:for="{{item.child}}" wx:for-item="item1">
+      <navigator url="../product/product?category_id={{item1.category_id}}&title={{item1.name}}">
+        <image mode="widthFix" src="{{item1.image}}"></image>
+        <view class="cate_name">
+          <view class="cate_bg"></view>
+          <text>{{item1.name}}</text>
+        </view>
+      </navigator>
+
+      <navigator url="../product/product?category_id={{item2.category_id}}&title={{item2.name}}" wx:for="{{item1.child}}" wx:for-item="item2">
+        <image mode="widthFix" src="{{item2.image}}"></image>
+        <view class="cate_name">
+          <view class="cate_bg"></view>
+          <text>{{item2.name}}</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!-- 滚动 -->
+</scroll-view>
+<image class="top" src="../../images/top.png" wx:if="{{scrollTop.goTop_show}}" catchtap="goTopFun"></image>

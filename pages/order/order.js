@@ -12,6 +12,8 @@ Page({
    */
   data: {
     list: [],
+    // 切换
+    nav: '1',
     page: 1
   },
 
@@ -223,7 +225,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '我的订单'
+      title: '订单'
     }
   }
 })

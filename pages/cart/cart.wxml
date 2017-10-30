@@ -63,10 +63,8 @@
   <button class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
 </view>
 <!-- 购物车为空 -->
-<view wx:elif="{{cartItemSet.length === 0 && empty}}">
-  <view class="emptyCart panel">
-    <image src="../../images/cart.png"></image>
-    <text>购物车还是空的</text>
-    <button class="btn-primary" bindtap="pageIndex">到商城再逛逛</button>
-  </view>
+<view wx:if="{{cartItemSet.length === 0 && empty}}" class="tip">
+  <image src="../../images/cart.png"></image>
+  <view>空购物车</view>
+  快去添加商品吧
 </view>

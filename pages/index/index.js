@@ -13,7 +13,7 @@ Page({
     categoryList: [],
     search: {
       page: 1,
-      per_page: 6
+      per_page: 8
     },
     isloading: false,
     // 轮播
@@ -24,7 +24,12 @@ Page({
     // 搜索关键字
     keyword: '',
     // 切换
-    nav: '1'
+    nav: '1',
+    // 回到顶部
+    scrollTop: {
+      scroll_top: 0,
+      goTop_show: false
+    }
   },
   // 跳转页面
   page: function (e) {
@@ -61,6 +66,7 @@ Page({
         that.setData({
           isloading: false
         })
+        wx.hideNavigationBarLoading()
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
@@ -68,15 +74,16 @@ Page({
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
           }
+          that.setData({
+            list: that.data.list
+          })
         }
-        that.setData({
-          list: that.data.list
-        })
-        wx.setStorage({
-          key: 'goods',
-          data: res.data.list
-        })
-        wx.hideNavigationBarLoading()
+        if (that.data.search.page === 1) {
+          wx.setStorage({
+            key: 'goods',
+            data: res.data.list
+          })
+        }
       }
     })
   },
@@ -133,6 +140,32 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
+  // 回到顶部
+  scrollTopFun: function (e) {
+    if (e.detail.scrollTop > 500) { // 触发gotop的显示条件
+      this.setData({
+        'scrollTop.goTop_show': true
+      });
+    } else {
+      this.setData({
+        'scrollTop.goTop_show': false
+      });
+    }
+  },
+  goTopFun: function (e) {
+    var _top = this.data.scrollTop.scroll_top; // 发现设置scroll-top值不能和上一次的值一样，否则无效，所以这里加了个判断
+    if (_top == 1) {
+      _top = 0;
+    } else {
+      _top = 1;
+    }
+    this.setData({
+      'scrollTop.scroll_top': _top
+    });
+  },
+  bindDownLoad: function () {
+    this.onReachBottom()
+  },
 
   onLoad: function () {
     var key = wx.getStorageSync('goods')
@@ -173,7 +206,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (!this.data.isloading) {
+    if (!this.data.isloading && this.data.nav === '1') {
       this.data.search.page += 1
       this.setData({
         search: this.data.search

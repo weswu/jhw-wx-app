@@ -10,15 +10,11 @@ Page({
   data: {
     detail: {},
     id: '',
-    nav: '1',
     empty: false,
     // 轮播
     swiperHeight: 0,
     autoplay: true,
-    indicatorDots: true,
-    // 历史记录
-    isSell: false,
-    sellList: [],
+    indicatorDots: false,
     // 属性
     showModalStatus: false,
     attrList: [],
@@ -31,8 +27,14 @@ Page({
     appendIds: ''
   },
   page: function (e) {
+    debugger
     wx.navigateTo({
       url: e.currentTarget.dataset.url
+    })
+  },
+  pageTab: function (e) {
+    wx.switchTab({
+      url: '../cart/cart'
     })
   },
   get: function () {
@@ -89,57 +91,6 @@ Page({
       wx.previewImage({
         urls: urls
       })
-    }
-  },
-  // 成交记录
-  getSell: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    var that = this
-    wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/order/product/sellList',
-      dataType: 'jsonp',
-      data: {
-        callback: "jsonpCallback",
-        productId: this.data.detail.product_id,
-        skey: app.globalData.member.skey
-      },
-      success: function (res) {
-        wx.hideLoading()
-        var str = res.data.split('jsonpCallback(')[1]
-        var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-        if (sell.length > 1) {
-          var data = []
-          for (var i = 0; i < sell.length; i++) {
-            sell[i].updateTime = util.formatTime(new Date(sell[i].updateTime))
-            data.push(sell[i])
-          }
-          that.setData({
-            sellList: data
-          })
-        } else {
-          that.setData({
-            empty: true
-          })
-        }
-      }
-    })
-  },
-  /* 页面切换 */
-  nav: function (e) {
-    var ctx = this;
-    var nav = e.currentTarget.dataset.nav;
-    this.setData({
-      nav: nav
-    })
-    if (nav === '2') {
-      if (!this.data.isSell) {
-        this.setData({
-          isSell: true
-        })
-        this.getSell()
-      }
     }
   },
 
@@ -324,7 +275,7 @@ Page({
         var str = res.data.split('jsonpCallback(')[1]
         var data = JSON.parse(str.substring(0, str.length - 1))
         if (data.success) {
-          wx.navigateTo({
+          wx.switchTab({
             url: '../cart/cart'
           })
         } else {

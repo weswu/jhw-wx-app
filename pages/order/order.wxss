@@ -1,10 +1,16 @@
 .weui-cell{padding-bottom:10px}
 .weui-cells-items{padding: 5px 15px}
 .weui-cells-order::after {border-bottom:none}
+/* 切换 */
+.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:500;top:0;width:100%;background-color:#25402e;}
+.weui-navbar__item.on{color:#fff;border-bottom:4rpx solid #fff}
+.weui-navbar image{width: 20px;height: 20px;}
+.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:10px 0;text-align:center;font-size:15px;color:#aaa;-webkit-tap-highlight-color:transparent}
+.weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
 /* 操作按钮 */
 .btn-event{margin:0 15px;padding:10px 0;position:relative;overflow: hidden;border-top: 1px solid #f0f0f0}
 .btn{float:right;display: inline;color: #666;padding: 10rpx 20rpx;border: 1px solid #eee;margin-left: 20rpx;border-radius: 2px}
-.btn.active{border: 1px solid #ff6214;color: #ff6214;}
+.btn.active{border: 1px solid #25402e;color: #25402e;}
 /* 订单为空 */
-.emptyOrder image{width:128px;height:128px;margin:0 auto;padding:1rem 0 0 0;display:block}
-.emptyOrder text{text-align:center;padding:1rem 0 2rem 0;font-size:1rem;color:#999;display:block}
+.tip{padding-top: 35vh;}
+.tip image{width: 50px;height: 50px}
