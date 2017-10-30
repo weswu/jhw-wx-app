@@ -54,6 +54,10 @@ Page({
           })
           return false
         }
+        wx.setStorage({
+          key: 'cartCount',
+          data: res.data.attributes.totalQuantity || 0
+        })
         var data = res.data.attributes
 
         that.setData({
@@ -241,6 +245,10 @@ Page({
               'signType': 'MD5',
               'paySign': res.data.attributes.data.sign,
               'success': function (res) {
+                wx.setStorage({
+                  key: 'cartCount',
+                  data: 0
+                })
                 wx.showModal({
                   title: '支付完成'
                 })

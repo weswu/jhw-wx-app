@@ -11,6 +11,7 @@ Page({
     detail: {},
     id: '',
     empty: false,
+    count: 0,
     // 轮播
     swiperHeight: 0,
     autoplay: true,
@@ -142,6 +143,7 @@ Page({
     })
     if (status == 1) {
       this.setData({
+        skip: e.currentTarget.dataset.skip,
         showModalStatus: true
       });
     }
@@ -275,9 +277,15 @@ Page({
         var str = res.data.split('jsonpCallback(')[1]
         var data = JSON.parse(str.substring(0, str.length - 1))
         if (data.success) {
-          wx.switchTab({
-            url: '../cart/cart'
-          })
+          that.setData({
+            count: that.data.count + that.data.num,
+            showModalStatus: false
+          });
+          if (that.data.skip === '1') {
+            wx.switchTab({
+              url: '../cart/cart'
+            })
+          }
         } else {
           wx.showModal({
             title: '提示',
@@ -323,6 +331,34 @@ Page({
     }
     if (app.globalData.member === null) {
       app.getUserInfo()
+    }
+
+    var that = this
+    var cartCount = wx.getStorageSync('cartCount')
+    if (!cartCount) {
+      wx.request({
+        url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
+        data: {
+          entId: app.globalData.enterpriseId,
+          cIds: '',
+          skey: app.globalData.member.skey
+        },
+        success: function (res) {
+          if (res.data.success) {
+            that.setData({
+              count: res.data.attributes.totalQuantity || 0
+            })
+            wx.setStorage({
+              key: 'cartCount',
+              data: res.data.attributes.totalQuantity || 0
+            })
+          }
+        }
+      })
+    } else {
+      this.setData({
+        count: cartCount
+      })
     }
   },
   onReady: function () {

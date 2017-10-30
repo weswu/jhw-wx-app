@@ -1,13 +1,16 @@
 <!-- 切换 -->
 <view class="weui-navbar">
-  <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
-    <image src="../../images/order.png"></image>待付款
+  <view class="weui-navbar__item {{nav == '00' ? 'on' : ''}}" bindtap="nav" data-nav="00">
+    全部订单
   </view>
-  <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2">
-    <image src="../../images/order.png"></image>待发货
+  <view class="weui-navbar__item {{nav == '01' ? 'on' : ''}}" bindtap="nav" data-nav="01">
+    待付款
   </view>
-  <view class="weui-navbar__item {{nav == '3' ? 'on' : ''}}" bindtap="nav" data-nav="3">
-    <image src="../../images/order.png"></image>待收货
+  <view class="weui-navbar__item {{nav == '02' ? 'on' : ''}}" bindtap="nav" data-nav="02">
+    待发货
+  </view>
+  <view class="weui-navbar__item {{nav == '03' ? 'on' : ''}}" bindtap="nav" data-nav="03">
+    待收货
   </view>
 </view>
 <view wx:if="{{list.length > 0}}">
@@ -22,9 +25,9 @@
       <view class="weui-cell__ft">
         <view wx:if="{{item.orderStatus === 'completed'}}">交易成功</view>
         <view wx:elif="{{item.orderStatus === 'invalid'}}">交易关闭</view>
-        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#ff6214">待付款</view>
-        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#ff6214">待发货</view>
-        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#ff6214">已发货</view>
+        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#25402e">待付款</view>
+        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#25402e">待发货</view>
+        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#25402e">已发货</view>
       </view>
     </view>
     <!-- 商品信息 -->

@@ -15,8 +15,10 @@ height: 14vw;line-height: 14vw;
 background: #fff
 }
 .detail-btn image{width:25px;height: 25px;vertical-align: middle;}
+.detail-btn .count{color: #fff;background: red;position: absolute;border-radius: 100%;min-width:6vw;
+height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px}
 .detail-btn-img{width:150rpx;display:inline-block; text-align: center; float: left;}
-.detail-btn button{width:600rpx; display:inline-block;border-radius: 0;height: 14vw;line-height: 14vw;}
+.detail-btn button{width:300rpx; display:inline-block;border-radius: 0;height: 14vw;line-height: 14vw;}
 /* 产品属性 */
 .close{padding-bottom:30px}
 .drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}
@@ -36,9 +38,3 @@ background: #fff
 .stepper input{width:30px;height:28px;float:left;margin:0 auto;text-align:center;font-size:14px;padding: 0 3px}
 .stepper .normal{color:#373737}
 .stepper .disabled{color:#cfcfcf}
-
-/* 产品详情切换 */
-.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:500;top:0;width:100%;background-color:#fff;border-bottom:1px solid #ddd}
-.weui-navbar__item.on{color:#ff6214}
-.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:13px 0;text-align:center;font-size:15px;-webkit-tap-highlight-color:transparent}
-.weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;border-right:1px solid #CCC;color:#CCC;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}

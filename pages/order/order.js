@@ -13,7 +13,7 @@ Page({
   data: {
     list: [],
     // 切换
-    nav: '1',
+    nav: '00',
     page: 1
   },
 
@@ -23,13 +23,15 @@ Page({
     })
   },
 
-  // 回首页
-  pageIndex: function (e) {
-    wx.switchTab({
-      url: '../index/index'
+  /* 页面切换 */
+  nav: function (e) {
+    var ctx = this;
+    var nav = e.currentTarget.dataset.nav;
+    this.setData({
+      nav: nav
     })
+    this.get()
   },
-
   // 订单接口
   get: function () {
     var that = this
@@ -42,6 +44,7 @@ Page({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page,
+        ostate: this.data.nav,
         pageSize: 1000,
         skey: app.globalData.member.skey
       },
@@ -54,12 +57,14 @@ Page({
             title: res.data.msg
           })
           that.setData({
+            list: [],
             empty: true
           })
           return false
         }
         if (data.length === 0 && that.data.page === 1) {
           that.setData({
+            list: [],
             empty: true
           })
           return false
@@ -67,10 +72,10 @@ Page({
         for (var i = 0; i < data.length; i++) {
           data[i].cancel = '取消订单'
           data[i].comfirm = '确定收货'
-          that.data.list.push(data[i])
+          // that.data.list.push(data[i])
         }
         that.setData({
-          list: that.data.list
+          list: data
         })
       }
     })
