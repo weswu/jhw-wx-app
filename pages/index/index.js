@@ -67,8 +67,8 @@ Page({
           isloading: false
         })
         wx.hideNavigationBarLoading()
-        var data = res.data.list
-        if (data.length > 0) {
+        if (res.statusCode !== 404) {
+          var data = res.data.list
           for (var i = 0; i < data.length; i++) {
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
@@ -77,12 +77,12 @@ Page({
           that.setData({
             list: that.data.list
           })
-        }
-        if (that.data.search.page === 1) {
-          wx.setStorage({
-            key: 'goods',
-            data: res.data.list
-          })
+          if (that.data.search.page === 1) {
+            wx.setStorage({
+              key: 'goods',
+              data: res.data.list
+            })
+          }
         }
       }
     })
@@ -163,9 +163,6 @@ Page({
       'scrollTop.scroll_top': _top
     });
   },
-  bindDownLoad: function () {
-    this.onReachBottom()
-  },
 
   onLoad: function () {
     var key = wx.getStorageSync('goods')
@@ -191,12 +188,23 @@ Page({
       })
     }
   },
+
+  scrolltoupper: function () {
+    this.onPullDownRefresh()
+  },
+  bindDownLoad: function () {
+    this.onReachBottom()
+  },
+
   onPullDownRefresh: function () {
-    this.data.search.page = 1
-    this.setData({
-      search: this.data.search
-    })
-    this.get()
+    if (!this.data.isloading) {
+      this.data.search.page = 1
+      this.setData({
+        list: [],
+        search: this.data.search
+      })
+      this.get()
+    }
     this.getBanner()
     this.getCate()
     wx.stopPullDownRefresh()

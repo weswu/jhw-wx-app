@@ -117,6 +117,10 @@ Page({
       'scrollTop.scroll_top': _top
     });
   },
+
+  scrolltoupper: function () {
+    this.onPullDownRefresh()
+  },
   bindDownLoad: function () {
     this.onReachBottom()
   },
@@ -154,12 +158,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.data.search.page = 1
-    this.setData({
-      list: [],
-      search: this.data.search
-    })
-    this.get()
+    if (!this.data.isloading) {
+      this.data.search.page = 1
+      this.setData({
+        list: [],
+        search: this.data.search
+      })
+      this.get()
+    }
     wx.stopPullDownRefresh()
   },
 
@@ -167,12 +173,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.isloading) { return false }
-    this.data.search.page += 1
-    this.setData({
-      search: this.data.search
-    })
-    this.get()
+    if (!this.data.isloading) {
+      this.data.search.page += 1
+      this.setData({
+        search: this.data.search
+      })
+      this.get()
+    }
   },
 
   /**

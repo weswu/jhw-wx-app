@@ -29,8 +29,10 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                if (res.data.attributes.data == null) {
-                  alert('数据为空')
+                if (res.data.attributes === null) {
+                  wx.showModal({
+                    title: '登录失败'
+                  })
                 }
                 res.data.attributes.data.skey = res.data.attributes.data.skey || ''
                 that.globalData.member = res.data.attributes.data
@@ -61,7 +63,7 @@ App({
   onHide: function () {
     console.log('App Hide')
   },
-  // 全局变量
+  // 全局变量 wx031271ed9d1f909f
   globalData: {
     userInfo: null,
     member: null,

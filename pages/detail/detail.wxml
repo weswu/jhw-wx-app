@@ -74,5 +74,5 @@
     <text class="count" wx:if="{{count>0}}">{{count}}</text>
   </view>
   <button class="btn-primary" bindtap="setModalStatus" data-status="1" data-skip="0" style="background: #496d55;">加入购物车</button>
-  <button class="btn-primary" bindtap="setModalStatus" data-status="1" data-skip="1">确定购买</button>
+  <button class="btn-primary" bindtap="setModalStatus" data-status="1" data-skip="1">立即购买</button>
 </view>

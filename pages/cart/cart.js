@@ -15,7 +15,8 @@ Page({
     cartItemSet: [],
     curReceiver: {},
     curDelivery: {},
-    curPaymentConfig: {}
+    curPaymentConfig: {},
+    empty: false
   },
   page: function (e) {
     wx.navigateTo({
@@ -60,6 +61,11 @@ Page({
         })
         var data = res.data.attributes
 
+        if (data.cartItemSet.length === 0) {
+          that.setData({
+            empty: true
+          })
+        }
         that.setData({
           cartItemSet: data.cartItemSet,
           deliveryType: data.deliveryType,

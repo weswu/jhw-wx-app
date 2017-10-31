@@ -1,5 +1,5 @@
 <scroll-view style="height: 100%;" scroll-y="true" scroll-top="{{scrollTop.scroll_top}}"
-  bindscroll="scrollTopFun" bindscrolltolower="bindDownLoad">
+  bindscroll="scrollTopFun" bindscrolltoupper="scrolltoupper" bindscrolltolower="bindDownLoad">
 <!-- 搜索 -->
 <view class="search">
   <view class="search-btn" bindtap="page" data-url="../search/search">
@@ -17,8 +17,8 @@
           </swiper-item>
       </block>
   </swiper>
-  <view class="dots">
-    <block wx:for="{{images}}" wx:key="unique">
+  <view class="dots" wx:if="{{images.length > 1}}">
+    <block wx:for="{{images}}" wx:key="item.attId">
       <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
     </block>
   </view>

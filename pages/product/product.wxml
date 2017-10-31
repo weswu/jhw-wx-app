@@ -1,5 +1,5 @@
 <scroll-view style="height: 100%;" scroll-y="true" scroll-top="{{scrollTop.scroll_top}}"
-  bindscroll="scrollTopFun" bindscrolltolower="bindDownLoad">
+  bindscroll="scrollTopFun" bindscrolltoupper="scrolltoupper" bindscrolltolower="bindDownLoad">
 <!-- 产品展示 -->
 <view class="goods">
   <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
@@ -14,7 +14,10 @@
 </view>
 <view wx:if="{{isloading}}" class="tip"><image class="loading" src="../../images/loading.png"></image></view>
 <!-- 数据为空 -->
-<view wx:if="{{!isloading}}" style="text-align: center;font-size:14px;color:#999;padding:0 0 5vw 0;">{{emptyTip}}</view>
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip empty">
+  <image class="search" src="../../images/search.png"></image>
+  <view>抱歉，无匹配结果</view>
+</view>
 <!-- 滚回到顶部 -->
 </scroll-view>
 <image class="top" src="../../images/top.png" wx:if="{{scrollTop.goTop_show}}" catchtap="goTopFun"></image>
