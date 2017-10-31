@@ -76,7 +76,7 @@ Page({
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
+            data[i].price = parseFloat(data[i].price).toFixed(2)
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
           }

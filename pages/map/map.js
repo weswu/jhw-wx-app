@@ -30,7 +30,8 @@ Page({
   },
 
   onLoad: function () {
-    // 获取当前的地理位置
+    // 获取你当前所在的地理位置
+    /*
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
@@ -40,5 +41,6 @@ Page({
         var accuracy = res.accuracy
       }
     })
+    */
   }
 })

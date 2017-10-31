@@ -29,6 +29,7 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
+                console.log('登录'+res.data.attributes)
                 if (res.data.attributes === null) {
                   wx.showModal({
                     title: '登录失败'
@@ -53,6 +54,17 @@ App({
     }
   },
   onLaunch: function () {
+     // 总网站的参数
+     var that = this
+     wx.getExtConfig({
+       success: function (res) {
+         that.globalData = {
+           appid: res.extConfig.appid,
+           enterpriseId: res.extConfig.enterprise_id,
+           userId: res.extConfig.user_id
+         }
+       }
+     })
      // 登录用户信息
      this.getUserInfo()
    },
@@ -63,12 +75,9 @@ App({
   onHide: function () {
     console.log('App Hide')
   },
-  // 全局变量 wx031271ed9d1f909f
+  // 全局变量
   globalData: {
     userInfo: null,
-    member: null,
-    appid: 'wx031271ed9d1f909f',
-    enterpriseId: 'Enterp_0000000000000000000049341',
-    userId: 'User_000000000000000000000065262'
+    member: null
   }
 })

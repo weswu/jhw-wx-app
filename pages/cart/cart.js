@@ -154,6 +154,10 @@ Page({
             empty: true
           })
         }
+        wx.setStorage({
+          key: 'cartCount',
+          data: wx.getStorageSync('cartCount') - 1
+        })
       }
     })
   },

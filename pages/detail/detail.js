@@ -59,7 +59,10 @@ Page({
           res.data.detail1 = res.data.detail1.replace(/<table>/g, "<table style='border-collapse:collapse;display:table;'>").replace(/<td>/g, "<td style='padding: 5px 10px;border: 1px solid #DDD;'>").replace(/<th>/g, "<th style='padding: 5px 10px;border: 1px solid #DDD;border-top:1px solid #BBB;background-color:#F7F7F7;'>").replace(/\"/g, "'")
         }
 
-        res.data.price = parseFloat(parseFloat(res.data.price).toFixed(2))
+        res.data.price = parseFloat(res.data.price).toFixed(2)
+        for (var i = 0; i < res.data.imagelist.length; i++) {
+          res.data.imagelist[i].sourceProductImagePath = util.picUrl(res.data.imagelist[i].sourceProductImagePath, 3)
+        }
         that.setData({
           detail: res.data
         })
@@ -111,7 +114,9 @@ Page({
 
         for (var i = 0; i < attrList.length; i++) {
           var element = attrList[i].element;
+          var price = attrList[i].price
           attrList[i].eleList = element.substring(1, element.length - 1).split(',')
+          attrList[i].priceList = price.substring(1, price.length - 1).split(',')
         }
         that.setData({
           attrList: attrList,
@@ -175,6 +180,7 @@ Page({
     var pic = ''
     for (var i = 0; i < this.data.attrList.length; i++) {
       var attr = this.data.attrList[i].eleList[this.data.attrList[i].dx] || ''
+      cost_price = parseFloat(parseFloat(this.data.detail.price) + parseFloat(this.data.attrList[i].priceList[this.data.attrList[i].dx]) || 0).toFixed(2)
       if (appendIds === '') {
         appendIds = attr
         productAttr = this.data.attrList[i].name + ': ' + attr
@@ -316,6 +322,31 @@ Page({
       swiperHeight: this.data.swiperHeight
     })
   },
+  // cartCount
+  cartCount: function () {
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
+      data: {
+        entId: app.globalData.enterpriseId,
+        cIds: '',
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        var count = 0
+        if (res.data.success) {
+          count = res.data.attributes.totalQuantity || 0
+        }
+        wx.setStorage({
+          key: 'cartCount',
+          data: 0
+        })
+        that.setData({
+          count: 0
+        })
+      }
+    })
+  },
   onLoad: function (options) {
     this.setData({
       id: options.id,
@@ -333,28 +364,9 @@ Page({
       app.getUserInfo()
     }
 
-    var that = this
     var cartCount = wx.getStorageSync('cartCount')
     if (!cartCount) {
-      wx.request({
-        url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
-        data: {
-          entId: app.globalData.enterpriseId,
-          cIds: '',
-          skey: app.globalData.member.skey
-        },
-        success: function (res) {
-          if (res.data.success) {
-            that.setData({
-              count: res.data.attributes.totalQuantity || 0
-            })
-            wx.setStorage({
-              key: 'cartCount',
-              data: res.data.attributes.totalQuantity || 0
-            })
-          }
-        }
-      })
+      this.cartCount()
     } else {
       this.setData({
         count: cartCount
@@ -368,7 +380,8 @@ Page({
   },
   onPullDownRefresh: function () {
     this.get()
-    this.getSell()
+    this.getAttr()
+    this.cartCount()
     wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {

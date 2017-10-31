@@ -16,8 +16,9 @@
   </view>
 
   <view class="detail_title">
-    {{detail.name}}
+    <view class="name">{{detail.name}}</view>
     <view class="price">￥{{detail.price}}</view>
+    <rich-text nodes="{{detail.detail1}}"></rich-text>
   </view>
 </view>
 <view class="wxpay">
@@ -27,7 +28,7 @@
 <view style="margin-bottom: 14vw">
   <!-- 图文详情 -->
   <view class="detail_bd">
-    <rich-text nodes="{{detail.proddesc || detail.detail1}}" bindtap="showDescPic"></rich-text>
+    <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
   </view>
 </view>
 <!-- 背景黑色 -->
@@ -37,7 +38,7 @@
   <view class="weui-cells">
     <view class="weui-cell">
       <view class="weui-cell__bd">
-        {{productAttr}}
+        <text style="padding-right:30rpx">(库存：{{detail.store}})</text>{{productAttr}}
       </view>
       <view class="weui-cell__ft">
         <view class="price">￥{{detail.price}}</view>
@@ -46,8 +47,8 @@
   </view>
   <view class="drawer_attr_content">
     <view class="weui-cell" wx:for="{{attrList}}">
+      <view class="weui-cell__hd name">{{item.name}}</view>
       <view class="weui-cell__bd weui-cell-attr">
-        <view class="name">{{item.name}}</view>
         <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" class="{{item.dx===idx?'active':''}}" data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
       </view>
     </view>

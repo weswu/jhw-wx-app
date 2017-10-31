@@ -23,6 +23,12 @@ Page({
     })
   },
 
+  tel: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.tel
+    })
+  },
+
   onLoad: function () {
     var that = this
     //调用应用实例的方法获取全局数据

@@ -2,18 +2,14 @@
 .detail{background: #fff}
 .detail image{display:block;width:100%}
 .detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:5vw}
-.price{color:#ef4e5e;font-size:14px;padding-top:3px}
+.detail_title .name{font-weight: 700;}
+.price{color:#ef4e5e;font-size:16px;padding:10rpx 0}
 .detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff}
-.wxpay{padding: 40rpx 30rpx}
-.wxpay image{width:25px;height: 25px !important; padding-right: 20rpx; float:left}
-.detail-btn{
-  position:fixed;
-bottom:0;
-left:0;
-width:100%;
-height: 14vw;line-height: 14vw;
-background: #fff
-}
+rich-text{font-size:13px;}
+.wxpay{padding: 40rpx 30rpx;font-size: 12px}
+.wxpay image{width:20px;height: 20px !important; padding-right: 20rpx; float:left}
+/* 底部按钮 */
+.detail-btn{position:fixed;bottom:0;left:0;width:100%;height:14vw;line-height:14vw;background:#fff}
 .detail-btn image{width:25px;height: 25px;vertical-align: middle;}
 .detail-btn .count{color: #fff;background: red;position: absolute;border-radius: 100%;min-width:6vw;
 height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px}
@@ -24,7 +20,7 @@ height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px
 .drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}
 .drawer_attr_box{width:100%;overflow:hidden;position:fixed;bottom:0;left:0;z-index:2000;background:#fff}
 .drawer_attr_content{max-height:50vh;overflow-y:scroll;font-size:12px;margin-bottom:2.4rem}
-.weui-cell-attr .name{padding-bottom:10px;font-size:14px;}
+.drawer_attr_content .name{padding-right:10px;padding-bottom:8px;font-size:14px;}
 .weui-cell-attr text{-webkit-tap-highlight-color:transparent;display:inline-block;border:1px solid #e0e0e0;background-color:#fff;padding:5px 10px;margin:0 10px 10px 0;text-align:center;border-radius:4px;color:#999}
 .drawer_attr_content .weui-cell:before{border-top:none}
 .drawer_attr_content .weui-cell{padding:10px 5px 0 15px}
@@ -36,5 +32,5 @@ height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px
 .stepper text{width:26px;line-height:26px;text-align:center;float:left;font-size:18px;border:1px solid #e0e0e0;border-radius: 100%}
 /* 数值 */
 .stepper input{width:30px;height:28px;float:left;margin:0 auto;text-align:center;font-size:14px;padding: 0 3px}
-.stepper .normal{color:#373737}
+.stepper .normal{color:#141414;border:1px solid #333;}
 .stepper .disabled{color:#cfcfcf}
