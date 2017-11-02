@@ -96,7 +96,8 @@ Page({
         recvEnt: app.globalData.enterpriseId,
         fromName: this.data.fromName,
         fromPhone: this.data.fromPhone,
-        fromEmail: this.data.fromEmail
+        fromEmail: this.data.fromEmail,
+        skey: app.globalData.member.skey
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -116,7 +117,7 @@ Page({
                   delta: 1
                 })
               } else if (res.cancel) {
-                this.setData({
+                that.setData({
                   fromName: '',
                   fromPhone: '',
                   fromEmail: '',
@@ -144,7 +145,7 @@ Page({
       skey: app.globalData.member.skey
     })
   },
-      
+
   /**
    * 用户点击右上角分享
    */
