@@ -2,6 +2,8 @@
   <input type="text" value="{{fromName}}" placeholder="姓名" bindchange="model" data-active="1"/>
   <input type="text" value="{{fromPhone}}" placeholder="联系电话" bindchange="model" data-active="2" maxlength="11"/>
   <input type="text" value="{{fromEmail}}" placeholder="邮箱" bindchange="model" data-active="3"/>
-  <textarea value="{{content}}" placeholder="你的建议" bindinput="model" data-active="4"/>
+  <input type="text" value="{{valiCode}}" placeholder="验证码" bindchange="model" data-active="4" style="width:60%;float:left;margin-right:10px;"/>
+  <image src="https://wx.jihui88.net/wxappVeriImg?skey={{skey}}&time={{time}}" bindtap="time" style="width:80px;height:30px"></image>
+  <textarea value="{{content}}" placeholder="你的建议" bindinput="model" data-active="5" style="clear:both"/>
   <button class="btn-primary fullwidth" bindtap="submit">发送</button>
 </view>
