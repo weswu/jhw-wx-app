@@ -15,6 +15,26 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
+  
+  tel: function () {
+    wx.makePhoneCall({
+      phoneNumber: '13905798556'
+    })
+  },
+
+  // 清空缓存
+  clear: function () {
+    var that = this
+    wx.clearStorage()
+    this.setData({
+      tip: '完成'
+    })
+    setTimeout(function () {
+      that.setData({
+        tip: ''
+      })
+    }, 5000)
+  },
 
   onLoad: function () {
     var that = this

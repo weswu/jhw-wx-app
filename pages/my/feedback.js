@@ -14,7 +14,10 @@ Page({
     fromName: '',
     fromPhone: '',
     fromEmail: '',
-    content: ''
+    content: '',
+    valiCode: '',
+    skey: '',
+    time: '00000'
   },
   model: function (e) {
     var active = e.currentTarget.dataset.active
@@ -30,11 +33,20 @@ Page({
       this.setData({
         fromEmail: e.detail.value
       })
+    } else if (active === '4') {
+      this.setData({
+        valiCode: e.detail.value
+      })
     } else {
       this.setData({
         content: e.detail.value
       })
     }
+  },
+  time: function () {
+    this.setData({
+      time: new Date().getTime()
+    })
   },
   // 提交
   submit: function () {
@@ -79,7 +91,7 @@ Page({
       data: {
         title: "小程序-用户反馈",
         content: this.data.content,
-        sendType: "no",
+        valiCode: this.data.valiCode,
         recvUser: app.globalData.userId,
         recvEnt: app.globalData.enterpriseId,
         fromName: this.data.fromName,
@@ -91,6 +103,9 @@ Page({
       },
       success: function (res) {
         wx.hideLoading()
+        that.setData({
+          time: new Date().getTime()
+        })
         if (res.data === "alert('发送成功!')") {
           wx.showModal({
             title: '留言成功',
@@ -111,14 +126,25 @@ Page({
             }
           })
         } else {
+          var error = '留言失败'
+          if (res.data.indexOf('验证码错误')) {error = '验证码错误'}
           wx.showModal({
-            title: '留言失败'
+            title: error
           })
         }
       }
     })
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      skey: app.globalData.member.skey
+    })
+  },
+      
   /**
    * 用户点击右上角分享
    */

@@ -11,11 +11,18 @@
 </view>
 <!-- 列表 -->
 <view class="weui-cells">
-  <view class="weui-cell" bindtap="page" data-url="../setting/setting">
-    <view class="weui-cell__hd">
-      <image src="../../images/setting.png"></image>
-    </view>
-    <view class="weui-cell__bd">设置</view>
-    <view class="weui-cell__ft"></view>
+  <view class="weui-cell" bindtap="tel">
+    <view class="weui-cell__hd"></view>
+    <view class="weui-cell__bd">联系客服</view>
+    <view class="weui-cell__ft">13905798556</view>
+  </view>
+  <view class="weui-cell" bindtap="page" data-url="feedback">
+    <view class="weui-cell__hd"></view>
+    <view class="weui-cell__bd">意见反馈</view>
+  </view>
+  <view class="weui-cell" bindtap="clear">
+    <view class="weui-cell__hd"></view>
+    <view class="weui-cell__bd">清除缓存</view>
+    <view class="weui-cell__ft">{{tip}}</view>
   </view>
 </view>

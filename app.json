@@ -6,8 +6,7 @@
     "pages/search/search",
     "pages/category/category",
     "pages/my/my",
-    "pages/setting/setting",
-    "pages/setting/feedback",
+    "pages/my/feedback",
     "pages/news/news",
     "pages/news/newsDetail"
   ],
