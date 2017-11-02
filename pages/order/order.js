@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-10-26
+ * @date: 2017-7-25
  * @desc: 订单
 */
 var app = getApp()
@@ -12,9 +12,14 @@ Page({
    */
   data: {
     list: [],
-    // 切换
-    nav: '00',
-    page: 1
+    page: 1,
+    // 留言
+    showModal: false,
+    valiCode: '',
+    skey: '',
+    time: '000',
+    orderSn: '',
+    mobile: ''
   },
 
   page: function (e) {
@@ -23,15 +28,13 @@ Page({
     })
   },
 
-  /* 页面切换 */
-  nav: function (e) {
-    var ctx = this;
-    var nav = e.currentTarget.dataset.nav;
-    this.setData({
-      nav: nav
+  // 回首页
+  pageIndex: function (e) {
+    wx.switchTab({
+      url: '../index/index'
     })
-    this.get()
   },
+
   // 订单接口
   get: function () {
     var that = this
@@ -44,7 +47,6 @@ Page({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page,
-        ostate: this.data.nav,
         pageSize: 1000,
         skey: app.globalData.member.skey
       },
@@ -57,14 +59,12 @@ Page({
             title: res.data.msg
           })
           that.setData({
-            list: [],
             empty: true
           })
           return false
         }
         if (data.length === 0 && that.data.page === 1) {
           that.setData({
-            list: [],
             empty: true
           })
           return false
@@ -72,10 +72,10 @@ Page({
         for (var i = 0; i < data.length; i++) {
           data[i].cancel = '取消订单'
           data[i].comfirm = '确定收货'
-          // that.data.list.push(data[i])
+          that.data.list.push(data[i])
         }
         that.setData({
-          list: data
+          list: that.data.list
         })
       }
     })
@@ -160,36 +160,62 @@ Page({
     }
   },
   // 留言-收货提示
-  send: function () {
-    var that = this
-    var orderSn = e.currentTarget.dataset.ordersn
-    var mobile = e.currentTarget.dataset.mobile
-
+  send: function (e) {
     if (this.data.cancel !== '交易成功') {
-      wx.request({
-        method: 'post',
-        url: 'https://wx.jihui88.net/site_message/send',
-        data: {
-          title: "小程序-客户催单",
-          content: "订单编号:" + orderSn,
-          sendType: "no",
-          recvUser: app.globalData.userId,
-          recvEnt: app.globalData.enterpriseId,
-          fromName: app.globalData.userInfo.nickName,
-          fromPhone: mobile
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          wx.showToast({
-            title: '留言成功',
-            icon: 'success',
-            duration: 1500
-          })
-        }
+      this.setData({
+        showModal: true,
+        orderSn: e.currentTarget.dataset.ordersn,
+        mobile: e.currentTarget.dataset.mobile
       })
     }
+  },
+  model: function (e) {
+    this.setData({
+      valiCode: e.detail.value
+    })
+  },
+  time: function () {
+    this.setData({
+      time: new Date().getTime()
+    })
+  },
+  onCancel: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  sendApi: function () {
+    var that = this
+    this.setData({
+      showModal: false
+    })
+    wx.request({
+      method: 'post',
+      url: 'https://wx.jihui88.net/site_message/send',
+      data: {
+        title: "小程序-客户催单",
+        content: "订单编号:" + that.data.orderSn,
+        valiCode: that.data.valiCode,
+        recvUser: app.globalData.userId,
+        recvEnt: app.globalData.enterpriseId,
+        fromName: app.globalData.userInfo.nickName,
+        fromPhone: that.data.mobile,
+        skey: app.globalData.member.skey
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          time: new Date().getTime()
+        })
+        wx.showToast({
+          title: '留言成功',
+          icon: 'success',
+          duration: 1500
+        })
+      }
+    })
   },
 
   /**
@@ -200,6 +226,9 @@ Page({
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
+    this.setData({
+      skey: app.globalData.member.skey
+    })
   },
 
   /**
@@ -230,7 +259,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '订单'
+      title: '我的订单'
     }
   }
 })
