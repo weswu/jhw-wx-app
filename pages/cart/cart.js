@@ -24,13 +24,6 @@ Page({
     })
   },
 
-  // 跳转到首页
-  pageIndex: function (e) {
-    wx.switchTab({
-      url: '../index/index'
-    })
-  },
-
   // 购物车接口
   get: function () {
     var that = this
@@ -49,16 +42,18 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading()
         wx.hideLoading()
+        wx.setStorage({
+          key: 'cartCount',
+          data: (res.data.attributes && res.data.attributes.totalQuantity) || 0
+        })
         if (!res.data.success) {
           that.setData({
-            empty: true
+            empty: true,
+            cartItemSet: []
           })
           return false
         }
-        wx.setStorage({
-          key: 'cartCount',
-          data: res.data.attributes.totalQuantity || 0
-        })
+
         var data = res.data.attributes
 
         if (data.cartItemSet.length === 0) {
@@ -248,6 +243,10 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
+            wx.setStorage({
+              key: 'cartCount',
+              data: 0
+            })
             wx.requestPayment({
               'timeStamp': res.data.attributes.data.timeStamp,
               'nonceStr': res.data.attributes.data.nonceStr,
@@ -255,19 +254,18 @@ Page({
               'signType': 'MD5',
               'paySign': res.data.attributes.data.sign,
               'success': function (res) {
-                wx.setStorage({
-                  key: 'cartCount',
-                  data: 0
-                })
                 wx.showModal({
                   title: '支付完成'
                 })
-                wx.navigateTo({
+                wx.switchTab({
                   url: '../order/order'
                 })
               },
               'fail': function (res) {
-                wx.navigateTo({
+                wx.showModal({
+                  title: res.err_desc
+                })
+                wx.switchTab({
                   url: '../order/order'
                 })
               }
@@ -278,17 +276,11 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onShow: function () {
     this.get()
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-  },
-
-  onShow: function () {
     // 设置选中的收货地址
     var key = wx.getStorageSync('curReceiver')
     if (key) {

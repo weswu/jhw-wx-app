@@ -283,15 +283,15 @@ Page({
         var str = res.data.split('jsonpCallback(')[1]
         var data = JSON.parse(str.substring(0, str.length - 1))
         if (data.success) {
-          that.setData({
-            count: that.data.count + that.data.num,
-            showModalStatus: false
-          });
           if (that.data.skip === '1') {
             wx.switchTab({
               url: '../cart/cart'
             })
           }
+          that.setData({
+            count: that.data.count + that.data.num,
+            showModalStatus: false
+          });
         } else {
           wx.showModal({
             title: '提示',
@@ -333,13 +333,10 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
-        var count = 0
-        if (res.data.success) {
-          count = res.data.attributes.totalQuantity || 0
-        }
+        var count = (res.data.attributes && res.data.attributes.totalQuantity) || 0
         wx.setStorage({
           key: 'cartCount',
-          data: 0
+          data: count
         })
         that.setData({
           count: 0
@@ -352,6 +349,13 @@ Page({
       id: options.id,
       title: options.title || '产品详细'
     })
+    if (app.globalData.member === null) {
+      app.getUserInfo()
+    }
+
+  },
+
+  onShow: function () {
     var key = wx.getStorageSync('detail' + this.data.id)
     if (!key) {
       this.get()
@@ -360,10 +364,6 @@ Page({
         detail: key
       })
     }
-    if (app.globalData.member === null) {
-      app.getUserInfo()
-    }
-
     var cartCount = wx.getStorageSync('cartCount')
     if (!cartCount) {
       this.cartCount()

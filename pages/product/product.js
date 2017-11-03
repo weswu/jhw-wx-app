@@ -22,10 +22,7 @@ Page({
     },
     isloading: false,
     // 回到顶部
-    scrollTop: {
-      scroll_top: 0,
-      goTop_show: false
-    }
+    scrollTop: false
   },
 
   page: function (e) {
@@ -95,27 +92,20 @@ Page({
   },
 
   // 回到顶部
-  scrollTopFun: function (e) {
-    if (e.detail.scrollTop > 500) { // 触发gotop的显示条件
-      this.setData({
-        'scrollTop.goTop_show': true
-      });
-    } else {
-      this.setData({
-        'scrollTop.goTop_show': false
-      });
-    }
-  },
   goTopFun: function (e) {
-    var _top = this.data.scrollTop.scroll_top; // 发现设置scroll-top值不能和上一次的值一样，否则无效，所以这里加了个判断
-    if (_top == 1) {
-      _top = 0;
-    } else {
-      _top = 1;
-    }
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
     this.setData({
-      'scrollTop.scroll_top': _top
-    });
+      scrollTop: false
+    })
+  },
+  scrollTopFn: function (e) {
+    if (!this.data.scrollTop) {
+      this.setData({
+        scrollTop: true
+      })
+    }
   },
 
   scrolltoupper: function () {

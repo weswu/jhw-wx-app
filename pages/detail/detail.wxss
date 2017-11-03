@@ -6,7 +6,7 @@
 .price{color:#ef4e5e;font-size:16px;padding:10rpx 0}
 .detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff}
 rich-text{font-size:13px;}
-.wxpay{padding: 40rpx 30rpx;font-size: 12px}
+.wxpay{padding: 30rpx 30rpx;font-size: 12px;height:20px;line-height: 20px}
 .wxpay image{width:20px;height: 20px !important; padding-right: 20rpx; float:left}
 /* 底部按钮 */
 .detail-btn{position:fixed;bottom:0;left:0;width:100%;height:14vw;line-height:14vw;background:#fff}
