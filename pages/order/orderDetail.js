@@ -69,6 +69,9 @@ Page({
             })
           },
           'fail': function (res) {
+            wx.showModal({
+              title: res.err_desc
+            })
             wx.navigateBack({
               delta: 1
             })

@@ -249,6 +249,9 @@ Page({
                 })
               },
               'fail': function (res) {
+                wx.showModal({
+                  title: res.err_desc
+                })
                 wx.navigateTo({
                   url: '../order/order'
                 })

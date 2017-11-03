@@ -12,9 +12,9 @@
 | 分支名 | 二维码 | 描述 |
 | --- | :---: | --- |
 | `master` | - | 基础功能模板 |
-| `jihui` | - | 机汇网 |
 | `qixing` | - | 七星布草 zaingdev |
-| `jinlida` | - | 金利达砂轮 |
+| `jihui` | - | 机汇网 |
+| `jinlida` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/jinlida.png"/> | 金利达砂轮 |
 | `sxl1` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FpMpKL_0fx-ZV_n2dfYR-ZnJrezI.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 上线了-时装电商-Ash amaira |
 
 #### 新建模板
