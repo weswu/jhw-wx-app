@@ -12,7 +12,14 @@ Page({
    */
   data: {
     list: [],
-    page: 1
+    page: 1,
+    // 留言
+    showModal: false,
+    valiCode: '',
+    skey: '',
+    time: '000',
+    orderSn: '',
+    mobile: ''
   },
 
   page: function (e) {
@@ -148,36 +155,63 @@ Page({
       })
     }
   },
-  send: function () {
-    var that = this
-    var orderSn = e.currentTarget.dataset.ordersn
-    var mobile = e.currentTarget.dataset.mobile
-
-    if(this.data.cancel !== '交易成功'){
-      wx.request({
-        method: 'post',
-        url: 'https://wx.jihui88.net/site_message/send',
-        data: {
-          title: "小程序-客户催单",
-          content:"订单编号:"+ orderSn,
-          sendType: "no",
-          recvUser: app.globalData.userId,
-          recvEnt: app.globalData.enterpriseId,
-          fromName: app.globalData.userInfo.nickName,
-          fromPhone: mobile
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          wx.showToast({
-            title: '留言成功',
-            icon: 'success',
-            duration: 1500
-          })
-        }
+  // 留言-收货提示
+  send: function (e) {
+    if (this.data.cancel !== '交易成功') {
+      this.setData({
+        showModal: true,
+        orderSn: e.currentTarget.dataset.ordersn,
+        mobile: e.currentTarget.dataset.mobile
       })
     }
+  },
+  model: function (e) {
+    this.setData({
+      valiCode: e.detail.value
+    })
+  },
+  time: function () {
+    this.setData({
+      time: new Date().getTime()
+    })
+  },
+  onCancel: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  sendApi: function () {
+    var that = this
+    this.setData({
+      showModal: false
+    })
+    wx.request({
+      method: 'post',
+      url: 'https://wx.jihui88.net/site_message/send',
+      data: {
+        title: "小程序-客户催单",
+        content: "订单编号:" + that.data.orderSn,
+        valiCode: that.data.valiCode,
+        recvUser: app.globalData.userId,
+        recvEnt: app.globalData.enterpriseId,
+        fromName: app.globalData.userInfo.nickName,
+        fromPhone: that.data.mobile,
+        skey: app.globalData.member.skey
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          time: new Date().getTime()
+        })
+        wx.showToast({
+          title: '留言成功',
+          icon: 'success',
+          duration: 1500
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -187,6 +221,9 @@ Page({
     if(app.globalData.member === null){
       app.getUserInfo()
     }
+    this.setData({
+      skey: app.globalData.member.skey
+    })
   },
 
   /**

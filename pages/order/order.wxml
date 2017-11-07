@@ -58,3 +58,18 @@
     <button class="btn-primary" bindtap="pageIndex">到商城再逛逛</button>
   </view>
 </view>
+<!-- 验证码 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">联系商家发货</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input type="text" class="input" value="{{valiCode}}" placeholder-class="input-holder" placeholder="验证码" bindchange="model"/>
+      <image src="https://wx.jihui88.net/wxappVeriImg?skey={{skey}}&time={{time}}" bindtap="time" style="width:80px;height:75rpx;float:right"></image>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="sendApi" data-status="confirm">确定</view>
+  </view>
+</view>
