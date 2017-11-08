@@ -21,7 +21,8 @@ Page({
     skey: '',
     time: '000',
     orderSn: '',
-    mobile: ''
+    mobile: '',
+    primaryColor: ''
   },
 
   page: function (e) {
@@ -235,7 +236,8 @@ Page({
       app.getUserInfo()
     }
     this.setData({
-      skey: app.globalData.member.skey
+      skey: app.globalData.member.skey,
+      primaryColor: app.globalData.primaryColor
     })
   },
 

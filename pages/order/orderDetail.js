@@ -13,7 +13,8 @@ Page({
   data: {
     data: {},
     paymentConfigList: [],
-    devTip: '查看物流信息'
+    devTip: '查看物流信息',
+    primaryColor: ''
   },
 
   page: function (e) {
@@ -156,6 +157,9 @@ Page({
       })
     }
     this.get()
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

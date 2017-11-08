@@ -1,6 +1,6 @@
 <!-- 搜索 -->
 <view class="wxSearch">
-  <view class="wxSearch-section">
+  <view class="wxSearch-section" style="background-color:{{primaryColor}}">
     <view class="wxSearch-pancel">
       <form class="wxSearch-form">
         <input type="text" bindblur="searchKey" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" focus="{{focus}}"/>

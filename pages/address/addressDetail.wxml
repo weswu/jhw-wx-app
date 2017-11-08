@@ -40,6 +40,6 @@
           <view class="weui-cell__bd"><textarea value="{{address.address}}" bindinput="address" data-address="address" style="height:2.5rem;" placeholder="详细地址"/></view>
       </view>
     </view>
-    <button class="btn-primary" bindtap="submit" data-url="addressDetail" style="width:90%;margin-top:1rem">保存并使用</button>
+    <button class="btn-primary" style="background:{{primaryColor}};color:#fff;width:90%;margin-top:1rem" bindtap="submit" data-url="addressDetail">保存并使用</button>
     <button type="warn" wx:if="{{!isAdd}}" bindtap="del" style="width:90%;margin-top:1rem">删除</button>
 </view>

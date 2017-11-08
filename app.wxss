@@ -10,7 +10,6 @@ page{background: #f6f6f6;height:100%;font-family:-apple-system-font,Helvetica,'�
 /* 按钮 */
 .fullwidth{width:100%}
 .btn-weixin{background:#1AAD19;color:#fff}
-.btn-primary{background:#25402e;color:#fff}
 button{font-size:16px;z-index:9;}
 button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
 /* 列表 */

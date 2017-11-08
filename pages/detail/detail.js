@@ -25,7 +25,9 @@ Page({
     num: 1,
     skuCode: '',
     appendPrice: 0,
-    appendIds: ''
+    appendIds: '',
+    primaryColor: '',
+    lighterPrimaryColor: ''
   },
   page: function (e) {
     debugger
@@ -347,12 +349,13 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      title: options.title || '产品详细'
+      title: options.title || '产品详细',
+      primaryColor: app.globalData.primaryColor,
+      lighterPrimaryColor: app.globalData.lighterPrimaryColor
     })
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-
   },
 
   onShow: function () {

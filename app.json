@@ -16,15 +16,10 @@
   "window": {
     "backgroundColor": "#fff",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#25402e",
-    "navigationBarTitleText": "ASH AMAIRA",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#353535",
-    "selectedColor": "#25402e",
-    "backgroundColor": "#fff",
     "list": [
       {
         "iconPath": "images/tabBar/index.png",

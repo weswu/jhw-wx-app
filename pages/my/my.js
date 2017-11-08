@@ -7,7 +7,7 @@ var app = getApp()
 
 Page({
   data: {
-    userInfo: {}，
+    userInfo: {},
     company: {}
   },
   // 跳转页面
@@ -66,6 +66,12 @@ Page({
         company: company
       })
     }
+  },
+
+
+  onPullDownRefresh: function () {
+    this.get()
+    wx.stopPullDownRefresh()
   },
 
   /**

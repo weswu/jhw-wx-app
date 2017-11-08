@@ -61,8 +61,12 @@ App({
          that.globalData = {
            appid: res.extConfig.appid,
            enterpriseId: res.extConfig.enterprise_id,
-           userId: res.extConfig.user_id
+           userId: res.extConfig.user_id,
+           primaryColor: res.extConfig.primaryColor,
+           lighterPrimaryColor: res.extConfig.lighterPrimaryColor
          }
+        console.log('appid---' + res.extConfig.appid)
+        console.log('entid---' + res.extConfig.enterprise_id)
        }
      })
      // 登录用户信息

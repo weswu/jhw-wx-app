@@ -3,7 +3,7 @@
 .total text{padding: 0 10rpx; }
 /* 搜索 */
 .wxSearch{height: 43px;z-index:2;}
-.wxSearch-section{background-color:#25402e;padding:5px 30rpx 10px 30rpx;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:695rpx;}
+.wxSearch-section{padding:5px 30rpx 10px 30rpx;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:695rpx;}
 .wxSearch-pancel{display:flex;flex-direction:row}
 .wxSearch-form{flex:8;position:relative;}
 .wxSearch-input{background-color:#fff;padding:0 40px 0 30px;font-size:12px;height:28px;line-height: 28px;border-radius: 3px}

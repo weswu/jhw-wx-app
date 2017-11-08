@@ -1,14 +1,20 @@
 {
   "extEnable": true,
-  "extAppid": "wx031271ed9d1f909f",
+  "extAppid": "wxc133a0e73ee80bb6",
   "ext": {
-    "appid": "wx031271ed9d1f909f",
+    "appid": "wxc133a0e73ee80bb6",
     "enterprise_id": "Enterp_0000000000000000000062420",
     "user_id": "User_000000000000000000000065262",
-    "mch_id":"1491659702",
-    "color":"#ff0000"
+    "primaryColor":"#25402e",
+    "lighterPrimaryColor":"#496d55"
   },
   "window": {
+    "navigationBarBackgroundColor": "#25402e",
     "navigationBarTitleText": "ASH AMAIRA"
+  },
+  "tabBar": {
+    "color": "#353535",
+    "selectedColor": "#25402e",
+    "backgroundColor": "#fff"
   }
 }

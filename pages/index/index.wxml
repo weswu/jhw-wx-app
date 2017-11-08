@@ -1,7 +1,7 @@
 <!-- 搜索 -->
 <view class="searchFixed">
-  <view class="search">
-    <view class="search-btn" bindtap="page" data-url="../search/search">
+  <view class="search" style="background:{{primaryColor}}">
+    <view class="search-btn" style="background:{{lighterPrimaryColor}}" bindtap="page" data-url="../search/search">
       <image src="../../images/search.png"></image>
       搜索商品
     </view>

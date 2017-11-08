@@ -20,7 +20,8 @@ Page({
     search: {
       page: 1,
       per_page: 10
-    }
+    },
+    primaryColor: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -89,6 +90,15 @@ Page({
       })
       this.get()
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

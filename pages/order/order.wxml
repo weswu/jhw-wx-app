@@ -1,5 +1,5 @@
 <!-- 切换 -->
-<view class="weui-navbar">
+<view class="weui-navbar" style="background-color:{{primaryColor}}">
   <view class="weui-navbar__item {{nav == '00' ? 'on' : ''}}" bindtap="nav" data-nav="00">
     全部订单
   </view>
@@ -25,9 +25,9 @@
       <view class="weui-cell__ft">
         <view wx:if="{{item.orderStatus === 'completed'}}">交易成功</view>
         <view wx:elif="{{item.orderStatus === 'invalid'}}">交易关闭</view>
-        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#25402e">待付款</view>
-        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#25402e">待发货</view>
-        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#25402e">已发货</view>
+        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:{{primaryColor}}">待付款</view>
+        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:{{primaryColor}}">待发货</view>
+        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:{{primaryColor}}">已发货</view>
       </view>
     </view>
     <!-- 商品信息 -->
@@ -48,7 +48,7 @@
     </view>
     <!-- 订单操作 -->
     <view class="btn-event">
-      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn active" bindtap="del" data-id="{{item.orderId}}">删除</text>
+      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn" style="border: 1px solid {{primaryColor}};color:{{primaryColor}}" bindtap="del" data-id="{{item.orderId}}">删除</text>
       <!-- 取消 -->
       <text wx:elif="{{item.paymentStatus === 'unpaid' || item.paymentStatus === 'partPayment'}}" class="btn" bindtap="cancel" data-id="{{item.orderId}}" data-cancel="{{item.cancel}}" data-index="{{index}}">{{item.cancel}}</text>
       <text wx:elif="{{item.shippingStatus === 'shipped' || item.shippingStatus === 'partShipped'}}">

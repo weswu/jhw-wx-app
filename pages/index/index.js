@@ -25,7 +25,9 @@ Page({
     keyword: '',
     // 切换
     nav: '1',
-    scrollTop: false
+    scrollTop: false,
+    primaryColor: '',
+    lighterPrimaryColor: ''
   },
   // 跳转页面
   page: function (e) {
@@ -158,6 +160,10 @@ Page({
   },
 
   onLoad: function () {
+    this.setData({
+      primaryColor: app.globalData.primaryColor,
+      lighterPrimaryColor: app.globalData.lighterPrimaryColor
+    })
     var key = wx.getStorageSync('goods')
     if (!key) {
       this.get()

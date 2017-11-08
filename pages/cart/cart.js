@@ -16,7 +16,8 @@ Page({
     curReceiver: {},
     curDelivery: {},
     curPaymentConfig: {},
-    empty: false
+    empty: false,
+    primaryColor: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -207,7 +208,7 @@ Page({
     }
     if (this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId) {
       wx.showModal({
-        title: '请开通微信支付'
+        title: '未添加支付方式'
       })
       return false
     }
@@ -281,6 +282,9 @@ Page({
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
     // 设置选中的收货地址
     var key = wx.getStorageSync('curReceiver')
     if (key) {

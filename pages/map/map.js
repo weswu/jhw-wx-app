@@ -1,7 +1,6 @@
 // map.js
 Page({
   data: {
-    // 腾讯地图坐标拾取器: http://lbs.qq.com/tool/getpoint/
     // 视线中心点,中心经度
     longitude: 120.22141,
     latitude: 30.207962,
@@ -17,17 +16,15 @@ Page({
   },
 
   onLoad: function () {
-    // 获取你当前所在的地理位置
-    /*
-    wx.getLocation({
-      type: 'wgs84',
-      success: function(res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-      }
+    var map = wx.getStorageSync('company').mapaddress
+    var longitude = map.split(',')[0]
+    var latitude = map.split(',')[1]
+    this.data.markers[0].longitude = longitude
+    this.data.markers[0].latitude = latitude
+    this.setData({
+      longitude: longitude,
+      latitude: latitude,
+      markers: this.data.markers
     })
-    */
   }
 })
