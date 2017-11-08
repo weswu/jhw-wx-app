@@ -65,7 +65,7 @@
   </view>
 </view>
 <!-- 订单为空 -->
-<view wx:if="{{list.length === 2}}" class="tip">
+<view wx:if="{{list.length === 0 && empty}}" class="tip">
   <image src="../../images/order.png"></image>
   <view>还没有相关订单</view>
 </view>
