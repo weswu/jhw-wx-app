@@ -29,8 +29,11 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                if(res.data.attributes.data == null){
-                  alert('数据为空')
+                if (res.data.attributes === null) {
+                  wx.showModal({
+                    title: '登录失败'
+                  })
+                  return false
                 }
                 res.data.attributes.data.skey = res.data.attributes.data.skey || ''
                 that.globalData.member = res.data.attributes.data
@@ -57,9 +60,13 @@ App({
       success: function (res) {
         that.globalData = {
           appid: res.extConfig.appid,
+          mchId: res.extConfig.mch_id,
           enterpriseId: res.extConfig.enterprise_id,
           userId: res.extConfig.user_id
         }
+        console.log('appid---' + res.extConfig.appid)
+        console.log('entid---' + res.extConfig.enterprise_id)
+        console.log('userid--' + res.extConfig.user_id)
       }
     })
     // 登录用户信息

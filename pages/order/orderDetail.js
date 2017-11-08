@@ -48,6 +48,7 @@ Page({
       url: 'https://wx.jihui88.net/rest/pay/jsapi/getWxAppPayment',
       data: {
         appId: app.globalData.appid,
+        mchId: app.globalData.mchId,
         orderId: this.data.data.orderId,
         skey: app.globalData.member.skey
       },
@@ -67,6 +68,9 @@ Page({
             })
           },
           'fail': function (res) {
+            wx.showModal({
+              title: res.err_desc
+            })    
             wx.navigateBack({
               delta: 1
             })

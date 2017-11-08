@@ -31,7 +31,6 @@ Page({
       url: 'https://api.jihui88.net/jihuiapi/other/product_category/' + app.globalData.enterpriseId,
       success: function (res) {
         let data = res.data
-        console.log('data...'+res.data[0])
         that.setData({
           category: data
         })

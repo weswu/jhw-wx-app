@@ -6,19 +6,19 @@
 <!-- 产品列表 -->
 <view class="products">
   <view class="products-bd">
-    <view class="products-bd-item" wx:for="{{list}}" wx:key="product_id">
+    <navigator class="products-bd-item" wx:for="{{list}}" wx:key="product_id" url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
       <view class="products-bd-item-image">
-        <image  mode="widthFix" src="{{item.pic_path}}"></image>
+        <image mode="widthFix" src="{{item.pic_path}}"></image>
       </view>
       <view class="products-bd-item-desc">
         <view class="products-title">{{item.name}}</view>
-        <view class="products-type">{{item.model}}</view>
+        <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
           <view class="products-btn">立即抢购</view>
         </view>
       </view>
-    </view>
+    </navigator>
   </view>
 </view>
 <!-- 提示 -->

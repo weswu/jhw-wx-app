@@ -34,7 +34,7 @@
       </view>
       <view class="products-bd-item-desc">
         <view class="products-title">{{item.name}}</view>
-        <view class="products-type">{{item.model}}</view>
+        <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
           <view class="products-btn">立即抢购</view>
@@ -58,7 +58,7 @@
       </view>
       <view class="products-bd-item-desc">
         <view class="products-title">{{item.name}}</view>
-        <view class="products-type">{{item.model}}</view>
+        <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
           <view class="products-btn">立即抢购</view>
