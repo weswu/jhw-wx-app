@@ -15,7 +15,8 @@ Page({
     cartItemSet: [],
     curReceiver: {},
     curDelivery: {},
-    curPaymentConfig: {}
+    curPaymentConfig: {},
+    primaryColor: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -186,7 +187,7 @@ Page({
     }
     if(this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId){
       wx.showModal({
-        title: '请开通微信支付'
+        title: '未添加支付方式'
       })
       return false
     }
@@ -263,6 +264,9 @@ Page({
     if(app.globalData.member === null){
       app.getUserInfo()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   onShow: function () {

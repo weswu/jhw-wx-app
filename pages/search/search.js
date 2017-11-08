@@ -20,7 +20,8 @@ Page({
     search: {
       page: 1,
       per_page: 10
-    }
+    },
+    primaryColor: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -158,6 +159,9 @@ Page({
       })
       this.searchKey()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

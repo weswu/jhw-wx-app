@@ -12,7 +12,8 @@ Page({
    */
   data: {
     list: [],
-    address: {}
+    address: {},
+    primaryColor: ''
   },
 
   page: function (e) {
@@ -280,6 +281,9 @@ Page({
     } else {
       this.get()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   onShow: function () {

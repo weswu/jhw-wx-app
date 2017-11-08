@@ -12,7 +12,8 @@ Page({
    */
   data: {
     list: [],
-    active: 'all'
+    active: 'all',
+    primaryColor: ''
   },
   // 跳转
   page: function (e) {
@@ -64,6 +65,9 @@ Page({
         list: key
       })
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

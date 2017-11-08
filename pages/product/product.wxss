@@ -16,4 +16,4 @@ page {background: #f4f4f4;}
 .products-price{margin-top:5px;display:flex;justify-content:space-between;align-items:center}
 .products-price text{color:#c00;font-size:18px}
 .products-price text .unit{font-size:11px}
-.products-btn{width:40px;height:40px;background:url(http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/ef1fdb18-185f-427d-8d69-9cc5ee230e81.png) center no-repeat;background-size:contain;padding:5px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;text-align:center;color:#1f2f5e;font-size:12px}
+.products-btn{width:40px;height:40px;background:url(http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/ef1fdb18-185f-427d-8d69-9cc5ee230e81.png) center no-repeat;background-size:contain;padding:5px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;text-align:center;font-size:12px}

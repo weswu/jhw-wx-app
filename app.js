@@ -62,7 +62,8 @@ App({
           appid: res.extConfig.appid,
           mchId: res.extConfig.mch_id,
           enterpriseId: res.extConfig.enterprise_id,
-          userId: res.extConfig.user_id
+          userId: res.extConfig.user_id,
+          primaryColor: res.extConfig.primaryColor
         }
         console.log('appid---' + res.extConfig.appid)
         console.log('entid---' + res.extConfig.enterprise_id)

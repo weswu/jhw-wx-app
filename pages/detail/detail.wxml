@@ -21,13 +21,11 @@
     <view class="price">￥{{detail.price}}</view>
   </view>
 </view>
-
-<view class='separator'></view>
 <view class="weui-navbar">
-  <view class="weui-navbar__item {{nav == '1' ? 'on' : ''}}" bindtap="nav" data-nav="1">
+  <view class="weui-navbar__item" bindtap="nav" data-nav="1" style="color:{{nav == '1' ? primaryColor : ''}}">
       图文详情
   </view>
-  <view class="weui-navbar__item {{nav == '2' ? 'on' : ''}}" bindtap="nav" data-nav="2" style="border-right:none">
+  <view class="weui-navbar__item " bindtap="nav" data-nav="2" style="border-right:none;color:{{nav == '2' ? primaryColor : ''}}">
       成交记录
   </view>
 </view>
@@ -77,7 +75,7 @@
        <view class="weui-cell" wx:for="{{attrList}}">
            <view class="weui-cell__bd weui-cell-attr">
              <view class="name">{{item.name}}</view>
-             <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" class="{{item.dx===idx?'active':''}}"
+             <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" style="{{item.dx===idx?'color:#fff;border:1px solid ' + primaryColor + ';background:' + primaryColor :''}}"
               data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
            </view>
        </view>
@@ -97,6 +95,6 @@
      </view>
 
    </view>
-   <button class="btn-primary fixed" bindtap="pay" data-url="../cart/cart">确定</button>
+   <button class="btn-primary fixed" style="background:{{primaryColor}};color:#fff" bindtap="pay" data-url="../cart/cart">确定</button>
 </view>
-<button class="btn-primary fixed" bindtap="setModalStatus" data-status="1">立即购买</button>
+<button class="btn-primary fixed" style="background:{{primaryColor}};color:#fff" bindtap="setModalStatus" data-status="1">立即购买</button>

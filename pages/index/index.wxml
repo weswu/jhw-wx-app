@@ -22,11 +22,11 @@
 <!-- 热销商品 -->
 <view class="products">
   <view class="products-hd">
-    <view class="products-hd-wrap">
-      <view class="products-hd-item active">热销商品</view>
+    <view class="products-hd-wrap" style="{{primaryColor && 'border-left:5px solid ' + primaryColor}};">
+      <view class="products-hd-item" style="color:{{primaryColor}};">热销商品</view>
     </view>
   </view>
-  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/e619a672-9daf-43b3-ad06-b28c5a793f30_7.png"/>
+  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixingxcx/picture/2017/11/08/3ce92717-7951-43e8-942a-56701a330d52.jpg"/>
   <view class="products-bd">
     <navigator class="products-bd-item" wx:for="{{hotlist}}" wx:key="product_id" url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
       <view class="products-bd-item-image">
@@ -37,7 +37,7 @@
         <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
-          <view class="products-btn">立即抢购</view>
+          <view class="products-btn" style="color:{{primaryColor}}">立即抢购</view>
         </view>
       </view>
     </navigator>
@@ -46,11 +46,11 @@
 <!-- 产品分类列表 -->
 <view class="products">
   <view class="products-hd">
-    <view class="products-hd-wrap products-hd-cate">
-      <view class="products-hd-item {{active === index ? 'active' : ''}}" wx:for="{{category}}" wx:key="category_id" bindtap="switchTab" data-tab="{{index}}">{{item.name}}</view>
+    <view class="products-hd-wrap products-hd-cate" style="{{primaryColor && 'border-left:5px solid ' + primaryColor}};">
+      <view class="products-hd-item" style="{{active === index ? 'color:' + primaryColor : ''}}" wx:for="{{category}}" wx:key="category_id" bindtap="switchTab" data-tab="{{index}}">{{item.name}}</view>
     </view>
   </view>
-  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixjd/picture/2017/09/04/c15be5d6-1c60-4830-8646-7f05eb4adbbd_7.png" style="padding:3vw 2vw 0 2vw;width:96vw"/>
+  <image mode="widthFix" class="hotBanner" src="http://img.jihui88.com/upload/q/q2/qixingxcx/picture/2017/11/08/4007a76c-2f75-4011-9357-9cef13b35acb.jpg" style="padding:3vw 2vw 0 2vw;width:96vw"/>
   <view class="products-bd">
     <navigator class="products-bd-item" wx:for="{{list}}" wx:key="product_id" url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
       <view class="products-bd-item-image">
@@ -61,7 +61,7 @@
         <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
-          <view class="products-btn">立即抢购</view>
+          <view class="products-btn" style="color:{{primaryColor}}">立即抢购</view>
         </view>
       </view>
     </navigator>

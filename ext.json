@@ -1,11 +1,12 @@
 {
   "extEnable": true,
-  "extAppid": "wx031271ed9d1f909f",
+  "extAppid": "wxc133a0e73ee80bb6",
   "ext": {
-    "appid": "wx031271ed9d1f909f",
-    "mch_id": "wx031271ed9d1f909f",
+    "appid": "wxc133a0e73ee80bb6",
+    "mch_id":"1491659702",
     "enterprise_id": "Enterp_0000000000000000000062420",
-    "user_id": "User_000000000000000000000065262"
+    "user_id": "User_000000000000000000000065262",
+    "primaryColor":"#1f2f5e"
   },
   "window": {
     "backgroundColor": "#f0f0f0",

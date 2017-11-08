@@ -15,9 +15,8 @@ swiper-item image{width:100%;}
 .hotBanner{padding-top:3vw;width:100vw;vertical-align:middle;}
 /* 产品列表 */
 .products-hd{padding:3vw 0;background:#fff}
-.products-hd-wrap{border-left:5px solid #1f2f5e;height:20px;display:flex;flex-wrap:wrap}
+.products-hd-wrap{height:20px;display:flex;flex-wrap:wrap}
 .products-hd-item{line-height:20px;font-size:14px;margin-left:4vw;color:#999}
-.products-hd-item.active{color:#1f2f5e}
 .products-bd{margin-top:2vw;padding:0 2vw;display:flex;flex-wrap:wrap}
 .products-bd-item{width:50%;box-sizing:border-box;padding-bottom:3vw}
 .products-bd-item:nth-child(odd){border-right:1vw solid #f0f0f0}
@@ -29,7 +28,7 @@ swiper-item image{width:100%;}
 .products-price{margin-top:5px;display:flex;justify-content:space-between;align-items:center}
 .products-price text{color:#c00;font-size:18px}
 .products-price text .unit{font-size:11px}
-.products-btn{width:40px;height:40px;background:url(http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/ef1fdb18-185f-427d-8d69-9cc5ee230e81.png) center no-repeat;background-size:contain;padding:5px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;text-align:center;color:#1f2f5e;font-size:12px;line-height:1}
+.products-btn{width:40px;height:40px;background:url(http://img.jihui88.com/upload/z/z1/zaingdev/picture/2017/08/30/ef1fdb18-185f-427d-8d69-9cc5ee230e81.png) center no-repeat;background-size:contain;padding:5px;box-sizing:border-box;display:flex;justify-content:center;align-items:center;text-align:center;font-size:12px;line-height:1}
 /* 产品分类切换 */
 .products-hd-cate{flex-wrap:nowrap;overflow-x:auto;}
 .products-hd-cate .products-hd-item{min-width:18vw;}

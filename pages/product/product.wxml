@@ -15,7 +15,7 @@
         <view class="products-type">{{item.model || ''}}</view>
         <view class="products-price">
           <text><text class="unit">￥</text>{{item.price}}</text>
-          <view class="products-btn">立即抢购</view>
+          <view class="products-btn" style="color:{{primaryColor}}">立即抢购</view>
         </view>
       </view>
     </navigator>

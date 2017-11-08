@@ -24,7 +24,8 @@ Page({
     appendIds: '',
     swiperHeight: 0,
     autoplay: true,
-    indicatorDots: true
+    indicatorDots: true,
+    primaryColor: ''
   },
   page: function (e) {
     wx.navigateTo({
@@ -349,8 +350,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      title: options.title || '产品详细'
+      title: options.title || '产品详细',
+      primaryColor: app.globalData.primaryColor
     })
+
     var key = wx.getStorageSync('detail' + this.data.id)
     if (!key) {
       this.get()

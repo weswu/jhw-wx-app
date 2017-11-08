@@ -17,7 +17,8 @@ Page({
     category: [],
     active: 0,
     // 搜索关键字
-    keyword: ''
+    keyword: '',
+    primaryColor: ''
   },
   switchTab: function (e) {
     this.setData({
@@ -145,6 +146,9 @@ Page({
     })
   },
   onLoad: function () {
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
     var category = wx.getStorageSync('category')
     if (!category) {
       this.getCategory()

@@ -1,6 +1,6 @@
 <view class="container">
   <view class="wxSearch">
-    <view class="wxSearch-section">
+    <view class="wxSearch-section" style="background-color:{{primaryColor}}">
       <view class="wxSearch-pancel">
         <form class="wxSearch-form">
           <input type="text" bindinput="wxSearchInput"

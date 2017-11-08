@@ -20,7 +20,8 @@ Page({
     search: {
       page: 1,
       per_page: 6
-    }
+    },
+    primaryColor: ''
   },
 
   page: function (e) {
@@ -120,6 +121,9 @@ Page({
         list: key
       })
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })  
   },
 
   /**

@@ -17,7 +17,8 @@ Page({
     content: '',
     valiCode: '',
     skey: '',
-    time: '00000'
+    time: '00000',
+    primaryColor: ''
   },
   model: function(e){
     var active = e.currentTarget.dataset.active
@@ -141,7 +142,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      skey: app.globalData.member.skey
+      skey: app.globalData.member.skey,
+      primaryColor: app.globalData.primaryColor
     })
   },
 
