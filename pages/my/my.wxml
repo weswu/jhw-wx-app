@@ -23,9 +23,9 @@
       <image src="../../images/dy.png"></image>
     </view>
   </view>
-  <view class="weui-cell" bindtap="tel" data-tel="123456789">
+  <view class="weui-cell" bindtap="tel">
     <view class="weui-cell__hd"></view>
     <view class="weui-cell__bd">联系客服</view>
-    <view class="weui-cell__ft">123456789</view>
+    <view class="weui-cell__ft">{{company.cellphone || company.phone}}</view>
   </view>
 </view>

@@ -4,7 +4,9 @@
   "ext": {
     "appid": "wx031271ed9d1f909f",
     "enterprise_id": "Enterp_0000000000000000000062420",
-    "user_id": "User_000000000000000000000065262"
+    "user_id": "User_000000000000000000000065262",
+    "mch_id":"1491659702",
+    "color":"#ff0000"
   },
   "window": {
     "navigationBarTitleText": "ASH AMAIRA"

@@ -1,5 +1,6 @@
 /* 搜索 */
-.search{background:#25402e;padding:5px 0 10px 30rpx;overflow:hidden}
+.searchFixed{height: 41px;z-index:2;}
+.search{background:#25402e;padding:5px 0 10px 30rpx;overflow:hidden;position: fixed;left:0;top:0;width:750rpx}
 .search .search-btn{background:#fff;color:#999;font-size:12px;height:26px;
   line-height:26px;border-radius:10rpx;width:690rpx;background:#3b5144;opacity: 0.8}
 .search image{width:16px;height:16px;vertical-align:middle;padding: 0 10rpx 0 20rpx}

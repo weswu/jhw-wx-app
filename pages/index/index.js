@@ -13,7 +13,7 @@ Page({
     categoryList: [],
     search: {
       page: 1,
-      per_page: 2
+      per_page: 4
     },
     isloading: false,
     // 轮播
