@@ -3,17 +3,19 @@
   "extAppid": "wxc133a0e73ee80bb6",
   "ext": {
     "appid": "wxc133a0e73ee80bb6",
-    "mch_id":"1491659702",
     "enterprise_id": "Enterp_0000000000000000000062420",
     "user_id": "User_000000000000000000000065262",
     "primaryColor":"#1f2f5e"
   },
   "window": {
     "backgroundColor": "#f0f0f0",
-    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "七星布草",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#9b9b9b",
+    "selectedColor": "#1f2f5e",
+    "backgroundColor": "#fff"
   }
 }

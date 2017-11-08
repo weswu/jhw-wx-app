@@ -16,10 +16,8 @@
     "pages/setting/feedback"
   ],
   "window": {
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "商城",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
