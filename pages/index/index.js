@@ -146,9 +146,6 @@ Page({
     })
   },
   onLoad: function () {
-    this.setData({
-      primaryColor: app.globalData.primaryColor
-    })
     var category = wx.getStorageSync('category')
     if (!category) {
       this.getCategory()
@@ -175,6 +172,12 @@ Page({
         images: banner
       })
     }
+  },
+  onReady: function () {
+    this.setData({
+      primaryColor: app.globalData.primaryColor,
+      lighterPrimaryColor: app.globalData.lighterPrimaryColor
+    })
   },
   onPullDownRefresh: function () {
     this.getCategory()
