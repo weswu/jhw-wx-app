@@ -15,7 +15,6 @@ Page({
     list: [],
     cate_id: '',
     title: '商品',
-    emptyTip: '暂无数据',
     search: {
       page: 1,
       per_page: 6
@@ -59,15 +58,6 @@ Page({
         })
         wx.hideNavigationBarLoading()
         if (res.data.error === '查询为空') {
-          if (that.data.search.page === 1) {
-            that.setData({
-              emptyTip: '暂无数据'
-            })
-          } else {
-            that.setData({
-              emptyTip: ''
-            })
-          }
           return false
         }
         var data = res.data.list
@@ -152,7 +142,8 @@ Page({
       this.data.search.page = 1
       this.setData({
         list: [],
-        search: this.data.search
+        search: this.data.search,
+        isloading: true
       })
       this.get()
     }

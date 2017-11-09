@@ -1,16 +1,18 @@
 <!-- 切换 -->
-<view class="weui-navbar" style="background-color:{{primaryColor}}">
-  <view class="weui-navbar__item {{nav == '00' ? 'on' : ''}}" bindtap="nav" data-nav="00">
-    全部订单
-  </view>
-  <view class="weui-navbar__item {{nav == '01' ? 'on' : ''}}" bindtap="nav" data-nav="01">
-    待付款
-  </view>
-  <view class="weui-navbar__item {{nav == '02' ? 'on' : ''}}" bindtap="nav" data-nav="02">
-    待发货
-  </view>
-  <view class="weui-navbar__item {{nav == '03' ? 'on' : ''}}" bindtap="nav" data-nav="03">
-    待收货
+<view class="fixed">
+  <view class="weui-navbar" style="background-color:{{primaryColor}}">
+    <view class="weui-navbar__item {{nav == '00' ? 'on' : ''}}" bindtap="nav" data-nav="00">
+      全部订单
+    </view>
+    <view class="weui-navbar__item {{nav == '01' ? 'on' : ''}}" bindtap="nav" data-nav="01">
+      待付款
+    </view>
+    <view class="weui-navbar__item {{nav == '02' ? 'on' : ''}}" bindtap="nav" data-nav="02">
+      待发货
+    </view>
+    <view class="weui-navbar__item {{nav == '03' ? 'on' : ''}}" bindtap="nav" data-nav="03">
+      待收货
+    </view>
   </view>
 </view>
 <view wx:if="{{list.length > 0}}">
@@ -64,11 +66,15 @@
     </view>
   </view>
 </view>
+
+
+<view wx:if="{{isloading}}" class="tip fixed-loadimg"><image class="loading" src="../../images/loading.png"></image></view>
 <!-- 订单为空 -->
-<view wx:if="{{list.length === 0 && empty}}" class="tip">
-  <image src="../../images/order.png"></image>
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
+  <image class="img" src="../../images/order.png"></image>
   <view>还没有相关订单</view>
 </view>
+
 <!-- 验证码 -->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}">

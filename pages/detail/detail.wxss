@@ -3,18 +3,36 @@
 .detail image{display:block;width:100%}
 .detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:5vw}
 .detail_title .name{font-weight: 700;}
-.price{color:#ef4e5e;font-size:16px;padding:10rpx 0}
+.price{font-family:-apple-system-font,Helvetica;color:#ef4e5e;font-size:16px;padding:10rpx 0}
 .detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff}
 rich-text{font-size:13px;}
-.wxpay{padding: 30rpx 30rpx;font-size: 12px;height:20px;line-height: 20px}
+.wxpay{padding: 30rpx 30rpx;font-size: 12px;height:20px;line-height: 20px;color:#999}
 .wxpay image{width:20px;height: 20px !important; padding-right: 20rpx; float:left}
+.btn-cart{
+  background: -webkit-linear-gradient(left,#ffcb01, #ff9603);
+  background: linear-gradient(to right, #ffcb01, #ff9603);
+}
+.btn-cart2{
+  background: -webkit-linear-gradient(left,#ff7700, #ff4b00);
+  background: linear-gradient(to right, #ff7700, #ff4b00);
+}
+.btn-cart3{
+  background: -webkit-linear-gradient(left,#ff8f00, #ff5100);
+  background: linear-gradient(to right, #ff8f00, #ff5100);
+  color:#fff
+}
+/* 自定义轮播小圆点 */
+.swiper-container{position:relative}
+.swiper-container .dots{position:absolute;left:0;right:0;bottom:20rpx;display:flex;justify-content:center}
+.swiper-container .dots .dot{margin:0 8rpx;width:16rpx;height:16rpx;background:0 0;border:4rpx solid #8e9c9c;border-radius:100%;transition:all .6s}
+.swiper-container .dots .dot.active{background:#fff;border:4rpx solid #fff}
 /* 底部按钮 */
-.detail-btn{position:fixed;bottom:0;left:0;width:100%;height:14vw;line-height:14vw;background:#fff}
+.detail-btn{position:fixed;bottom:0;left:0;width:100%;height:14vw;line-height:14vw;background:#fff;}
 .detail-btn image{width:25px;height: 25px;vertical-align: middle;}
 .detail-btn .count{color: #fff;background: red;position: absolute;border-radius: 100%;min-width:6vw;
 height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px}
 .detail-btn-img{width:150rpx;display:inline-block; text-align: center; float: left;}
-.detail-btn button{width:300rpx; display:inline-block;border-radius: 0;height: 14vw;line-height: 14vw;}
+.detail-btn button{width:300rpx; display:inline-block;height: 14vw;line-height: 14vw;border-radius: 6px;color:#fff}
 /* 产品属性 */
 .close{padding-bottom:30px}
 .drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}

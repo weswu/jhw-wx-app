@@ -10,10 +10,10 @@
     </view>
   </navigator>
 </view>
-<view wx:if="{{isloading}}" class="tip"><image class="loading" src="../../images/loading.png"></image></view>
+<view wx:if="{{isloading}}" class="tip {{list.length === 0 ? 'fixed-loadimg' : ''}}"><image class="loading" src="../../images/loading.png"></image></view>
 <!-- 数据为空 -->
-<view wx:elif="{{list.length === 0 && !isloading}}" class="tip empty">
-  <image class="search" src="../../images/search.png"></image>
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
+  <image class="img" src="../../images/search.png"></image>
   <view>抱歉，无匹配结果</view>
 </view>
 <!-- 滚回到顶部 -->

@@ -5,8 +5,7 @@
     "appid": "wxc133a0e73ee80bb6",
     "enterprise_id": "Enterp_0000000000000000000062420",
     "user_id": "User_000000000000000000000065262",
-    "primaryColor":"#25402e",
-    "lighterPrimaryColor":"#496d55"
+    "primaryColor":"#25402e"
   },
   "window": {
     "navigationBarBackgroundColor": "#25402e",

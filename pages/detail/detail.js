@@ -10,12 +10,11 @@ Page({
   data: {
     detail: {},
     id: '',
-    empty: false,
     count: 0,
     // 轮播
+    swiperTrue: true,
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: false,
+    swiperCurrent: 0,
     // 属性
     showModalStatus: false,
     attrList: [],
@@ -26,8 +25,7 @@ Page({
     skuCode: '',
     appendPrice: 0,
     appendIds: '',
-    primaryColor: '',
-    lighterPrimaryColor: ''
+    primaryColor: ''
   },
   page: function (e) {
     debugger
@@ -350,8 +348,7 @@ Page({
     this.setData({
       id: options.id,
       title: options.title || '产品详细',
-      primaryColor: app.globalData.primaryColor,
-      lighterPrimaryColor: app.globalData.lighterPrimaryColor
+      primaryColor: app.globalData.primaryColor
     })
     if (app.globalData.member === null) {
       app.getUserInfo()

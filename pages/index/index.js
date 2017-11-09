@@ -17,17 +17,15 @@ Page({
     },
     isloading: false,
     // 轮播
+    swiperTrue: true,
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: false,
     swiperCurrent: 0,
     // 搜索关键字
     keyword: '',
     // 切换
     nav: '1',
     scrollTop: false,
-    primaryColor: '',
-    lighterPrimaryColor: ''
+    primaryColor: ''
   },
   // 跳转页面
   page: function (e) {
@@ -185,10 +183,20 @@ Page({
   },
 
   onReady: function () {
-    this.setData({
-      primaryColor: app.globalData.primaryColor,
-      lighterPrimaryColor: app.globalData.lighterPrimaryColor
-    })
+    var that = this
+    if (app.globalData.primaryColor) {
+      this.setData({
+        primaryColor: app.globalData.primaryColor
+      })
+    } else {
+      wx.getExtConfig({
+        success: function (res) {
+          that.setData({
+            primaryColor: res.extConfig.primaryColor
+          })
+        }
+      })
+    }
   },
   onPullDownRefresh: function () {
     if (!this.data.isloading) {

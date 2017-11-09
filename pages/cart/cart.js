@@ -16,8 +16,7 @@ Page({
     curReceiver: {},
     curDelivery: {},
     curPaymentConfig: {},
-    empty: false,
-    primaryColor: ''
+    isloading: false
   },
   page: function (e) {
     wx.navigateTo({
@@ -29,8 +28,8 @@ Page({
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
     if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
@@ -42,26 +41,21 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
         wx.setStorage({
           key: 'cartCount',
           data: (res.data.attributes && res.data.attributes.totalQuantity) || 0
         })
         if (!res.data.success) {
           that.setData({
-            empty: true,
             cartItemSet: []
           })
           return false
         }
 
         var data = res.data.attributes
-
-        if (data.cartItemSet.length === 0) {
-          that.setData({
-            empty: true
-          })
-        }
         that.setData({
           cartItemSet: data.cartItemSet,
           deliveryType: data.deliveryType,
@@ -145,11 +139,6 @@ Page({
           totalPrice: parseFloat(res.data.attributes.totalPrice.split('￥')[1]),
           totalQuantity: res.data.attributes.totalQuantity
         })
-        if (that.data.cartItemSet.length === 0) {
-          that.setData({
-            empty: true
-          })
-        }
         wx.setStorage({
           key: 'cartCount',
           data: wx.getStorageSync('cartCount') - 1
@@ -282,9 +271,6 @@ Page({
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-    this.setData({
-      primaryColor: app.globalData.primaryColor
-    })
     // 设置选中的收货地址
     var key = wx.getStorageSync('curReceiver')
     if (key) {

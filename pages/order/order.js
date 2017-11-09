@@ -15,6 +15,7 @@ Page({
     // 切换
     nav: '00',
     page: 1,
+    isloading: false,
     // 留言
     showModal: false,
     valiCode: '',
@@ -45,8 +46,8 @@ Page({
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
     if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
@@ -59,22 +60,22 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
         var data = res.data.attributes.data
         if (!res.data.success) {
           wx.showModal({
             title: res.data.msg
           })
           that.setData({
-            list: [],
-            empty: true
+            list: []
           })
           return false
         }
         if (data.length === 0 && that.data.page === 1) {
           that.setData({
-            list: [],
-            empty: true
+            list: []
           })
           return false
         }
@@ -102,8 +103,7 @@ Page({
         var list = that.data.list
         if (list.length === 1) {
           that.setData({
-            list: [],
-            empty: true
+            list: []
           })
         } else {
           for (var i = 0; i < list.length; i++) {

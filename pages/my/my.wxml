@@ -5,7 +5,7 @@
 </view>
 <!-- 列表 -->
 <view class="weui-cells">
-  <view class="weui-cell" bindtap="website" wx:if="{{company.url != null && company.url !== ''}}">
+  <view class="weui-cell" bindtap="website" wx:if="{{company.url !== null && company.url !== '' && company.url !== 'null'}}">
     <view class="weui-cell__bd">官方网站</view>
     <view class="weui-cell__ft">
       <image src="../../images/dy.png"></image>
@@ -17,7 +17,7 @@
       <image src="../../images/dy.png"></image>
     </view>
   </view>
-  <view class="weui-cell" bindtap="page" data-url="../map/map" wx:if="{{company.mapaddress != null && company.mapaddress !== ''}}">
+  <view class="weui-cell" bindtap="page" data-url="../map/map" wx:if="{{company.mapaddress !== null && company.mapaddress !== '' && company.mapaddress !== 'null'}}">
     <view class="weui-cell__bd">店铺地址</view>
     <view class="weui-cell__ft">
       <image src="../../images/dy.png"></image>
@@ -26,6 +26,6 @@
   <view class="weui-cell" bindtap="tel">
     <view class="weui-cell__hd"></view>
     <view class="weui-cell__bd">联系客服</view>
-    <view class="weui-cell__ft">{{company.cellphone || company.phone}}</view>
+    <view class="weui-cell__ft">{{company.cellphone || company.phone}}<image src="../../images/dy.png" style="padding-left:10px"></image></view>
   </view>
 </view>

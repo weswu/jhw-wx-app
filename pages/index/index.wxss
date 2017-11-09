@@ -1,7 +1,7 @@
 /* 搜索 */
 .searchFixed{height: 41px;z-index:11;position:relative;}
 .search{padding:5px 0 10px 30rpx;overflow:hidden;position: fixed;left:0;top:0;width:750rpx}
-.search .search-btn{color:#999;font-size:12px;height:26px;line-height:26px;border-radius:10rpx;width:690rpx;opacity: 0.8}
+.search .search-btn{background: rgba(255,255,255,0.1);color:#999;font-size:12px;height:26px;line-height:26px;border-radius:10rpx;width:690rpx;opacity: 0.8}
 .search image{width:16px;height:16px;vertical-align:middle;padding: 0 10rpx 0 20rpx}
 /* 轮播 */
 swiper-item image{width:750rpx;}
@@ -12,7 +12,7 @@ swiper-item image{width:750rpx;}
 .swiper-container .dots .dot.active{background:#fff;border:4rpx solid #fff}
 /* 切换 */
 .weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:8;top:0;width:100%;background-color:#fff;}
-.weui-navbar__item.on{color:#555;border-bottom:4rpx solid #999}
+.weui-navbar__item.on{color:#555;border-bottom:5rpx solid #999}
 .weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:13px 0;text-align:center;font-size:15px;color:#aaa;-webkit-tap-highlight-color:transparent}
 .weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
 /** 产品列表 **/

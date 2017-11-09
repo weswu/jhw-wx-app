@@ -1,7 +1,7 @@
 <!-- 搜索 -->
 <view class="searchFixed">
   <view class="search" style="background:{{primaryColor}}">
-    <view class="search-btn" style="background:{{lighterPrimaryColor}}" bindtap="page" data-url="../search/search">
+    <view class="search-btn" bindtap="page" data-url="../search/search">
       <image src="../../images/search.png"></image>
       搜索商品
     </view>
@@ -9,8 +9,8 @@
 </view>
 <!-- 轮播 -->
 <view class="swiper-container">
-  <swiper class="swiper_box" current="{{swiperCurrent}}" bindchange="swiperChange" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
-     autoplay="{{autoplay}}" duration="1200">
+  <swiper class="swiper_box" current="{{swiperCurrent}}" bindchange="swiperChange" style="height:{{swiperHeight}}px"
+     autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" duration="1200">
       <block wx:for="{{images}}">
           <swiper-item>
               <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
