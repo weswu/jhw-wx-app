@@ -1,0 +1,17 @@
+/* 搜索 */
+.search-icon{width:1.2rem;height:1.2rem!important;float:right;position:absolute;right:10px;top:10px;padding:6px 12px}
+.search-box{font-size:12px;padding:3vw;background:#fff;position:relative}
+.search-box input{border:1px solid rgba(0,0,0,.1);padding:3px 40px 3px 8px;border-radius:4px}
+/* 轮播 */
+swiper-item image{width:750rpx;}
+/** 产品列表 **/
+.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
+.goods .item{display:flex;flex-flow: column;width:49vw;box-sizing:border-box;padding-top:1.5vh;}
+.goods .item_grow{overflow:hidden;width: 100%}
+.goods .item_pic{flex: 1;}
+.goods .item_content{height: 49px;flex: 0 0 49px; }
+.goods image{width: 100%;max-height: 100%;}
+.goods .pro_title{padding:5px 5px 0 5px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.goods .pro_price{padding:5px}
+/* 产品更多 */
+.more{font-size:14px;color:#999;margin:0 auto;padding:15px 20px}
