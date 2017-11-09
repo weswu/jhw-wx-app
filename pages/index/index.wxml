@@ -1,9 +1,11 @@
 <!-- 搜索 -->
 <view class="searchFixed">
   <view class="search" style="background:{{primaryColor}}">
-    <view class="search-btn" bindtap="page" data-url="../search/search">
-      <image src="../../images/search.png"></image>
-      搜索商品
+    <view class="search-btn" style="background: #fff;" bindtap="page" data-url="../search/search">
+      <view style="background: {{lighterPrimaryColor}};width:100%;height:100%">
+        <image src="../../images/search.png"></image>
+        搜索商品
+      </view>
     </view>
   </view>
 </view>

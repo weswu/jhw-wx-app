@@ -1,10 +1,10 @@
 /* detail.wxss */
 .detail{background: #fff}
 .detail image{display:block;width:100%}
-.detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:5vw}
+.detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:4vw}
 .detail_title .name{font-weight: 700;}
 .price{font-family:-apple-system-font,Helvetica;color:#ef4e5e;font-size:16px;padding:10rpx 0}
-.detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff}
+.detail_bd{width:100%;padding:4vw 4vw 17vw 4vw;box-sizing:border-box;background: #fff}
 rich-text{font-size:13px;}
 .wxpay{padding: 30rpx 30rpx;font-size: 12px;height:20px;line-height: 20px;color:#999}
 .wxpay image{width:20px;height: 20px !important; padding-right: 20rpx; float:left}
@@ -19,7 +19,7 @@ rich-text{font-size:13px;}
 .btn-cart3{
   background: -webkit-linear-gradient(left,#ff8f00, #ff5100);
   background: linear-gradient(to right, #ff8f00, #ff5100);
-  color:#fff
+  color:#fff;
 }
 /* 自定义轮播小圆点 */
 .swiper-container{position:relative}
@@ -27,17 +27,17 @@ rich-text{font-size:13px;}
 .swiper-container .dots .dot{margin:0 8rpx;width:16rpx;height:16rpx;background:0 0;border:4rpx solid #8e9c9c;border-radius:100%;transition:all .6s}
 .swiper-container .dots .dot.active{background:#fff;border:4rpx solid #fff}
 /* 底部按钮 */
-.detail-btn{position:fixed;bottom:0;left:0;width:100%;height:14vw;line-height:14vw;background:#fff;}
+.detail-btn{position:fixed;bottom:0;left:0;width:100%;height:13vw;line-height:13vw;background:#fff;}
 .detail-btn image{width:25px;height: 25px;vertical-align: middle;}
 .detail-btn .count{color: #fff;background: red;position: absolute;border-radius: 100%;min-width:6vw;
 height: 6vw;line-height: 6vw;margin-top: 2vw;margin-left: -25rpx;font-size: 12px}
 .detail-btn-img{width:150rpx;display:inline-block; text-align: center; float: left;}
-.detail-btn button{width:300rpx; display:inline-block;height: 14vw;line-height: 14vw;border-radius: 6px;color:#fff}
+.detail-btn button{width:300rpx; display:inline-block;height: 13vw;line-height: 13vw;border-radius: 0;color:#fff}
 /* 产品属性 */
 .close{padding-bottom:30px}
 .drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}
 .drawer_attr_box{width:100%;overflow:hidden;position:fixed;bottom:0;left:0;z-index:2000;background:#fff}
-.drawer_attr_content{max-height:50vh;overflow-y:scroll;font-size:12px;margin-bottom:2.4rem}
+.drawer_attr_content{max-height:50vh;overflow-y:scroll;font-size:12px;margin-bottom:13vw}
 .drawer_attr_content .name{padding-right:10px;padding-bottom:8px;font-size:14px;}
 .weui-cell-attr text{-webkit-tap-highlight-color:transparent;display:inline-block;border:1px solid #e0e0e0;background-color:#fff;padding:5px 10px;margin:0 10px 10px 0;text-align:center;border-radius:4px;color:#999}
 .drawer_attr_content .weui-cell:before{border-top:none}

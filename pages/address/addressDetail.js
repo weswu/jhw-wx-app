@@ -24,7 +24,8 @@ Page({
     three: ['请选择'],
     threeIndex: 0,
     address: {},
-    isAdd: true
+    isAdd: true,
+    primaryColor: ''
   },
 
   // 收货地址详情接口
@@ -309,6 +310,9 @@ Page({
       })
       this.get()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

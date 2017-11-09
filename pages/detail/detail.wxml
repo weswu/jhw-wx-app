@@ -25,11 +25,9 @@
   <image mode="widthFix" src="../../images/wxpay.png"/>支持微信支付
 </view>
 
-<view style="margin-bottom: 14vw">
-  <!-- 图文详情 -->
-  <view class="detail_bd">
-    <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
-  </view>
+<!-- 图文详情 -->
+<view class="detail_bd">
+  <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
 </view>
 <!-- 背景黑色 -->
 <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>

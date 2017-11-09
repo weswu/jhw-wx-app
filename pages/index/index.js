@@ -25,7 +25,8 @@ Page({
     // 切换
     nav: '1',
     scrollTop: false,
-    primaryColor: ''
+    primaryColor: '',
+    lighterPrimaryColor: ''
   },
   // 跳转页面
   page: function (e) {
@@ -156,6 +157,12 @@ Page({
       })
     }
   },
+  // 转10进制
+  hexToRgba: function(hex) {
+    this.setData({
+      lighterPrimaryColor: "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + ",0.8)"
+    })
+  },
 
   onLoad: function () {
     var key = wx.getStorageSync('goods')
@@ -188,12 +195,14 @@ Page({
       this.setData({
         primaryColor: app.globalData.primaryColor
       })
+      this.hexToRgba(app.globalData.primaryColor)
     } else {
       wx.getExtConfig({
         success: function (res) {
           that.setData({
             primaryColor: res.extConfig.primaryColor
           })
+          that.hexToRgba(app.globalData.primaryColor)
         }
       })
     }

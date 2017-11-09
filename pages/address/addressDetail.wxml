@@ -41,5 +41,5 @@
       </view>
     </view>
     <button class="btn-primary" style="background:{{primaryColor}};color:#fff;width:90%;margin-top:1rem" bindtap="submit" data-url="addressDetail">保存并使用</button>
-    <button type="warn" wx:if="{{!isAdd}}" bindtap="del" style="width:90%;margin-top:1rem">删除</button>
+    <button type="warn" wx:if="{{!isAdd}}" bindtap="del" style="width:90%;margin:1rem auto">删除</button>
 </view>
