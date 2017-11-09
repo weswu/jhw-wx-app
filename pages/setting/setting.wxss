@@ -1,3 +1,0 @@
-/* logo */
-.setting image{padding:80rpx 0 40rpx 0}
-.setting image,.setting text{text-align:center;display:block;margin:0 auto;color:#999;font-size:.7rem;line-height:1rem}

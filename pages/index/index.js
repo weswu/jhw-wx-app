@@ -10,18 +10,17 @@ Page({
   data: {
     images: [],
     list: [],
+    // 轮播
+    swiperTrue: true,
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true,
     // 搜索关键字
     keyword: ''
   },
   get: function () {
     var that = this
-    //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
     if (app.globalData.member === null) { app.getUserInfo() }
-    console.log('首页数据加载中...')
+    console.log('首页数据加载中')
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/all/' + app.globalData.enterpriseId + '?page=1&per_page=4',
       success: function (res) {
@@ -91,12 +90,12 @@ Page({
   },
 
   onLoad: function () {
-    var key = wx.getStorageSync('goods')
-    if (!key) {
+    var goods = wx.getStorageSync('goods')
+    if (!goods) {
       this.get()
     } else {
       this.setData({
-        list: key
+        list: goods
       })
     }
     var banner = wx.getStorageSync('banner')

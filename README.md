@@ -1,6 +1,6 @@
 # 小程序模板
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](www.jihui88.com)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](http://www.jihui88.com)
 
 > 这是一个用小程序制作的商城网站。
 
@@ -17,9 +17,9 @@
 | `jinlida` | <img width="106" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/jinlida.png"/> | 金利达砂轮`http://demo.ykit.net/pmsj/jinlida/` |
 | `sxl1` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FpMpKL_0fx-ZV_n2dfYR-ZnJrezI.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 上线了-时装电商-Ash amaira |
 
-#### 新建模板
+#### 新建空白模板
 ```
-git checkout -b qixing master
+git checkout --orphan sxl1
 ```
 
 #### 查看模板
@@ -30,11 +30,6 @@ git branch -a
 #### 切换模板
 ```
 git checkout master
-```
-
-#### 在develop分支下合并master
-```
-git rebase master
 ```
 
 ### 微信配置
@@ -83,7 +78,7 @@ git rebase master
 
 
 ## 更多信息
-- 官方[文档](https://mp.weixin.qq.com/debug/wxadoc/dev/)
+- 官方-[文档](https://mp.weixin.qq.com/debug/wxadoc/dev/)
 - 第三方平台-[ext.json](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/ext.html)
-- 阅读[机汇网接口](http://jihui88.oschina.io/jhw-api/?file=002-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/001-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3)
-- 字体[图标](http://iconfont.cn)
+- 阅读-[机汇网接口](http://jihui88.oschina.io/jhw-api/?file=002-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/001-%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3)
+- 字体-[图标](http://iconfont.cn)

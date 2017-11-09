@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/product/product",
-    "pages/detail/detail",
     "pages/search/search",
+    "pages/detail/detail",
     "pages/category/category",
     "pages/company/company",
     "pages/my/my",
@@ -12,16 +12,13 @@
     "pages/cart/cart",
     "pages/address/addressDetail",
     "pages/address/address",
-    "pages/news/news",
-    "pages/news/newsDetail",
-    "pages/setting/setting",
-    "pages/setting/feedback"
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "商城",
+    "navigationBarTitleText": "机汇网商城",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
