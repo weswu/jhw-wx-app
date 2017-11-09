@@ -160,10 +160,6 @@ Page({
   },
 
   onLoad: function () {
-    this.setData({
-      primaryColor: app.globalData.primaryColor,
-      lighterPrimaryColor: app.globalData.lighterPrimaryColor
-    })
     var key = wx.getStorageSync('goods')
     if (!key) {
       this.get()
@@ -188,6 +184,12 @@ Page({
     }
   },
 
+  onReady: function () {
+    this.setData({
+      primaryColor: app.globalData.primaryColor,
+      lighterPrimaryColor: app.globalData.lighterPrimaryColor
+    })
+  },
   onPullDownRefresh: function () {
     if (!this.data.isloading) {
       this.data.search.page = 1

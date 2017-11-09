@@ -14,6 +14,9 @@ Page({
       height: 30
     }]
   },
+  markertap: function () {
+    console.log('点击红点')
+  },
 
   onLoad: function () {
     var map = wx.getStorageSync('company').mapaddress
@@ -26,5 +29,11 @@ Page({
       latitude: latitude,
       markers: this.data.markers
     })
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '店铺地址'
+    }
   }
 })

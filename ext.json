@@ -13,8 +13,8 @@
     "navigationBarTitleText": "ASH AMAIRA"
   },
   "tabBar": {
-    "color": "#353535",
-    "selectedColor": "#25402e",
+    "color": "#616161",
+    "selectedColor": "#424242",
     "backgroundColor": "#fff"
   }
 }
