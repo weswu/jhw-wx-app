@@ -48,6 +48,14 @@ git rebase master
 ### 地图
 腾讯地图坐标拾取器: <a href="http://lbs.qq.com/tool/getpoint/" target="_blank">http://lbs.qq.com/tool/getpoint</a>
 
+### ext 用于商城
+- appid extAppid,用于登录,支付
+- enterprise_id 企业ID,用于获取产品数据
+- user_id 用户id,用于留言
+- primaryColor 主题颜色
+- lighterPrimaryColor 次颜色
+
+
 ## 项目目录
 <pre>
 .
