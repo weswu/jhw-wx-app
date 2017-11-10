@@ -31,9 +31,5 @@ Page({
     })
   },
 
-  onShareAppMessage: function () {
-    return {
-      title: '店铺地址'
-    }
-  }
+  onShareAppMessage: function () {}
 })

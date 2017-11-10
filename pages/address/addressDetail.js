@@ -25,7 +25,7 @@ Page({
     threeIndex: 0,
     address: {},
     isAdd: true,
-    primaryColor: ''
+    defaultColor: ''
   },
 
   // 收货地址详情接口
@@ -311,7 +311,7 @@ Page({
       this.get()
     }
     this.setData({
-      primaryColor: app.globalData.primaryColor
+      defaultColor: app.globalData.defaultColor
     })
   },
 

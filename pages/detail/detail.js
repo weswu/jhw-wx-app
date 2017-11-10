@@ -25,7 +25,7 @@ Page({
     skuCode: '',
     appendPrice: 0,
     appendIds: '',
-    primaryColor: ''
+    defaultColor: ''
   },
   page: function (e) {
     debugger
@@ -70,6 +70,7 @@ Page({
           key: 'detail' + that.data.id,
           data: res.data
         })
+        that.wxTitle()
         wx.hideNavigationBarLoading()
       }
     })
@@ -322,6 +323,11 @@ Page({
       swiperHeight: this.data.swiperHeight
     })
   },
+  swiperChange: function(e){
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  },
   // cartCount
   cartCount: function () {
     var that = this
@@ -344,11 +350,16 @@ Page({
       }
     })
   },
+  wxTitle: function () {
+    wx.setNavigationBarTitle({
+      title: decodeURIComponent(this.data.detail.name)
+    })
+  },
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      title: options.title || '产品详细',
-      primaryColor: app.globalData.primaryColor
+      'detail.name': options.name,
+      defaultColor: app.globalData.defaultColor
     })
     if (app.globalData.member === null) {
       app.getUserInfo()
@@ -356,13 +367,14 @@ Page({
   },
 
   onShow: function () {
-    var key = wx.getStorageSync('detail' + this.data.id)
-    if (!key) {
+    var detail = wx.getStorageSync('detail' + this.data.id)
+    if (!detail) {
       this.get()
     } else {
       this.setData({
-        detail: key
+        detail: detail
       })
+      this.wxTitle()
     }
     var cartCount = wx.getStorageSync('cartCount')
     if (!cartCount) {
@@ -372,11 +384,6 @@ Page({
         count: cartCount
       })
     }
-  },
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title
-    })
   },
   onPullDownRefresh: function () {
     this.get()

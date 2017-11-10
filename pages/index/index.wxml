@@ -3,25 +3,26 @@
   <view class="search" style="background:{{primaryColor}}">
     <view class="search-btn" style="background: #fff;" bindtap="page" data-url="../search/search">
       <view style="background: {{lighterPrimaryColor}};width:100%;height:100%">
-        <image src="../../images/search.png"></image>
-        搜索商品
+        <image src="../../images/searchWhite.png"></image>
+        <text>搜索商品</text>
       </view>
     </view>
   </view>
 </view>
 <!-- 轮播 -->
 <view class="swiper-container">
-  <swiper class="swiper_box" current="{{swiperCurrent}}" bindchange="swiperChange" style="height:{{swiperHeight}}px"
-     autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" duration="1200">
-      <block wx:for="{{images}}">
+  <swiper class="swiper_box" bindchange="swiperChange" style="height:{{swiperHeight}}px"
+     autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="800">
+      <block wx:for="{{images}}" wx:key="item.attId" wx:for-index="index">
           <swiper-item>
-              <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
+              <view style="background: url(http://img.jihui88.com/{{item.serverPath}}) no-repeat;background-size: contain;width:100%;height:100%"></view>
+              <image wx:if="{{index === 0}}" mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" bindload="imageLoad"/>
           </swiper-item>
       </block>
   </swiper>
   <view class="dots" wx:if="{{images.length > 1}}">
-    <block wx:for="{{images}}" wx:key="item.attId">
-      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    <block wx:for="{{images}}" wx:key="item.attId" wx:for-index="idx">
+      <view class="dot{{idx == swiperCurrent ? ' active' : ''}}"></view>
     </block>
   </view>
 </view>
@@ -60,7 +61,7 @@
       </view>
     </navigator>
 
-    <view class="item" wx:for="{{item.child}}" wx:for-item="item1">
+    <view class="item" wx:for="{{item.child}}" wx:for-item="item1" wx:key="item1.category_id">
       <navigator url="../product/product?category_id={{item1.category_id}}&title={{item1.name}}">
         <image mode="widthFix" src="{{item1.image}}"></image>
         <view class="cate_name">
@@ -69,7 +70,7 @@
         </view>
       </navigator>
 
-      <navigator url="../product/product?category_id={{item2.category_id}}&title={{item2.name}}" wx:for="{{item1.child}}" wx:for-item="item2">
+      <navigator url="../product/product?category_id={{item2.category_id}}&title={{item2.name}}" wx:for="{{item1.child}}" wx:for-item="item2" wx:key="item2.category_id">
         <image mode="widthFix" src="{{item2.image}}"></image>
         <view class="cate_name">
           <view class="cate_bg"></view>

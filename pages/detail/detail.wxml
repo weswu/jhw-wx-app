@@ -1,10 +1,12 @@
 <!-- 轮播 -->
 <view class="detail">
   <view class="swiper-container">
-    <swiper class="swiper_box" style="height:{{swiperHeight}}px" autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" duration="1200">
+    <swiper class="swiper_box" bindchange="swiperChange" style="height:{{swiperHeight}}px"
+      autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="800">
       <block wx:for="{{detail.imagelist}}">
         <swiper-item>
-          <image mode="widthFix" src="{{item.sourceProductImagePath}}" class="slide-image" bindload="imageLoad" bindtap="showPic" data-src="{{item.sourceProductImagePath}}" />
+          <view style="background: url({{item.sourceProductImagePath}}) no-repeat;background-size: contain;width:100%;height:100%" bindtap="showPic"></view>
+          <image wx:if="{{index === 0}}" mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic"/>
         </swiper-item>
       </block>
     </swiper>
@@ -47,7 +49,7 @@
     <view class="weui-cell" wx:for="{{attrList}}">
       <view class="weui-cell__hd name">{{item.name}}</view>
       <view class="weui-cell__bd weui-cell-attr">
-        <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" style="{{item.dx===idx?'color:#fff;border:1px solid ' + primaryColor + ';background:' + primaryColor :''}}"
+        <text wx:for="{{item.eleList}}" wx:for-item="items" wx:for-index="idx" style="{{item.dx===idx?'color:#fff;border:1px solid ' + defaultColor + ';background:' + defaultColor :''}}"
           data-index="{{index}}" data-idx="{{idx}}" bindtap="attrClick">{{items}}</text>
       </view>
     </view>

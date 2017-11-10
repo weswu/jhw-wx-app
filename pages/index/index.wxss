@@ -1,8 +1,9 @@
 /* 搜索 */
 .searchFixed{height: 41px;z-index:11;position:relative;}
 .search{padding:5px 0 10px 30rpx;overflow:hidden;position: fixed;left:0;top:0;width:750rpx}
-.search .search-btn{color:#999;font-size:12px;height:26px;line-height:26px;border-radius:10rpx;width:690rpx;opacity: 0.8}
-.search image{width:16px;height:16px;vertical-align:middle;padding: 0 10rpx 0 20rpx}
+.search .search-btn{color:#fff;font-size:12px;height:26px;line-height:26px;border-radius:10rpx;width:690rpx;}
+.search image{width:16px;height:16px;vertical-align:middle;padding: 0 10rpx 0 20rpx;opacity:0.5;}
+.search text{opacity: 0.5;}
 /* 轮播 */
 swiper-item image{width:750rpx;}
 /* 自定义轮播小圆点 */

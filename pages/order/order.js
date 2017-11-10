@@ -23,7 +23,8 @@ Page({
     time: '000',
     orderSn: '',
     mobile: '',
-    primaryColor: ''
+    primaryColor: '',
+    defaultColor: ''
   },
 
   page: function (e) {
@@ -237,7 +238,8 @@ Page({
     }
     this.setData({
       skey: app.globalData.member.skey,
-      primaryColor: app.globalData.primaryColor
+      primaryColor: app.globalData.primaryColor,
+      defaultColor: app.globalData.defaultColor
     })
   },
 
@@ -267,9 +269,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return {
-      title: '订单'
-    }
-  }
+  onShareAppMessage: function () {}
 })

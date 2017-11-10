@@ -17,7 +17,7 @@ Page({
     title: '商品',
     search: {
       page: 1,
-      per_page: 6
+      per_page: 8
     },
     isloading: false,
     // 回到顶部
@@ -98,13 +98,11 @@ Page({
     }
   },
 
-  scrolltoupper: function () {
-    this.onPullDownRefresh()
+  wxTitle: function () {
+    wx.setNavigationBarTitle({
+      title: decodeURIComponent(this.data.title)
+    })
   },
-  bindDownLoad: function () {
-    this.onReachBottom()
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -114,24 +112,17 @@ Page({
         cate_id: parseInt(options.category_id.split('Category_')[1]),
         title: options.title
       })
+      console.log('title'+options.title)
+      this.wxTitle()
     }
-    var key = wx.getStorageSync('proCate' + this.data.cate_id)
-    if (!key) {
+    var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
+    if (!proCate) {
       this.get()
     } else {
       this.setData({
-        list: key
+        list: proCate
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title || '商品'
-    })
   },
 
   /**

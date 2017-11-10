@@ -13,7 +13,7 @@ Page({
   data: {
     list: [],
     address: {},
-    primaryColor: ''
+    defaultColor: ''
   },
 
   page: function (e) {
@@ -291,7 +291,7 @@ Page({
       this.get()
     }
     this.setData({
-      primaryColor: app.globalData.primaryColor
+      defaultColor: app.globalData.defaultColor
     })
   },
 

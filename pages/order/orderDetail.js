@@ -14,7 +14,8 @@ Page({
     data: {},
     paymentConfigList: [],
     devTip: '查看物流信息',
-    primaryColor: ''
+    primaryColor: '',
+    defaultColor: ''
   },
 
   page: function (e) {
@@ -158,7 +159,8 @@ Page({
     }
     this.get()
     this.setData({
-      primaryColor: app.globalData.primaryColor
+      primaryColor: app.globalData.primaryColor,
+      defaultColor: app.globalData.defaultColor
     })
   },
 

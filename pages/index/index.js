@@ -13,7 +13,7 @@ Page({
     categoryList: [],
     search: {
       page: 1,
-      per_page: 4
+      per_page: 8
     },
     isloading: false,
     // 轮播
@@ -160,7 +160,7 @@ Page({
   // 转10进制
   hexToRgba: function(hex) {
     this.setData({
-      lighterPrimaryColor: "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + ",0.8)"
+      lighterPrimaryColor: "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + ",0.85)"
     })
   },
 
@@ -234,9 +234,5 @@ Page({
     }
   },
 
-  onShareAppMessage: function () {
-    return {
-      title: '商城'
-    }
-  }
+  onShareAppMessage: function () {}
 })

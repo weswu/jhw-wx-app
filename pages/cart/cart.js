@@ -16,7 +16,8 @@ Page({
     curReceiver: {},
     curDelivery: {},
     curPaymentConfig: {},
-    isloading: false
+    isloading: false,
+    defaultColor:''
   },
   page: function (e) {
     wx.navigateTo({
@@ -278,6 +279,9 @@ Page({
         curReceiver: key
       })
     }
+    this.setData({
+      defaultColor: app.globalData.defaultColor
+    })
   },
 
   /**
