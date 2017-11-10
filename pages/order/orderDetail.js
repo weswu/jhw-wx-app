@@ -157,6 +157,9 @@ Page({
         id: options.id
       })
     }
+  },
+
+  onReady: function () {
     this.get()
     this.setData({
       primaryColor: app.globalData.primaryColor,

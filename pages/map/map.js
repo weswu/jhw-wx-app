@@ -18,7 +18,7 @@ Page({
     console.log('点击红点')
   },
 
-  onLoad: function () {
+  onReady: function () {
     var map = wx.getStorageSync('company').mapaddress
     var longitude = map.split(',')[0]
     var latitude = map.split(',')[1]

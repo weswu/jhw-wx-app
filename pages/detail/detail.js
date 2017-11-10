@@ -361,12 +361,12 @@ Page({
       'detail.name': options.name,
       defaultColor: app.globalData.defaultColor
     })
+  },
+
+  onReady: function () {
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-  },
-
-  onShow: function () {
     var detail = wx.getStorageSync('detail' + this.data.id)
     if (!detail) {
       this.get()

@@ -164,13 +164,13 @@ Page({
     })
   },
 
-  onLoad: function () {
-    var key = wx.getStorageSync('goods')
-    if (!key) {
+  onReady: function () {
+    var goods = wx.getStorageSync('goods')
+    if (!goods) {
       this.get()
     } else {
       this.setData({
-        list: key
+        list: goods
       })
     }
     var banner = wx.getStorageSync('banner')
@@ -187,9 +187,6 @@ Page({
         categoryList: category
       })
     }
-  },
-
-  onReady: function () {
     var that = this
     if (app.globalData.primaryColor) {
       this.setData({
