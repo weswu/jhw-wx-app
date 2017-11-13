@@ -44,11 +44,44 @@ git checkout master
 腾讯地图坐标拾取器: <a href="http://lbs.qq.com/tool/getpoint/" target="_blank">http://lbs.qq.com/tool/getpoint</a>
 
 ### ext 用于商城
-- appid extAppid,用于登录,支付
+```json
+"ext": {
+  "appid": "wxc133a0e73ee80bb6",
+  "enterprise_id": "Enterp_0000000000000000000062420",
+  "user_id": "User_000000000000000000000065262",
+  "primaryColor":"#ff6214"
+},
+"extPages": {
+  "pages/index/index": {
+    "navigationBarTitleText": "首页标题"
+  }
+}
+```
+- appid extAppid代替,用于登录,支付
 - enterprise_id 企业ID,用于获取产品数据
 - user_id 用户id,用于留言
 - primaryColor 主题颜色
 - lighterPrimaryColor 次颜色
+
+### 客服会话，需后台添加客服人员
+```html
+<view class="weui-cell">
+  <view class="weui-cell__hd">
+    <image src="../../images/setting.png"></image>
+  </view>
+  <view class="weui-cell__bd" style="position:relative;">
+    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:0;">
+    </contact-button>
+    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:15px; ">
+    </contact-button>
+    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:30px; ">
+    </contact-button>
+    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:45px; ">
+    </contact-button>客服会话
+  </view>
+  <view class="weui-cell__ft"></view>
+</view>
+```
 
 
 ## 项目目录

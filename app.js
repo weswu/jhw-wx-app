@@ -29,15 +29,15 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                if (res.data.attributes.data == null) {
-                  alert('数据为空')
+                if (res.data.attributes == null || res.data === '') {
+                  alert('登录失败')
+                } else {
+                  that.globalData.member = res.data.attributes.data
+                  wx.setStorage({
+                    key: 'skey',
+                    data: res.data.attributes.data.skey || ''
+                  })
                 }
-                res.data.attributes.data.skey = res.data.attributes.data.skey || ''
-                that.globalData.member = res.data.attributes.data
-                wx.setStorage({
-                  key: 'skey',
-                  data: res.data.attributes.data.skey
-                })
               }
             })
           }
@@ -63,10 +63,10 @@ App({
          }
         console.log('appid---' + res.extConfig.appid)
         console.log('entid---' + res.extConfig.enterprise_id)
+        // 登录用户信息
+        this.getUserInfo()
        }
      })
-     // 登录用户信息
-     this.getUserInfo()
    },
 
   onShow: function () {

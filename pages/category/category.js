@@ -55,26 +55,23 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var key = wx.getStorageSync('category')
-    if (!key) {
-      this.get()
-    } else {
-      this.setData({
-        list: key
-      })
-    }
-  },
-
   onShow: function () {
     // 设置选中分类
     var key = wx.getStorageSync('active')
     if (key) {
       this.setData({
         active: key
+      })
+    }
+  },
+
+  onReady: function () {
+    var key = wx.getStorageSync('category')
+    if (!key) {
+      this.get()
+    } else {
+      this.setData({
+        list: key
       })
     }
   },

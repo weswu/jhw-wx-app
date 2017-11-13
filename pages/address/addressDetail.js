@@ -300,25 +300,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProvince()
     if (options.id) {
       this.data.address.receiverId = options.id
       this.setData({
         isAdd: false,
         address: this.data.address
       })
-      this.get()
     }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function (e) {
+  onReady: function () {
+    this.getProvince()
     if (!!this.data.isAdd) {
       wx.setNavigationBarTitle({
         title: '新增收货地址'
       })
+    } else {
+      this.get()
     }
   },
 
@@ -335,7 +336,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '收货地址详细'
+      title: '收货地址'
     }
   }
 })

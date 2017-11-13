@@ -10,7 +10,7 @@ image{display:block;width:100%}
 .weui-sell .weui-cell__ft{color:#000;width:80rpx}
 /* 产品属性 */
 .close{padding-bottom:30px}
-.drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:1000;color:#fff}
+.drawer_screen{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.2;overflow:hidden;z-index:8;color:#fff}
 .drawer_attr_box{width:100%;overflow:hidden;position:fixed;bottom:0;left:0;z-index:2000;background:#fff}
 .drawer_attr_content{max-height:50vh;overflow-y:scroll;font-size:12px;margin-bottom:2.4rem}
 .weui-cell-attr .name{padding-bottom:10px;font-size:14px;}

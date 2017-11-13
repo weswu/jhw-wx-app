@@ -104,22 +104,22 @@ Page({
         title: options.title
       })
     }
-    var key = wx.getStorageSync('proCate' + this.data.cate_id)
-    if (!key) {
-      this.get()
-    } else {
-      this.setData({
-        list: key
-      })
-    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
+    if (!proCate) {
+      this.get()
+    } else {
+      this.setData({
+        list: proCate
+      })
+    }
     wx.setNavigationBarTitle({
-      title: this.data.title || '商品'
+      title: decodeURIComponent(this.data.title)
     })
   },
 
@@ -153,7 +153,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.data.title || '商品展示'
+      title: decodeURIComponent(this.data.title)
     }
   }
 })

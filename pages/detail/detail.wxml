@@ -1,10 +1,11 @@
 <!-- 轮播 -->
 <view class="detail_hd">
   <view wx:if="{{detail.imagelist.length>1}}">
-    <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px" indicator-active-color="rgba(0, 0, 0, .7)" autoplay="{{autoplay}}" duration="1200">
-      <block wx:for="{{detail.imagelist}}">
+    <swiper class="swiper_box" style="{{swiperHeight}}" indicator-active-color="rgba(0, 0, 0, .7)"
+      indicator-dots="{{swiperTrue}}" autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
+      <block wx:for="{{detail.imagelist}}" wx:key="item.id">
         <swiper-item>
-          <image mode="widthFix" src="{{item.sourceProductImagePath}}" class="slide-image" bindload="imageLoad" bindtap="showPic" data-src="{{item.sourceProductImagePath}}" />
+          <image mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic" data-src="{{item.sourceProductImagePath}}" />
         </swiper-item>
       </block>
     </swiper>

@@ -218,14 +218,11 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.get()
+  onReady: function () {
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
+    this.get()
     this.setData({
       skey: app.globalData.member.skey
     })

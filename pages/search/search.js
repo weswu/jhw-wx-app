@@ -150,18 +150,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var hislist = wx.getStorageSync('hislist')
-    if (!!hislist) {
-      this.setData({
-        hislist: hislist
-      })
-    }
     // 从首页搜索跳转
     if (options.keyword) {
       this.setData({
         keyword: options.keyword
       })
       this.searchKey()
+    }
+  },
+
+  onReady: function () {
+    var hislist = wx.getStorageSync('hislist')
+    if (!!hislist) {
+      this.setData({
+        hislist: hislist
+      })
     }
   },
 

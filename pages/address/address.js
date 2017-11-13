@@ -277,10 +277,7 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onShow: function () {
     var key = wx.getStorageSync('addressList')
     if (key) {
       this.setData({
@@ -291,7 +288,7 @@ Page({
     }
   },
 
-  onShow: function () {
+  onReady: function () {
     var key = wx.getStorageSync('addressList')
     if (key) {
       this.setData({

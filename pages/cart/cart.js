@@ -37,7 +37,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
       data: {
@@ -263,16 +262,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.get()
-    if (app.globalData.member === null) {
-      app.getUserInfo()
-    }
-  },
-
   onShow: function () {
     // 设置选中的收货地址
     var key = wx.getStorageSync('curReceiver')
@@ -281,6 +270,13 @@ Page({
         curReceiver: key
       })
     }
+  },
+
+  onReady: function () {
+    if (app.globalData.member === null) {
+      app.getUserInfo()
+    }
+    this.get()
   },
 
   /**

@@ -7,7 +7,8 @@ var app = getApp()
 
 Page({
   data: {
-    userInfo: {}
+    userInfo: {},
+    member: {}
   },
   // 跳转页面
   page: function (e) {
@@ -16,8 +17,7 @@ Page({
     })
   },
 
-  onLoad: function () {
-    var that = this
+  onReady: function () {
     //调用应用实例的方法获取全局数据
     this.setData({
       userInfo: app.globalData.userInfo,
