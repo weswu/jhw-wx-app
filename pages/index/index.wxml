@@ -4,11 +4,11 @@
   <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
 </view>
 <!-- 轮播 -->
-<swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
-  indicator-active-color="rgba(255, 255, 255, 1)" indicator-color="rgba(255, 255, 255, .5)" autoplay="{{autoplay}}" duration="500" circular="true">
-    <block wx:for="{{images}}" wx:key="attId">
+<swiper class="swiper_box" style="{{swiperHeight}}" indicator-active-color="rgba(255, 255, 255, 1)" indicator-color="rgba(255, 255, 255, .5)"
+  indicator-dots="{{swiperTrue}}" autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
+    <block wx:for="{{images}}" wx:key="item.attId">
         <swiper-item>
-            <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
+            <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" bindload="imageLoad"/>
         </swiper-item>
     </block>
 </swiper>

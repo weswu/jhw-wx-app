@@ -33,7 +33,6 @@ App({
                   wx.showModal({
                     title: '登录失败'
                   })
-                  return false
                 }
                 res.data.attributes.data.skey = res.data.attributes.data.skey || ''
                 that.globalData.member = res.data.attributes.data
@@ -66,10 +65,10 @@ App({
         }
         console.log('appid---' + res.extConfig.appid)
         console.log('entid---' + res.extConfig.enterprise_id)
+        // 登录用户信息
+        that.getUserInfo()
       }
     })
-    // 登录用户信息
-    this.getUserInfo()
   },
 
   onShow: function () {

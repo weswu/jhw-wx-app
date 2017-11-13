@@ -12,8 +12,7 @@ Page({
     list: [],
     hotlist: [],
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true,
+    swiperTrue: true,
     category: [],
     active: 0,
     // 搜索关键字
@@ -138,14 +137,11 @@ Page({
 
     var viewWidth=wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight=viewWidth/ratio;    //计算的高度值
-    if(viewHeight > this.data.swiperHeight){
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight + 'px'
     })
   },
-  onLoad: function () {
+  onReady: function () {
     var category = wx.getStorageSync('category')
     if (!category) {
       this.getCategory()
@@ -172,8 +168,6 @@ Page({
         images: banner
       })
     }
-  },
-  onReady: function () {
     this.setData({
       primaryColor: app.globalData.primaryColor,
       lighterPrimaryColor: app.globalData.lighterPrimaryColor
@@ -185,9 +179,5 @@ Page({
     this.getBanner()
     wx.stopPullDownRefresh()
   },
-  onShareAppMessage: function () {
-    return {
-      title: '商城'
-    }
-  }
+  onShareAppMessage: function () {}
 })

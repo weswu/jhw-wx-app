@@ -112,7 +112,16 @@ Page({
         cate_id: parseInt(options.category_id.split('Category_')[1]),
         title: options.title
       })
+      wx.setNavigationBarTitle({
+        title: decodeURIComponent(this.data.title)
+      })
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     var key = wx.getStorageSync('proCate' + this.data.cate_id)
     if (!key) {
       this.get()
@@ -123,15 +132,6 @@ Page({
     }
     this.setData({
       primaryColor: app.globalData.primaryColor
-    })  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title || '商品'
     })
   },
 
@@ -165,7 +165,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.data.title || '商品展示'
+      title: decodeURIComponent(this.data.title)
     }
   }
 })

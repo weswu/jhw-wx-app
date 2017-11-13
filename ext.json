@@ -8,14 +8,6 @@
     "primaryColor":"#1f2f5e"
   },
   "window": {
-    "backgroundColor": "#f0f0f0",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "七星布草",
-    "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#9b9b9b",
-    "selectedColor": "#1f2f5e",
-    "backgroundColor": "#fff"
+    "navigationBarTitleText": "七星布草"
   }
 }

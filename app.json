@@ -16,9 +16,10 @@
     "pages/setting/feedback"
   ],
   "window": {
-    "backgroundColor": "#fff",
+    "backgroundColor": "#f0f0f0",
+    "navigationBarBackgroundColor": "#000",
     "backgroundTextStyle": "dark",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
   "tabBar": {

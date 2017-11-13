@@ -23,8 +23,7 @@ Page({
     appendPrice: 0,
     appendIds: '',
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true,
+    swiperTrue: true,
     primaryColor: ''
   },
   page: function (e) {
@@ -54,6 +53,7 @@ Page({
           key: 'detail' + that.data.id,
           data: res.data
         })
+        that.wxTitle()
         wx.hideNavigationBarLoading()
       }
     })
@@ -340,36 +340,35 @@ Page({
 
     var viewWidth=wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight=viewWidth/ratio;    //计算的高度值
-    if(viewHeight > this.data.swiperHeight){
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight + 'px'
+    })
+  },
+  wxTitle: function () {
+    wx.setNavigationBarTitle({
+      title: decodeURIComponent(this.data.detail.name)
     })
   },
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      title: options.title || '产品详细',
+      'detail.name': options.name,
       primaryColor: app.globalData.primaryColor
     })
-
-    var key = wx.getStorageSync('detail' + this.data.id)
-    if (!key) {
+  },
+  onReady: function () {
+    if (app.globalData.member === null) {
+      app.getUserInfo()
+    }
+    var detail = wx.getStorageSync('detail' + this.data.id)
+    if (!detail) {
       this.get()
     } else {
       this.setData({
-        detail: key
+        detail: detail
       })
+      this.wxTitle()
     }
-    if(app.globalData.member === null){
-      app.getUserInfo()
-    }
-  },
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title
-    })
   },
   onPullDownRefresh: function () {
     this.get()
@@ -378,7 +377,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: this.data.detail.name
+      title: decodeURIComponent(this.data.detail.name)
     }
   }
 })
