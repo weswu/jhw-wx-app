@@ -64,7 +64,7 @@ App({
         console.log('appid---' + res.extConfig.appid)
         console.log('entid---' + res.extConfig.enterprise_id)
         // 登录用户信息
-        this.getUserInfo()
+        that.getUserInfo()
        }
      })
    },

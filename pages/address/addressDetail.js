@@ -4,6 +4,7 @@
  * @desc: 地址详细
 */
 var app = getApp()
+var province = require('../../utils/province.js')
 
 Page({
 
@@ -307,6 +308,7 @@ Page({
         address: this.data.address
       })
     }
+    debugger
   },
 
   /**
