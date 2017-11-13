@@ -43,26 +43,6 @@ git checkout master
 ### 地图
 腾讯地图坐标拾取器: <a href="http://lbs.qq.com/tool/getpoint/" target="_blank">http://lbs.qq.com/tool/getpoint</a>
 
-### ext 用于商城
-```json
-"ext": {
-  "appid": "wxc133a0e73ee80bb6",
-  "enterprise_id": "Enterp_0000000000000000000062420",
-  "user_id": "User_000000000000000000000065262",
-  "primaryColor":"#ff6214"
-},
-"extPages": {
-  "pages/index/index": {
-    "navigationBarTitleText": "首页标题"
-  }
-}
-```
-- appid extAppid代替,用于登录,支付
-- enterprise_id 企业ID,用于获取产品数据
-- user_id 用户id,用于留言
-- primaryColor 主题颜色
-- lighterPrimaryColor 次颜色
-
 ### 客服会话，需后台添加客服人员
 ```html
 <view class="weui-cell">
@@ -83,6 +63,30 @@ git checkout master
 </view>
 ```
 
+
+## 商城
+### ext.json
+```json
+"ext": {
+  "appid": "wxc133a0e73ee80bb6",
+  "enterprise_id": "Enterp_0000000000000000000062420",
+  "user_id": "User_000000000000000000000065262",
+  "primaryColor":"#ff6214"
+},
+"extPages": {
+  "pages/index/index": {
+    "navigationBarTitleText": "首页标题"
+  }
+}
+```
+- appid extAppid代替,用于登录,支付
+- enterprise_id 企业ID,用于获取产品数据
+- user_id 用户id,用于留言
+- primaryColor 主题颜色
+- lighterPrimaryColor 次颜色
+
+### 相关文件
+文件目录 address cart order，未使用可删除
 
 ## 项目目录
 <pre>

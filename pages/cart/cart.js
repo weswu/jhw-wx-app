@@ -277,6 +277,10 @@ Page({
       app.getUserInfo()
     }
     this.get()
+    this.setData({
+      accentColor: app.globalData.accentColor,
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

@@ -166,6 +166,10 @@ Page({
         hislist: hislist
       })
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor,
+      accentColor: app.globalData.accentColor
+    })
   },
 
   /**

@@ -20,7 +20,7 @@
     </view>
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+      <view class="pro_price" style="color: {{accentColor}}"><text class="unit">￥</text>{{item.price}}</view>
     </view>
   </navigator>
   <navigator class="more" url="../product/product">查看全部商品</navigator>

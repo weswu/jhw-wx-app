@@ -224,7 +224,9 @@ Page({
     }
     this.get()
     this.setData({
-      skey: app.globalData.member.skey
+      skey: app.globalData.member.skey,
+      primaryColor: app.globalData.primaryColor,
+      accentColor: app.globalData.accentColor
     })
   },
 

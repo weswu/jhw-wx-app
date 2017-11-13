@@ -373,6 +373,10 @@ Page({
         title: decodeURIComponent(this.data.detail.name)
       })
     }
+    this.setData({
+      accentColor: app.globalData.accentColor,
+      primaryColor: app.globalData.primaryColor
+    })
   },
   onPullDownRefresh: function () {
     this.get()

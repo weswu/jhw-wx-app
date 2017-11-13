@@ -4,7 +4,6 @@
  * @desc: 地址详细
 */
 var app = getApp()
-var province = require('../../utils/province.js')
 
 Page({
 
@@ -13,7 +12,7 @@ Page({
    */
   data: {
     // 1
-    province: [], //对像集合
+    province: require('../../utils/province.js'), //对像集合
     one: ['请选择'], //字符集合
     oneIndex: 0, // 实际显示参数
     // 2
@@ -263,36 +262,12 @@ Page({
     })
   },
 
-  // 初始化地区
-  getProvince: function () {
-    var that = this
-    var province = wx.getStorageSync('province')
-    if (!province) {
-      wx.request({
-        url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
-        data: {
-          skey: app.globalData.member.skey
-        },
-        success: function (res) {
-          var province = JSON.parse(res.data.attributes.data);
-          wx.setStorage({
-            key: 'province',
-            data: province
-          })
-          that.one(province)
-        }
-      })
-    } else {
-      this.one(province)
-    }
-  },
-  one: function (province) {
+  one: function () {
     var one = []
-    for (var i = 0; i < province.length; i++) {
-      one.push(province[i].title)
+    for (var i = 0; i < this.data.province.length; i++) {
+      one.push(this.data.province[i].title)
     }
     this.setData({
-      province: province,
       one: one
     })
   },
@@ -308,14 +283,13 @@ Page({
         address: this.data.address
       })
     }
-    debugger
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getProvince()
+    this.one()
     if (!!this.data.isAdd) {
       wx.setNavigationBarTitle({
         title: '新增收货地址'
@@ -323,6 +297,9 @@ Page({
     } else {
       this.get()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

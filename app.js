@@ -30,7 +30,9 @@ App({
               },
               success: function (res) {
                 if (res.data.attributes == null || res.data === '') {
-                  alert('登录失败')
+                  wx.showModal({
+                    title: '登录失败'
+                  })
                 } else {
                   that.globalData.member = res.data.attributes.data
                   wx.setStorage({
@@ -55,16 +57,14 @@ App({
      var that = this
      wx.getExtConfig({
        success: function (res) {
-         that.globalData = {
-           appid: res.extConfig.appid,
-           enterpriseId: res.extConfig.enterprise_id,
-           userId: res.extConfig.user_id,
-           primaryColor: res.extConfig.primaryColor
-         }
-        console.log('appid---' + res.extConfig.appid)
-        console.log('entid---' + res.extConfig.enterprise_id)
-        // 登录用户信息
-        that.getUserInfo()
+         that.globalData.appid = res.extConfig.appid,
+         that.globalData.enterpriseId = res.extConfig.enterprise_id,
+         that.globalData.userId = res.extConfig.user_id,
+         that.globalData.primaryColor = res.extConfig.primaryColor
+         console.log('appid---' + res.extConfig.appid)
+         console.log('entid---' + res.extConfig.enterprise_id)
+         // 登录用户信息
+         that.getUserInfo()
        }
      })
    },
@@ -78,6 +78,7 @@ App({
   // 全局变量
   globalData: {
     userInfo: null,
-    member: null
+    member: null,
+    accentColor: '#c00'
   }
 })

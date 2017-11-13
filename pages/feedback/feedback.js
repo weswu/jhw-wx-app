@@ -138,7 +138,8 @@ Page({
 
   onReady: function () {
     this.setData({
-      skey: app.globalData.member.skey
+      skey: app.globalData.member.skey,
+      primaryColor: app.globalData.primaryColor
     })
   },
 

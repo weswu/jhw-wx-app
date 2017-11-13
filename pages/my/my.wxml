@@ -25,11 +25,11 @@
     <view class="weui-cell__bd">我的购物车</view>
     <view class="weui-cell__ft"></view>
   </view>
-  <view class="weui-cell" bindtap="page" data-url="../setting/setting">
+  <view class="weui-cell" bindtap="page" data-url="../feedback/feedback">
     <view class="weui-cell__hd">
       <image src="../../images/setting.png"></image>
     </view>
-    <view class="weui-cell__bd">设置</view>
+    <view class="weui-cell__bd">意见反馈</view>
     <view class="weui-cell__ft"></view>
   </view>
 </view>

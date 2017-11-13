@@ -12,7 +12,8 @@ Page({
    */
   data: {
     list: [],
-    address: {}
+    address: {},
+    province: require('../../utils/province.js')
   },
 
   page: function (e) {
@@ -131,37 +132,17 @@ Page({
           cityName: res.cityName,
           countyName: res.countyName
         })
-
-        var province = wx.getStorageSync('province')
-        if (!province) {
-          wx.request({
-            url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
-            data: {
-              skey: app.globalData.member.skey
-            },
-            success: function (res) {
-              province = JSON.parse(res.data.attributes.data);
-              wx.setStorage({
-                key: 'province',
-                data: province
-              })
-              that.getArea1(province)
-            }
-          })
-        } else {
-          that.getArea1(province)
-        }
-
+        that.getArea1()
       }
     })
   },
   // 省级
-  getArea1: function (province) {
+  getArea1: function () {
     var that = this
     var areaPath = ''
-    for (var i = 0; i < province.length; i++) {
-      if (province[i].title === that.data.provinceName) {
-        areaPath = province[i].value
+    for (var i = 0; i < this.data.province.length; i++) {
+      if (this.data.province[i].title === that.data.provinceName) {
+        areaPath = this.data.province[i].value
 
         var city = wx.getStorageSync('area' + areaPath)
         if (!city) {
@@ -297,6 +278,9 @@ Page({
     } else {
       this.get()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

@@ -121,6 +121,10 @@ Page({
     wx.setNavigationBarTitle({
       title: decodeURIComponent(this.data.title)
     })
+    this.setData({
+      primaryColor: app.globalData.primaryColor,
+      accentColor: app.globalData.accentColor
+    })
   },
 
   /**

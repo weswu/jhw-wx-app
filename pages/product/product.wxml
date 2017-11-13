@@ -1,5 +1,5 @@
 <!-- 搜索 -->
-<view class="search">
+<view class="search" style="background:{{primaryColor}}">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
     搜索商品
@@ -13,7 +13,7 @@
     </view>
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+      <view class="pro_price" style="color: {{accentColor}}"><text class="unit">￥</text>{{item.price}}</view>
     </view>
   </navigator>
 </view>

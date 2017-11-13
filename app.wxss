@@ -5,16 +5,12 @@ page{height:100%;font-family:-apple-system-font,Helvetica,'微软雅黑','黑体
 .container{display:flex;flex-direction:column;min-height:100%;background:#f0f0f0}
 /* 分隔线 */
 .separator{height:20rpx;width:750rpx;background-color:#f0f0f0}
-/* 表单 */
-.form input,.form textarea{width:100%;margin-bottom:20px;padding:5px 0;border-bottom:1px solid #ECECEC;font-weight: normal;}
-.form input.active,.form textarea.active{border-bottom:1px solid #ff6214}
 /* 产品列表 */
 .pro_title{font-size:14px;color:#333}
-.pro_price{font-size:13px;color:#ff6214;box-sizing:border-box;font-family:Helvetica}
+.pro_price{font-size:13px;box-sizing:border-box;font-family:Helvetica}
 /* 按钮 */
 .fullwidth{width:100%}
 .btn-weixin{background:#1AAD19;color:#fff}
-.btn-primary{background:#ff6214;color:#fff}
 button{font-size:16px;z-index:9;}
 button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
 /* 列表 */

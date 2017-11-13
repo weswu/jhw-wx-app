@@ -74,6 +74,9 @@ Page({
         list: key
       })
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

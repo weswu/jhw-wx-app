@@ -4,7 +4,6 @@
  * @desc: 首页
 */
 var app = getApp()
-var province = require('../../utils/province.js')
 var util = require('../../utils/util.js')
 
 Page({
@@ -28,7 +27,6 @@ Page({
         var data = res.data.list
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            debugger
             data[i].price = parseFloat(parseFloat(data[i].price).toFixed(2))
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
             that.data.list.push(data[i])
@@ -105,6 +103,9 @@ Page({
         images: banner
       })
     }
+    this.setData({
+      accentColor: app.globalData.accentColor
+    })
   },
   onPullDownRefresh: function () {
     this.get()

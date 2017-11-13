@@ -158,7 +158,14 @@ Page({
         id: options.id
       })
     }
+  },
+
+  onReady: function () {
     this.get()
+    this.setData({
+      accentColor: app.globalData.accentColor,
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**
