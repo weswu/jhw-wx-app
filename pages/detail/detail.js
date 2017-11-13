@@ -390,7 +390,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: this.data.detail.name
+      title: decodeURIComponent(this.data.detail.name)
     }
   }
 })

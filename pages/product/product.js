@@ -161,7 +161,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.data.title || '商品展示'
+      title: decodeURIComponent(this.data.title) || '商品展示'
     }
   }
 })
