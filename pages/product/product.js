@@ -106,7 +106,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onReady: function (options) {
+  onLoad: function (options) {
     if (options.category_id) {
       this.setData({
         cate_id: parseInt(options.category_id.split('Category_')[1]),
@@ -115,15 +115,17 @@ Page({
       console.log('title'+options.title)
       this.wxTitle()
     }
-    var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
-    if (!proCate) {
-      this.get()
-    } else {
-      this.setData({
-        list: proCate
-      })
-    }
   },
+ onReady: function () {
+   var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
+   if (!proCate) {
+     this.get()
+   } else {
+     this.setData({
+       list: proCate
+     })
+   }
+ },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

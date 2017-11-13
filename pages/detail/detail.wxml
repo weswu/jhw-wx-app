@@ -1,12 +1,11 @@
 <!-- 轮播 -->
 <view class="detail">
   <view class="swiper-container">
-    <swiper class="swiper_box" bindchange="swiperChange" style="height:{{swiperHeight}}px"
-      autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="800">
+    <swiper class="swiper_box" bindchange="swiperChange" style="{{swiperHeight}}"
+      autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
       <block wx:for="{{detail.imagelist}}">
         <swiper-item>
-          <view style="background: url({{item.sourceProductImagePath}}) no-repeat;background-size: contain;width:100%;height:100%" bindtap="showPic"></view>
-          <image wx:if="{{index === 0}}" mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic"/>
+          <image mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic"/>
         </swiper-item>
       </block>
     </swiper>

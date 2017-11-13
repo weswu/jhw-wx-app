@@ -316,11 +316,8 @@ Page({
 
     var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight = viewWidth / ratio;    //计算的高度值
-    if (viewHeight > this.data.swiperHeight) {
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight + 'px'
     })
   },
   swiperChange: function(e){

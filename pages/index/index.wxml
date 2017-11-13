@@ -11,12 +11,11 @@
 </view>
 <!-- 轮播 -->
 <view class="swiper-container">
-  <swiper class="swiper_box" bindchange="swiperChange" style="height:{{swiperHeight}}px"
-     autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="800">
+  <swiper class="swiper_box" bindchange="swiperChange" style="{{swiperHeight}}"
+     autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
       <block wx:for="{{images}}" wx:key="item.attId" wx:for-index="index">
           <swiper-item>
-              <view style="background: url(http://img.jihui88.com/{{item.serverPath}}) no-repeat;background-size: contain;width:100%;height:100%"></view>
-              <image wx:if="{{index === 0}}" mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" bindload="imageLoad"/>
+              <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" bindload="imageLoad"/>
           </swiper-item>
       </block>
   </swiper>

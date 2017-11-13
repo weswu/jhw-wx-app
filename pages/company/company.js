@@ -46,7 +46,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onReady: function (options) {
+  onReady: function () {
     var company = wx.getStorageSync('company')
     if (!company) {
       this.get()

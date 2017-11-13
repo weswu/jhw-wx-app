@@ -297,7 +297,7 @@ Page({
     })
   },
 
-  onReady: function (options) {
+  onLoad: function (options) {
     this.getProvince()
     if (options.id) {
       this.data.address.receiverId = options.id
@@ -307,9 +307,6 @@ Page({
       })
       this.get()
     }
-    this.setData({
-      defaultColor: app.globalData.defaultColor
-    })
   },
 
   /**
@@ -321,6 +318,9 @@ Page({
         title: '新增收货地址'
       })
     }
+    this.setData({
+      defaultColor: app.globalData.defaultColor
+    })
   },
 
   /**
