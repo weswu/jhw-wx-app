@@ -30,7 +30,7 @@ Page({
         var data = res.data.attributes.data
         data.logo = data.logo || 'upload/j/j2/jihui/picture/2015/12/01/d6cdd11d-c7fd-4d92-a2a6-ba489bc6b347_5.png'
         data.phone = data.phone || '400-7111-011'
-        data.name = data.name || '机汇网商城'
+        data.name = data.name || '商城'
         that.setData({
           enterprise: data
         })

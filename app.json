@@ -18,6 +18,7 @@
   "window": {
     "backgroundColor": "#f0f0f0",
     "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "导航标题",
     "backgroundTextStyle": "dark",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
