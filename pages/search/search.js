@@ -150,12 +150,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var hislist = wx.getStorageSync('hislist')
-    if (!!hislist) {
-      this.setData({
-        hislist: hislist
-      })
-    }
     // 从首页搜索跳转
     if (options.keyword) {
       this.setData({
@@ -164,6 +158,22 @@ Page({
       this.searchKey()
     }
   },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    var hislist = wx.getStorageSync('hislist')
+    if (!!hislist) {
+      this.setData({
+        hislist: hislist
+      })
+    }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
+  },
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

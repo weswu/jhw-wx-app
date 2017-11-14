@@ -10,76 +10,15 @@ Page({
   data: {
     images: [],
     list: [],
+    // 轮播
+    swiperTrue: true,
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true,
     // 搜索关键字
     keyword: '',
     // news
     news: {},
     // cate 数据来自分类接口
-    category: [
-      {
-        category_id: "Category_00000000000000000344235",
-        name: "不锈钢超薄切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/5792889a-2809-4c8b-a859-b236c21ccf36_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000346118",
-        name: "超薄切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/2931eacc-18b7-42af-86ae-791ff9e75a37_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344237",
-        name: "砂轮切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344238",
-        name: "不锈钢碳钢切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7647a65b-61f2-466f-a8e5-7c76fdc3223e_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344239",
-        name: "铜铝材切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/bd726f88-0ae0-4498-96c3-36f1a2cc6bb0_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344236",
-        name: "钢轨切割片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/7a58963f-869e-40a1-a7f9-95170d0d32b6_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000346119",
-        name: "砂轮磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/db6435de-7203-46ea-a80f-bf7945a26376_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344160",
-        name: "不锈钢、石材、玻璃磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/b6374fbb-74bd-48c8-805b-ed59b6416624_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344164",
-        name: "不锈钢、碳钢磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344165",
-        name: "船厂专用磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/f58718f7-3906-4070-9f93-48bb4331d409_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344161",
-        name: "铜铝材磨片",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/1ff53984-7dd9-4bb2-8a76-457efdc23ad3_5.png"
-      },
-      {
-        category_id: "Category_00000000000000000344162",
-        name: "百叶轮",
-        image: "http://img.jihui88.com/upload/j/j2/jinlida/picture/2017/08/22/409f4107-c505-4c38-97e7-0d7bfdf4a220_5.png"
-      }
-    ]
+    category: []
   },
   page: function (e) {
     wx.navigateTo({
@@ -165,11 +104,8 @@ Page({
 
     var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight = viewWidth / ratio;    //计算的高度值
-    if (viewHeight > this.data.swiperHeight) {
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight +'px'
     })
   },
 
@@ -209,7 +145,8 @@ Page({
       }
     })
   },
-  onLoad: function () {
+
+  onReady: function () {
     var banner = wx.getStorageSync('banner')
     if (!banner) {
       this.getBanner()
@@ -253,8 +190,12 @@ Page({
         list3: key344162
       })
     }
-
+      
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
+
   onPullDownRefresh: function () {
     this.get('248285')
     this.get('248286')
@@ -263,9 +204,5 @@ Page({
     this.getNews()
     wx.stopPullDownRefresh()
   },
-  onShareAppMessage: function () {
-    return {
-      title: '商城'
-    }
-  }
+  onShareAppMessage: function () {}
 })

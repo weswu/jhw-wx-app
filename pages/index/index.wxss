@@ -1,5 +1,5 @@
 /* 搜索 */
-.search{background:#d00909;padding:7px 0 7px 70rpx;overflow:hidden}
+.search{padding:7px 0 7px 70rpx;overflow:hidden}
 .search .search-btn{background:#fff;color:#a7a7a7;font-size:12px;text-align:center;height:26px;line-height:26px;border-radius:13px;width:610rpx;}
 .search .search-btn:active{background:#fff5f0}
 .search image{width:14px;height:14px;vertical-align:middle;padding-bottom:2px;padding-right:2px;}
@@ -7,7 +7,7 @@
 /* 轮播 */
 swiper-item image{width:750rpx;}
 /* 资讯 */
-.news_tip{background:#d00909;color:#fff;padding:3px 3px 3px 10px;border-radius:2px;font-size:12px}
+.news_tip{color:#fff;padding:3px 3px 3px 10px;border-radius:2px;font-size:12px}
 .news_title{color:#000;padding-left:10px}
 .news_time{color:#2e3031;font-size:12px}
 .weui-cells-news{line-height:1.7;padding:5px 0}
@@ -20,7 +20,7 @@ swiper-item image{width:750rpx;}
 .cate_name{font-size:12px;padding:0 5px 5px 5px}
 .cate .cate_item:nth-child(4n+0){border-right:none}
 /** 产品Header **/
-.weui-cells-header .color-block{background:#de0000;width:13px;height:2px;margin-right:2vw}
+.weui-cells-header .color-block{width:13px;height:2px;margin-right:2vw}
 .weui-cells-header .weui-cell__bd .title{color:#de0000}
 .weui-cells-header .weui-cell__ft{font-size:10px;font-style:italic}
 /** br **/

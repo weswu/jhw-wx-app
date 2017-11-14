@@ -13,9 +13,9 @@ Page({
     nav: '1',
     empty: false,
     argsList: [],
-    swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true
+    // 轮播
+    swiperTrue: true,
+    swiperHeight: 0
   },
   page: function (e) {
     wx.navigateTo({
@@ -58,6 +58,7 @@ Page({
           key: 'detail' + that.data.id,
           data: res.data
         })
+        that.wxNavTitle()
         wx.hideNavigationBarLoading()
       }
     })
@@ -101,30 +102,32 @@ Page({
 
     var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight = viewWidth / ratio;    //计算的高度值
-    if (viewHeight > this.data.swiperHeight) {
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight +'px'
+    })
+  },
+  wxNavTitle: function () {
+    wx.setNavigationBarTitle({
+      title: decodeURIComponent(this.data.detail.name)
     })
   },
   onLoad: function (options) {
     this.setData({
-      id: options.id,
-      title: options.title || '产品详细'
+      id: options.id
     })
-    var key = wx.getStorageSync('detail' + this.data.id)
-    if (!key) {
+  },
+  onReady: function () {
+    var detail = wx.getStorageSync('detail' + this.data.id)
+    if (!detail) {
       this.get()
     } else {
       this.setData({
-        detail: key
+        detail: detail
       })
+      this.wxNavTitle()
     }
-  },
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title
+    this.setData({
+      primaryColor: app.globalData.primaryColor
     })
   },
   onPullDownRefresh: function () {
@@ -133,7 +136,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: this.data.detail.name
+      title: decodeURIComponent(this.data.detail.name)
     }
   }
 })

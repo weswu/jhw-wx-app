@@ -32,8 +32,9 @@ App({
   },
   // 全局变量
   globalData: {
-    userInfo: null, 
+    userInfo: null,
     enterpriseId: 'Enterp_0000000000000000000006013',
-    userId: 'User_000000000000000000000006231'
+    userId: 'User_000000000000000000000006231',
+    primaryColor: '#d00909'
   }
 })

@@ -1,5 +1,5 @@
 <!-- 搜索 -->
-<view class="search">
+<view class="search" style="background:{{primaryColor}}">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
     输入关键词搜索

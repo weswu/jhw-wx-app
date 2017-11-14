@@ -1,23 +1,23 @@
 <!-- 搜索 -->
-<view class="search">
+<view class="search" style="background:{{primaryColor}}">
   <view class="search-btn" bindtap="page" data-url="../search/search">
     <image src="../../images/search.png"></image>
     输入关键词搜索
   </view>
 </view>
 <!-- 轮播 -->
-<swiper class="swiper_box" indicator-dots="{{indicatorDots}}" style="height:{{swiperHeight}}px"
-  indicator-color="#fff" indicator-active-color="#d00909" autoplay="{{autoplay}}" duration="1200">
-    <block wx:for="{{images}}">
+<swiper class="swiper_box" style="{{swiperHeight}}" indicator-color="#fff" indicator-active-color="{{primaryColor}}"
+  indicator-dots="{{images.length > 1 && swiperTrue}}" autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
+    <block wx:for="{{images}}" wx:key="item.attId">
         <swiper-item>
-            <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" class="slide-image" bindload="imageLoad"/>
+            <image mode="widthFix" src="http://img.jihui88.com/{{item.serverPath}}" bindload="imageLoad"/>
         </swiper-item>
     </block>
 </swiper>
 <!-- 资讯 -->
 <view class="weui-cells weui-cells-news">
   <navigator class="weui-cell" url="../news/newsDetail?id={{news.news_id}}&title={{news.title}}">
-    <view class="weui-cell__hd"><view class="news_tip">最新资讯：</view></view>
+    <view class="weui-cell__hd"><view class="news_tip" style="background:{{primaryColor}}">最新资讯：</view></view>
     <view class="weui-cell__bd"><navigator class="news_title" url="../my">{{news.title}}</navigator></view>
     <view class="weui-cell__ft"><view class="news_time">{{news.add_time}}</view></view>
   </navigator>
@@ -35,7 +35,7 @@
 <!-- 产品展示1 -->
 <view class="weui-cells weui-cells-header">
   <view class="weui-cell">
-    <view class="weui-cell__hd"><view class="color-block"></view></view>
+    <view class="weui-cell__hd"><view class="color-block" style="background:{{primaryColor}}"></view></view>
     <view class="weui-cell__bd">金利达·<text class="title">切割片</text></view>
     <view class="weui-cell__ft">JINLIDA·GRINDING WHEEL</view>
   </view>
@@ -56,7 +56,7 @@
 <!-- 产品展示2 -->
 <view class="weui-cells weui-cells-header">
   <view class="weui-cell">
-    <view class="weui-cell__hd"><view class="color-block"></view></view>
+    <view class="weui-cell__hd"><view class="color-block" style="background:{{primaryColor}}"></view></view>
     <view class="weui-cell__bd">金利达·<text class="title">磨片</text></view>
     <view class="weui-cell__ft">JINLIDA·GRINDING WHEEL</view>
   </view>
@@ -77,7 +77,7 @@
 <!-- 产品展示3 -->
 <view class="weui-cells weui-cells-header">
   <view class="weui-cell">
-    <view class="weui-cell__hd"><view class="color-block"></view></view>
+    <view class="weui-cell__hd"><view class="color-block" style="background:{{primaryColor}}"></view></view>
     <view class="weui-cell__bd">金利达·<text class="title">百叶轮</text></view>
     <view class="weui-cell__ft">JINLIDA·GRINDING WHEEL</view>
   </view>
