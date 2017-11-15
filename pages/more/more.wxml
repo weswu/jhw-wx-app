@@ -1,0 +1,32 @@
+<!-- 头像 -->
+<view class="userinfo">
+  <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+  <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+</view>
+<!-- 列表 -->
+<view class="weui-cells">
+  <view class="weui-cell" bindtap="website" wx:if="{{company.url !== null && company.url !== ''}}">
+    <view class="weui-cell__hd">官方网站</view>
+    <view class="weui-cell__bd"></view>
+    <view class="weui-cell__ft">
+      <image src="../../images/dy.png"></image>
+    </view>
+  </view>
+  <view class="weui-cell" bindtap="page" data-url="../company/company">
+    <view class="weui-cell__hd">关于我们</view>
+    <view class="weui-cell__bd"></view>
+    <view class="weui-cell__ft">
+      <image src="../../images/dy.png"></image>
+    </view>
+  </view>
+  <view class="weui-cell" bindtap="tel">
+    <view class="weui-cell__hd">客服电话</view>
+    <view class="weui-cell__bd"></view>
+    <view class="weui-cell__ft">{{company.cellphone || company.phone}}</view>
+  </view>
+  <view class="weui-cell" bindtap="page" data-url="../map/map">
+    <view class="weui-cell__hd">门店地址</view>
+    <view class="weui-cell__bd"></view>
+    <view class="weui-cell__ft">{{company.address}}</view>
+  </view>
+</view>

@@ -1,18 +1,3 @@
-<!-- 公司简介 -->
 <view class="company">
   <rich-text nodes="{{company.edesc}}"></rich-text>
-</view>
-<view class="hr"></view>
-<!-- 联系方式 -->
-<view class="contact">
-  <view class="contact_bd">
-    <view class="contact_title" wx:if="{{company.name}}">{{company.name}}</view>
-
-    <view wx:if="{{company.address && company.address != 'null'}}">地址：{{company.address}}</view>
-    <view wx:if="{{company.email && company.email != 'null'}}">邮箱：{{company.email}}</view>
-    <view wx:if="{{company.cellphone && company.cellphone != 'null'}}" bindtap="tel" data-tel="{{company.cellphone}}">手机：{{company.cellphone}}</view>
-    <view wx:if="{{company.phone && companycompany.phone != 'null'}}" bindtap="tel" data-tel="{{company.phone}}">电话：{{company.phone}}</view>
-    <view wx:if="{{company.qq && company.qq != 'null'}}">QQ：{{company.qq}}</view>
-    <view wx:if="{{company.url && company.url != 'null'}}">网址：{{company.url}}</view>
-  </view>
 </view>

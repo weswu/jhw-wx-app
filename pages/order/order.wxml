@@ -10,9 +10,9 @@
       <view class="weui-cell__ft">
         <view wx:if="{{item.orderStatus === 'completed'}}">交易成功</view>
         <view wx:elif="{{item.orderStatus === 'invalid'}}">交易关闭</view>
-        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:#ff6214">待付款</view>
-        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:#ff6214">待发货</view>
-        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:#ff6214">已发货</view>
+        <view wx:elif="{{item.paymentStatus === 'unpaid'}}" style="color:{{primaryColor}}">待付款</view>
+        <view wx:elif="{{item.shippingStatus === 'unshipped'}}" style="color:{{primaryColor}}">待发货</view>
+        <view wx:elif="{{item.shippingStatus === 'shipped'}}" style="color:{{primaryColor}}">已发货</view>
       </view>
     </view>
     <!-- 商品信息 -->
@@ -33,7 +33,7 @@
     </view>
     <!-- 订单操作 -->
     <view class="btn-event">
-      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn active" bindtap="del" data-id="{{item.orderId}}">删除</text>
+      <text wx:if="{{item.orderStatus === 'invalid'}}" class="btn" bindtap="del" data-id="{{item.orderId}}" style="border: 1px solid {{accentColor}};color:{{accentColor}}">删除</text>
       <!-- 取消 -->
       <text wx:elif="{{item.paymentStatus === 'unpaid' || item.paymentStatus === 'partPayment'}}" class="btn" bindtap="cancel" data-id="{{item.orderId}}" data-cancel="{{item.cancel}}" data-index="{{index}}">{{item.cancel}}</text>
       <text wx:elif="{{item.shippingStatus === 'shipped' || item.shippingStatus === 'partShipped'}}">
@@ -54,7 +54,7 @@
   <view class="emptyOrder panel">
     <image src="../../images/order.png"></image>
     <text>订单还是空的</text>
-    <button class="btn-primary" bindtap="pageIndex">到商城再逛逛</button>
+    <button type="primary" bindtap="pageIndex" style="background:{{primaryColor}}">到商城再逛逛</button>
   </view>
 </view>
 <!-- 验证码 -->

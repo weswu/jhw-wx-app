@@ -29,15 +29,17 @@ App({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                if (res.data.attributes.data == null) {
-                  alert('数据为空')
+                if (res.data.attributes == null || res.data === '') {
+                  wx.showModal({
+                    title: '登录失败'
+                  })
+                } else {
+                  that.globalData.member = res.data.attributes.data
+                  wx.setStorage({
+                    key: 'skey',
+                    data: res.data.attributes.data.skey || ''
+                  })
                 }
-                res.data.attributes.data.skey = res.data.attributes.data.skey || ''
-                that.globalData.member = res.data.attributes.data
-                wx.setStorage({
-                  key: 'skey',
-                  data: res.data.attributes.data.skey
-                })
               }
             })
           }
@@ -55,15 +57,16 @@ App({
      var that = this
      wx.getExtConfig({
        success: function (res) {
-         that.globalData = {
-           appid: res.extConfig.appid,
-           enterpriseId: res.extConfig.enterprise_id,
-           userId: res.extConfig.user_id
-         }
+         that.globalData.appid = res.extConfig.appid,
+         that.globalData.enterpriseId = res.extConfig.enterprise_id,
+         that.globalData.userId = res.extConfig.user_id,
+         that.globalData.primaryColor = res.extConfig.primaryColor
+         console.log('appid---' + res.extConfig.appid)
+         console.log('entid---' + res.extConfig.enterprise_id)
+         // 登录用户信息
+         that.getUserInfo()
        }
      })
-     // 登录用户信息
-     this.getUserInfo()
    },
 
   onShow: function () {
@@ -75,6 +78,7 @@ App({
   // 全局变量
   globalData: {
     userInfo: null,
-    member: null
+    member: null,
+    accentColor: '#c00'
   }
 })

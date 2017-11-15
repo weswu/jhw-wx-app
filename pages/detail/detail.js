@@ -14,8 +14,7 @@ Page({
     empty: false,
     // 轮播
     swiperHeight: 0,
-    autoplay: true,
-    indicatorDots: true,
+    swiperTrue: true,
     // 历史记录
     isSell: false,
     sellList: [],
@@ -23,7 +22,7 @@ Page({
     showModalStatus: false,
     attrList: [],
     argsList: [],
-    // 商城
+    // 支付
     productAttr: '',
     num: 1,
     skuCode: '',
@@ -350,43 +349,39 @@ Page({
 
     var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight = viewWidth / ratio;    //计算的高度值
-    if (viewHeight > this.data.swiperHeight) {
-      this.data.swiperHeight = viewHeight
-    }
     this.setData({
-      swiperHeight: this.data.swiperHeight
+      swiperHeight: 'height:' + viewHeight +'px'
     })
   },
   onLoad: function (options) {
     this.setData({
-      id: options.id,
-      title: options.title || '产品详细'
+      id: options.id
     })
-    var key = wx.getStorageSync('detail' + this.data.id)
-    if (!key) {
-      this.get()
-    } else {
-      this.setData({
-        detail: key
-      })
-    }
+  },
+  onReady: function () {
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-  },
-  onReady: function () {
-    wx.setNavigationBarTitle({
-      title: this.data.title
+    var detail = wx.getStorageSync('detail' + this.data.id)
+    if (!detail) {
+      this.get()
+    } else {
+      this.setData({
+        detail: detail
+      })
+      wx.setNavigationBarTitle({
+        title: decodeURIComponent(this.data.detail.name)
+      })
+    }
+    this.setData({
+      accentColor: app.globalData.accentColor,
+      primaryColor: app.globalData.primaryColor
     })
   },
-  onPullDownRefresh: function () {
-    this.get()
-    this.getSell()
-    wx.stopPullDownRefresh()
-  },
+
   onShareAppMessage: function () {
     return {
-      title: this.data.detail.name
+      title: decodeURIComponent(this.data.detail.name)
     }
   }
 })

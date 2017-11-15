@@ -1,19 +1,34 @@
 /*
  * @author: wes
- * @date: 2017-11-15
- * @desc: 公司简介
+ * @date: 2017-10-26
+ * @desc: 个人中心
 */
 var app = getApp()
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    userInfo: {},
     company: {}
   },
+  // 跳转页面
+  page: function (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
+  website () {
+    wx.showModal({
+      title: '欢迎访问我们的网站',
+      content: this.data.company.url || '',
+      showCancel: false
+    })
+  },
 
+  tel: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.company.cellphone || this.data.company.phone
+    })
+  },
   // 公司简介接口
   get: function () {
     var that = this
@@ -36,10 +51,13 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onReady: function () {
+    var that = this
+    //调用应用实例的方法获取全局数据
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      member: app.globalData.member
+    })
     var company = wx.getStorageSync('company')
     if (!company) {
       this.get()
@@ -55,7 +73,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '关于我们'
+      title: '"更多'
     }
   }
 })

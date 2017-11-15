@@ -158,19 +158,14 @@ Page({
         id: options.id
       })
     }
-    this.get()
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
+  onReady: function () {
     this.get()
-    wx.stopPullDownRefresh()
-    wx.hideLoading()
+    this.setData({
+      accentColor: app.globalData.accentColor,
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**

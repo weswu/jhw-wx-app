@@ -1,21 +1,23 @@
 .weui-cell{padding-bottom:10px}
 .weui-cells-items{padding: 5px 15px}
 .weui-cells-order::after {border-bottom:none}
+/* 分隔线 */
+.separator{height:20rpx;width:750rpx;background-color:#f0f0f0}
 /* 操作按钮 */
 .btn-event{margin:0 15px;padding:10px 0;position:relative;overflow: hidden;border-top: 1px solid #f0f0f0}
 .btn{float:right;display: inline;color: #666;padding: 10rpx 20rpx;border: 1px solid #eee;margin-left: 20rpx;border-radius: 2px}
-.btn.active{border: 1px solid #ff6214;color: #ff6214;}
 /* 订单为空 */
 .emptyOrder image{width:128px;height:128px;margin:0 auto;padding:1rem 0 0 0;display:block}
 .emptyOrder text{text-align:center;padding:1rem 0 2rem 0;font-size:1rem;color:#999;display:block}
-/* 验证码 */
-.modal-mask{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.5;overflow:hidden;z-index:9000;color:#fff}
-.modal-dialog{width:540rpx;overflow:hidden;position:fixed;top:50%;left:0;z-index:9999;background:#f9f9f9;margin:-180rpx 105rpx;border-radius:36rpx}
-.modal-title{padding-top:50rpx;font-size:36rpx;color:#030303;text-align:center}
-.modal-content{padding:50rpx 32rpx}
-.modal-input{display:flex;background:#fff;border:2rpx solid #ddd;border-radius:4rpx;font-size:28rpx}
-.input{width:80%;float:left;height:75rpx;font-size:28rpx;line-height:28rpx;padding:0 20rpx;box-sizing:border-box;color:#333}
-input-holder{color:#666;font-size:28rpx}
-.modal-footer{display:flex;flex-direction:row;height:86rpx;border-top:1px solid #dedede;font-size:34rpx;line-height:86rpx}
-.btn-cancel{width:50%;color:#666;text-align:center;border-right:1px solid #dedede}
-.btn-confirm{width:50%;color:#ec5300;text-align:center}
+/* 订单列表 */
+.weui-cells-order{font-size:13px}
+.weui-cells-order:before{border-top:none}
+.weui-cells-order:after{border-bottom:1px solid #ddd;}
+.weui-cells-order .weui-cell:before{border-top:none}
+.weui-cells-order .address{padding-top:0}
+.weui-cells-order .weui-cell__bd{line-height:1.9}
+.weui-cells-order image{width:40px;height:40px}
+.weui-cells-order .price{color:#333}
+.weui-cells-order .quantity{color:#9b9b9b;font-size:12px}
+.weui-cells-order .desc{font-size:12px;color:#9b9b9b}
+.weui-cells-order .desc text{padding-right:5px}

@@ -12,7 +12,7 @@ Page({
    */
   data: {
     // 1
-    province: [], //对像集合
+    province: require('../../utils/province.js'), //对像集合
     one: ['请选择'], //字符集合
     oneIndex: 0, // 实际显示参数
     // 2
@@ -262,36 +262,12 @@ Page({
     })
   },
 
-  // 初始化地区
-  getProvince: function () {
-    var that = this
-    var province = wx.getStorageSync('province')
-    if (!province) {
-      wx.request({
-        url: 'https://wx.jihui88.net/rest/api/shop/area/childrenArea',
-        data: {
-          skey: app.globalData.member.skey
-        },
-        success: function (res) {
-          var province = JSON.parse(res.data.attributes.data);
-          wx.setStorage({
-            key: 'province',
-            data: province
-          })
-          that.one(province)
-        }
-      })
-    } else {
-      this.one(province)
-    }
-  },
-  one: function (province) {
+  one: function () {
     var one = []
-    for (var i = 0; i < province.length; i++) {
-      one.push(province[i].title)
+    for (var i = 0; i < this.data.province.length; i++) {
+      one.push(this.data.province[i].title)
     }
     this.setData({
-      province: province,
       one: one
     })
   },
@@ -300,34 +276,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProvince()
     if (options.id) {
       this.data.address.receiverId = options.id
       this.setData({
         isAdd: false,
         address: this.data.address
       })
-      this.get()
     }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function (e) {
+  onReady: function () {
+    this.one()
     if (!!this.data.isAdd) {
       wx.setNavigationBarTitle({
         title: '新增收货地址'
       })
+    } else {
+      this.get()
     }
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    this.get()
-    wx.stopPullDownRefresh()
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
 
   /**
@@ -335,7 +307,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '收货地址详细'
+      title: '收货地址'
     }
   }
 })

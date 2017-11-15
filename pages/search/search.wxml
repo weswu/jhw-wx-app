@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 搜索 -->
   <view class="wxSearch">
-    <view class="wxSearch-section">
+    <view class="wxSearch-section" style="background-color:{{primaryColor}}">
       <view class="wxSearch-pancel">
         <form class="wxSearch-form">
           <input type="text" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" confirm-type="search" bindconfirm="searchKey" focus="true"/>
@@ -36,7 +36,7 @@
         </view>
         <view class="weui-cell__bd">
           <view class="pro_title">{{item.name}}</view>
-          <view class="pro_price">￥{{item.price}}</view>
+          <view class="pro_price" style="color: {{accentColor}}">￥{{item.price}}</view>
         </view>
       </view>
     </view>

@@ -1,56 +1,54 @@
 {
   "pages": [
+  "pages/more/more",
     "pages/index/index",
     "pages/product/product",
-    "pages/detail/detail",
     "pages/search/search",
-    "pages/category/category",
+    "pages/detail/detail",
     "pages/company/company",
-    "pages/my/my",
+    "pages/cart/cart",
     "pages/order/order",
     "pages/order/orderDetail",
-    "pages/cart/cart",
-    "pages/address/addressDetail",
     "pages/address/address",
-    "pages/setting/setting",
-    "pages/setting/feedback"
+    "pages/address/addressDetail",
+    "pages/map/map"
   ],
   "window": {
     "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "商城",
+    "navigationBarTitleText": "eone design",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   },
   "tabBar": {
-    "color": "#9b9b9b",
-    "selectedColor": "#ff6214",
+    "color": "#616161",
+    "selectedColor": "#25402e",
     "backgroundColor": "#fff",
     "list": [
       {
-        "iconPath": "images/tabBar/home.png",
-        "selectedIconPath": "images/tabBar/home_.png",
+        "iconPath": "images/tabBar/index.png",
+        "selectedIconPath": "images/tabBar/index_selected.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "主页"
       },
       {
-        "iconPath": "images/tabBar/category.png",
-        "selectedIconPath": "images/tabBar/category_.png",
-        "pagePath": "pages/category/category",
-        "text": "分类"
+        "iconPath": "images/tabBar/cart.png",
+        "selectedIconPath": "images/tabBar/cart_selected.png",
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
       },
       {
-        "iconPath": "images/tabBar/company.png",
-        "selectedIconPath": "images/tabBar/company_.png",
-        "pagePath": "pages/company/company",
-        "text": "关于"
+        "iconPath": "images/tabBar/order.png",
+        "selectedIconPath": "images/tabBar/order_selected.png",
+        "pagePath": "pages/order/order",
+        "text": "订单"
       },
       {
-        "iconPath": "images/tabBar/my.png",
-        "selectedIconPath": "images/tabBar/my_.png",
-        "pagePath": "pages/my/my",
-        "text": "我的"
+        "iconPath": "images/tabBar/more.png",
+        "selectedIconPath": "images/tabBar/more_selected.png",
+        "pagePath": "pages/more/more",
+        "text": "更多"
       }
     ]
   },
