@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 订单详细
 */
 var app = getApp()
@@ -13,7 +13,9 @@ Page({
   data: {
     data: {},
     paymentConfigList: [],
-    devTip: '查看物流信息'
+    devTip: '查看物流信息',
+    primaryColor: '',
+    defaultColor: ''
   },
 
   page: function (e) {
@@ -69,9 +71,6 @@ Page({
             })
           },
           'fail': function (res) {
-            wx.showModal({
-              title: res.err_desc
-            })
             wx.navigateBack({
               delta: 1
             })
@@ -163,9 +162,21 @@ Page({
   onReady: function () {
     this.get()
     this.setData({
-      accentColor: app.globalData.accentColor,
-      primaryColor: app.globalData.primaryColor
+      primaryColor: app.globalData.primaryColor,
+      defaultColor: app.globalData.defaultColor
     })
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.get()
+    wx.stopPullDownRefresh()
+    wx.hideLoading()
   },
 
   /**

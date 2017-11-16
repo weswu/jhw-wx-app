@@ -79,6 +79,7 @@ App({
   globalData: {
     userInfo: null,
     member: null,
+    defaultColor: '#333',
     accentColor: '#c00'
   }
 })

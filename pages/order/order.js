@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 订单
 */
 var app = getApp()
@@ -12,7 +12,12 @@ Page({
    */
   data: {
     list: [],
-    page: 1
+    // 切换
+    nav: '00',
+    page: 1,
+    isloading: false,
+    primaryColor: '',
+    defaultColor: ''
   },
 
   page: function (e) {
@@ -21,54 +26,60 @@ Page({
     })
   },
 
-  // 回首页
-  pageIndex: function (e) {
-    wx.switchTab({
-      url: '../index/index'
+  /* 页面切换 */
+  nav: function (e) {
+    var ctx = this;
+    var nav = e.currentTarget.dataset.nav;
+    this.setData({
+      nav: nav
     })
+    this.get()
   },
 
   // 订单接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
     if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/list',
       data: {
         page: this.data.page,
+        ostate: this.data.nav,
         pageSize: 1000,
         skey: app.globalData.member.skey
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
         var data = res.data.attributes.data
         if (!res.data.success) {
           wx.showModal({
             title: res.data.msg
           })
           that.setData({
-            empty: true
+            list: []
           })
           return false
         }
         if (data.length === 0 && that.data.page === 1) {
           that.setData({
-            empty: true
+            list: []
           })
           return false
         }
         for (var i = 0; i < data.length; i++) {
           data[i].cancel = '取消订单'
           data[i].comfirm = '确定收货'
-          that.data.list.push(data[i])
+          // that.data.list.push(data[i])
         }
         that.setData({
-          list: that.data.list
+          list: data
         })
       }
     })
@@ -86,8 +97,7 @@ Page({
         var list = that.data.list
         if (list.length === 1) {
           that.setData({
-            list: [],
-            empty: true
+            list: []
           })
         } else {
           for (var i = 0; i < list.length; i++) {
@@ -153,35 +163,23 @@ Page({
     }
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onReady: function () {
+    this.get()
     if (app.globalData.member === null) {
       app.getUserInfo()
     }
-    this.get()
     this.setData({
       skey: app.globalData.member.skey,
       primaryColor: app.globalData.primaryColor,
-      accentColor: app.globalData.accentColor
+      defaultColor: app.globalData.defaultColor
     })
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   * 全查无分页
-   */
-  onReachBottom: function () {
-    //this.setData({
-    //  page: this.data.page + 1
-    //})
-    //this.get()
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return {
-      title: '我的订单'
-    }
-  }
+  onShareAppMessage: function () {}
 })

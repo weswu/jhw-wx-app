@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 购物车
 */
 var app = getApp()
@@ -15,7 +15,9 @@ Page({
     cartItemSet: [],
     curReceiver: {},
     curDelivery: {},
-    curPaymentConfig: {}
+    curPaymentConfig: {},
+    isloading: false,
+    defaultColor:''
   },
   page: function (e) {
     wx.navigateTo({
@@ -23,20 +25,14 @@ Page({
     })
   },
 
-  // 跳转到首页
-  pageIndex: function (e) {
-    wx.switchTab({
-      url: '../index/index'
-    })
-  },
-
   // 购物车接口
   get: function () {
     var that = this
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
+    if (app.globalData.member === null) { app.getUserInfo() }
     wx.request({
       url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
       data: {
@@ -46,15 +42,21 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
+        wx.setStorage({
+          key: 'cartCount',
+          data: (res.data.attributes && res.data.attributes.totalQuantity) || 0
+        })
         if (!res.data.success) {
           that.setData({
-            empty: true
+            cartItemSet: []
           })
           return false
         }
-        var data = res.data.attributes
 
+        var data = res.data.attributes
         that.setData({
           cartItemSet: data.cartItemSet,
           deliveryType: data.deliveryType,
@@ -138,11 +140,10 @@ Page({
           totalPrice: parseFloat(res.data.attributes.totalPrice.split('￥')[1]),
           totalQuantity: res.data.attributes.totalQuantity
         })
-        if (that.data.cartItemSet.length === 0) {
-          that.setData({
-            empty: true
-          })
-        }
+        wx.setStorage({
+          key: 'cartCount',
+          data: wx.getStorageSync('cartCount') - 1
+        })
       }
     })
   },
@@ -197,7 +198,7 @@ Page({
     }
     if (this.data.curPaymentConfig && !this.data.curPaymentConfig.paymentId) {
       wx.showModal({
-        title: '请开通微信支付'
+        title: '未添加支付方式'
       })
       return false
     }
@@ -233,6 +234,10 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
+            wx.setStorage({
+              key: 'cartCount',
+              data: 0
+            })
             wx.requestPayment({
               'timeStamp': res.data.attributes.data.timeStamp,
               'nonceStr': res.data.attributes.data.nonceStr,
@@ -243,7 +248,7 @@ Page({
                 wx.showModal({
                   title: '支付完成'
                 })
-                wx.navigateTo({
+                wx.switchTab({
                   url: '../order/order'
                 })
               },
@@ -251,7 +256,7 @@ Page({
                 wx.showModal({
                   title: res.err_desc
                 })
-                wx.navigateTo({
+                wx.switchTab({
                   url: '../order/order'
                 })
               }
@@ -263,6 +268,10 @@ Page({
   },
 
   onShow: function () {
+    this.get()
+    if (app.globalData.member === null) {
+      app.getUserInfo()
+    }
     // 设置选中的收货地址
     var key = wx.getStorageSync('curReceiver')
     if (key) {
@@ -270,17 +279,17 @@ Page({
         curReceiver: key
       })
     }
+    this.setData({
+      defaultColor: app.globalData.defaultColor
+    })
   },
 
-  onReady: function () {
-    if (app.globalData.member === null) {
-      app.getUserInfo()
-    }
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
     this.get()
-    this.setData({
-      accentColor: app.globalData.accentColor,
-      primaryColor: app.globalData.primaryColor
-    })
+    wx.stopPullDownRefresh()
   },
 
   /**

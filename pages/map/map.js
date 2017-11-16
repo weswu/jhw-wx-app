@@ -14,14 +14,11 @@ Page({
       height: 30
     }]
   },
-  markertap: function () {
-    console.log('点击红点')
-  },
 
   onReady: function () {
-    var map = wx.getStorageSync('company').mapaddress
-    var longitude = parseInt(map.split(',')[0])
-    var latitude = parseInt(map.split(',')[1])
+    var company = wx.getStorageSync('company')
+    var longitude = parseFloat(company.mapaddress.split(',')[0])
+    var latitude = parseFloat(company.mapaddress.split(',')[1])
     this.data.markers[0].longitude = longitude
     this.data.markers[0].latitude = latitude
     this.setData({
@@ -29,14 +26,13 @@ Page({
       latitude: latitude,
       markers: this.data.markers
     })
-
-    var address = wx.getStorageSync('company').address
+    // 打开另一层导航地图
     wx.openLocation({
       latitude: latitude,
       longitude: longitude,
-      scale: 18,
-      name: '华乾大厦',
-      address: address
+      scale: 28,
+      name: company.name,
+      address: company.address
     })
   },
 
