@@ -1,0 +1,26 @@
+<template name="cateList">
+  <view class="item" wx:for="{{categoryList}}" wx:key="item.category_id">
+    <navigator url="../product/product?category_id={{item.category_id}}&title={{item.name}}">
+      <image mode="widthFix" src="{{item.image}}"></image>
+      <view class="item_content">
+        {{item.name}}
+      </view>
+    </navigator>
+
+    <view class="item" wx:for="{{item.child}}" wx:for-item="item1" wx:key="item1.category_id">
+      <navigator url="../product/product?category_id={{item1.category_id}}&title={{item1.name}}">
+        <image mode="widthFix" src="{{item1.image}}"></image>
+        <view class="item_content">
+          {{item1.name}}
+        </view>
+      </navigator>
+
+      <navigator url="../product/product?category_id={{item2.category_id}}&title={{item2.name}}" wx:for="{{item1.child}}" wx:for-item="item2" wx:key="item2.category_id">
+        <image mode="widthFix" src="{{item2.image}}"></image>
+        <view class="item_content">
+          {{item2.name}}
+        </view>
+      </navigator>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,21 @@
+/* pages/canvas.wxss */
+page{
+  background: #242537;
+}
+.canvas{
+  padding: 2vw 0 5vw 0;
+  width: 280px;
+  margin: 0 auto;
+}
+canvas{
+  height: 470px
+}
+.btn-download{
+  margin-top: 20px;
+  background: #4b4c5e;
+  color: #e2e5ee;
+  border: 1px solid #8b8d9a;
+}
+.btn-download image{
+  width:20px;height:20px !important;vertical-align: middle;padding-right: 10px
+}

@@ -4,6 +4,7 @@
     "pages/product/product",
     "pages/search/search",
     "pages/detail/detail",
+    "pages/canvas/canvas",
     "pages/company/company",
     "pages/cart/cart",
     "pages/order/order",

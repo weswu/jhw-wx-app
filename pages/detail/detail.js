@@ -1,6 +1,6 @@
 /*
  * @author: wes
- * @date: 2017-7-25
+ * @date: 2017-10-26
  * @desc: 产品详细
 */
 var util = require('../../utils/util.js')
@@ -10,28 +10,34 @@ Page({
   data: {
     detail: {},
     id: '',
-    nav: '1',
-    empty: false,
+    count: 0,
     // 轮播
-    swiperHeight: 0,
     swiperTrue: true,
-    // 历史记录
-    isSell: false,
-    sellList: [],
+    swiperHeight: 0,
+    swiperCurrent: 0,
     // 属性
     showModalStatus: false,
     attrList: [],
     argsList: [],
-    // 支付
+    // 商城
     productAttr: '',
     num: 1,
     skuCode: '',
     appendPrice: 0,
-    appendIds: ''
+    appendIds: '',
+    defaultColor: '',
+    // share
+    shareModal: false
   },
   page: function (e) {
+    debugger
     wx.navigateTo({
       url: e.currentTarget.dataset.url
+    })
+  },
+  pageTab: function (e) {
+    wx.switchTab({
+      url: '../cart/cart'
     })
   },
   get: function () {
@@ -55,7 +61,10 @@ Page({
           res.data.detail1 = res.data.detail1.replace(/<table>/g, "<table style='border-collapse:collapse;display:table;'>").replace(/<td>/g, "<td style='padding: 5px 10px;border: 1px solid #DDD;'>").replace(/<th>/g, "<th style='padding: 5px 10px;border: 1px solid #DDD;border-top:1px solid #BBB;background-color:#F7F7F7;'>").replace(/\"/g, "'")
         }
 
-        res.data.price = parseFloat(parseFloat(res.data.price).toFixed(2))
+        res.data.price = parseFloat(res.data.price).toFixed(2)
+        for (var i = 0; i < res.data.imagelist.length; i++) {
+          res.data.imagelist[i].sourceProductImagePath = util.picUrl(res.data.imagelist[i].sourceProductImagePath, 3)
+        }
         that.setData({
           detail: res.data
         })
@@ -63,6 +72,7 @@ Page({
           key: 'detail' + that.data.id,
           data: res.data
         })
+        that.wxTitle()
         wx.hideNavigationBarLoading()
       }
     })
@@ -90,57 +100,6 @@ Page({
       })
     }
   },
-  // 成交记录
-  getSell: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    var that = this
-    wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/order/product/sellList',
-      dataType: 'jsonp',
-      data: {
-        callback: "jsonpCallback",
-        productId: this.data.detail.product_id,
-        skey: app.globalData.member.skey
-      },
-      success: function (res) {
-        wx.hideLoading()
-        var str = res.data.split('jsonpCallback(')[1]
-        var sell = JSON.parse(str.substring(0, str.length - 1)).attributes.sellList
-        if (sell.length > 1) {
-          var data = []
-          for (var i = 0; i < sell.length; i++) {
-            sell[i].updateTime = util.formatTime(new Date(sell[i].updateTime))
-            data.push(sell[i])
-          }
-          that.setData({
-            sellList: data
-          })
-        } else {
-          that.setData({
-            empty: true
-          })
-        }
-      }
-    })
-  },
-  /* 页面切换 */
-  nav: function (e) {
-    var ctx = this;
-    var nav = e.currentTarget.dataset.nav;
-    this.setData({
-      nav: nav
-    })
-    if (nav === '2') {
-      if (!this.data.isSell) {
-        this.setData({
-          isSell: true
-        })
-        this.getSell()
-      }
-    }
-  },
 
   // 获取属性参数
   getAttr: function () {
@@ -158,7 +117,9 @@ Page({
 
         for (var i = 0; i < attrList.length; i++) {
           var element = attrList[i].element;
+          var price = attrList[i].price
           attrList[i].eleList = element.substring(1, element.length - 1).split(',')
+          attrList[i].priceList = price.substring(1, price.length - 1).split(',')
         }
         that.setData({
           attrList: attrList,
@@ -178,32 +139,35 @@ Page({
       this.getAttr()
     }
     console.log("设置显示状态，1显示0不显示", status);
+
+    this.setData({
+      skip: e.currentTarget.dataset.skip
+    });
+
+    if (status == 1) {
+      this.attrAn(0,-400,true,300)
+    } else {
+      this.attrAn(400,0,false,500)
+    }
+  },
+  attrAn: function (anFrom, anTo, modal, duration) {
     var animation = wx.createAnimation({
-      duration: 200,
+      duration: duration,
       timingFunction: "linear",
       delay: 0
     })
     this.animation = animation
-    animation.translateY(300).step()
+    animation.translateY(anFrom).step()
     this.setData({
-      animationData: animation.export()
+      animationData: animation.export(),
+      showModalStatus: modal
     })
-    if (status == 1) {
+    setTimeout(function() {
+      animation.translateY(anTo).step()
       this.setData({
-        showModalStatus: true
-      });
-    }
-    setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation
+        animationData: animation.export()
       })
-      if (status == 0) {
-        this.setData({
-          showModalStatus: false
-        });
-      }
-    }.bind(this), 200)
+    }.bind(this), 0)
   },
   /* 属性选择 */
   attrClick: function (e) {
@@ -221,6 +185,7 @@ Page({
     var pic = ''
     for (var i = 0; i < this.data.attrList.length; i++) {
       var attr = this.data.attrList[i].eleList[this.data.attrList[i].dx] || ''
+      cost_price = parseFloat(parseFloat(this.data.detail.price) + parseFloat(this.data.attrList[i].priceList[this.data.attrList[i].dx]) || 0).toFixed(2)
       if (appendIds === '') {
         appendIds = attr
         productAttr = this.data.attrList[i].name + ': ' + attr
@@ -323,9 +288,15 @@ Page({
         var str = res.data.split('jsonpCallback(')[1]
         var data = JSON.parse(str.substring(0, str.length - 1))
         if (data.success) {
-          wx.navigateTo({
-            url: '../cart/cart'
-          })
+          if (that.data.skip === '1') {
+            wx.switchTab({
+              url: '../cart/cart'
+            })
+          }
+          that.setData({
+            count: that.data.count + that.data.num,
+            showModalStatus: false
+          });
         } else {
           wx.showModal({
             title: '提示',
@@ -350,14 +321,76 @@ Page({
     var viewWidth = wx.getSystemInfoSync().windowWidth;    //窗口宽度
     var viewHeight = viewWidth / ratio;    //计算的高度值
     this.setData({
-      swiperHeight: 'height:' + viewHeight +'px'
+      swiperHeight: 'height:' + viewHeight + 'px'
     })
+  },
+  swiperChange: function(e){
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
+  },
+  // cartCount
+  cartCount: function () {
+    var that = this
+    wx.request({
+      url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
+      data: {
+        entId: app.globalData.enterpriseId,
+        cIds: '',
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        var count = (res.data.attributes && res.data.attributes.totalQuantity) || 0
+        wx.setStorage({
+          key: 'cartCount',
+          data: count
+        })
+        that.setData({
+          count: 0
+        })
+      }
+    })
+  },
+  // 标题
+  wxTitle: function () {
+    wx.setNavigationBarTitle({
+      title: decodeURIComponent(this.data.detail.name)
+    })
+  },
+  // 分享
+  share: function () {
+    this.shareAn(0,-155,true)
+  },
+  closeBg: function () {
+    this.shareAn(-155,0,false)
+  },
+  shareAn: function (anFrom, anTo,  modal) {
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(anFrom).step()
+    this.setData({
+      animationShare: animation.export(),
+      shareModal: modal
+    })
+    setTimeout(function() {
+      animation.translateY(anTo).step()
+      this.setData({
+        animationShare: animation.export()
+      })
+    }.bind(this), 0)
   },
   onLoad: function (options) {
     this.setData({
-      id: options.id
+      id: options.id,
+      'detail.name': options.name,
+      defaultColor: app.globalData.defaultColor
     })
   },
+
   onReady: function () {
     if (app.globalData.member === null) {
       app.getUserInfo()
@@ -369,19 +402,26 @@ Page({
       this.setData({
         detail: detail
       })
-      wx.setNavigationBarTitle({
-        title: decodeURIComponent(this.data.detail.name)
+      this.wxTitle()
+    }
+    var cartCount = wx.getStorageSync('cartCount')
+    if (!cartCount) {
+      this.cartCount()
+    } else {
+      this.setData({
+        count: cartCount
       })
     }
-    this.setData({
-      accentColor: app.globalData.accentColor,
-      primaryColor: app.globalData.primaryColor
-    })
   },
-
+  onPullDownRefresh: function () {
+    this.get()
+    this.getAttr()
+    this.cartCount()
+    wx.stopPullDownRefresh()
+  },
   onShareAppMessage: function () {
     return {
-      title: decodeURIComponent(this.data.detail.name)
+      title: this.data.detail.name
     }
   }
 })

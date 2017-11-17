@@ -1,13 +1,9 @@
 /* 简单class */
 page{height:100%;font-family:-apple-system-font,Helvetica,'微软雅黑','黑体',sans-serif;background: #f6f6f6}
-/* 产品列表 */
-.pro_title{font-size:14px;color:#333}
-.pro_price{font-size:13px;box-sizing:border-box;font-family:Helvetica}
 /* 按钮 */
-.fullwidth{width:100%}
-.btn-weixin{background:#1AAD19;color:#fff}
-button{font-size:16px;z-index:9;}
+button{font-size:16px;z-index:9;height:45px;line-height:45px;}
 button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
+button::after{border: none}
 /* 列表 */
 .weui-cells{background:#FFF;line-height:1.47058824;font-size:14px;overflow:hidden;position:relative}
 .weui-cells:before{content:"";position:absolute;left:0;top:0;right:0;height:1px;border-top:1px solid #e5e5e5;color:#e5e5e5;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scaleY(.7);transform:scaleY(.7);z-index:2}
@@ -23,16 +19,12 @@ button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
 .weui-label{display:block;width:80px;word-wrap:break-word;word-break:break-all}
 
 /* 加载中... */
-.tip{text-align: center;font-size:14px;color:#bbb;line-height: 1.7;}
-.tip.fixed{padding-top: 35vh;}
-.tip.fixed-loadimg{padding-top: 38vh;}
+.tip{text-align: center;font-size:14px;color:#bbb;line-height: 1.7;z-index: 10}
+.tip.fixed{position: fixed;top:50%;left: 50%;margin-left:-8rpx;}
+.tip.empty{padding-top: 38vh;}
 .tip .img{width: 30px;height: 30px}
 .loading{width: 25px;height: 25px;animation: rotation 1s infinite linear;}
-@keyframes rotation {
-  from {
-    transform: rotate(0deg)
-  }
-  to {
-    transform: rotate(359deg)
-  }
+@keyframes rotation{
+  from{transform:rotate(0)}
+  to{transform:rotate(359deg)}
 }

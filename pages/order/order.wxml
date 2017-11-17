@@ -66,25 +66,9 @@
 </view>
 
 
-<view wx:if="{{isloading}}" class="tip fixed-loadimg"><image class="loading" src="../../images/loading.png"></image></view>
+<view wx:if="{{isloading}}" class="tip fixed"><image class="loading" src="../../images/loading.png"></image></view>
 <!-- 订单为空 -->
-<view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip empty">
   <image class="img" src="../../images/order.png"></image>
   <view>还没有相关订单</view>
-</view>
-
-<!-- 验证码 -->
-<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class="modal-dialog" wx:if="{{showModal}}">
-  <view class="modal-title">联系商家发货</view>
-  <view class="modal-content">
-    <view class="modal-input">
-      <input type="text" class="input" value="{{valiCode}}" placeholder-class="input-holder" placeholder="验证码" bindchange="model"/>
-      <image src="https://wx.jihui88.net/wxappVeriImg?skey={{skey}}&time={{time}}" bindtap="time" style="width:80px;height:75rpx;float:right"></image>
-    </view>
-  </view>
-  <view class="modal-footer">
-    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-    <view class="btn-confirm" bindtap="sendApi" data-status="confirm">确定</view>
-  </view>
 </view>

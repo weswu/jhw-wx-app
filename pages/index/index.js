@@ -13,20 +13,19 @@ Page({
     categoryList: [],
     search: {
       page: 1,
-      per_page: 8
+      per_page: 3
     },
-    isloading: false,
     // 轮播
     swiperTrue: true,
     swiperHeight: 0,
     swiperCurrent: 0,
-    // 搜索关键字
-    keyword: '',
     // 切换
     nav: '1',
-    scrollTop: false,
-    primaryColor: '',
-    lighterPrimaryColor: ''
+    isloading: true,
+    scrollTop: {
+      scroll_top: 0,
+      goTop_show: false
+    }
   },
   // 跳转页面
   page: function (e) {
@@ -36,7 +35,6 @@ Page({
   },
   /* 页面切换 */
   nav: function (e) {
-    var ctx = this;
     var nav = e.currentTarget.dataset.nav;
     this.setData({
       nav: nav
@@ -49,10 +47,7 @@ Page({
   },
   get: function () {
     var that = this
-    //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    if (app.globalData.member === null) { app.getUserInfo() }
-    console.log('首页数据加载中...')
     that.setData({
       isloading: true
     })
@@ -74,12 +69,6 @@ Page({
           that.setData({
             list: that.data.list
           })
-          if (that.data.search.page === 1) {
-            wx.setStorage({
-              key: 'goods',
-              data: res.data.list
-            })
-          }
         }
       }
     })
@@ -121,6 +110,7 @@ Page({
       }
     })
   },
+  /*  swiper高度  */
   imageLoad: function (e) {
     var $width = e.detail.width,    //获取图片真实宽度
       $height = e.detail.height,
@@ -138,94 +128,59 @@ Page({
     })
   },
 
-  // 回到顶部
+  // 回到顶部,
+  scrollTopFun: function (e) {
+    if (e.detail.scrollTop > 200) {//触发gotop的显示条件
+      this.setData({
+        'scrollTop.goTop_show': true
+      });
+    } else {
+      this.setData({
+        'scrollTop.goTop_show': false
+      });
+    }
+  },
   goTopFun: function (e) {
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+    var _top = this.data.scrollTop.scroll_top;//发现设置scroll-top值不能和上一次的值一样，否则无效，所以这里加了个判断
+    if (_top == 1) {
+      _top = 0;
+    } else {
+      _top = 1;
+    }
     this.setData({
-      scrollTop: false
-    })
+      'scrollTop.scroll_top': _top
+    });
   },
-  scrollTopFn: function (e) {
-    if (!this.data.scrollTop) {
-      this.setData({
-        scrollTop: true
-      })
-    }
-  },
-  // 转10进制
-  hexToRgba: function(hex) {
-    this.setData({
-      lighterPrimaryColor: "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + ",0.85)"
-    })
-  },
-
-  onReady: function () {
-    var goods = wx.getStorageSync('goods')
-    if (!goods) {
-      this.get()
-    } else {
-      this.setData({
-        list: goods
-      })
-    }
-    var banner = wx.getStorageSync('banner')
-    if (!banner) {
-      this.getBanner()
-    } else {
-      this.setData({
-        images: banner
-      })
-    }
-    var category = wx.getStorageSync('category')
-    if (!!category) {
-      this.setData({
-        categoryList: category
-      })
-    }
-    var that = this
-    if (app.globalData.primaryColor) {
-      this.setData({
-        primaryColor: app.globalData.primaryColor
-      })
-      this.hexToRgba(app.globalData.primaryColor)
-    } else {
-      wx.getExtConfig({
-        success: function (res) {
-          that.setData({
-            primaryColor: res.extConfig.primaryColor
-          })
-          that.hexToRgba(app.globalData.primaryColor)
-        }
-      })
-    }
-  },
-  onPullDownRefresh: function () {
+  /**
+   * 页面加载数据
+   */
+   refresh: function (event) {
     if (!this.data.isloading) {
       this.data.search.page = 1
       this.setData({
         list: [],
-        search: this.data.search
+        search: this.data.search,
+        scrollTop: 0
       })
       this.get()
     }
     this.getBanner()
     this.getCate()
-    wx.stopPullDownRefresh()
+   },
+  bindDownLoad: function () {
+    if (!this.data.isloading && this.data.nav === '1') {
+     this.data.search.page += 1
+     this.setData({
+       search: this.data.search
+     })
+     this.get()
+   }
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    if (!this.data.isloading && this.data.nav === '1') {
-      this.data.search.page += 1
-      this.setData({
-        search: this.data.search
-      })
-      this.get()
-    }
+
+  onReady: function () {
+    this.get()
+    this.getBanner()
   },
 
   onShareAppMessage: function () {}
