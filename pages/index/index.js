@@ -13,7 +13,7 @@ Page({
     categoryList: [],
     search: {
       page: 1,
-      per_page: 3
+      per_page: 6
     },
     // 轮播
     swiperTrue: true,
@@ -21,11 +21,27 @@ Page({
     swiperCurrent: 0,
     // 切换
     nav: '1',
-    isloading: true,
+    isloading: false,
     scrollTop: {
       scroll_top: 0,
       goTop_show: false
     }
+  },
+  getwxQr: function () {
+    wx.request({
+      url: 'https://api.weixin.qq.com/wxa/getwxacode?access_token=ACCESS_TOKEN',
+      method: 'post',
+      data: {
+        path:'pages/index/index',
+        width: 100
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        // debugger
+      }
+    })
   },
   // 跳转页面
   page: function (e) {
@@ -153,20 +169,7 @@ Page({
   },
   /**
    * 页面加载数据
-   */
-   refresh: function (event) {
-    if (!this.data.isloading) {
-      this.data.search.page = 1
-      this.setData({
-        list: [],
-        search: this.data.search,
-        scrollTop: 0
-      })
-      this.get()
-    }
-    this.getBanner()
-    this.getCate()
-   },
+  */
   bindDownLoad: function () {
     if (!this.data.isloading && this.data.nav === '1') {
      this.data.search.page += 1
@@ -181,6 +184,7 @@ Page({
   onReady: function () {
     this.get()
     this.getBanner()
+    this.getwxQr()
   },
 
   onShareAppMessage: function () {}

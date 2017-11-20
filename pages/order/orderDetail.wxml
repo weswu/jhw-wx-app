@@ -15,7 +15,7 @@
   <!-- 商品信息 -->
   <view class="weui-cell" wx:for="{{data.orderItemSet}}">
     <view class="weui-cell__hd">
-      <image src="{{item.product.picUrl6}}" class="order-pic"></image>
+      <image class="image" src="{{item.product.picUrl6}}"></image>
     </view>
     <view class="weui-cell__bd">
       {{item.product.name}}

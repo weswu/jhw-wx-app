@@ -46,7 +46,7 @@
       </view>
     </navigator>
   </view>
-  <view wx:if="{{isloading}}" class="{{search.page === 1 ? 'fixed' : ''}}" class="tip"><image class="loading" src="../../images/loading.png"></image></view>
+  <view wx:if="{{isloading}}" class="tip {{search.page === 1 ? 'fixed' : ''}}"><image class="loading" src="../../images/loading.png"></image></view>
 </view>
 <!-- 分类 -->
 <view hidden="{{nav != '2'}}" class="wx-list category">

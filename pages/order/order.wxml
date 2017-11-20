@@ -35,7 +35,7 @@
     <!-- 商品信息 -->
     <view class="weui-cell weui-cells-items" wx:for="{{item.orderItemSet}}" wx:for-item="pro" bindtap="page" data-url="orderDetail?id={{item.orderId}}">
       <view class="weui-cell__hd">
-        <image src="{{pro.product.picUrl6}}"></image>
+        <image class="image" src="{{pro.product.picUrl6}}"></image>
       </view>
       <view class="weui-cell__bd">
         {{pro.product.name}}

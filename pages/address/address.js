@@ -78,13 +78,17 @@ Page({
         skey: app.globalData.member.skey
       },
       success: function (res) {
+        var data = res.data.attributes.data
         wx.setStorage({
           key: 'addressList',
-          data: res.data.attributes.data
+          data: data
         })
         that.setData({
-          list: res.data.attributes.data
+          list: data
         })
+        if (data.length === 0) {
+          that.xinzhenAddress()
+        }
         wx.hideNavigationBarLoading()
       }
     })
@@ -261,9 +265,13 @@ Page({
   onShow: function () {
     var key = wx.getStorageSync('addressList')
     if (key) {
-      this.setData({
-        list: key
-      })
+      if (key.length === 0) {
+        this.xinzhenAddress()
+      } else {
+        this.setData({
+          list: key
+        })
+      }
     } else {
       this.get()
     }
@@ -272,9 +280,13 @@ Page({
   onReady: function () {
     var key = wx.getStorageSync('addressList')
     if (key) {
-      this.setData({
-        list: key
-      })
+      if (key.length === 0) {
+        this.xinzhenAddress()
+      } else {
+        this.setData({
+          list: key
+        })
+      }
     } else {
       this.get()
     }

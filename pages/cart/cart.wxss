@@ -1,1 +1,11 @@
 .btn-weixin{background:#1AAD19;color:#fff}
+/* item */
+.weui-cells-order{font-size:13px}
+.weui-cells-order:before{border-top:none}
+.weui-cells-order:after{border-bottom:1px solid #ddd;}
+.weui-cells-order .weui-cell:before{border-top:none}
+.weui-cells-order .address{padding-top:0}
+.weui-cells-order .price{color:#333}
+.weui-cells-order .quantity{font-size:12px}
+.weui-cells-order .desc{font-size:12px;color:#9b9b9b}
+.weui-cells-order .desc text{padding-right:5px}

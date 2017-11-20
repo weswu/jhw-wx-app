@@ -1,19 +1,15 @@
 /* 产品列表 */
 .pro_title{font-size:14px;color:#333}
 .pro_price{font-size:13px;box-sizing:border-box;font-family:Helvetica}
-/* 搜索 */
-.search{padding:7px 0 7px 20rpx;overflow:hidden}
-.search .search-btn{background:#fff;color:#999;font-size:12px;text-align:center;height:26px;
-  line-height:26px;border-radius:13px;width:710rpx;}
-.search .search-btn:active{background:#fff5f0}
-.search image{width:18px;height:18px;vertical-align:middle}
-.search .category{padding:4px 15px;float:right}
 /** 产品列表 **/
-.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding-bottom:2vh}
-.goods .item{display:flex;flex-flow: column;width:49vw;box-sizing:border-box;padding-top:1.5vh;}
+.goods{display:flex;flex-wrap:wrap;justify-content:space-between;padding:0.5vw 2vw 2vw 2vw;}
+.goods .item{display:flex;flex-flow: column;width:47vw;box-sizing:border-box;margin-top:1.5vw;background: #fff;border:1px solid #eee}
 .goods .item_grow{overflow:hidden;width: 100%}
 .goods .item_pic{flex: 1;}
 .goods .item_content{height: 49px;flex: 0 0 49px; }
 .goods image{width: 100%;max-height: 100%;}
 .goods .pro_title{padding:5px 5px 0 5px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .goods .pro_price{padding:5px}
+
+/** 回到顶部 **/
+.top{position: fixed;bottom: 4vh;right: 4vw; width: 30px;height: 30px;padding: 1vw;z-index: 9}

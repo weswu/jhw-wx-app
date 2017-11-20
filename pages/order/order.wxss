@@ -24,3 +24,13 @@ input-holder{color:#666;font-size:28rpx}
 .modal-footer{display:flex;flex-direction:row;height:86rpx;border-top:1px solid #dedede;font-size:34rpx;line-height:86rpx}
 .btn-cancel{width:50%;color:#666;text-align:center;border-right:1px solid #dedede}
 .btn-confirm{width:50%;color:#ec5300;text-align:center}
+/* item */
+.weui-cells-order{font-size:13px}
+.weui-cells-order:before{border-top:none}
+.weui-cells-order:after{border-bottom:1px solid #ddd;}
+.weui-cells-order .weui-cell:before{border-top:none}
+.weui-cells-order .address{padding-top:0}
+.weui-cells-order .price{color:#333}
+.weui-cells-order .quantity{font-size:12px}
+.weui-cells-order .desc{font-size:12px;color:#9b9b9b}
+.weui-cells-order .desc text{padding-right:5px}

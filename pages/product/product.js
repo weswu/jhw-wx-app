@@ -15,24 +15,16 @@ Page({
     list: [],
     cate_id: '',
     title: '商品',
-    empty: false,
-    emptyTip: '暂无数据',
+    emptyTip: '',
     search: {
       page: 1,
       per_page: 6
+    },
+    isloading: true,
+    scrollTop: {
+      scroll_top: 0,
+      goTop_show: false
     }
-  },
-
-  page: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-  // 回分页
-  pageCategory: function (e) {
-    wx.switchTab({
-      url: '../category/category'
-    })
   },
 
   // 商品详情接口
@@ -40,8 +32,8 @@ Page({
     var that = this
     //调用应用实例的方法获取全局数据
     wx.showNavigationBarLoading()
-    wx.showLoading({
-      title: '加载中',
+    that.setData({
+      isloading: true
     })
     var url = 'all/' + app.globalData.enterpriseId
     if (!!this.data.cate_id) {
@@ -53,11 +45,10 @@ Page({
       data: this.data.search,
       success: function (res) {
         wx.hideNavigationBarLoading()
-        wx.hideLoading()
+        that.setData({
+          isloading: false
+        })
         if (res.data.error === '查询为空') {
-          that.setData({
-            empty: true
-          })
           if (that.data.search.page === 1) {
             that.setData({
               emptyTip: '暂无数据'
@@ -70,7 +61,7 @@ Page({
           return false
         } else {
           that.setData({
-            empty: false
+            emptyTip: ''
           })
         }
         var data = res.data.list
@@ -84,14 +75,32 @@ Page({
         that.setData({
           list: that.data.list
         })
-        if (that.data.search.page === 1) {
-          wx.setStorage({
-            key: 'proCate' + that.data.cate_id,
-            data: that.data.list
-          })
-        }
       }
     })
+  },
+
+  // 回到顶部,
+  scrollTopFun: function (e) {
+    if (e.detail.scrollTop > 200) {//触发gotop的显示条件
+      this.setData({
+        'scrollTop.goTop_show': true
+      });
+    } else {
+      this.setData({
+        'scrollTop.goTop_show': false
+      });
+    }
+  },
+  goTopFun: function (e) {
+    var _top = this.data.scrollTop.scroll_top;//发现设置scroll-top值不能和上一次的值一样，否则无效，所以这里加了个判断
+    if (_top == 1) {
+      _top = 0;
+    } else {
+      _top = 1;
+    }
+    this.setData({
+      'scrollTop.scroll_top': _top
+    });
   },
 
   /**
@@ -110,14 +119,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
-    if (!proCate) {
-      this.get()
-    } else {
-      this.setData({
-        list: proCate
-      })
-    }
+    this.get()
     wx.setNavigationBarTitle({
       title: decodeURIComponent(this.data.title)
     })
@@ -127,16 +129,18 @@ Page({
     })
   },
 
+
   /**
-   * 页面上拉触底事件的处理函数
+   * 页面加载数据
    */
-  onReachBottom: function () {
-    if (this.data.empty) { return false }
-    this.data.search.page += 1
-    this.setData({
-      search: this.data.search
-    })
-    this.get()
+  bindDownLoad: function () {
+    if (!this.data.isloading && this.data.emptyTip !== '') {
+     this.data.search.page += 1
+     this.setData({
+       search: this.data.search
+     })
+     this.get()
+   }
   },
 
   /**

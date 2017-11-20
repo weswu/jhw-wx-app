@@ -71,21 +71,6 @@ Page({
           totalWeightGram: data.totalWeightGram
         })
 
-        var curReceiver = {}
-        if (data.receiver.length > 0) {
-          curReceiver = data.receiver[0]
-          for (var i = 0; i < data.receiver.length; i++) {
-            if (data.receiver[i].isDefault === '1') {
-              curReceiver = data.receiver[i]
-              break;
-            }
-          }
-          wx.setStorage({
-            key: 'curReceiver',
-            data: curReceiver
-          })
-        }
-
         var curPaymentConfig = { paymentFee: 0 }
         if (data.paymentConfig.length > 0) {
           curPaymentConfig = data.paymentConfig[0]
@@ -105,6 +90,22 @@ Page({
           }
         }
 
+        // 收货地址
+        var curReceiver = {}
+        if (data.receiver.length > 0) {
+          curReceiver = data.receiver[0]
+          for (var i = 0; i < data.receiver.length; i++) {
+            if (data.receiver[i].isDefault === '1') {
+              curReceiver = data.receiver[i]
+              break;
+            }
+          }
+          wx.setStorage({
+            key: 'curReceiver',
+            data: curReceiver
+          })
+        }
+
         that.setData({
           curPaymentConfig: curPaymentConfig,
           curReceiver: curReceiver,
@@ -113,6 +114,11 @@ Page({
           deliveryIndex: 0
         })
         that.getDeliveryFee()
+        if (data.receiver.length === 0) {
+         wx.navigateTo({
+           url: '../address/address'
+         })
+       }
       }
     })
   },
@@ -280,7 +286,7 @@ Page({
       })
     }
     this.setData({
-      defaultColor: app.globalData.defaultColor
+      accentColor: app.globalData.accentColor
     })
   },
 
