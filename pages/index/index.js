@@ -27,22 +27,6 @@ Page({
       goTop_show: false
     }
   },
-  getwxQr: function () {
-    wx.request({
-      url: 'https://api.weixin.qq.com/wxa/getwxacode?access_token=ACCESS_TOKEN',
-      method: 'post',
-      data: {
-        path:'pages/index/index',
-        width: 100
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        // debugger
-      }
-    })
-  },
   // 跳转页面
   page: function (e) {
     wx.navigateTo({
@@ -184,7 +168,6 @@ Page({
   onReady: function () {
     this.get()
     this.getBanner()
-    this.getwxQr()
   },
 
   onShareAppMessage: function () {}

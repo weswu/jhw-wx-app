@@ -29,20 +29,9 @@
 }
 
 /* share  */
-.shareModal{display: flex;flex-flow: row;height:90px;width: 100%;background: #fff;
-padding: 20px 0 45px 0;
-font-size: 14px;
-overflow:hidden;position:fixed;left:0;bottom: -155px;
-z-index:99;
-}
-.shareModal button{
-  border-right: 1px solid #f4f4f4;
-  background: #fff;width:50vw;height: 80px;padding:10px 0;
-margin:0;
-text-align: center;font-size:14px;
-
-}
-.shareImg{line-height:45px;width:50vw;text-align: center;padding:10px 0;font-size:14px;}
+.shareModal{display:flex;flex-flow:row;height:90px;width:100%;background:#fff;padding:20px 0 45px 0;font-size:14px;overflow:hidden;position:fixed;left:0;bottom:-155px;z-index:99}
+.shareModal button{border-right:1px solid #f4f4f4;background:#fff;width:50vw;height:80px;padding:10px 0;margin:0;text-align:center;font-size:14px}
+.shareImg{line-height:45px;width:50vw;text-align: center;padding-top:10px;margin-bottom:10px;font-size:14px;}
 .closeBg{z-index:101;}
 .shareModal image{width:30px;height: 30px !important; display:block;margin:0 auto;}
 

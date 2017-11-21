@@ -34,7 +34,7 @@
 <!-- 分享 -->
 <view class="shareModal" animation="{{animationShare}}">
   <button open-type="share"><image mode="widthFix" src="../../images/detail/friend.png"/>发送给朋友</button>
-  <navigator class="shareImg" url="../canvas/canvas?name={{detail.name}}&price={{detail.price}}&pic={{detail.pic_path}}"><image mode="widthFix" src="../../images/detail/image.png"/>生成分享二维码</navigator>
+  <navigator class="shareImg" url="../canvas/canvas?id={{id}}&name={{detail.name}}&price={{detail.price}}&pic={{detail.pic_path}}"><image mode="widthFix" src="../../images/detail/image.png"/>生成分享二维码</navigator>
 </view>
 <button class="fixed closeBg" bindtap="closeBg" wx:if="{{shareModal}}">取消</button>
 <view class="drawer_screen shareBg" bindtap="closeBg" wx:if="{{shareModal}}"></view>
