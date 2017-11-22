@@ -48,7 +48,7 @@
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
       <view class="pro_model">{{item.model}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+      <view class="pro_price" style="color:{{primaryColor}}"><text class="unit">￥</text>{{item.price}}</view>
     </view>
   </navigator>
 </view>
@@ -69,7 +69,7 @@
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
       <view class="pro_model">{{item.model}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+      <view class="pro_price" style="color:{{primaryColor}}"><text class="unit">￥</text>{{item.price}}</view>
     </view>
   </navigator>
 </view>
@@ -90,7 +90,7 @@
     <view class="item_grow item_content">
       <view class="pro_title">{{item.name}}</view>
       <view class="pro_model">{{item.model}}</view>
-      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+      <view class="pro_price" style="color:{{primaryColor}}"><text class="unit">￥</text>{{item.price}}</view>
     </view>
   </navigator>
 </view>

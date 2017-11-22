@@ -39,6 +39,21 @@
     </view>
   </view>
 </view>
-
-
-<button class="btn-primary fixed" bindtap="tel" data-tel="13905798556">询盘</button>
+<view class="detail-btn-contcat" style="background: {{primaryColor}};color:#fff">
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:27px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:54px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:81px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:108px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:135px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:162px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:189px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:216px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:243px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:270px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:297px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:324px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:351px;"></contact-button>
+  <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:378px;"></contact-button>
+  询盘
+</view>

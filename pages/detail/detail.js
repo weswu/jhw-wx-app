@@ -22,12 +22,6 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
-  // 拨打电话
-  tel: function (e) {
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.tel
-    })
-  },
   get: function () {
     var that = this
     //调用应用实例的方法获取全局数据

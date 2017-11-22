@@ -4,8 +4,12 @@ image{display:block;width:100%}
 .price{color:#ff6214;font-size:13px;padding-top:3px}
 .prodtype{color:#999;font-size:12px;padding-top:1vw}
 .detail_bd{width:100%;padding:5vw;box-sizing:border-box;background: #fff;font-size:12px;}
+/* 底部按钮 */
+.detail-btn-contcat contact-button{opacity:0;position:absolute;top:6px;left:0;z-index: 99}
+.detail-btn-contcat{width:750rpx;position:fixed;bottom:0;text-align: center;line-height:2.55555556;
+background-color:#F8F8F8;box-sizing:border-box;overflow: hidden;z-index: 100;color: #666;}
 /* 产品详情切换 */
-.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:500;top:0;width:100%;background-color:#fff;border-bottom:1px solid #ddd}
+.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:relative;z-index:50;top:0;width:100%;background-color:#fff;border-bottom:1px solid #ddd}
 .weui-navbar__item.on{color:#ff6214}
 .weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:13px 0;text-align:center;font-size:15px;-webkit-tap-highlight-color:transparent}
 .weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;border-right:1px solid #CCC;color:#CCC;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}

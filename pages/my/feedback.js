@@ -121,6 +121,12 @@ Page({
     })
   },
 
+  onReady: function () {
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
