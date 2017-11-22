@@ -15,7 +15,8 @@
 | `qixing` | - | 七星布草 zaingdev |
 | `jihui` | - | 机汇网 |
 | `jinlida` | <img width="106" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/jinlida.png"/> | 金利达砂轮`http://demo.ykit.net/pmsj/jinlida/` |
-| `sxl1` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FpMpKL_0fx-ZV_n2dfYR-ZnJrezI.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 上线了-时装电商-Ash amaira |
+| `sxl1` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/sxl1.png"/> | 安贝---参考上线了-Ash amaira |
+| `sxl2` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FnC_4HbF5imCh0CDL_7i_SvegqDy.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 参考上线了-Eone手表 |
 
 #### 新建空白模板
 ```
@@ -32,6 +33,14 @@ git branch -a
 git checkout master
 ```
 
+#### 提交模板
+```
+git pull
+git add .
+git commit -m desc
+git push
+```
+
 ### 微信配置
 | request 合法域名 | 必填 | 描述 |
 | --- | :---: | --- |
@@ -45,24 +54,12 @@ git checkout master
 
 ### 客服会话，需后台添加客服人员
 ```html
-<view class="weui-cell">
-  <view class="weui-cell__hd">
-    <image src="../../images/setting.png"></image>
-  </view>
-  <view class="weui-cell__bd" style="position:relative;">
-    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:0;">
-    </contact-button>
-    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:15px; ">
-    </contact-button>
-    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:30px; ">
-    </contact-button>
-    <contact-button class="contact" type="default-light" size="15" session-from="weapp" style="opacity:0;position:absolute;top:0;left:45px; ">
-    </contact-button>客服会话
-  </view>
-  <view class="weui-cell__ft"></view>
+.contact-button{opacity:0;position:absolute;top:0;left:0;}
+<view class="detail-btn-contcat" style="position:relative;">
+  <contact-button type="default-light" size="27" session-from="weapp" wx:for="{{[0, 1, 2, 3, 4, 5]}}" style="left:{{item*27}}px"></contact-button>
+  客服会话
 </view>
 ```
-
 
 ## 商城
 ### ext.json
@@ -79,11 +76,11 @@ git checkout master
   }
 }
 ```
-- appid extAppid代替,用于登录,支付
+- appid 有extAppid就代替,用于登录,支付等一些商城功能
 - enterprise_id 企业ID,用于获取产品数据
 - user_id 用户id,用于留言
 - primaryColor 主题颜色
-- lighterPrimaryColor 次颜色
+- lighterPrimaryColor 次颜色(未使用)
 
 ### 相关文件
 文件目录 address cart order，未使用可删除
