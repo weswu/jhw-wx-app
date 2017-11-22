@@ -99,12 +99,7 @@
 <view class="detail-btn">
   <button class="btn-primary fixed" style="background:{{primaryColor}};color:#fff" bindtap="setModalStatus" data-status="1">立即购买</button>
   <view class="detail-btn-contcat">
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}"></contact-button>
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:40px;"></contact-button>
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:80px;"></contact-button>
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:120px;"></contact-button>
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:160px;"></contact-button>
-    <contact-button type="default-light" size="27" session-from="{{detail.name}}" style="left:200px;"></contact-button>
+    <contact-button type="default-light" size="27" session-from="{{detail.name}}" wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}" style="left:{{item*27}}px"></contact-button>
     客服会话
   </view>
 </view>
