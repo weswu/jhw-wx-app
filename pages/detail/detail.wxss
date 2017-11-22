@@ -3,6 +3,12 @@ image{display:block;width:100%}
 .detail_title{border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:5vw 5vw 8vw 5vw}
 .price{color:#cc0000;font-size:16px;padding-top:3px}
 .detail_bd{width:100%;padding:5vw;box-sizing:border-box;}
+/* 底部按钮 */
+.detail-btn{display: flex;flex-wrap:wrap}
+.detail-btn button{width:375rpx;left:375rpx;box-sizing:border-box;}
+.detail-btn contact-button{opacity:0;position:absolute;top:6px;left:0;z-index: 99}
+.detail-btn-contcat{width:375rpx;position:fixed;bottom:0;text-align: center;line-height:2.55555556;
+background-color:#F8F8F8;box-sizing:border-box;overflow: hidden;z-index: 100;color: #666;}
 /* sell */
 .weui-sell:before {border:none}
 .weui-sell .weui-cell__bd,.weui-sell .weui-cell__hd{flex:1}

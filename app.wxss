@@ -16,6 +16,7 @@ page{height:100%;font-family:-apple-system-font,Helvetica,'微软雅黑','黑体
 .btn-weixin{background:#1AAD19;color:#fff}
 button{font-size:16px;z-index:9;}
 button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
+button:after {border: 0;}
 /* 列表 */
 .weui-cells{background:#FFF;line-height:1.47058824;font-size:14px;overflow:hidden;position:relative}
 .weui-cells:before{content:" ";position:absolute;left:0;top:0;right:0;height:1px;border-top:1px solid #ECECEC;color:#ECECEC;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scaleY(.7);transform:scaleY(.7);z-index:2}
