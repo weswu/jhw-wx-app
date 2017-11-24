@@ -1,0 +1,65 @@
+<!-- 头像 -->
+<view class="weui-panel__bd">
+  <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="background: {{primaryColor}};">
+    <view class="weui-media-box__hd">
+      <image class="weui-media-box__thumb" src="{{userInfo.avatarUrl}}" alt=""></image>
+    </view>
+    <view class="weui-media-box__bd">
+      <view class="weui-media-box__title">{{userInfo.nickName}}</view>
+    </view>
+  </a>
+</view>
+<view class="weui-cells">
+  <view class="weui-cell" bindtap="pageTab" data-url="../order/order">
+    <view class="weui-cell__hd"></view>
+    <view class="weui-cell__bd">我的订单</view>
+    <view class="weui-cell__ft">
+      查看全部订单<image src="../../images/my/dy1.png"></image>
+    </view>
+  </view>
+</view>
+<view class="nav">
+  <view class="item">
+    <image src="../../images/my/order1.png"></image>
+    <view>代付款</view>
+  </view>
+  <view class="item">
+    <image src="../../images/my/order2.png"></image>
+    <view>代发货</view>
+  </view>
+  <view class="item">
+    <image src="../../images/my/order3.png"></image>
+    <view>代收款</view>
+  </view>
+  <view class="item">
+    <image src="../../images/my/order4.png"></image>
+    <view>已完成</view>
+  </view>
+</view>
+<view style="height:21rpx;background:#fafafa"></view>
+<!-- 列表 -->
+<view class="weui-cells">
+  <view class="weui-cell" bindtap="tel">
+    <view class="weui-cell__hd"></view>
+    <view class="weui-cell__bd">售后服务</view>
+    <view class="weui-cell__ft">
+      <image src="../../images/my/dy.png"></image>
+    </view>
+  </view>
+</view>
+<view class="weui-cells">
+  <view class="weui-cell" bindtap="page" data-url="../map/map" wx:if="{{company.mapaddress !== null && company.mapaddress !== '' && company.mapaddress !== 'null'}}">
+    <view class="weui-cell__bd">公司地址</view>
+    <view class="weui-cell__ft">
+      <image src="../../images/my/dy.png"></image>
+    </view>
+  </view>
+</view>
+<view class="weui-cells">
+  <view class="weui-cell" bindtap="page" data-url="../company/company">
+    <view class="weui-cell__bd">关于我们</view>
+    <view class="weui-cell__ft">
+      <image src="../../images/my/dy.png"></image>
+    </view>
+  </view>
+</view>

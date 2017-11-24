@@ -1,0 +1,4 @@
+<!-- 公司简介 -->
+<view class="company">
+  <rich-text nodes="{{company.edesc}}"></rich-text>
+</view>

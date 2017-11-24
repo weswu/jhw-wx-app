@@ -1,0 +1,22 @@
+.weui-cells-order .weui-cell:before{border-top:1rpx solid #ECECEC}
+.total{padding: 15rpx 30rpx; font-size: 14px; color: #999}
+.total text{padding: 0 10rpx; }
+/* 搜索 */
+.wxSearch{height: 43px;z-index:2;}
+.wxSearch-section{padding:5px 30rpx 10px 30rpx;border-bottom:1px #eee solid;position: fixed;left:0;top:0;width:695rpx;}
+.wxSearch-pancel{display:flex;flex-direction:row}
+.wxSearch-form{flex:8;position:relative;}
+.wxSearch-input{background-color:#fff;padding:0 40px 0 30px;font-size:12px;height:28px;line-height: 28px;border-radius: 3px}
+.search-icon{position:absolute;left:0;top:0;border:none;background:0 0;outline:0;padding:7px 7px;width:16px;z-index:8;height:16px}
+.clear-icon{position:absolute;right:0;top:0;border:none;background:0 0;outline:0;padding:5px 7px;width:18px;z-index:8;height:18px}
+
+/* 列表 */
+.weui-cells{background:0 0}
+.weui-cells-order wx-image{width:160rpx;height:160rpx}
+.weui-cells-order .weui-cell__bd{line-height:1.7}
+.weui-cells-order::after{border-bottom:none}
+.weui-cells-order .weui-cell::before{border-top:none}
+
+/* 提示 */
+.tip{padding-top: 35vh;}
+.tip image{width: 50px;height: 50px}

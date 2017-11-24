@@ -1,0 +1,100 @@
+<view class="weui-cells weui-cells-order">
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      订单编号：{{data.orderSn}}
+    </view>
+    <view class="weui-cell__bd"></view>
+    <view class="weui-cell__ft">
+      <view wx:if="{{data.orderStatus === 'completed'}}">交易成功</view>
+      <view wx:elif="{{data.orderStatus === 'invalid'}}">交易关闭</view>
+      <view wx:elif="{{data.paymentStatus === 'unpaid'}}" style="color:{{defaultColor}}">待付款</view>
+      <view wx:elif="{{data.shippingStatus === 'unshipped'}}" style="color:{{defaultColor}}">待发货</view>
+      <view wx:elif="{{data.shippingStatus === 'shipped'}}" style="color:{{defaultColor}}">已发货</view>
+    </view>
+  </view>
+  <!-- 商品信息 -->
+  <view class="weui-cell" wx:for="{{data.orderItemSet}}">
+    <view class="weui-cell__hd">
+      <image src="{{item.product.picUrl6}}" class="order-pic"></image>
+    </view>
+    <view class="weui-cell__bd">
+      {{item.product.name}}
+      <view class="desc">
+        <text>{{item.productAttr}}</text>
+      </view>
+    </view>
+    <view class="weui-cell__ft">
+      <view class="price">￥{{item.productPrice}}</view>
+      <view class="quantity">x{{item.productQuantity}}</view>
+    </view>
+  </view>
+</view>
+<!-- 收货信息 -->
+<view class="weui-cells weui-cells-order">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">收货人信息</view>
+  </view>
+  <view class="weui-cell address">
+    <view class="weui-cell__bd">
+      {{data.shipName}}, {{data.shipMobile}}
+      <view class="address">{{data.shipArea}}{{data.shipAddress}}</view>
+    </view>
+  </view>
+</view>
+<!-- 物流信息 -->
+<view class="weui-cells weui-cells-order" wx:if="{{data.orderStatus !== 'completed' && data.shippingStatus === 'partShipped'}}">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">物流信息</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <text bindtap="delivery" style="color:#666">{{devTip}}</text>
+      <image wx:if="{{pic}}" src="{{pic}}" />
+      <view wx:for="{{ickd}}">
+        <view class="time">{{item.time}}</view>
+        {{item.context}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class="weui-cells weui-cells-order">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">配送方式</view>
+    <view class="weui-cell__ft">{{data.deliveryTypeName}}</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">下单时间</view>
+    <view class="weui-cell__ft">{{data.addTime}}</view>
+  </view>
+</view>
+<view class="weui-cells weui-cells-order" style="margin-bottom:13vw;">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">订单总价</view>
+    <view class="weui-cell__ft">￥{{data.totalAmount}}</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">商品总价</view>
+    <view class="weui-cell__ft">￥{{data.productTotalPrice}}</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">支付手续费</view>
+    <view class="weui-cell__ft">￥{{data.paymentFee}}</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">运费</view>
+    <view class="weui-cell__ft">￥{{data.deliveryFee}}</view>
+  </view>
+</view>
+<!-- 订单状态 -->
+<button wx:if="{{data.orderStatus !== 'invalid' && (data.paymentStatus === 'unpaid' || data.paymentStatus === 'partPayment')}}" class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
+<view class="weui-cells weui-cells-order" wx:elif="{{data.orderStatus === 'completed'}}">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">下单时间</view>
+    <view class="weui-cell__ft">{{data.addTime}}</view>
+  </view>
+  <view class="weui-cell">
+    <view class="weui-cell__bd">实付</view>
+    <view class="weui-cell__ft" style="color:{{defaultColor}}">￥{{data.totalAmount}}</view>
+  </view>
+</view>
+<button wx:elif="{{data.orderStatus !== 'completed' && data.shippingStatus === 'shipped'}}" class="btn-primary fixed" style="background:{{defaultColor}};color:#fff" bindtap="comfirm" data-id="{{data.orderId}}">确定收货</button>

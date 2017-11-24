@@ -1,0 +1,28 @@
+<view class="container">
+	<!-- 侧边栏 -->
+	<view class="sidebar" style="height: {{sidebarHeight}}px;">
+		<view class="item" wx:for="{{list}}" wx:key="item.category_id"
+      bindtap="subCategory" data-id="{{item.category_id}}">
+        <view class="border">
+          <view class="borderLft" style="{{active === item.category_id ? 'border-left:7rpx solid' + primaryColor + ';color:' + primaryColor : ''}}"></view>
+          <image src="{{item.image}}" mode="scaleToFit"></image>
+          <view>{{item.name}}</view>
+       </view>
+     </view>
+	</view>
+	<!-- right -->
+	<view class="main">
+		<!-- GridView -->
+		<view class="gridview" wx:for="{{subCategoryList}}" wx:key="item.category_id">
+      <view class="title">{{item.name}}</view>
+			<dl  wx:for="{{item.child}}" wx:for-item="item1" wx:key="item1.category_id" bindtap="page" data-url="../product/product?category_id={{item1.category_id}}&title={{item1.name}}">
+				<dt>
+					<image src="{{item1.image}}" mode="scaleToFit"/>
+				</dt>
+				<dd>
+					<text>{{item1.name}}</text>
+				</dd>
+			</dl>
+		</view>
+	</view>
+</view>

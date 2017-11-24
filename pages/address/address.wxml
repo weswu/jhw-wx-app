@@ -1,0 +1,17 @@
+<!-- 收货地址列表 -->
+<view class="weui-cells weui-cells_after-title" style="margin-bottom: 5rem;">
+  <view class="weui-cell" wx:for="{{list}}" style="{{item.isDefault == 1 ? 'color: #000' : ''}}">
+    <view class="weui-cell__hd">
+      <view style="width:10px;height:10px;border-radius: 100%;margin-right: 10px;{{item.isDefault == 1 ? 'background: ' + defaultColor : ''}}"></view>
+    </view>
+    <view class="weui-cell__bd" bindtap="selectCurAddress" data-item="{{item}}" data-isdefault="{{item.isDefault}}">
+      {{item.name}}, {{item.mobile}}
+      <view class="address">{{item.address}}</view>
+    </view>
+    <view class="weui-cell__ft">
+      <image src="../../images/edit.png" bindtap="page" data-url="addressDetail?id={{item.receiverId}}"></image>
+    </view>
+  </view>
+</view>
+<!-- 新增 -->
+<button class="btn-primary fixed" style="background:{{defaultColor}};color:#fff" bindtap="xinzhenAddress">新增收货地址</button>

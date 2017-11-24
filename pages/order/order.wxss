@@ -1,0 +1,24 @@
+.weui-cell{padding-bottom:10px}
+.weui-cells-items{padding: 5px 15px}
+.weui-cells-order::after {border-bottom:none}
+/* 切换 */
+.fixed{height: 41px;z-index:11;position:relative;}
+.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:fixed;z-index:8;left: 0;top:0;width:100%;}
+.weui-navbar__item.on{border-bottom:6rpx solid #fff;opacity: 1;}
+.weui-navbar image{width: 20px;height: 20px;padding-right: 10rpx;vertical-align: middle;}
+.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:10px 0;text-align:center;font-size:15px;color:#fff;opacity: 0.75;-webkit-tap-highlight-color:transparent}
+.weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+/* 操作按钮 */
+.btn-event{margin:0 15px;padding:10px 0;position:relative;overflow: hidden;border-top: 1px solid #f0f0f0}
+.btn{float:right;display: inline;color: #666;padding: 10rpx 20rpx;border: 1px solid #eee;margin-left: 20rpx;border-radius: 2px}
+/* 验证码 */
+.modal-mask{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;opacity:.5;overflow:hidden;z-index:9000;color:#fff}
+.modal-dialog{width:540rpx;overflow:hidden;position:fixed;top:50%;left:0;z-index:9999;background:#f9f9f9;margin:-180rpx 105rpx;border-radius:36rpx}
+.modal-title{padding-top:50rpx;font-size:36rpx;color:#030303;text-align:center}
+.modal-content{padding:50rpx 32rpx}
+.modal-input{display:flex;background:#fff;border:2rpx solid #ddd;border-radius:4rpx;font-size:28rpx}
+.input{width:80%;float:left;height:75rpx;font-size:28rpx;line-height:28rpx;padding:0 20rpx;box-sizing:border-box;color:#333}
+input-holder{color:#666;font-size:28rpx}
+.modal-footer{display:flex;flex-direction:row;height:86rpx;border-top:1px solid #dedede;font-size:34rpx;line-height:86rpx}
+.btn-cancel{width:50%;color:#666;text-align:center;border-right:1px solid #dedede}
+.btn-confirm{width:50%;color:#ec5300;text-align:center}

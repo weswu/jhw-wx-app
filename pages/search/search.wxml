@@ -1,0 +1,34 @@
+<!-- 搜索 -->
+<view class="wxSearch">
+  <view class="wxSearch-section" style="background-color:{{primaryColor}}">
+    <view class="wxSearch-pancel">
+      <form class="wxSearch-form">
+        <input type="text" bindblur="searchKey" bindinput="wxSearchInput" value="{{keyword}}" class="wxSearch-input" placeholder="搜索商品" focus="{{focus}}"/>
+        <image src="../../images/search.png" class="search-icon"></image>
+        <image wx:if="{{keyword !== ''}}" src="../../images/x.png" class="clear-icon" bindtap="clearKey"></image>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 商品展示 -->
+<view wx:if="{{list.length > 0}}">
+  <view class="total">共找到<text>{{total}}</text>条相关结果</view>
+  <view class="weui-cells weui-cells-order">
+    <view class="weui-cell" wx:for="{{list}}" bindtap="page" data-url="../detail/detail?id={{item.product_id}}&title={{item.name}}">
+      <view class="weui-cell__hd">
+        <image src="{{item.pic_path}}"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="pro_title">{{item.name}}</view>
+        <view class="pro_price">￥{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- tip -->
+<view wx:elif="{{list.length === 0 && keyword === '' && !isloading}}" class="tip">搜索结果将显示在这里</view>
+<view wx:elif="{{list.length === 0 && keyword != '' && !isloading && !focus}}" class="tip">
+  <image src="../../images/search.png"></image>
+  <view>抱歉，无匹配结果</view>
+</view>
+<view wx:elif="{{list.length === 0 && isloading}}" class="tip"><image class="loading" src="../../images/loading.png"></image></view>

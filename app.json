@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/product/product",
+    "pages/detail/detail",
+    "pages/category/category",
+    "pages/company/company",
+    "pages/order/orderDetail",
+    "pages/cart/cart",
+    "pages/order/order",
+    "pages/address/addressDetail",
+    "pages/address/address",
+    "pages/search/search",
+    "pages/my/my",
+    "pages/map/map"
+  ],
+  "window": {
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "images/tabBar/index.png",
+        "selectedIconPath": "images/tabBar/index_.png",
+        "pagePath": "pages/index/index",
+        "text": "主页"
+      },
+      {
+        "iconPath": "images/tabBar/cart.png",
+        "selectedIconPath": "images/tabBar/cart_.png",
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "iconPath": "images/tabBar/order.png",
+        "selectedIconPath": "images/tabBar/order_.png",
+        "pagePath": "pages/order/order",
+        "text": "订单"
+      },
+      {
+        "iconPath": "images/tabBar/more.png",
+        "selectedIconPath": "images/tabBar/more_.png",
+        "pagePath": "pages/my/my",
+        "text": "更多"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

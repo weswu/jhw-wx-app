@@ -1,0 +1,15 @@
+/* 头像 */
+.weui-panel__bd{height: 80px}
+.weui-media-box_appmsg{position: fixed;left: 0;top: 0;width: 100%;padding:5px 15px 15px 15px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}
+.weui-media-box_appmsg .weui-media-box__hd{margin-right:.8em;width:60px;height:60px;line-height:60px;text-align:center;color:#000}
+.weui-media-box_appmsg .weui-media-box__thumb{width:100%;max-height:100%;vertical-align:top;border-radius: 100%}
+.weui-media-box_appmsg .weui-media-box__bd{-webkit-box-flex:1;-webkit-flex:1;flex:1;min-width:0}
+.weui-media-box__title{font-weight:400;font-size:17px;color:#fff;width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:break-word;word-break:break-all}
+/* 列表 */
+.weui-cell__ft{color:#ccc}
+.weui-cell image{vertical-align:middle;width:10px;height:10px}
+/* 订单 */
+.nav{display:flex;flex-flow:row nowrap;align-items:center;justify-content:center}
+.nav .item{width:25%;border-right:1px solid #f5f5f5;text-align:center;font-size:14px;padding:20px 0;line-height:1.8}
+.nav .item:last-child{border-right:none}
+.nav image{width:80rpx;height:80rpx}

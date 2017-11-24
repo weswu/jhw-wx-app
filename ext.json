@@ -1,0 +1,19 @@
+{
+  "extEnable": true,
+  "extAppid": "wxc133a0e73ee80bb6",
+  "ext": {
+    "appid": "wxc133a0e73ee80bb6",
+    "enterprise_id": "Enterp_0000000000000000000062420",
+    "user_id": "User_000000000000000000000065262",
+    "primaryColor":"#c91623"
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#c91623",
+    "navigationBarTitleText": "ASH AMAIRA"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#c91623",
+    "backgroundColor": "#ffffff"
+  }
+}

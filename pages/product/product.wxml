@@ -1,0 +1,20 @@
+<!-- 产品展示 -->
+<view class="goods" bindtouchend="scrollTopFn">
+  <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
+    <view class="item_grow item_pic">
+      <image mode="widthFix" src="{{item.pic_path}}"></image>
+    </view>
+    <view class="item_grow item_content">
+      <view class="pro_title">{{item.name}}</view>
+      <view class="pro_price"><text class="unit">￥</text>{{item.price}}</view>
+    </view>
+  </navigator>
+</view>
+<view wx:if="{{isloading}}" class="tip {{list.length === 0 ? 'fixed-loadimg' : ''}}"><image class="loading" src="../../images/loading.png"></image></view>
+<!-- 数据为空 -->
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
+  <image class="img" src="../../images/search.png"></image>
+  <view>抱歉，无匹配结果</view>
+</view>
+<!-- 滚回到顶部 -->
+<image class="top" src="../../images/top.png" wx:if="{{scrollTop}}" catchtap="goTopFun"></image>

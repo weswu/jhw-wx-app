@@ -1,0 +1,26 @@
+/* 简单class */
+page{height:100%;font-family:-apple-system-font,Helvetica,'微软雅黑','黑体',sans-serif}
+/* 按钮 */
+button{font-size:16px;z-index:9;height:13vw;line-height:13vw;}
+button.fixed{position:fixed;bottom:0;left:0;width:100%;border-radius:0}
+button:after {border: 0;}
+/* 列表 */
+.weui-cells{background:#FFF;line-height:1.47058824;font-size:13px;overflow:hidden;position:relative}
+.weui-cells:after{content:" ";position:absolute;left:0;bottom:0;right:0;height:1px;border-bottom:1px solid #e5e5e5;color:#ECECEC;-webkit-transform-origin:0 100%;transform-origin:0 100%;-webkit-transform:scaleY(.7);transform:scaleY(.7);z-index:2}
+.weui-cell{padding:12px 15px;position:relative;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}
+.weui-cell .image{margin-right:10px;vertical-align:middle;width:40px;height:40px}
+.weui-cell image{vertical-align:middle;width:15px;height:15px}
+.weui-cell_primary{align-items:flex-start}
+.weui-cell__bd{flex:1;}
+.weui-cell__ft{text-align:right;color:#999999}
+
+/* 加载中... */
+.tip{text-align: center;font-size:14px;color:#bbb;line-height: 1.7;}
+.tip.fixed{padding-top: 35vh;}
+.tip.fixed-loadimg{padding-top: 38vh;}
+.tip .img{width: 50px;height: 50px}
+.loading{width: 25px;height: 25px;animation: rotation 1s infinite linear;}
+@keyframes rotation {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(359deg) }
+}
