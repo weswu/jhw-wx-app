@@ -24,6 +24,11 @@ Page({
       url: e.currentTarget.dataset.url
     })
   },
+  pageTab: function (e) {
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
 
   // 购物车接口
   get: function () {
@@ -46,7 +51,6 @@ Page({
           isloading: false
         })
         wx.setStorage({
-          key: 'cartCount',
           data: (res.data.attributes && res.data.attributes.totalQuantity) || 0
         })
         if (!res.data.success) {
@@ -140,10 +144,6 @@ Page({
           totalPrice: parseFloat(res.data.attributes.totalPrice.split('￥')[1]),
           totalQuantity: res.data.attributes.totalQuantity
         })
-        wx.setStorage({
-          key: 'cartCount',
-          data: wx.getStorageSync('cartCount') - 1
-        })
       }
     })
   },
@@ -234,10 +234,6 @@ Page({
             skey: app.globalData.member.skey
           },
           success: function (res) {
-            wx.setStorage({
-              key: 'cartCount',
-              data: 0
-            })
             wx.requestPayment({
               'timeStamp': res.data.attributes.data.timeStamp,
               'nonceStr': res.data.attributes.data.nonceStr,
@@ -280,7 +276,8 @@ Page({
       })
     }
     this.setData({
-      defaultColor: app.globalData.defaultColor
+      defaultColor: app.globalData.defaultColor,
+      primaryColor: app.globalData.primaryColor
     })
   },
 

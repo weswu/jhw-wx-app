@@ -67,6 +67,6 @@
 <!-- 购物车为空 -->
 <view wx:elif="{{cartItemSet.length === 0 && !isloading}}" class="tip fixed">
   <image class="img" src="../../images/cart.png"></image>
-  <view>空购物车</view>
-  快去添加商品吧
+  <view>购物车还是空的</view>
+  <view class="btn-go" bindtap="pageTab" style="background:{{primaryColor}}">去逛逛</view>
 </view>

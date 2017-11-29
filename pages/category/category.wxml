@@ -4,9 +4,9 @@
 		<view class="item" wx:for="{{list}}" wx:key="item.category_id"
       bindtap="subCategory" data-id="{{item.category_id}}">
         <view class="border">
-          <view class="borderLft" style="{{active === item.category_id ? 'border-left:7rpx solid' + primaryColor + ';color:' + primaryColor : ''}}"></view>
+          <view class="borderLft" style="{{active === item.category_id ? 'border-left:7rpx solid' + primaryColor : ''}}"></view>
           <image src="{{item.image}}" mode="scaleToFit"></image>
-          <view>{{item.name}}</view>
+          <view style="{{active === item.category_id ? 'color:' + primaryColor : ''}}">{{item.name}}</view>
        </view>
      </view>
 	</view>

@@ -58,13 +58,14 @@ Page({
           if (that.data.list.length < 3) {
             wx.setStorage({
               key: 'goods',
-              data: res.data.list
+              data: that.data.list
             })
           }
         }
       }
     })
   },
+  // 热门
   getHot: function () {
     wx.showNavigationBarLoading()
     wx.request({
@@ -182,7 +183,7 @@ Page({
     var index = this.data.index
     var length = this.data.categoryList.length
     for (var i =0; i<3; i++) {
-      if (index <= length) {
+      if (index < length) {
         this.get(parseInt(this.data.categoryList[index].category_id.split('Category_')[1]))
         index+=1
         this.setData({
@@ -239,9 +240,11 @@ Page({
     this.getBanner()
     this.getCate()
     if (!this.data.isloading) {
+      wx.removeStorageSync('goods')
       this.setData({
         hostList: [],
-        list: []
+        list: [],
+        index: 0
       })
       this.getHot()
     }

@@ -28,7 +28,7 @@ background: #fff}
 .goods .item_content{height: 49px;flex: 0 0 49px; }
 .goods image{width: 100%;max-height: 100%;border:1px solid #eee;box-sizing:border-box;}
 .goods .pro_title{font-size:14px;color:#000;padding:5px 5px 0 5px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
-.goods .pro_price{padding:0 5px 5px 5px;font-size:13px;color:#ff0000;box-sizing:border-box;font-family:Helvetica}
+.goods .pro_price{padding:5px;font-size:13px;color:#ff0000;box-sizing:border-box;font-family:Helvetica}
 .goods .unit{font-size:10px;}
 
 /** 回到顶部 **/

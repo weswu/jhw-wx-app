@@ -10,11 +10,9 @@ Page({
   data: {
     detail: {},
     id: '',
-    count: 0,
     // 轮播
     swiperTrue: true,
     swiperHeight: 0,
-    swiperCurrent: 0,
     // 属性
     showModalStatus: false,
     attrList: [],
@@ -290,7 +288,6 @@ Page({
             })
           }
           that.setData({
-            count: that.data.count + that.data.num,
             showModalStatus: false
           });
         } else {
@@ -325,28 +322,6 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
-  // cartCount
-  cartCount: function () {
-    var that = this
-    wx.request({
-      url: 'https://wx.jihui88.net/rest/api/shop/order/info1',
-      data: {
-        entId: app.globalData.enterpriseId,
-        cIds: '',
-        skey: app.globalData.member.skey
-      },
-      success: function (res) {
-        var count = (res.data.attributes && res.data.attributes.totalQuantity) || 0
-        wx.setStorage({
-          key: 'cartCount',
-          data: count
-        })
-        that.setData({
-          count: 0
-        })
-      }
-    })
-  },
   wxTitle: function () {
     wx.setNavigationBarTitle({
       title: decodeURIComponent(this.data.detail.name)
@@ -373,19 +348,13 @@ Page({
       })
       this.wxTitle()
     }
-    var cartCount = wx.getStorageSync('cartCount')
-    if (!cartCount) {
-      this.cartCount()
-    } else {
-      this.setData({
-        count: cartCount
-      })
-    }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
   onPullDownRefresh: function () {
     this.get()
     this.getAttr()
-    this.cartCount()
     wx.stopPullDownRefresh()
   },
   onShareAppMessage: function () {

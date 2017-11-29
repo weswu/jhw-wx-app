@@ -17,7 +17,7 @@ Page({
     title: '商品',
     search: {
       page: 1,
-      per_page: 8
+      per_page: 6
     },
     isloading: false,
     // 回到顶部

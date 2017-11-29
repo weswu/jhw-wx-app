@@ -1,5 +1,6 @@
 
 .btn-weixin{background:#1AAD19;color:#fff}
+.btn-go{width: 205rpx;height: 63rpx;line-height: 63rpx;color: #fff;margin: 10rpx auto;border-radius: 5rpx;font-size: 14px;}
 
 .weui-cells-order .address{padding-top:0}
 .weui-cells-order .price{color:#333}

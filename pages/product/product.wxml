@@ -1,3 +1,10 @@
+<!-- 搜索 -->
+<view class="searchFixed">
+  <view class="search-box">
+    <input type="text" value="{{keyword}}" bindinput="wxSearchInput" bindconfirm="searchKey" confirm-type="search" placeholder="搜索商品" placeholder-style="color:#c9c9c9"/>
+    <image mode="widthFix" class="search-icon" src="../../images/search.png" bindtap="searchKey"></image>
+  </view>
+</view>
 <!-- 产品展示 -->
 <view class="goods" bindtouchend="scrollTopFn">
   <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{list}}" wx:key="product_id">
@@ -10,7 +17,10 @@
     </view>
   </navigator>
 </view>
-<view wx:if="{{isloading}}" class="tip {{list.length === 0 ? 'fixed-loadimg' : ''}}"><image class="loading" src="../../images/loading.png"></image></view>
+<view wx:if="{{isloading}}" class="tip {{list.length === 0 ? 'fixed-loadimg' : ''}}">
+  <image class="loading" src="../../images/loading.png"></image>
+  <view>下拉查看更多商品</view>
+</view>
 <!-- 数据为空 -->
 <view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
   <image class="img" src="../../images/search.png"></image>

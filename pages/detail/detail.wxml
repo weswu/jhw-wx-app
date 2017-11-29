@@ -1,20 +1,14 @@
 <!-- 轮播 -->
 <view class="detail">
-  <view class="swiper-container">
-    <swiper class="swiper_box" bindchange="swiperChange" style="{{swiperHeight}}"
-      autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
-      <block wx:for="{{detail.imagelist}}">
-        <swiper-item>
-          <image mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic"/>
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class="dots" wx:if="{{detail.imagelist.length > 1}}">
-      <block wx:for="{{detail.imagelist}}" wx:key="item.id">
-        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-      </block>
-    </view>
-  </view>
+  <swiper class="swiper_box" style="{{swiperHeight}}"
+    indicator-dots="{{swiperTrue}}" indicator-color="#efefef" indicator-active-color="{{primaryColor}}"
+    autoplay="{{swiperTrue}}" circular="{{swiperTrue}}" interval="3000" duration="500">
+    <block wx:for="{{detail.imagelist}}">
+      <swiper-item>
+        <image mode="widthFix" src="{{item.sourceProductImagePath}}" bindload="imageLoad" bindtap="showPic"/>
+      </swiper-item>
+    </block>
+  </swiper>
 
   <view class="detail_title">
     <view class="name">{{detail.name}}</view>
@@ -78,12 +72,6 @@
     <contact-button type="default-light" size="22" session-from="{{detail.name}}" style="top:22px;left:22px; "></contact-button>
     <contact-button type="default-light" size="22" session-from="{{detail.name}}" style="top:22px;left:44px; "></contact-button>
     <image mode="widthFix" src="../../images/message.png"/>
-    <text class="text">客服</text>
-  </view>
-  <view class="detail-btn-img" bindtap="pageTab">
-    <image mode="widthFix" src="../../images/tabBar/cart.png"/>
-    <text class="count" wx:if="{{count>0}}">{{count}}</text>
-    <text class="text">购物车</text>
   </view>
   <button class="btn-primary btn-cart" bindtap="setModalStatus" data-status="1" data-skip="0">加入购物车</button>
   <button class="btn-primary btn-cart2" bindtap="setModalStatus" data-status="1" data-skip="1">立即购买</button>
