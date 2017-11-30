@@ -46,8 +46,14 @@ Page({
     })
     var url = 'all/' + app.globalData.enterpriseId
     if (!!this.data.cate_id) {
-      url = 'category_child/' + app.globalData.enterpriseId
-      this.data.search.category_id = this.data.cate_id
+      if (this.data.cate_id === 'hot') {
+        url = 'the_best/' + app.globalData.enterpriseId
+      } else if (this.data.cate_id === 'new'){
+        url = 'the_new/' + app.globalData.enterpriseId
+      } else {
+        url = 'category_child/' + app.globalData.enterpriseId
+        this.data.search.category_id = this.data.cate_id
+      }
     }
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/' + url,
@@ -108,24 +114,30 @@ Page({
    */
   onLoad: function (options) {
     if (options.category_id) {
+      var cate_id = ''
+      if (options.category_id === 'hot' || options.category_id === 'new' ) {
+        cate_id = options.category_id
+      } else {
+        cate_id = parseInt(options.category_id.split('Category_')[1])
+      }
       this.setData({
-        cate_id: parseInt(options.category_id.split('Category_')[1]),
+        cate_id: cate_id,
         title: options.title
       })
       console.log('title'+options.title)
       this.wxTitle()
     }
   },
- onReady: function () {
-   var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
-   if (!proCate) {
-     this.get()
-   } else {
-     this.setData({
-       list: proCate
-     })
-   }
- },
+  onReady: function () {
+    var proCate = wx.getStorageSync('proCate' + this.data.cate_id)
+    if (!proCate) {
+      this.get()
+    } else {
+      this.setData({
+        list: proCate
+      })
+    }
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -29,18 +29,18 @@
     <image src="../../images/index/coupon.png"></image>
     <view>优惠券</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="page" data-url="../product/product?category_id=hot&title=热门推荐">
     <image src="../../images/index/hot.png"></image>
     <view>热门推荐</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="page" data-url="../product/product?category_id=new&title=最新活动">
     <image src="../../images/index/active.png"></image>
     <view>最新活动</view>
   </view>
 </view>
 <!-- 产品展示 hot -->
 <view class="weui-cells">
-  <view class="weui-cell">
+  <view class="weui-cell" bindtap="page" data-url="../product/product?category_id=hot&title=热门推荐">
     <view class="weui-cell__bd">热门推荐</view>
     <view class="weui-cell__ft">查看更多 >></view>
   </view>

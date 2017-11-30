@@ -20,6 +20,7 @@ Page({
     wx.switchTab({
       url: e.currentTarget.dataset.url
     })
+    app.globalData.nav= e.currentTarget.dataset.nav
   },
 
   tel: function (e) {

@@ -86,6 +86,7 @@ App({
   globalData: {
     userInfo: null,
     member: null,
-    defaultColor: '#ff5500'
+    defaultColor: '#ff5500',
+    nav: '00'
   }
 })

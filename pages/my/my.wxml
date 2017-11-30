@@ -10,7 +10,7 @@
   </a>
 </view>
 <view class="weui-cells">
-  <view class="weui-cell" bindtap="pageTab" data-url="../order/order">
+  <view class="weui-cell" bindtap="pageTab" data-url="../order/order" data-nav="00">
     <view class="weui-cell__hd"></view>
     <view class="weui-cell__bd">我的订单</view>
     <view class="weui-cell__ft">
@@ -19,19 +19,19 @@
   </view>
 </view>
 <view class="nav">
-  <view class="item">
+  <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="01">
     <image src="../../images/my/order1.png"></image>
     <view>代付款</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="02">
     <image src="../../images/my/order2.png"></image>
     <view>代发货</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="03">
     <image src="../../images/my/order3.png"></image>
     <view>代收款</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="04">
     <image src="../../images/my/order4.png"></image>
     <view>已完成</view>
   </view>
