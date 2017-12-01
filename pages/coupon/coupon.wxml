@@ -1,0 +1,43 @@
+<!-- 切换 -->
+<view class="fixed">
+  <view class="weui-navbar" style="background-color:{{primaryColor}}">
+    <view class="weui-navbar__item {{cnav == '00' ? 'on' : ''}}" bindtap="nav" data-nav="00">
+      优惠券
+    </view>
+    <view class="weui-navbar__item {{cnav == '01' ? 'on' : ''}}" bindtap="nav" data-nav="01">
+      我的
+    </view>
+  </view>
+</view>
+
+<view class="coupon">
+  <view class="item" wx:for="{{list}}" wx:key="item.couponId">
+    <image wx:if="{{item.pic && cnav === '00'}}" src="{{item.pic}}" bindtap="getCoupon" data-id="{{item.couponId}}"/>
+    <image wx:if="{{item.pic}}" src="{{item.pic}}"/>
+
+    <view wx:else class="gain-box theme{{item.theme}}">
+      <view class="gain-left">
+        <text class="price-unit">￥</text><text class="price-value">{{item.amount}}</text>
+        <view>
+          <view wx:if="{{item.thresholdtype === '01'}}">无限制</view>
+          <view wx:if="{{item.thresholdtype === '02'}}">满{{item.threshold}}元可用</view>
+          有效期：{{item.beginTime}} - {{item.endTime}}
+        </view>
+      </view>
+      <view class="gain-right" bindtap="getCoupon" data-id="{{item.couponId}}" wx:if="{{cnav === '00'}}">
+        <view class="btn-gain">立即领取</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+
+<view wx:if="{{isloading}}" class="tip {{list.length === 0 ? 'fixed-loadimg' : ''}}">
+  <image class="loading" src="../../images/loading.png"></image>
+</view>
+<!-- 数据为空 -->
+<view wx:elif="{{list.length === 0 && !isloading}}" class="tip fixed">
+  <image class="img" src="../../images/search.png"></image>
+  <view>抱歉，暂无优惠券</view>
+</view>

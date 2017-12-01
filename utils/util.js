@@ -4,6 +4,7 @@
  * @desc: 时间格式化
 */
 function formatTime(date) {
+  date = new Date(date)
   var year = date.getFullYear()
   var month = date.getMonth() + 1
   var day = date.getDate()

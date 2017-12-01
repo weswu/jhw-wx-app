@@ -1,0 +1,34 @@
+/* 切换 */
+.fixed{height: 41px;z-index:11;position:relative;}
+.weui-navbar{display:-webkit-box;display:-webkit-flex;display:flex;position:fixed;z-index:8;left: 0;top:0;width:100%;}
+.weui-navbar__item.on{border-bottom:6rpx solid #fff;opacity: 1;}
+.weui-navbar image{width: 20px;height: 20px;padding-right: 10rpx;vertical-align: middle;}
+.weui-navbar__item{position:relative;display:block;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding:10px 0;text-align:center;font-size:15px;color:#fff;opacity: 0.75;-webkit-tap-highlight-color:transparent}
+.weui-navbar__item:after{content:" ";position:absolute;right:0;top:0;width:1px;bottom:0;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+/* 优惠券 */
+.coupon{padding:30rpx}
+.coupon .item{padding-bottom:20rpx}
+.gain-box{  display: flex;flex-wrap:nowrap;overflow:hidden;border-radius:10rpx;width:100%;position:relative}
+.gain-left{padding:20rpx;font-size:12px;}
+.price-unit{color:#fff;font-size: 10px}
+.price-value{color:#fff;font-size:30px;padding-left:5rpx}
+
+.gain-right{padding:0 20rpx;align-items: center;display: flex;border-left:1px dashed #fff;}
+.btn-gain{width: 150rpx;background:#fff;border-radius:5rpx;text-align: center;height: 60rpx;line-height: 60rpx;font-size: 12px;}
+
+.gain-box.theme1{background:#f30;}
+.gain-box.theme2{background:#fdc818;}
+.gain-box.theme3{background:#96f;}
+.gain-box.theme4{background:#6c6;}
+.gain-box.theme5{background:#bcbcbc;}
+.theme1 .gain-left{color: #ffede9;}
+.theme2 .gain-left{color: #ffeccf;}
+.theme3 .gain-left{color: #f8f4ff;}
+.theme4 .gain-left{color: #f6fff6;}
+.theme5 .gain-left{color: #eee;}
+
+.theme1 .btn-gain{color: #f30;}
+.theme2 .btn-gain{color: #fdc818;}
+.theme3 .btn-gain{color: #96f;}
+.theme4 .btn-gain{color: #6c6;}
+.theme5 .btn-gain{color: #bcbcbc;}

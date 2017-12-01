@@ -25,7 +25,7 @@
     <image src="../../images/index/cate.png"></image>
     <view>商品分类</view>
   </view>
-  <view class="item">
+  <view class="item" bindtap="page" data-url="../coupon/coupon">
     <image src="../../images/index/coupon.png"></image>
     <view>优惠券</view>
   </view>
@@ -46,7 +46,7 @@
   </view>
 </view>
 <view class="goods">
-  <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{hostList}}" wx:key="item.product_id">
+  <navigator class="item" url="../detail/detail?id={{item.product_id}}&title={{item.name}}" wx:for="{{hotList}}" wx:key="item.product_id">
     <view class="item_grow item_pic">
       <image mode="widthFix" src="{{item.pic_path}}"></image>
     </view>

@@ -47,7 +47,7 @@ page{
 
 /*网格布局子类九宫格分布*/
 .gridview {
-	height: 100%;margin-left:18rpx;
+	height: 100%;margin-left:22rpx;
 
 }
 .title{
@@ -74,13 +74,14 @@ page{
 /*向左流动*/
 .gridview dl {
 	float: left;
-	margin: 5px;
+	margin: 15rpx;
 }
 
 /*图片*/
 .gridview dt image {
-	width: 75px;
-	height: 75px;
+	width: 150rpx;
+	height: 150rpx;
+	padding: 0 4rpx
 }
 
 /*文字*/

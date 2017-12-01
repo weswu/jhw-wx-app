@@ -4,6 +4,7 @@
  * @desc: 购物车
 */
 var app = getApp()
+var util = require('../../utils/util.js')
 
 Page({
 
@@ -17,7 +18,14 @@ Page({
     curDelivery: {},
     curPaymentConfig: {},
     isloading: false,
-    defaultColor:''
+    defaultColor:'',
+    // coupon
+    screenHeight: 0,
+    screenWidth: 0,
+    couponList: [],
+    coupon: {
+      couponTip: '点击使用优惠券'
+    }
   },
   page: function (e) {
     wx.navigateTo({
@@ -173,6 +181,94 @@ Page({
     }
   },
 
+  // 获取优惠券信息
+  getCoupon: function () {
+    var that = this;
+    if (that.data.couponList.length > 0){
+      that.openGain()
+      return false
+    }
+    var productIds = ''
+    for (var i=0; i<this.data.cartItemSet.length; i++) {
+      productIds ? productIds += ','+this.data.cartItemSet[i].product.productId : productIds = this.data.cartItemSet[i].product.productId
+    }
+    wx.showNavigationBarLoading()
+    wx.request({
+      type: 'get',
+      url: 'https://wx.jihui88.net/rest/api/comm/gain/paylist',
+      data: {
+        productIds: productIds,
+        skey: app.globalData.member.skey
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading()
+        var data = res.data.attributes.data
+        if (data.length === 0) {
+          that.setData({
+            'coupon.couponTip': '无可用优惠券'
+          })
+        } else {
+          for (var i = 0; i < data.length; i++) {
+            data[i].coupon.beginTime = util.formatTime(data[i].coupon.beginTime)
+            data[i].coupon.endTime = util.formatTime(data[i].coupon.endTime)
+          }
+          that.setData({
+            couponList: data
+          })
+          that.openGain()
+        }
+      }
+    })
+  },
+  setCoupon: function (e) {
+    var total = this.data.totalPrice + this.data.curPaymentConfig.paymentFee + this.data.curDelivery.deliveryFee
+    var amount = e.currentTarget.dataset.amount
+    if (total < e.currentTarget.dataset.threshold) {
+        wx.showModal({
+          title: '优惠券未满足要求'
+        })
+        return false
+    } else if (total < amount) {
+        wx.showModal({
+          title: '优惠价格必需小于支付价格'
+        })
+        return false
+    }
+    var coupon = {
+      couponGainId: e.currentTarget.dataset.id,
+      amount: amount,
+      couponTip: e.currentTarget.dataset.name
+    }
+    this.setData({
+      coupon: coupon
+    })
+    this.closeGain()
+  },
+  openGain: function () {
+    this.gainAn(0,this.data.screenWidth)
+  },
+  closeGain: function () {
+    this.gainAn(this.data.screenWidth,0)
+  },
+  gainAn: function (anFrom, anTo,  modal) {
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateX(anFrom).step()
+    this.setData({
+      animationShare: animation.export()
+    })
+    setTimeout(function() {
+      animation.translateX(anTo).step()
+      this.setData({
+        animationShare: animation.export()
+      })
+    }.bind(this), 0)
+  },
+
   // 选中物流方式
   pickChange: function (e) {
     this.setData({
@@ -211,7 +307,7 @@ Page({
       receiverId: this.data.curReceiver.receiverId,
       typeId: this.data.curDelivery.typeId,
       configId: this.data.curPaymentConfig.paymentId,
-      gainIds: '',
+      gainIds: this.data.coupon.couponGainId || '', // 优惠券id
     }
     data.model = JSON.stringify(data)
     data._method = 'post'
@@ -277,7 +373,9 @@ Page({
     }
     this.setData({
       defaultColor: app.globalData.defaultColor,
-      primaryColor: app.globalData.primaryColor
+      primaryColor: app.globalData.primaryColor,
+      screenHeight: app.screenHeight,
+      screenWidth: app.screenWidth
     })
   },
 

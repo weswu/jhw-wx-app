@@ -3,7 +3,7 @@
   <view class="weui-cells weui-cells-order">
     <view class="weui-cell" wx:for="{{cartItemSet}}">
         <view class="weui-cell__hd">
-          <image src="{{item.product.picUrl6}}"></image>
+          <image class="image" src="{{item.product.picUrl6}}"></image>
         </view>
         <view class="weui-cell__bd">
           {{item.product.name}}
@@ -41,11 +41,18 @@
       </view>
     </picker>
   </view>
+  <!-- 优惠券-->
+  <view class="weui-cells weui-cells-order" bindtap="getCoupon">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">使用优惠</view>
+      <view class="weui-cell__ft" style="color:#aaa">{{coupon.couponTip}}</view>
+    </view>
+  </view>
   <!-- 所需价格 -->
   <view class="weui-cells weui-cells-order" style="margin-bottom:13vw;">
     <view class="weui-cell">
         <view class="weui-cell__bd">订单总价</view>
-        <view class="weui-cell__ft" style="color:{{defaultColor}}">￥{{totalPrice + curPaymentConfig.paymentFee + curDelivery.deliveryFee}}</view>
+        <view class="weui-cell__ft" style="color:{{defaultColor}}">￥{{totalPrice + curPaymentConfig.paymentFee + curDelivery.deliveryFee - (coupon.amount || 0)}}</view>
     </view>
     <view class="weui-cell">
         <view class="weui-cell__bd">商品总价</view>
@@ -59,6 +66,10 @@
         <view class="weui-cell__bd">运费</view>
         <view class="weui-cell__ft" style="color:{{defaultColor}}">￥{{curDelivery.deliveryFee}}</view>
     </view>
+    <view class="weui-cell">
+        <view class="weui-cell__bd">优惠</view>
+        <view class="weui-cell__ft" style="color:{{defaultColor}}">￥{{coupon.amount || 0}}</view>
+    </view>
   </view>
   <button class="btn-weixin fixed" bindtap="pay">使用微信支付</button>
 </view>
@@ -69,4 +80,27 @@
   <image class="img" src="../../images/cart.png"></image>
   <view>购物车还是空的</view>
   <view class="btn-go" bindtap="pageTab" style="background:{{primaryColor}}">去逛逛</view>
+</view>
+
+<!-- 优惠券列表 -->
+<view class="coupon" style="height: {{screenHeight}}px;left:-{{screenWidth}}px" animation="{{animationShare}}" bindtap="closeGain">
+  <view class="item" wx:for="{{couponList}}" wx:key="item.couponGainId">
+    <image wx:if="{{item.coupon.pic}}" src="{{item.coupon.pic}}" bindtap="setCoupon" data-id="{{item}}"/>
+
+    <view wx:else class="gain-box theme{{item.coupon.theme}}">
+      <view class="gain-left">
+        <text class="price-unit">￥</text><text class="price-value">{{item.amount}}</text>
+        <view>
+          <view wx:if="{{item.coupon.thresholdtype === '01'}}">无限制</view>
+          <view wx:if="{{item.coupon.thresholdtype === '02'}}">满{{item.coupon.threshold}}元可用</view>
+          有效期：{{item.coupon.beginTime}} - {{item.coupon.endTime}}
+        </view>
+      </view>
+      <view class="gain-right" bindtap="setCoupon" data-amount="{{item.amount}}" data-name="{{item.coupon.name}}"
+        data-id="{{item.couponGainId}}" data-threshold="{{item.coupon.threshold}}">
+        <view class="btn-gain">点击使用</view>
+      </view>
+    </view>
+
+  </view>
 </view>

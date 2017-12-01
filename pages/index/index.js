@@ -55,6 +55,7 @@ Page({
           that.setData({
             list: that.data.list
           })
+
           if (that.data.list.length < 3) {
             wx.setStorage({
               key: 'goods',
@@ -67,6 +68,7 @@ Page({
   },
   // 热门
   getHot: function () {
+    var that = this
     wx.showNavigationBarLoading()
     wx.request({
       url: 'https://api.jihui88.net/jihuiapi/products/the_best/' + app.globalData.enterpriseId,
@@ -78,17 +80,13 @@ Page({
           for (var i = 0; i < data.length; i++) {
             data[i].price = parseFloat(data[i].price).toFixed(2)
             data[i].pic_path = util.picUrl(data[i].pic_path, 4)
-            that.data.list.push(data[i])
           }
-          var list = []
-          list[0] = that.data.list
           that.setData({
-            hotList: that.data.list,
-            list: list
+            hotList: data
           })
           wx.setStorage({
             key: 'hotList',
-            data: res.data.list
+            data: data
           })
         }
       }
@@ -194,12 +192,12 @@ Page({
   },
 
   onReady: function () {
-    var hostList = wx.getStorageSync('hostList')
-    if (!hostList) {
+    var hotList = wx.getStorageSync('hotList')
+    if (!hotList) {
       this.getHot()
     } else {
       this.setData({
-        hostList: hostList
+        hotList: hotList
       })
     }
     var category = wx.getStorageSync('category')
@@ -242,7 +240,7 @@ Page({
     if (!this.data.isloading) {
       wx.removeStorageSync('goods')
       this.setData({
-        hostList: [],
+        hotList: [],
         list: [],
         index: 0
       })

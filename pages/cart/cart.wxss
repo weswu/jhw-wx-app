@@ -1,4 +1,3 @@
-
 .btn-weixin{background:#1AAD19;color:#fff}
 .btn-go{width: 205rpx;height: 63rpx;line-height: 63rpx;color: #fff;margin: 10rpx auto;border-radius: 5rpx;font-size: 14px;}
 
@@ -7,3 +6,30 @@
 .weui-cells-order .quantity{color:#9b9b9b;font-size:12px}
 .weui-cells-order .desc{font-size:12px;color:#9b9b9b}
 .weui-cells-order .desc text{padding-right:5px}
+/* 优惠券 */
+.coupon{position: fixed;top:0;left: 0;background: #fff;z-index:999;width:100%;overflow-y:scroll;padding-bottom: 30rpx}
+.coupon .item{padding:30rpx 30rpx 0 30rpx;}
+.gain-box{  display: flex;flex-wrap:nowrap;overflow:hidden;border-radius:10rpx;width:100%;position:relative}
+.gain-left{padding:20rpx;font-size:12px;border-right:1px dashed #fff;}
+.price-unit{color:#fff;font-size: 10px}
+.price-value{color:#fff;font-size:30px;padding-left:5rpx}
+
+.gain-right{padding:0 20rpx;align-items: center;display: flex}
+.btn-gain{width: 150rpx;background:#fff;border-radius:5rpx;text-align: center;height: 60rpx;line-height: 60rpx;font-size: 12px;}
+
+.gain-box.theme1{background:#f30;}
+.gain-box.theme2{background:#fdc818;}
+.gain-box.theme3{background:#96f;}
+.gain-box.theme4{background:#6c6;}
+.gain-box.theme5{background:#bcbcbc;}
+.theme1 .gain-left{color: #ffede9;}
+.theme2 .gain-left{color: #ffeccf;}
+.theme3 .gain-left{color: #f8f4ff;}
+.theme4 .gain-left{color: #f6fff6;}
+.theme5 .gain-left{color: #eee;}
+
+.theme1 .btn-gain{color: #f30;}
+.theme2 .btn-gain{color: #fdc818;}
+.theme3 .btn-gain{color: #96f;}
+.theme4 .btn-gain{color: #6c6;}
+.theme5 .btn-gain{color: #bcbcbc;}
