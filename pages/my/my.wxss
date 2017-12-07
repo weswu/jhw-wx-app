@@ -1,3 +1,6 @@
+.support {
+  font-size: 12px;text-align: center;color: #999;padding: 50rpx 0
+}
 /* 头像 */
 .weui-panel__bd{height: 80px}
 .weui-media-box_appmsg{position: fixed;left: 0;top: 0;width: 100%;padding:5px 15px 15px 15px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}

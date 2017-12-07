@@ -1,6 +1,7 @@
 <view class="container">
 	<!-- 侧边栏 -->
-	<view class="sidebar" style="height: {{sidebarHeight}}px;">
+	<scroll-view scroll-y class="sidebar" style="height: {{sidebarHeight}}px;"
+		bindscrolltolower="lower" bindscroll="scroll">
 		<view class="item" wx:for="{{list}}" wx:key="item.category_id"
       bindtap="subCategory" data-id="{{item.category_id}}">
         <view class="border">
@@ -9,7 +10,8 @@
           <view style="{{active === item.category_id ? 'color:' + primaryColor : ''}}">{{item.name}}</view>
        </view>
      </view>
-	</view>
+	</scroll-view>
+	<view class="more" wx:if="{{more}}">下滑查看更多</view>
 	<!-- right -->
 	<view class="main">
 		<!-- GridView -->

@@ -15,7 +15,8 @@ Page({
     subCategoryList: [],
     sidebarHeight:'',
     active: '',
-    primaryColor: ''
+    primaryColor: '',
+    more: true
   },
   // 跳转
   page: function (e) {
@@ -68,6 +69,23 @@ Page({
     if (key) {
       this.setData({
         active: key
+      })
+    }
+  },
+  // 左侧滚动
+  lower:　function () {
+    this.setData({
+      more: false
+    })
+  },
+  scroll: function (e) {
+    if (e.detail.scrollTop + this.data.sidebarHeight > e.detail.scrollHeight - 80) {
+      this.setData({
+        more: false
+      })
+    } else {
+      this.setData({
+        more: true
       })
     }
   },

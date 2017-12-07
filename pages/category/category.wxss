@@ -10,8 +10,9 @@ page{
 
 /*侧边栏顶级分类给予固定宽度*/
 .sidebar {
-	width: 200rpx;
+	width: 150rpx;
 	overflow-y: scroll;
+	position: relative;
 }
 .sidebar .item {
 	border-bottom: 1px solid #e5e5e5;
@@ -36,10 +37,21 @@ page{
 	width: 40rpx;height: 40rpx;
 }
 
+.container .more{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	font-size: 10px;
+	color: #999;
+	width:149rpx;
+	padding:10px 0;
+	background: #f4f4f4;
+	text-align: center;
+}
 
 
 .main {
-	width: 100%;
+	width: 600rpx;
 	display: flex;
 	flex-direction: column;
 	background: #fff;
