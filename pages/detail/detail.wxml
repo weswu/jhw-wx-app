@@ -11,17 +11,30 @@
   </swiper>
 
   <view class="detail_title">
-    <view class="name">{{detail.name}}</view>
-    <view class="price">￥{{detail.price}}</view>
-    <rich-text nodes="{{detail.detail1}}"></rich-text>
+    <view class="header">
+      <view class="name">{{detail.name}}</view>
+      <view class="price">￥{{detail.price}}</view>
+    </view>
+    <view class="share" bindtap="share">
+      <image mode="widthFix" src="../../images/detail/share.png"/>
+      转发
+    </view>
   </view>
+  <rich-text nodes="{{detail.detail1}}" wx:if="{{detail.detail1}}"></rich-text>
 </view>
 <view class="wxpay">
-  <image mode="widthFix" src="../../images/wxpay.png"/>支持微信支付
+  <image mode="widthFix" src="../../images/detail/wxpay.png"/>支持微信支付
 </view>
+<!-- 分享 -->
+<view class="shareModal" animation="{{animationShare}}">
+  <button open-type="share"><image mode="widthFix" src="../../images/detail/friend.png"/>发送给朋友</button>
+  <navigator class="shareImg" url="../canvas/canvas?id={{id}}&name={{detail.name}}&price={{detail.price}}&pic={{detail.pic_path}}"><image mode="widthFix" src="../../images/detail/image.png"/>生成分享二维码</navigator>
+</view>
+<button class="fixed closeBg" bindtap="closeBg" wx:if="{{shareModal}}">取消</button>
+<view class="drawer_screen shareBg" bindtap="closeBg" wx:if="{{shareModal}}"></view>
 
 <!-- 图文详情 -->
-<view class="detail_bd">
+<view class="detail_desc">
   <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
 </view>
 <!-- 背景黑色 -->
@@ -61,8 +74,8 @@
       </view>
     </view>
   </view>
-  <button class="btn-primary fixed btn-cart3" bindtap="pay">确定</button>
 </view>
+<button class="btn-primary fixed btn-cart3" bindtap="pay" wx:if="{{showModalStatus}}">确定</button>
 <view class="detail-btn">
   <view class="detail-btn-img">
     <contact-button type="default-light" size="22" session-from="{{detail.name}}"></contact-button>

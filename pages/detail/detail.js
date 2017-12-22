@@ -23,10 +23,11 @@ Page({
     skuCode: '',
     appendPrice: 0,
     appendIds: '',
-    defaultColor: ''
+    defaultColor: '',
+    // share
+    shareModal: false
   },
   page: function (e) {
-    debugger
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     })
@@ -53,6 +54,7 @@ Page({
         if (res.data.detail1 === null) {
           res.data.detail1 = ''
         } else {
+          res.data.detail1 = res.data.detail1.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
           // 表格
           res.data.detail1 = res.data.detail1.replace(/<table>/g, "<table style='border-collapse:collapse;display:table;'>").replace(/<td>/g, "<td style='padding: 5px 10px;border: 1px solid #DDD;'>").replace(/<th>/g, "<th style='padding: 5px 10px;border: 1px solid #DDD;border-top:1px solid #BBB;background-color:#F7F7F7;'>").replace(/\"/g, "'")
         }
@@ -135,33 +137,35 @@ Page({
       this.getAttr()
     }
     console.log("设置显示状态，1显示0不显示", status);
+
+    this.setData({
+      skip: e.currentTarget.dataset.skip
+    });
+
+    if (status == 1) {
+      this.attrAn(0,-400,true,300)
+    } else {
+      this.attrAn(400,0,false,500)
+    }
+  },
+  attrAn: function (anFrom, anTo, modal, duration) {
     var animation = wx.createAnimation({
-      duration: 200,
+      duration: duration,
       timingFunction: "linear",
       delay: 0
     })
     this.animation = animation
-    animation.translateY(300).step()
+    animation.translateY(anFrom).step()
     this.setData({
-      animationData: animation.export()
+      animationData: animation.export(),
+      showModalStatus: modal
     })
-    if (status == 1) {
+    setTimeout(function() {
+      animation.translateY(anTo).step()
       this.setData({
-        skip: e.currentTarget.dataset.skip,
-        showModalStatus: true
-      });
-    }
-    setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation
+        animationData: animation.export()
       })
-      if (status == 0) {
-        this.setData({
-          showModalStatus: false
-        });
-      }
-    }.bind(this), 200)
+    }.bind(this), 0)
   },
   /* 属性选择 */
   attrClick: function (e) {
@@ -286,6 +290,12 @@ Page({
             wx.switchTab({
               url: '../cart/cart'
             })
+          } else {
+            wx.showToast({
+              title: '添加成功',
+              icon: 'success',
+              duration: 2000
+            })
           }
           that.setData({
             showModalStatus: false
@@ -322,10 +332,37 @@ Page({
       swiperCurrent: e.detail.current
     })
   },
+  // 标题
   wxTitle: function () {
     wx.setNavigationBarTitle({
       title: decodeURIComponent(this.data.detail.name)
     })
+  },
+  // 分享
+  share: function () {
+    this.shareAn(0,-155,true)
+  },
+  closeBg: function () {
+    this.shareAn(-155,0,false)
+  },
+  shareAn: function (anFrom, anTo,  modal) {
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(anFrom).step()
+    this.setData({
+      animationShare: animation.export(),
+      shareModal: modal
+    })
+    setTimeout(function() {
+      animation.translateY(anTo).step()
+      this.setData({
+        animationShare: animation.export()
+      })
+    }.bind(this), 0)
   },
   onLoad: function (options) {
     this.setData({

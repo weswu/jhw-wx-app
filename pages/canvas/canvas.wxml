@@ -1,0 +1,4 @@
+<view class="canvas">
+  <canvas canvas-id="proCanvas"></canvas>
+  <button class="btn-download" bindtap="saveImg"><image src="../../images/download.png"></image>保存图片，分享至朋友圈</button>
+</view>

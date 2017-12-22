@@ -4,6 +4,7 @@
     "pages/coupon/coupon",
     "pages/product/product",
     "pages/detail/detail",
+    "pages/canvas/canvas",
     "pages/category/category",
     "pages/company/company",
     "pages/order/orderDetail",

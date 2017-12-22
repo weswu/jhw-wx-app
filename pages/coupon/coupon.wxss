@@ -8,19 +8,19 @@
 /* 优惠券 */
 .coupon{padding:30rpx}
 .coupon .item{padding-bottom:20rpx}
-.gain-box{  display: flex;flex-wrap:nowrap;overflow:hidden;border-radius:10rpx;width:100%;position:relative}
-.gain-left{padding:20rpx;font-size:12px;}
+.gain-box{display: flex;flex-wrap:nowrap;overflow:hidden;border-radius:10rpx;width:100%;position:relative;box-shadow:0 0 3px #ddd;}
+.gain-left{margin:20rpx 0 20rpx 20rpx;font-size:12px;border-right:1px dashed #fff;}
 .price-unit{color:#fff;font-size: 10px}
 .price-value{color:#fff;font-size:30px;padding-left:5rpx}
 
-.gain-right{padding:0 20rpx;align-items: center;display: flex;border-left:1px dashed #fff;}
+.gain-right{padding:0 20rpx;align-items: center;display: flex;}
 .btn-gain{width: 150rpx;background:#fff;border-radius:5rpx;text-align: center;height: 60rpx;line-height: 60rpx;font-size: 12px;}
 
-.gain-box.theme1{background:#f30;}
-.gain-box.theme2{background:#fdc818;}
-.gain-box.theme3{background:#96f;}
-.gain-box.theme4{background:#6c6;}
-.gain-box.theme5{background:#bcbcbc;}
+.gain-box.theme1{background:#f30;background: linear-gradient(to left top, #ff3b0b , #f30);}
+.gain-box.theme2{background:#fdc818;background: linear-gradient(to left top, #fdc818, #ffb400);}
+.gain-box.theme3{background:#96f;background: linear-gradient(to left top, #96f , #884dff);}
+.gain-box.theme4{background:#6c6;background: linear-gradient(to left top, #6c6 , #51d051);}
+.gain-box.theme5{background:#bcbcbc;background: linear-gradient(to left top, #bcbcbc , #b0b0b0);}
 .theme1 .gain-left{color: #ffede9;}
 .theme2 .gain-left{color: #ffeccf;}
 .theme3 .gain-left{color: #f8f4ff;}
