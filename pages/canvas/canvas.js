@@ -24,7 +24,7 @@ Page({
       method: 'post',
       data: {
         appid: app.globalData.appid,
-        path_name: 'pages/detail/detail?id='+this.data.id+'&title='+this.data.name,
+        path_name: 'pages/detail/detail?id='+this.data.id+'&title='+this.data.name.trim(),
         scene: this.data.id
       },
       header: {
@@ -85,7 +85,6 @@ Page({
     can.setFontSize(14)
     can.setFillStyle('#999999')
     can.fillText('长按识别二维码', 10, 435)
-    can.draw()
 
     wx.getImageInfo({
       src: this.data.pic,
@@ -97,7 +96,7 @@ Page({
         console.log('需要配置域名  需要https')
       }
     })
-    console.log(that.data.qrcode)
+    can.drawImage(that.data.qrcode, 180, 370, 90, 90)
     wx.getImageInfo({
       src: that.data.qrcode,
       success: function (res) {
@@ -112,6 +111,7 @@ Page({
         console.log(err)
       }
     })
+    can.draw()
   },
 
   saveImg: function () {
