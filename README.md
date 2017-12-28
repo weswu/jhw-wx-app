@@ -12,10 +12,11 @@
 | 分支名 | 二维码 | 描述 |
 | --- | :---: | --- |
 | `master` | - | 基础功能模板 |
+| `app` | - | 机汇网用户后台 |
 | `qixing` | - | 七星布草 zaingdev |
 | `jihui` | - | 机汇网 |
 | `jinlida` | <img width="106" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/jinlida.png"/> | 金利达砂轮`http://demo.ykit.net/pmsj/jinlida/` |
-| `sxl1` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/sxl1.png"/> | 安贝---参考上线了-Ash amaira |
+| `sxl1` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/sxl1.jpg"/> | 安贝---参考上线了-Ash amaira |
 | `sxl2` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FnC_4HbF5imCh0CDL_7i_SvegqDy.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 参考上线了-Eone手表 |
 
 #### 新建空白模板
