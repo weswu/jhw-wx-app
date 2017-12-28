@@ -21,15 +21,15 @@
 <view class="nav">
   <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="01">
     <image src="../../images/my/order1.png"></image>
-    <view>代付款</view>
+    <view>待付款</view>
   </view>
   <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="02">
     <image src="../../images/my/order2.png"></image>
-    <view>代发货</view>
+    <view>待发货</view>
   </view>
   <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="03">
     <image src="../../images/my/order3.png"></image>
-    <view>代收款</view>
+    <view>待收款</view>
   </view>
   <view class="item" bindtap="pageTab" data-url="../order/order" data-nav="04">
     <image src="../../images/my/order4.png"></image>

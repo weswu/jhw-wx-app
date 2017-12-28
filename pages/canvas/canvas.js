@@ -96,7 +96,7 @@ Page({
         console.log('需要配置域名  需要https')
       }
     })
-    can.drawImage(that.data.qrcode, 180, 370, 90, 90)
+    can.drawImage('https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1398711952,793648838&fm=173&s=E4F1E27A55836CE35CC830480000E0F1&w=200&h=200&img.GIF', 180, 370, 90, 90)
     wx.getImageInfo({
       src: that.data.qrcode,
       success: function (res) {

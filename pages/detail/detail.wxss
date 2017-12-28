@@ -1,7 +1,7 @@
 /* detail.wxss */
 .detail{background: #fff}
 .detail image{display:block;width:100%}
-.detail rich-text{font-size:13px;padding:0 4vw 4vw 4vw}
+.detail rich-text{font-size:13px;}
 /* 标题  */
 .detail_title{display: flex;flex-flow: row;border-top:1px solid #ECECEC;border-bottom:1px solid #ECECEC;padding:4vw}
 .detail_title .header{flex:1;width:600rpx;}
@@ -63,3 +63,6 @@ button{
 .stepper input{width:30px;height:28px;float:left;margin:0 auto;text-align:center;font-size:14px;padding: 0 3px}
 .stepper .normal{color:#141414;border:1px solid #333;}
 .stepper .disabled{color:#cfcfcf}
+
+/** 回到顶部 **/
+.top{position: fixed;bottom: 11vh;right: 4vw; width: 30px;height: 30px;padding: 1vw}

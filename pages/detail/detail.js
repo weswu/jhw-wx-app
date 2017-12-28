@@ -25,7 +25,9 @@ Page({
     appendIds: '',
     defaultColor: '',
     // share
-    shareModal: false
+    shareModal: false,
+    // 回到顶部
+    scrollTop: false
   },
   page: function (e) {
     wx.navigateTo({
@@ -49,12 +51,12 @@ Page({
           res.data.proddesc = ''
         } else {
           // .replace(/<style[^>]*?>[\s\S]*?<\/style>/g, "")
-          res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
+          res.data.proddesc = res.data.proddesc.replace(/<img /g, "<img width='100%' ").replace(/\"/g, "'").replace(/930px/g, "100%").replace(/\"/g, "'")
         }
         if (res.data.detail1 === null) {
           res.data.detail1 = ''
         } else {
-          res.data.detail1 = res.data.detail1.replace(/<img /g, "<img width='100%;' ").replace(/\"/g, "'")
+          res.data.detail1 = res.data.detail1.replace(/<img /g, "<img width='100%' ").replace(/\"/g, "'").replace(/930px/g, "100%").replace(/\"/g, "'")
           // 表格
           res.data.detail1 = res.data.detail1.replace(/<table>/g, "<table style='border-collapse:collapse;display:table;'>").replace(/<td>/g, "<td style='padding: 5px 10px;border: 1px solid #DDD;'>").replace(/<th>/g, "<th style='padding: 5px 10px;border: 1px solid #DDD;border-top:1px solid #BBB;background-color:#F7F7F7;'>").replace(/\"/g, "'")
         }
@@ -338,7 +340,7 @@ Page({
       title: decodeURIComponent(this.data.detail.name)
     })
   },
-  // 分享
+  // 分享(未实现微信二维码下载)
   share: function () {
     this.shareAn(0,-155,true)
   },
@@ -364,6 +366,22 @@ Page({
       })
     }.bind(this), 0)
   },
+  // 回到顶部
+  goTopFun: function (e) {
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+    this.setData({
+      scrollTop: false
+    })
+  },
+  scrollTopFn: function (e) {
+    if (!this.data.scrollTop) {
+      this.setData({
+        scrollTop: true
+      })
+    }
+  },  
   onLoad: function (options) {
     this.setData({
       id: options.id,

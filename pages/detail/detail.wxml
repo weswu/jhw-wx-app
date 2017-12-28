@@ -15,10 +15,10 @@
       <view class="name">{{detail.name}}</view>
       <view class="price">￥{{detail.price}}</view>
     </view>
-    <view class="share" bindtap="share">
+    <button class="share" open-type="share" style="height:50px;line-height:28px;background:#fff;padding:0">
       <image mode="widthFix" src="../../images/detail/share.png"/>
       转发
-    </view>
+    </button>
   </view>
   <rich-text nodes="{{detail.detail1}}" wx:if="{{detail.detail1}}"></rich-text>
 </view>
@@ -34,7 +34,7 @@
 <view class="drawer_screen shareBg" bindtap="closeBg" wx:if="{{shareModal}}"></view>
 
 <!-- 图文详情 -->
-<view class="detail_desc">
+<view class="detail_desc" bindtouchend="scrollTopFn">
   <rich-text nodes="{{detail.proddesc}}" bindtap="showDescPic"></rich-text>
 </view>
 <!-- 背景黑色 -->
@@ -89,3 +89,5 @@
   <button class="btn-primary btn-cart" bindtap="setModalStatus" data-status="1" data-skip="0">加入购物车</button>
   <button class="btn-primary btn-cart2" bindtap="setModalStatus" data-status="1" data-skip="1">立即购买</button>
 </view>
+<!-- 滚回到顶部 -->
+<image class="top" src="../../images/top.png" wx:if="{{scrollTop}}" catchtap="goTopFun"></image>
