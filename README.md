@@ -18,6 +18,7 @@
 | `jinlida` | <img width="106" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/jinlida.png"/> | 金利达砂轮`http://demo.ykit.net/pmsj/jinlida/` |
 | `sxl1` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/sxl1.jpg"/> | 安贝---参考上线了-Ash amaira |
 | `sxl2` | <img width="150" src="https://nzr2ybsda.qnssl.com/images/121695/FnC_4HbF5imCh0CDL_7i_SvegqDy.png?imageMogr2/strip/thumbnail/720x1440%3E/quality/90!/format/png"/> | 参考上线了-Eone手表 |
+| `xinchao` | <img width="150" src="https://raw.githubusercontent.com/weswu/jhw-wxapp/master/images/static/xinchao.jpg"/> | 新潮公办 |
 
 #### 新建空白模板
 ```
