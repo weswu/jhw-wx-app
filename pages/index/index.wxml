@@ -57,7 +57,7 @@
   </navigator>
 </view>
 <!-- 产品展示 分类 -->
-<view wx:for="{{list}}" wx:key="index" bindtouchend="scrollTopFn">
+<view wx:for="{{list}}" wx:key="index" bindtouchend="scrollTopFn" wx:if="{{index<categoryList.length}}">
   <view class="weui-cells">
     <view class="weui-cell" bindtap="page" data-url="../product/product?category_id={{categoryList[index].category_id}}&title={{categoryList[index].name}}">
       <view class="weui-cell__bd">{{categoryList[index].name}}</view>

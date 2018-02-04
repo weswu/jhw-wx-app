@@ -38,32 +38,39 @@ Page({
       isloading: true
     })
     this.data.search.category_id = cate_id
-    wx.request({
-      url: 'https://api.jihui88.net/jihuiapi/products/category_child/' + app.globalData.enterpriseId,
-      data: this.data.search,
-      success: function (res) {
-        that.setData({
-          isloading: false
-        })
-        if (res.statusCode !== 404) {
-          var data = res.data.list
-          for (var i = 0; i < data.length; i++) {
-            data[i].price = parseFloat(data[i].price).toFixed(2)
-            data[i].pic_path = util.picUrl(data[i].pic_path, 4)
-          }
-          that.data.list.push(data)
+    return new Promise(function(resolve, reject){
+      wx.request({
+        url: 'https://api.jihui88.net/jihuiapi/products/category_child/' + app.globalData.enterpriseId,
+        data: that.data.search,
+        success: function (res) {
           that.setData({
-            list: that.data.list
+            isloading: false
           })
-
-          if (that.data.list.length < 3) {
-            wx.setStorage({
-              key: 'goods',
-              data: that.data.list
+          if (res.statusCode !== 404) {
+            var data = res.data.list
+            for (var i = 0; i < data.length; i++) {
+              data[i].price = parseFloat(data[i].price).toFixed(2)
+              data[i].pic_path = util.picUrl(data[i].pic_path, 4)
+            }
+            that.data.list.push(data)
+            that.setData({
+              list: that.data.list
+            })
+            if (that.data.list.length < 3) {
+              wx.setStorage({
+                key: 'goods',
+                data: that.data.list
+              })
+            }
+          } else {
+            that.data.list.push([])
+            that.setData({
+              list: that.data.list
             })
           }
+          resolve()
         }
-      }
+      })
     })
   },
   // 热门
@@ -178,17 +185,28 @@ Page({
     }
   },
   init: function () {
+    var that = this
     var index = this.data.index
     var length = this.data.categoryList.length
+    var a, b, c
     for (var i =0; i<3; i++) {
       if (index < length) {
-        this.get(parseInt(this.data.categoryList[index].category_id.split('Category_')[1]))
+        var cid = parseInt(this.data.categoryList[index].category_id.split('Category_')[1])
+        if (i ===0) {a = cid}
+        if (i ===1) {b = cid}
+        if (i ===2) {c = cid}
         index+=1
-        this.setData({
+        that.setData({
           index: index
         })
       }
     }
+    this.get(a).then(()=>{
+      that.get(b).then(()=>{
+        that.get(c).then(()=>{
+        })
+      })
+    })
   },
 
   onReady: function () {
