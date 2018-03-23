@@ -24,7 +24,8 @@ Page({
     three: ['请选择'],
     threeIndex:0,
     address:{},
-    isAdd: true
+    isAdd: true,
+    primaryColor: ''
   },
   get: function () {
     var that = this
@@ -309,6 +310,9 @@ Page({
       })
       this.get()
     }
+    this.setData({
+      primaryColor: app.globalData.primaryColor
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
